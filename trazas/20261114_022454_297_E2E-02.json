@@ -1,0 +1,941 @@
+{
+  "version": "PG3-AuditIA-1.0",
+  "fecha": "2026-11-14T02:07:06",
+  "modelo": "qwen2.5:7b",
+  "huella_prompts": "45af5da3ce6b",
+  "caso": "E2E-02",
+  "consulta_usuario": "¿Se contradicen los requerimientos de los descuentos de la venta de categoría A y por qué esa contradicción quedó como bloqueante?",
+  "pasos": [
+    {
+      "paso": 1,
+      "submodulo": "SM2",
+      "subconsulta": "¿Se contradicen los requerimientos de los descuentos de la venta de categoría A? ¿Por qué?",
+      "enlace": null,
+      "traza": {
+        "prototipo": "PI4-SM2-1.0",
+        "fecha": "2026-11-14T02:07:36",
+        "modelo": "qwen2.5:7b",
+        "hilos": null,
+        "huella_prompts": "8d97773b8e67",
+        "caso": "E2E-02_p1_SM2",
+        "consulta_usuario": "¿Se contradicen los requerimientos de los descuentos de la venta de categoría A? ¿Por qué?",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"comparacion_requerimientos\", \"entidades\": {\"requerimiento_ids\": [], \"requerimiento_texto\": \"descuentos de la venta de categoría A\", \"documento_id\": null, \"evaluacion_id\": null, \"observacion_id\": null}, \"conceptos\": {\"categoria\": null}, \"filtros\": {\"tipo_analisis\": null, \"estado\": null}, \"condiciones\": {\"alcance\": \"vigente\"}, \"faltantes\": [\"requerimientos específicos\"]}",
+              "modelo": "qwen2.5:7b",
+              "segundos": 162.89,
+              "tokens_entrada": 2798,
+              "tokens_salida": 113,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [],
+          "json_validado": {
+            "intencion": "comparacion_requerimientos",
+            "entidades": {
+              "requerimiento_ids": [],
+              "requerimiento_texto": "descuentos de la venta de categoría A",
+              "documento_id": null,
+              "evaluacion_id": null,
+              "observacion_id": null
+            },
+            "conceptos": {
+              "categoria": null
+            },
+            "filtros": {
+              "tipo_analisis": null,
+              "estado": null
+            },
+            "condiciones": {
+              "alcance": "vigente"
+            },
+            "faltantes": [
+              "requerimientos específicos"
+            ]
+          }
+        },
+        "intencion": "comparacion_requerimientos",
+        "consultas_cypher": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 12,
+            "milisegundos": 65.1
+          },
+          {
+            "consulta": "Q1_comparacion_par",
+            "parametros": {
+              "requerimiento_ids": [
+                "RQ-DESC-A-v1",
+                "RQ-DESC-B-v1"
+              ]
+            },
+            "filas": 2,
+            "milisegundos": 2059.1
+          },
+          {
+            "consulta": "Q8_reglas",
+            "parametros": {
+              "ids": [
+                "ACC-RD03",
+                "ACC-RD05"
+              ]
+            },
+            "filas": 2,
+            "milisegundos": 46.8
+          }
+        ],
+        "resolucion_entidad": {
+          "estado": "ok",
+          "puntaje": 1.0,
+          "evaluaciones": [
+            "EV-DESC",
+            "EV-DESC-CONTROL"
+          ],
+          "requerimientos": [
+            "RQ-DESC-A-v1",
+            "RQ-DESC-B-v1"
+          ],
+          "id_logico": null,
+          "documentos": null,
+          "categoria": null,
+          "observacion": null,
+          "alternativas": []
+        },
+        "paquete_evidencia": {
+          "intencion": "comparacion_requerimientos",
+          "consulta_usuario": "¿Se contradicen los requerimientos de los descuentos de la venta de categoría A? ¿Por qué?",
+          "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "requerimientos_consultados": [
+            "RQ-DESC-A-v1",
+            "RQ-DESC-B-v1"
+          ],
+          "comparaciones": [
+            {
+              "resultados_incompatibles": true,
+              "modelo_id": "MD-CONTR-1.0",
+              "estado": "observado",
+              "reglas": [
+                "ACC-RD05"
+              ],
+              "excepcion_resuelve": false,
+              "resultado": {
+                "descripcion": "La misma venta exige precio con y sin descuento",
+                "motivo_pendiente": null,
+                "dato_faltante": null,
+                "id": "H-DESC",
+                "tipo_defecto": "contradiccion",
+                "clase": "Hallazgo"
+              },
+              "banda_difusa": "alta",
+              "requerimientos": [
+                {
+                  "texto": "En la misma venta de categoría A no se debe aplicar ningún descuento.",
+                  "escenario": {
+                    "actor": "Sistema de ventas",
+                    "estado": "confirmación",
+                    "objeto": "misma venta A",
+                    "id": "ESC-RQ-DESC-B-v1"
+                  },
+                  "id": "RQ-DESC-B-v1",
+                  "obligacion": {
+                    "accion": "calcular",
+                    "resultado": "precio final sin descuento",
+                    "modalidad": "obligacion",
+                    "sujeto": "Sistema de ventas",
+                    "objeto": "precio final",
+                    "id": "O-RQ-DESC-B-v1"
+                  }
+                },
+                {
+                  "texto": "En una venta de categoría A se debe aplicar el descuento del 10 %.",
+                  "escenario": {
+                    "actor": "Sistema de ventas",
+                    "estado": "confirmación",
+                    "objeto": "misma venta A",
+                    "id": "ESC-RQ-DESC-A-v1"
+                  },
+                  "id": "RQ-DESC-A-v1",
+                  "obligacion": {
+                    "accion": "calcular",
+                    "resultado": "precio final con 10 % de descuento",
+                    "modalidad": "obligacion",
+                    "sujeto": "Sistema de ventas",
+                    "objeto": "precio final",
+                    "id": "O-RQ-DESC-A-v1"
+                  }
+                }
+              ],
+              "evidencias": [
+                {
+                  "tipo": "analisis",
+                  "contenido": "RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.",
+                  "id": "E-EV-DESC"
+                }
+              ],
+              "vigente": true,
+              "version": 1,
+              "grado_contradiccion": 0.843975,
+              "interpretacion_cerrada": true,
+              "evaluacion_id": "EV-DESC",
+              "documento_id": "DOC-DESC-v1",
+              "escenarios": "coincidentes",
+              "contradice": [
+                {
+                  "hasta": "RQ-DESC-B-v1",
+                  "desde": "RQ-DESC-A-v1",
+                  "ambito": "misma venta A",
+                  "regla": "ACC-RD05"
+                }
+              ]
+            },
+            {
+              "resultados_incompatibles": true,
+              "modelo_id": null,
+              "estado": "sin_hallazgo",
+              "reglas": [
+                "ACC-RD03"
+              ],
+              "excepcion_resuelve": false,
+              "resultado": null,
+              "banda_difusa": null,
+              "requerimientos": [
+                {
+                  "texto": "En la misma venta de categoría A no se debe aplicar ningún descuento.",
+                  "escenario": {
+                    "actor": "Sistema de ventas",
+                    "estado": "confirmación",
+                    "objeto": "misma venta A",
+                    "id": "ESC-RQ-DESC-B-v1"
+                  },
+                  "id": "RQ-DESC-B-v1",
+                  "obligacion": {
+                    "accion": "calcular",
+                    "resultado": "precio final sin descuento",
+                    "modalidad": "obligacion",
+                    "sujeto": "Sistema de ventas",
+                    "objeto": "precio final",
+                    "id": "O-RQ-DESC-B-v1"
+                  }
+                },
+                {
+                  "texto": "En una venta de categoría A se debe aplicar el descuento del 10 %.",
+                  "escenario": {
+                    "actor": "Sistema de ventas",
+                    "estado": "confirmación",
+                    "objeto": "misma venta A",
+                    "id": "ESC-RQ-DESC-A-v1"
+                  },
+                  "id": "RQ-DESC-A-v1",
+                  "obligacion": {
+                    "accion": "calcular",
+                    "resultado": "precio final con 10 % de descuento",
+                    "modalidad": "obligacion",
+                    "sujeto": "Sistema de ventas",
+                    "objeto": "precio final",
+                    "id": "O-RQ-DESC-A-v1"
+                  }
+                }
+              ],
+              "evidencias": [
+                {
+                  "tipo": "analisis",
+                  "contenido": "Control del par: las obligaciones se ubican en momentos excluyentes del escenario construido. La diferencia textual no demuestra contradicción simultánea.",
+                  "id": "E-EV-DESC-CONTROL"
+                }
+              ],
+              "vigente": true,
+              "version": 1,
+              "grado_contradiccion": null,
+              "interpretacion_cerrada": true,
+              "evaluacion_id": "EV-DESC-CONTROL",
+              "documento_id": "DOC-DESC-v1",
+              "escenarios": "excluyentes",
+              "contradice": []
+            }
+          ],
+          "reglas": [
+            {
+              "id": "ACC-RD03",
+              "modulo": "analisis_cruzado",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI los escenarios del par son excluyentes y la interpretación está cerrada ENTONCES sin hallazgo para ese par.",
+              "fuente": "PG1 §6.5"
+            },
+            {
+              "id": "ACC-RD05",
+              "modulo": "analisis_cruzado",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI los escenarios coinciden, los resultados son incompatibles y ninguna excepción los concilia ENTONCES Hallazgo(contradiccion) y se deriva CONTRADICE.",
+              "fuente": "PG1 §6.5"
+            }
+          ]
+        },
+        "explicacion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "respuesta": "Se observó que los requerimientos RQ-DESC-A-v1 y RQ-DESC-B-v1 contradicen entre sí [EV-DESC, H-DESC]. La evaluación EV-DESC comparó los requerimientos en escenarios coincidentes, encontrando que el resultado es incompatível: RQ-DESC-A-v1 exige un 10% de descuento, mientras que RQ-DESC-B-v1 no permite ningún descuento en la misma venta de categoría A. Esto se deriva con la regla ACC-RD05 [EV-DESC, ACC-RD05]. La evaluación EV-DESC-CONTROL, que comparó los requerimientos en escenarios excluyentes, no encontró hallazgos [EV-DESC-CONTROL]. Esta evaluación sirvió como control de falsos positivos, pero no anula la contradicción identificada por EV-DESC. Es un resultado provisional del prototipo académico, sin validación experta.",
+              "violaciones": [
+                "No menciona ACC-RD03",
+                "No menciona el estado «observado»",
+                "No menciona el estado «sin_hallazgo»"
+              ],
+              "modelo": "qwen2.5:7b",
+              "segundos": 256.96,
+              "tokens_entrada": 4042,
+              "tokens_salida": 212
+            },
+            {
+              "intento": 2,
+              "respuesta": "Se observó que los requerimientos RQ-DESC-A-v1 y RQ-DESC-B-v1 contradicen entre sí [EV-DESC, H-DESC]. La evaluación EV-DESC comparó los requerimientos en escenarios coincidentes, encontrando que el resultado es incompatível: RQ-DESC-A-v1 exige un 10% de descuento, mientras que RQ-DESC-B-v1 no permite ningún descuento en la misma venta de categoría A. Esto se deriva con la regla ACC-RD05 [EV-DESC, ACC-RD05]. La evaluación EV-DESC-CONTROL, que comparó los requerimientos en escenarios excluyentes, no encontró hallazgos [EV-DESC-CONTROL]. Esta evaluación sirvió como control de falsos positivos, pero no anula la contradicción identificada por EV-DESC [EV-DESC-CONTROL]. Es un resultado provisional del prototipo académico, sin validación experta.",
+              "violaciones": [
+                "No menciona ACC-RD03",
+                "No menciona el estado «observado»",
+                "No menciona el estado «sin_hallazgo»"
+              ],
+              "modelo": "qwen2.5:7b",
+              "segundos": 66.73,
+              "tokens_entrada": 4354,
+              "tokens_salida": 218
+            },
+            {
+              "intento": 3,
+              "respuesta": "Se observó que los requerimientos RQ-DESC-A-v1 y RQ-DESC-B-v1 contradicen entre sí [EV-DESC, H-DESC]. La evaluación EV-DESC comparó los requerimientos en escenarios coincidentes, encontrando que el resultado es incompatível: RQ-DESC-A-v1 exige un 10% de descuento, mientras que RQ-DESC-B-v1 no permite ningún descuento en la misma venta de categoría A. Esto se deriva con la regla ACC-RD05 [EV-DESC, ACC-RD05]. La evaluación EV-DESC-CONTROL, que comparó los requerimientos en escenarios excluyentes, no encontró hallazgos [EV-DESC-CONTROL]. Esta evaluación sirvió como control de falsos positivos, pero no anula la contradicción identificada por EV-DESC [EV-DESC-CONTROL]. EV-DESC (observado) y EV-DESC-CONTROL (sin_hallazgo) comparan el mismo par con premisas distintas; cada conclusión vale para su premisa. Es un resultado provisional del prototipo académico, sin validación experta.",
+              "violaciones": [
+                "No menciona ACC-RD03"
+              ],
+              "modelo": "qwen2.5:7b",
+              "segundos": 65.06,
+              "tokens_entrada": 4360,
+              "tokens_salida": 258
+            }
+          ],
+          "hechos_verificables": [
+            "Conclusiones registradas, para escribirlas en el texto corrido de la respuesta (ID con su estado exacto entre paréntesis; esto va en el texto y no entre corchetes): EV-DESC (observado, regla ACC-RD05, genera Hallazgo H-DESC); EV-DESC-CONTROL (sin_hallazgo, regla ACC-RD03, sin hallazgo ni pendiente).",
+            "La evaluación EV-DESC (DOC-DESC-v1, versión 1) comparó RQ-DESC-B-v1 («En la misma venta de categoría A no se debe aplicar ningún descuento.») y RQ-DESC-A-v1 («En una venta de categoría A se debe aplicar el descuento del 10 %.»). Premisas registradas: escenarios coincidentes, resultados_incompatibles = true, excepcion_resuelve = false, interpretacion_cerrada = true. Quedó observado por la regla ACC-RD05.",
+            "Obligación de RQ-DESC-B-v1 (O-RQ-DESC-B-v1): sujeto «Sistema de ventas», acción «calcular», objeto «precio final», modalidad obligacion, resultado «precio final sin descuento»; escenario ESC-RQ-DESC-B-v1 (actor «Sistema de ventas», objeto «misma venta A», estado «confirmación»).",
+            "Obligación de RQ-DESC-A-v1 (O-RQ-DESC-A-v1): sujeto «Sistema de ventas», acción «calcular», objeto «precio final», modalidad obligacion, resultado «precio final con 10 % de descuento»; escenario ESC-RQ-DESC-A-v1 (actor «Sistema de ventas», objeto «misma venta A», estado «confirmación»).",
+            "EV-DESC derivó la relación CONTRADICE de RQ-DESC-A-v1 a RQ-DESC-B-v1 con ámbito «misma venta A» (regla ACC-RD05).",
+            "EV-DESC genera el Hallazgo H-DESC (tipo_defecto contradiccion): «La misma venta exige precio con y sin descuento».",
+            "EV-DESC tiene grado de pertenencia a contradicción 0,844, banda alta, calculado con MD-CONTR-1.0. El grado mide la intensidad del conflicto; la que decidió el estado es la regla ACC-RD05.",
+            "Evidencia E-EV-DESC: «RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.».",
+            "La evaluación EV-DESC-CONTROL (DOC-DESC-v1, versión 1) comparó RQ-DESC-B-v1 («En la misma venta de categoría A no se debe aplicar ningún descuento.») y RQ-DESC-A-v1 («En una venta de categoría A se debe aplicar el descuento del 10 %.»). Premisas registradas: escenarios excluyentes, resultados_incompatibles = true, excepcion_resuelve = false, interpretacion_cerrada = true. Quedó sin_hallazgo por la regla ACC-RD03.",
+            "EV-DESC-CONTROL no derivó la relación CONTRADICE.",
+            "EV-DESC-CONTROL no genera hallazgo ni pendiente.",
+            "EV-DESC-CONTROL no tiene grado de contradicción calculado (grado_contradiccion = null): no debe estimarse un valor.",
+            "Evidencia E-EV-DESC-CONTROL: «Control del par: las obligaciones se ubican en momentos excluyentes del escenario construido. La diferencia textual no demuestra contradicción simultánea.».",
+            "Las evaluaciones EV-DESC, EV-DESC-CONTROL comparan el mismo par con premisas distintas (escenarios coincidentes frente a excluyentes); cada conclusión vale para su premisa. EV-DESC-CONTROL es una evaluación de control del par (evidencia E-EV-DESC-CONTROL): funciona como control de falsos positivos, no es un desacuerdo entre análisis y no anula a EV-DESC. La evidencia del control describe solo la premisa de ese control; no agrega una conclusión sobre la contradicción ni la confirma, limita o explica.",
+            "Regla ACC-RD03 (implementada, estado candidata, PG1 §6.5): SI los escenarios del par son excluyentes y la interpretación está cerrada ENTONCES sin hallazgo para ese par.",
+            "Regla ACC-RD05 (implementada, estado candidata, PG1 §6.5): SI los escenarios coinciden, los resultados son incompatibles y ninguna excepción los concilia ENTONCES Hallazgo(contradiccion) y se deriva CONTRADICE.",
+            "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+            "El paquete no registra un dato faltante ni una revisión pendiente: no propongas un siguiente paso.",
+            "La respuesta debe mencionar estos IDs: EV-DESC, H-DESC, EV-DESC-CONTROL, ACC-RD05, ACC-RD03.",
+            "La respuesta debe escribir textualmente estos estados, tal como figuran: observado, sin_hallazgo. Un verbo parecido (por ejemplo «se observó») no alcanza.",
+            "Estados que figuran en el paquete: observado, sin hallazgo. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «pendiente», «no evaluable», «resuelta», «resuelto», «por consultar», «no aplicable» en la respuesta."
+          ],
+          "cobertura_requerida": {
+            "ids": [
+              "EV-DESC",
+              "H-DESC",
+              "EV-DESC-CONTROL",
+              "ACC-RD05",
+              "ACC-RD03"
+            ],
+            "estados": [
+              "observado",
+              "sin_hallazgo"
+            ]
+          },
+          "resultado_verificacion": "rechazada; se emite la respuesta de respaldo"
+        },
+        "respuesta_final": "No pude generar una explicación verificable; resumo los datos recuperados de la base sin interpretarlos. Son resultados provisionales del prototipo, sin validación experta.\nEvaluación EV-DESC (observado, regla ACC-RD05): H-DESC.\nEvaluación EV-DESC-CONTROL (sin_hallazgo, regla ACC-RD03): sin resultado.",
+        "tipo_salida": "respaldo",
+        "segundos_totales": 553.83,
+        "archivo_traza": "submodulos/20261114_021750_699_E2E-02_p1_SM2.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM2",
+        "intencion": "comparacion_requerimientos",
+        "fuentes": [
+          "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)"
+        ],
+        "consultas": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 12,
+            "milisegundos": 65.1,
+            "cypher": "// Q0. Catálogo de lo que analizó SM2: una fila por evaluación cruzada y requerimiento vinculado, con su rol\n// (comparado, origen_dependencia, definicion o alcance_cobertura), la categoría evaluada y el resultado.\n// Alimenta la resolución determinística de entidades. Solo lectura. Sin parámetros.\nMATCH (ev:AuditIA_PG2:EvaluacionCruzada)-[:REVISA_DOCUMENTO]->(doc:AuditIA_PG2:DocumentoVersion)\nWITH ev, doc,\n     [(ev)-[:COMPARA]->(r:Requerimiento) | {r: r, rol: 'comparado'}] +\n     [(ev)-[:RASTREA]->(:Dependencia)-[:TIENE_ORIGEN]->(r:Requerimiento) | {r: r, rol: 'origen_dependencia'}] +\n     [(ev)-[:RASTREA]->(:Dependencia)-[:RESUELTA_POR]->(r:Requerimiento) | {r: r, rol: 'definicion'}] +\n     CASE WHEN ev.tipo_analisis = 'cobertura'\n          THEN [(doc)-[:CONTIENE]->(r:Requerimiento) | {r: r, rol: 'alcance_cobertura'}] ELSE [] END AS vinculos\nUNWIND vinculos AS v\nWITH DISTINCT ev, doc, v.r AS rq, v.rol AS rol\nRETURN ev.id AS evaluacion_id, ev.tipo_analisis AS tipo_analisis, ev.estado AS estado,\n       doc.id AS documento_id, toInteger(doc.version) AS version,\n       rq.id AS requerimiento_id, rq.id_logico AS id_logico, rq.texto_original AS texto, rol,\n       head([(ev)-[:EVALUA_CATEGORIA]->(c:CategoriaNFR) | c.nombre]) AS categoria,\n       head([(ev)-[:GENERA]->(o:ResultadoAnalisis) | o.id]) AS resultado_id,\n       NOT EXISTS { MATCH (:Evaluacion)-[:REEVALUA]->(ev) } AS vigente\nORDER BY tipo_analisis, evaluacion_id, requerimiento_id"
+          },
+          {
+            "consulta": "Q1_comparacion_par",
+            "parametros": {
+              "requerimiento_ids": [
+                "RQ-DESC-A-v1",
+                "RQ-DESC-B-v1"
+              ]
+            },
+            "filas": 2,
+            "milisegundos": 2059.1,
+            "cypher": "// Q1. Comparación de un par de requerimientos: evaluaciones cruzadas que comparan ambos, premisas del escenario,\n// obligaciones, relación CONTRADICE derivada, regla aplicada, evidencia, resultado y grado difuso guardado.\n// Parámetros: $requerimiento_ids (List<String>).\nMATCH (ev:AuditIA_PG2:EvaluacionCruzada {tipo_analisis: 'comparacion'})-[:COMPARA]->(rq:Requerimiento)\nWHERE rq.id IN $requerimiento_ids\nWITH ev, collect(DISTINCT rq.id) AS coincidencias\nWHERE size(coincidencias) = size($requerimiento_ids)\nMATCH (ev)-[:REVISA_DOCUMENTO]->(doc:DocumentoVersion)\nOPTIONAL MATCH (ev)-[:GENERA]->(o:ResultadoAnalisis)\nOPTIONAL MATCH (ev)-[:APLICA_MODELO]->(md:ModeloDifuso)\nRETURN {\n  evaluacion_id: ev.id,\n  estado: ev.estado,\n  documento_id: doc.id,\n  version: toInteger(doc.version),\n  escenarios: ev.escenarios,\n  resultados_incompatibles: ev.resultados_incompatibles,\n  excepcion_resuelve: ev.excepcion_resuelve,\n  interpretacion_cerrada: ev.interpretacion_cerrada,\n  requerimientos: [(ev)-[:COMPARA]->(r:Requerimiento) |\n    {id: r.id, texto: r.texto_original,\n     obligacion: head([(r)-[:EXPRESA]->(ob:Obligacion) |\n       {id: ob.id, sujeto: ob.sujeto, accion: ob.accion, objeto: ob.objeto, modalidad: ob.modalidad, resultado: ob.resultado}]),\n     escenario: head([(r)-[:EXPRESA]->(:Obligacion)-[:APLICA_EN]->(es:Escenario) |\n       {id: es.id, actor: es.actor, objeto: es.objeto, estado: es.estado}])}],\n  contradice: [(a:Requerimiento)-[c:CONTRADICE {evaluacion_id: ev.id}]->(b:Requerimiento) |\n    {desde: a.id, hasta: b.id, regla: c.regla_id, ambito: c.ambito}],\n  reglas: [(ev)-[:APLICA_REGLA]->(r:Regla) | r.id],\n  evidencias: [(ev)-[:SE_SUSTENTA_EN]->(e:Evidencia) | {id: e.id, tipo: e.tipo, contenido: e.contenido}],\n  resultado: CASE WHEN o IS NULL THEN null ELSE\n    {id: o.id, clase: CASE WHEN o:Hallazgo THEN 'Hallazgo' ELSE 'Pendiente' END,\n     tipo_defecto: o.tipo_defecto, motivo_pendiente: o.motivo_pendiente,\n     descripcion: o.descripcion, dato_faltante: o.dato_faltante} END,\n  grado_contradiccion: CASE WHEN ev.grado_contradiccion IS NULL THEN null ELSE round(ev.grado_contradiccion, 6) END,\n  banda_difusa: ev.banda_difusa,\n  modelo_id: md.id,\n  vigente: NOT EXISTS { MATCH (:Evaluacion)-[:REEVALUA]->(ev) }\n} AS comparacion\nORDER BY comparacion.evaluacion_id"
+          },
+          {
+            "consulta": "Q8_reglas",
+            "parametros": {
+              "ids": [
+                "ACC-RD03",
+                "ACC-RD05"
+              ]
+            },
+            "filas": 2,
+            "milisegundos": 46.8,
+            "cypher": "// Q8. Consulta complementaria: texto, estado, ejecución y fuente de las reglas citadas en un paquete.\n// Parámetros: $ids (List<String>).\nMATCH (r:AuditIA_PG2:Regla)\nWHERE r.id IN $ids\nRETURN r.id AS id, r.modulo AS modulo, r.estado_validacion AS estado_validacion,\n       r.ejecucion AS ejecucion, r.descripcion AS descripcion, r.descripcion_fuente AS fuente\nORDER BY id"
+          }
+        ],
+        "reglas": [
+          {
+            "id": "ACC-RD03",
+            "descripcion": "SI los escenarios del par son excluyentes y la interpretación está cerrada ENTONCES sin hallazgo para ese par.",
+            "fuente": "PG1 §6.5",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "ACC-RD05",
+            "descripcion": "SI los escenarios coinciden, los resultados son incompatibles y ninguna excepción los concilia ENTONCES Hallazgo(contradiccion) y se deriva CONTRADICE.",
+            "fuente": "PG1 §6.5",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          }
+        ],
+        "evidencias": [
+          {
+            "id": "E-EV-DESC",
+            "contenido": "RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.",
+            "tipo": "analisis",
+            "localizador": null,
+            "fuente": null
+          },
+          {
+            "id": "E-EV-DESC-CONTROL",
+            "contenido": "Control del par: las obligaciones se ubican en momentos excluyentes del escenario construido. La diferencia textual no demuestra contradicción simultánea.",
+            "tipo": "analisis",
+            "localizador": null,
+            "fuente": null
+          }
+        ],
+        "observaciones": [
+          {
+            "id": "H-DESC",
+            "clase": "Hallazgo"
+          }
+        ],
+        "verificacion": "rechazada; se emite la respuesta de respaldo",
+        "intentos_explicacion": 3,
+        "tipo_salida": "respaldo"
+      }
+    },
+    {
+      "paso": 2,
+      "submodulo": "SM3",
+      "subconsulta": "¿Por qué quedó como bloqueante la contradicción de los descuentos de la venta de categoría A? (observación H-DESC)",
+      "enlace": {
+        "estado": "enlazado",
+        "elegidas": [
+          "H-DESC"
+        ],
+        "candidatas": [
+          "H-DESC"
+        ],
+        "criterio": "primer Hallazgo del paquete de evidencia; si no hay, primer Pendiente"
+      },
+      "traza": {
+        "prototipo": "PI4-SM3-1.0",
+        "fecha": "2026-11-14T02:17:50",
+        "modelo": "qwen2.5:7b",
+        "hilos": null,
+        "huella_prompts": "837a200f0dfe",
+        "caso": "E2E-02_p2_SM3",
+        "consulta_usuario": "¿Por qué quedó como bloqueante la contradicción de los descuentos de la venta de categoría A? (observación H-DESC)",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"fundamento_prioridad\", \"entidades\": {\"observacion_id\": \"H-DESC\", \"observacion_texto\": null, \"documento_id\": null}, \"filtros\": {\"prioridad\": \"bloqueante\", \"motivo\": null, \"estado_seguimiento\": \"abiertas\"}, \"matriz\": {\"severidad\": null, \"criticidad\": null}, \"faltantes\": []}",
+              "modelo": "qwen2.5:7b",
+              "segundos": 23.79,
+              "tokens_entrada": 2799,
+              "tokens_salida": 94,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [
+            "Se ignoran los filtros de prioridad y motivo: la intención fundamento_prioridad no los usa."
+          ],
+          "json_validado": {
+            "intencion": "fundamento_prioridad",
+            "entidades": {
+              "observacion_id": "H-DESC",
+              "observacion_texto": null,
+              "documento_id": null
+            },
+            "filtros": {
+              "prioridad": null,
+              "motivo": null,
+              "estado_seguimiento": "abiertas"
+            },
+            "matriz": {
+              "severidad": null,
+              "criticidad": null
+            },
+            "faltantes": []
+          }
+        },
+        "intencion": "fundamento_prioridad",
+        "consultas_cypher": [
+          {
+            "consulta": "Q0_observaciones",
+            "parametros": {},
+            "filas": 33,
+            "milisegundos": 53.8
+          },
+          {
+            "consulta": "Q2_fundamento_decision",
+            "parametros": {
+              "observacion_id": "H-DESC"
+            },
+            "filas": 1,
+            "milisegundos": 28.9
+          },
+          {
+            "consulta": "Q4_seguimiento_pg2",
+            "parametros": {
+              "observacion_id": "H-DESC"
+            },
+            "filas": 1,
+            "milisegundos": 24.5
+          },
+          {
+            "consulta": "Q9_reglas",
+            "parametros": {
+              "ids": [
+                "ACC-RD05",
+                "GL07",
+                "PRC-HC01"
+              ]
+            },
+            "filas": 3,
+            "milisegundos": 23.4
+          }
+        ],
+        "resolucion_entidad": {
+          "estado": "ok",
+          "puntaje": 1.0,
+          "observaciones": [
+            "H-DESC"
+          ]
+        },
+        "paquete_evidencia": {
+          "intencion": "fundamento_prioridad",
+          "consulta_usuario": "¿Por qué quedó como bloqueante la contradicción de los descuentos de la venta de categoría A? (observación H-DESC)",
+          "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "fundamento": {
+            "provisional": true,
+            "revisada_humanamente": false,
+            "estado": "por_consultar",
+            "tipo": "hallazgo",
+            "motivo": "sustantivo",
+            "reevaluaciones_del_origen": [],
+            "dato_faltante_origen": null,
+            "evaluacion_origen_id": "EV-DESC",
+            "severidad": {
+              "grado_severidad": 9.0,
+              "valor": "alta",
+              "propuesta_por": "analisis_cruzado",
+              "id": "SV-H-DESC"
+            },
+            "observacion_id": "H-DESC",
+            "criticidad": {
+              "grado_criticidad": 9.0,
+              "declarante_rol": "referente_negocio",
+              "valor": "alta",
+              "fundamento": "Declaración construida",
+              "ambito": "Operación del caso DESC",
+              "id": "CR-DESC"
+            },
+            "prioridad": "bloqueante",
+            "contexto": {
+              "mapeo_alta_bloqueante": "candidato_activo",
+              "diferimiento_aceptado": false,
+              "obligacion_esencial_indefinida": true,
+              "bloqueo_sustantivo_confirmado": true,
+              "id": "X-DESC",
+              "dato_para_priorizar_disponible": true,
+              "info_para_priorizar_suficiente": true,
+              "impacto_acotado": false,
+              "necesidad_dato_confirmada": false,
+              "hito_acordado": false
+            },
+            "celda_mpr01": {
+              "estado_validacion": "candidata",
+              "categoria": "bloqueante",
+              "id": "MPR-alta-alta",
+              "version": "MPR-01-1.0"
+            },
+            "revision_senior_requerida": false,
+            "decision_id": "D-H-DESC",
+            "evidencia_decision": [
+              {
+                "contenido": "Contexto de prioridad construido de DESC",
+                "fuente": "S-CASOS",
+                "id": "E-X-DESC"
+              }
+            ],
+            "descripcion_origen": "La misma venta exige precio con y sin descuento",
+            "modulo_origen": "analisis_cruzado",
+            "emitible": false,
+            "regla": "PRC-HC01",
+            "decision_anterior": null
+          },
+          "seguimiento_pg2": {
+            "grado_ambiguedad_origen": null,
+            "descripcion": "La misma venta exige precio con y sin descuento",
+            "estado": "por_consultar",
+            "motivo": "sustantivo",
+            "modelo_difuso": "MD-URG-1.0",
+            "grado_urgencia": 8.082999080276148,
+            "observacion_id": "H-DESC",
+            "prioridad": "bloqueante",
+            "version_origen": "1",
+            "reglas_decision": [
+              "PRC-HC01"
+            ],
+            "decision_id": "D-H-DESC",
+            "modulo_origen": "analisis_cruzado",
+            "provisional": true,
+            "estado_evaluacion_vigente": "observado",
+            "dato_faltante": null,
+            "evaluacion_origen_id": "EV-DESC",
+            "reglas_origen": [
+              "GL07",
+              "ACC-RD05"
+            ],
+            "modelo_ambiguedad": null,
+            "version": "1",
+            "evidencia_origen": [
+              {
+                "contenido": "En la misma venta de categoría A no se debe aplicar ningún descuento.",
+                "tipo": "fragmento",
+                "fuente": "S-CASOS",
+                "id": "E-RQ-DESC-B-v1",
+                "localizador": "RQ-DESC-B-v1"
+              },
+              {
+                "contenido": "En una venta de categoría A se debe aplicar el descuento del 10 %.",
+                "tipo": "fragmento",
+                "fuente": "S-CASOS",
+                "id": "E-RQ-DESC-A-v1",
+                "localizador": "RQ-DESC-A-v1"
+              },
+              {
+                "contenido": "RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.",
+                "tipo": "analisis",
+                "fuente": "S-CASOS",
+                "id": "E-EV-DESC",
+                "localizador": "EV-DESC"
+              }
+            ],
+            "grado_contradiccion": 0.8439745371591536,
+            "tratamiento_activo": true,
+            "descripcion_corresponde_a": "observacion_historica",
+            "modelo_diagnostico": "MD-CONTR-1.0",
+            "documento_origen_id": "DOC-DESC-v1",
+            "evidencia_decision": [
+              {
+                "contenido": "Contexto de prioridad construido de DESC",
+                "tipo": "declaracion",
+                "fuente": "S-CASOS",
+                "id": "E-X-DESC",
+                "localizador": "X-DESC"
+              }
+            ],
+            "evaluacion_id": "EV-DESC",
+            "documento_id": "DOC-DESC-v1",
+            "emitible": false,
+            "evidencia_evaluacion_vigente": [
+              {
+                "contenido": "RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.",
+                "tipo": "analisis",
+                "fuente": "S-CASOS",
+                "id": "E-EV-DESC",
+                "localizador": "EV-DESC"
+              }
+            ],
+            "grado_ambiguedad": null
+          },
+          "reglas": [
+            {
+              "id": "ACC-RD05",
+              "modulo": "analisis_cruzado",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI los escenarios coinciden, los resultados son incompatibles y ninguna excepción los concilia ENTONCES Hallazgo(contradiccion) y se deriva CONTRADICE.",
+              "fuente": "PG1 §6.5"
+            },
+            {
+              "id": "GL07",
+              "modulo": "global",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+              "fuente": "PG1 §6.3"
+            },
+            {
+              "id": "PRC-HC01",
+              "modulo": "priorizacion_clarificacion",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI un hallazgo deja indefinida una obligación esencial ENTONCES prioridad bloqueante, motivo sustantivo.",
+              "fuente": "PG1 §6.6"
+            }
+          ]
+        },
+        "explicacion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "respuesta": "La contradicción de los descuentos en la venta de categoría A quedó como bloqueante debido a que el hallazgo H-DESC indica que la misma venta exige precio con y sin descuento, lo cual es incompatible. La severidad y criticidad son altas, y el contexto X-DESC confirma que la obligación esencial queda indefinida. La regla PRC-HC01, en su versión candidata, determina que un hallazgo que deja indefinida una obligación esencial genera una prioridad bloqueante, motivo sustantivo. La decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible. [H-DESC, D-H-DESC, PRC-HC01]",
+              "violaciones": [],
+              "modelo": "qwen2.5:7b",
+              "segundos": 272.9,
+              "tokens_entrada": 4425,
+              "tokens_salida": 172
+            }
+          ],
+          "hechos_verificables": [
+            "Observación H-DESC (hallazgo) emitida por analisis_cruzado en la evaluación EV-DESC. Descripción registrada: «La misma venta exige precio con y sin descuento».",
+            "Severidad SV-H-DESC: alta (grado_severidad 9.000), propuesta por analisis_cruzado. SM3 no la modifica.",
+            "Criticidad CR-DESC: alta (grado_criticidad 9.000), ámbito «Operación del caso DESC», fundamento «Declaración construida», declarada por referente_negocio.",
+            "Celda de MPR-01: MPR-alta-alta, categoría bloqueante, versión MPR-01-1.0, estado_validacion candidata.",
+            "Premisas del contexto X-DESC: mapeo_alta_bloqueante = candidato_activo; diferimiento_aceptado = false; obligacion_esencial_indefinida = true; bloqueo_sustantivo_confirmado = true; dato_para_priorizar_disponible = true; info_para_priorizar_suficiente = true; impacto_acotado = false; necesidad_dato_confirmada = false; hito_acordado = false.",
+            "Decisión vigente D-H-DESC, prioridad bloqueante, motivo sustantivo, regla PRC-HC01, seguimiento por_consultar; provisional = true, emitible = false. revisada_humanamente = false.",
+            "Evidencia de la decisión: E-X-DESC, «Contexto de prioridad construido de DESC» (fuente S-CASOS).",
+            "Seguimiento (Q4 de PG2): evaluación vigente EV-DESC sobre DOC-DESC-v1 con estado observado; tratamiento_activo = true; reglas del origen GL07, ACC-RD05. Grado de contradicción de la evaluación de origen: 0.844 (MD-CONTR-1.0). Grado de urgencia de la decisión: 8.083 (MD-URG-1.0).",
+            "Evidencia del origen: E-RQ-DESC-B-v1, «En la misma venta de categoría A no se debe aplicar ningún descuento.».",
+            "Evidencia del origen: E-RQ-DESC-A-v1, «En una venta de categoría A se debe aplicar el descuento del 10 %.».",
+            "Evidencia del origen: E-EV-DESC, «RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.».",
+            "Regla ACC-RD05 (estado candidata, ejecución en PG2: implementada, PG1 §6.5): SI los escenarios coinciden, los resultados son incompatibles y ninguna excepción los concilia ENTONCES Hallazgo(contradiccion) y se deriva CONTRADICE.",
+            "Regla GL07 (estado candidata, ejecución en PG2: implementada, PG1 §6.3): SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+            "Regla PRC-HC01 (estado candidata, ejecución en PG2: implementada, PG1 §6.6): SI un hallazgo deja indefinida una obligación esencial ENTONCES prioridad bloqueante, motivo sustantivo.",
+            "Las decisiones, reglas, celdas y modelos citados son provisionales o candidatos: resultado del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+            "emitible = false: la respuesta debe decir que la recomendación todavía no es emitible.",
+            "La respuesta debe mencionar estos IDs: H-DESC, D-H-DESC, PRC-HC01. Entre corchetes van solo IDs, por ejemplo [H-DESC, D-H-DESC]; los valores se escriben con palabras, fuera de los corchetes.",
+            "La respuesta debe nombrar con palabras estos valores: bloqueante, por consultar, sustantivo.",
+            "La respuesta debe explicar primero el fundamento de cada decisión (premisas, evidencia y regla con su significado) y cerrar cada una con una oración como: «La decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible.»",
+            "Valores de prioridad, motivo y estado que figuran en el paquete: bloqueante, observado, por_consultar, sustantivo. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas «preventivo», «en hito», «diferimiento», «resuelto», «pendiente complemento», «sin hallazgo», «no evaluable» como conclusión."
+          ],
+          "cobertura_requerida": {
+            "ids": [
+              "H-DESC",
+              "D-H-DESC",
+              "PRC-HC01"
+            ],
+            "valores": [
+              "bloqueante",
+              "por_consultar",
+              "sustantivo"
+            ]
+          },
+          "resultado_verificacion": "aprobada"
+        },
+        "respuesta_final": "La contradicción de los descuentos en la venta de categoría A quedó como bloqueante debido a que el hallazgo H-DESC indica que la misma venta exige precio con y sin descuento, lo cual es incompatible. La severidad y criticidad son altas, y el contexto X-DESC confirma que la obligación esencial queda indefinida. La regla PRC-HC01, en su versión candidata, determina que un hallazgo que deja indefinida una obligación esencial genera una prioridad bloqueante, motivo sustantivo. La decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible. [H-DESC, D-H-DESC, PRC-HC01]",
+        "tipo_salida": "explicacion",
+        "segundos_totales": 296.83,
+        "archivo_traza": "submodulos/20261114_022320_882_E2E-02_p2_SM3.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM3",
+        "intencion": "fundamento_prioridad",
+        "fuentes": [
+          "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "S-CASOS"
+        ],
+        "consultas": [
+          {
+            "consulta": "Q0_observaciones",
+            "parametros": {},
+            "filas": 33,
+            "milisegundos": 53.8,
+            "cypher": "// Q0. Observaciones recibidas por SM3 con su decisión vigente, si la tienen. Alimenta la resolución\n// determinística de entidades: el LLM nunca elige un ID del grafo. Solo lectura. Sin parámetros.\nMATCH (ev:AuditIA_PG2:Evaluacion)-[:GENERA]->(o:ResultadoAnalisis), (ev)-[:REVISA_DOCUMENTO]->(doc:DocumentoVersion)\nOPTIONAL MATCH (d:DecisionPrioridad)-[:PRIORIZA]->(o)\nWHERE NOT EXISTS { MATCH (:DecisionPrioridad)-[:SUSTITUYE_A]->(d) }\nRETURN o.id AS observacion_id,\n       CASE WHEN o:Hallazgo THEN 'hallazgo' WHEN o:Pendiente THEN 'pendiente'\n            WHEN o:IncidenciaEntrada THEN 'incidencia_entrada' ELSE 'resultado' END AS tipo,\n       o.modulo_origen AS modulo_origen, o.descripcion AS descripcion, o.tipo_defecto AS tipo_defecto,\n       o.dato_faltante AS dato_faltante, doc.id AS documento_id,\n       [(o)-[:AFECTA_REQUERIMIENTO]->(rq:Requerimiento) | rq.texto_original] AS textos_requerimiento,\n       d.id AS decision_id\nORDER BY observacion_id"
+          },
+          {
+            "consulta": "Q2_fundamento_decision",
+            "parametros": {
+              "observacion_id": "H-DESC"
+            },
+            "filas": 1,
+            "milisegundos": 28.9,
+            "cypher": "// Q2. ¿Por qué una observación recibió su prioridad? Decisión vigente con sus premisas (ContextoPrioridad),\n// regla aplicada, severidad del emisor, criticidad declarada, celda de MPR-01, decisión anterior (SUSTITUYE_A),\n// evidencia y reevaluaciones de la evaluación de origen, indicando si la decisión se basa en cada una.\n// Parámetro: $observacion_id (String).\nMATCH (o:AuditIA_PG2:ResultadoAnalisis {id: $observacion_id})<-[:PRIORIZA]-(d:DecisionPrioridad)\nWHERE NOT EXISTS { MATCH (:DecisionPrioridad)-[:SUSTITUYE_A]->(d) }\nMATCH (d)-[:USA_CONTEXTO]->(x:ContextoPrioridad), (d)-[:APLICA_REGLA]->(r:Regla),\n      (d)-[:TIENE_ESTADO]->(er:EstadoResolucion), (o)-[:TIENE_SEVERIDAD]->(sv:Severidad),\n      (origen:Evaluacion)-[:GENERA]->(o)\nOPTIONAL MATCH (cr:AuditIA_PG2:Criticidad {id: d.criticidad_id})\nOPTIONAL MATCH (celda:AuditIA_PG2:CeldaMatriz {severidad: sv.valor, criticidad: cr.valor})\nOPTIONAL MATCH (d)-[:SUSTITUYE_A]->(prev:DecisionPrioridad)\nRETURN {\n  observacion_id: o.id,\n  tipo: CASE WHEN o:Hallazgo THEN 'hallazgo' ELSE 'pendiente' END,\n  modulo_origen: o.modulo_origen,\n  evaluacion_origen_id: origen.id,\n  descripcion_origen: o.descripcion,\n  dato_faltante_origen: o.dato_faltante,\n  severidad: {id: sv.id, valor: sv.valor, grado_severidad: sv.grado_severidad, propuesta_por: sv.propuesta_por},\n  criticidad: CASE WHEN cr IS NULL THEN null ELSE\n    {id: cr.id, valor: cr.valor, grado_criticidad: cr.grado_criticidad, ambito: cr.ambito,\n     fundamento: cr.fundamento, declarante_rol: cr.declarante_rol} END,\n  celda_mpr01: CASE WHEN celda IS NULL THEN null ELSE\n    {id: celda.id, categoria: celda.categoria, version: celda.version, estado_validacion: celda.estado_validacion} END,\n  contexto: x {.id, .info_para_priorizar_suficiente, .necesidad_dato_confirmada, .dato_para_priorizar_disponible,\n               .obligacion_esencial_indefinida, .bloqueo_sustantivo_confirmado, .hito_acordado,\n               .diferimiento_aceptado, .impacto_acotado, .mapeo_alta_bloqueante},\n  decision_id: d.id, prioridad: d.prioridad, motivo: d.motivo, regla: r.id,\n  estado: er.valor, provisional: d.provisional, emitible: d.emitible,\n  revisada_humanamente: d.revisada_humanamente,\n  revision_senior_requerida: coalesce(d.revision_senior_requerida, false),\n  decision_anterior: CASE WHEN prev IS NULL THEN null ELSE\n    {id: prev.id, prioridad: prev.prioridad, motivo: prev.motivo,\n     regla: head([(prev)-[:APLICA_REGLA]->(rp:Regla) | rp.id]),\n     estado: head([(prev)-[:TIENE_ESTADO]->(ep:EstadoResolucion) | ep.valor])} END,\n  evidencia_decision: [(d)-[:SE_SUSTENTA_EN]->(e:Evidencia) |\n    {id: e.id, contenido: e.contenido, fuente: head([(e)-[:CITA_FUENTE]->(f:Fuente) | f.id])}],\n  reevaluaciones_del_origen: [(posterior:Evaluacion)-[:REEVALUA]->(origen) |\n    {id: posterior.id, estado: posterior.estado, resultado_reevaluacion: posterior.resultado_reevaluacion,\n     documento_id: head([(posterior)-[:REVISA_DOCUMENTO]->(dp:DocumentoVersion) | dp.id]),\n     decision_se_basa_en_ella: EXISTS { MATCH (d)-[:SE_BASA_EN_REEVALUACION]->(posterior) }}]\n} AS fundamento"
+          },
+          {
+            "consulta": "Q4_seguimiento_pg2",
+            "parametros": {
+              "observacion_id": "H-DESC"
+            },
+            "filas": 1,
+            "milisegundos": 24.5,
+            "cypher": "// Q4. Consulta Q4_paquete_llm.cypher de PG2, reutilizada sin cambios: es el contrato de PI4 (PG2 §4.1).\n// En SM3 se lee el seguimiento del tratamiento: prioridad, motivo, estado, tratamiento_activo, provisional y emitible.\n// Parámetro: $observacion_id (String).\nMATCH (o:AuditIA_PG2:ResultadoAnalisis {id:$observacion_id})<-[:GENERA]-(origen)-[:REVISA_DOCUMENTO]->(doc_origen),\n      (d:DecisionPrioridad)-[:PRIORIZA]->(o),(d)-[:TIENE_ESTADO]->(er)\nWHERE NOT EXISTS {MATCH (:DecisionPrioridad)-[:SUSTITUYE_A]->(d)}\nOPTIONAL MATCH (d)-[:SE_BASA_EN_REEVALUACION]->(reevaluacion:Evaluacion)\nWITH o,origen,doc_origen,d,er,coalesce(reevaluacion,origen) AS actual\nMATCH (actual)-[:REVISA_DOCUMENTO]->(doc)\nOPTIONAL MATCH (o)-[:DERIVA_DE_JUICIO]->(jo)-[:APLICA_CRITERIO]->(criterio)\nOPTIONAL MATCH (actual)-[:CONTIENE_JUICIO]->(ja)-[:APLICA_CRITERIO]->(criterio)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja\nOPTIONAL MATCH (o)-[:SE_SUSTENTA_EN]->(eo)-[:CITA_FUENTE]->(fo)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,\n collect(DISTINCT CASE WHEN eo IS NOT NULL THEN {id:eo.id,tipo:eo.tipo,contenido:eo.contenido,localizador:eo.localizador,fuente:fo.id} END) AS evidencia_origen\nOPTIONAL MATCH (d)-[:SE_SUSTENTA_EN]->(ed)-[:CITA_FUENTE]->(fd)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,\n collect(DISTINCT CASE WHEN ed IS NOT NULL THEN {id:ed.id,tipo:ed.tipo,contenido:ed.contenido,localizador:ed.localizador,fuente:fd.id} END) AS evidencia_decision\nOPTIONAL MATCH (actual)-[:SE_SUSTENTA_EN]->(ea)-[:CITA_FUENTE]->(fa)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,evidencia_decision,\n collect(DISTINCT CASE WHEN ea IS NOT NULL THEN {id:ea.id,tipo:ea.tipo,contenido:ea.contenido,localizador:ea.localizador,fuente:fa.id} END) AS evidencia_evaluacion_vigente\nOPTIONAL MATCH (o)-[:APLICA_REGLA]->(r1)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,evidencia_decision,evidencia_evaluacion_vigente,collect(DISTINCT r1.id) AS reglas_origen\nOPTIONAL MATCH (d)-[:APLICA_REGLA]->(r2)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,evidencia_decision,evidencia_evaluacion_vigente,reglas_origen,collect(DISTINCT r2.id) AS reglas_decision\nRETURN {observacion_id:o.id,documento_id:doc.id,version:doc.version,\n documento_origen_id:doc_origen.id,version_origen:doc_origen.version,\n modulo_origen:o.modulo_origen,evaluacion_id:actual.id,evaluacion_origen_id:origen.id,\n estado_evaluacion_vigente:actual.estado,descripcion:o.descripcion,descripcion_corresponde_a:'observacion_historica',\n grado_ambiguedad:ja.grado_ambiguedad,grado_ambiguedad_origen:jo.grado_ambiguedad,\n modelo_ambiguedad:ja.modelo_difuso_version,\n grado_contradiccion:actual.grado_contradiccion,modelo_diagnostico:actual.modelo_difuso_version,\n decision_id:d.id,prioridad:d.prioridad,motivo:d.motivo,estado:er.valor,\n provisional:d.provisional,emitible:d.emitible,tratamiento_activo:er.valor<>'resuelto',dato_faltante:o.dato_faltante,\n grado_urgencia:d.grado_urgencia,modelo_difuso:d.modelo_difuso_version,\n reglas_origen:reglas_origen,reglas_decision:reglas_decision,\n evidencia_origen:evidencia_origen,evidencia_decision:evidencia_decision,\n evidencia_evaluacion_vigente:evidencia_evaluacion_vigente} AS paquete"
+          },
+          {
+            "consulta": "Q9_reglas",
+            "parametros": {
+              "ids": [
+                "ACC-RD05",
+                "GL07",
+                "PRC-HC01"
+              ]
+            },
+            "filas": 3,
+            "milisegundos": 23.4,
+            "cypher": "// Q9. Consulta complementaria: texto, estado de validación, ejecución en PG2 y fuente de las reglas citadas.\n// Parámetros: $ids (List<String>).\nMATCH (r:AuditIA_PG2:Regla)\nWHERE r.id IN $ids\nRETURN r.id AS id, r.modulo AS modulo, r.estado_validacion AS estado_validacion,\n       r.ejecucion AS ejecucion, r.descripcion AS descripcion, r.descripcion_fuente AS fuente\nORDER BY id"
+          }
+        ],
+        "reglas": [
+          {
+            "id": "ACC-RD05",
+            "descripcion": "SI los escenarios coinciden, los resultados son incompatibles y ninguna excepción los concilia ENTONCES Hallazgo(contradiccion) y se deriva CONTRADICE.",
+            "fuente": "PG1 §6.5",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "GL07",
+            "descripcion": "SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+            "fuente": "PG1 §6.3",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "PRC-HC01",
+            "descripcion": "SI un hallazgo deja indefinida una obligación esencial ENTONCES prioridad bloqueante, motivo sustantivo.",
+            "fuente": "PG1 §6.6",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          }
+        ],
+        "evidencias": [
+          {
+            "id": "E-X-DESC",
+            "contenido": "Contexto de prioridad construido de DESC",
+            "tipo": "declaracion",
+            "localizador": "X-DESC",
+            "fuente": "S-CASOS"
+          },
+          {
+            "id": "E-RQ-DESC-B-v1",
+            "contenido": "En la misma venta de categoría A no se debe aplicar ningún descuento.",
+            "tipo": "fragmento",
+            "localizador": "RQ-DESC-B-v1",
+            "fuente": "S-CASOS"
+          },
+          {
+            "id": "E-RQ-DESC-A-v1",
+            "contenido": "En una venta de categoría A se debe aplicar el descuento del 10 %.",
+            "tipo": "fragmento",
+            "localizador": "RQ-DESC-A-v1",
+            "fuente": "S-CASOS"
+          },
+          {
+            "id": "E-EV-DESC",
+            "contenido": "RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.",
+            "tipo": "analisis",
+            "localizador": "EV-DESC",
+            "fuente": "S-CASOS"
+          }
+        ],
+        "observaciones": [
+          {
+            "id": "H-DESC",
+            "clase": "hallazgo"
+          }
+        ],
+        "verificacion": "aprobada",
+        "intentos_explicacion": 1,
+        "tipo_salida": "explicacion"
+      }
+    }
+  ],
+  "enrutamiento": {
+    "intentos": [
+      {
+        "salida": "{\"tipo\": \"consulta\", \"pasos\": [{\"submodulo\": \"SM2\", \"subconsulta\": \"¿Se contradicen los requerimientos de los descuentos de la venta de categoría A? ¿Por qué?\", \"depende_de\": null}, {\"submodulo\": \"SM3\", \"subconsulta\": \"¿Por qué quedó como bloqueante la contradicción de los descuentos de la venta de categoría A?\", \"depende_de\": 1}], \"motivo\": \"La contradicción se analiza con SM2 y su prioridad, en este caso si quedó bloqueante, se fundamenta con SM3.\"}",
+        "errores": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 27.01,
+        "tokens_entrada": 1804,
+        "tokens_salida": 137
+      }
+    ],
+    "huella_prompt": "45af5da3ce6b",
+    "fuente": "llm",
+    "plan": {
+      "tipo": "consulta",
+      "pasos": [
+        {
+          "submodulo": "SM2",
+          "subconsulta": "¿Se contradicen los requerimientos de los descuentos de la venta de categoría A? ¿Por qué?",
+          "depende_de": null
+        },
+        {
+          "submodulo": "SM3",
+          "subconsulta": "¿Por qué quedó como bloqueante la contradicción de los descuentos de la venta de categoría A?",
+          "depende_de": 1
+        }
+      ],
+      "motivo": "La contradicción se analiza con SM2 y su prioridad, en este caso si quedó bloqueante, se fundamenta con SM3."
+    }
+  },
+  "sintesis": {
+    "intentos": [
+      {
+        "texto": "No se pudo generar una explicación verificable sobre la contradicción de los descuentos en la venta de categoría A, ya que solo se resumieron los datos de la base sin interpretarlos. Sin embargo, la contradicción quedó como bloqueante porque el hallazgo H-DESC indica que la misma venta exige precio con y sin descuento, lo que es incompatible. Según la regla PRC-HC01, esto genera una prioridad bloqueante, ya que deja indefinida una obligación esencial. Las conclusiones son provisionales y provienen de reglas y parámetros candidatos de un prototipo académico, sin validación experta. [SM2, SM3]",
+        "violaciones": [
+          "no indica el origen [SM2]",
+          "no indica el origen [SM3]"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 45.26,
+        "tokens_entrada": 829,
+        "tokens_salida": 155
+      },
+      {
+        "texto": "No se pudo generar una explicación verificable sobre la contradicción de los descuentos en la venta de categoría A, resumiendo los datos de la base sin interpretarlos. La evaluación EV-DESC (observado, regla ACC-RD05) arrojó H-DESC, mientras que EV-DESC-CONTROL (sin_hallazgo, regla ACC-RD03) no mostró resultados. La contradicción quedó como bloqueante porque el hallazgo H-DESC indica que la misma venta exige precio con y sin descuento, lo cual es incompatible. Según la regla PRC-HC01, un hallazgo que deja indefinida una obligación esencial genera una prioridad bloqueante, motivo sustantivo. La decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible. [H-DESC, D-H-DESC, PRC-HC01] [SM2, SM3]",
+        "violaciones": [
+          "no indica el origen [SM2]",
+          "no indica el origen [SM3]"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 38.02,
+        "tokens_entrada": 870,
+        "tokens_salida": 222
+      }
+    ],
+    "modo": "composicion_determinista"
+  },
+  "respuesta_final": "Análisis cruzado y cobertura [SM2]: No pude generar una explicación verificable; resumo los datos recuperados de la base sin interpretarlos. Son resultados provisionales del prototipo, sin validación experta.\nEvaluación EV-DESC (observado, regla ACC-RD05): H-DESC.\nEvaluación EV-DESC-CONTROL (sin_hallazgo, regla ACC-RD03): sin resultado.\n\nPriorización y clarificación [SM3]: La contradicción de los descuentos en la venta de categoría A quedó como bloqueante debido a que el hallazgo H-DESC indica que la misma venta exige precio con y sin descuento, lo cual es incompatible. La severidad y criticidad son altas, y el contexto X-DESC confirma que la obligación esencial queda indefinida. La regla PRC-HC01, en su versión candidata, determina que un hallazgo que deja indefinida una obligación esencial genera una prioridad bloqueante, motivo sustantivo. La decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible. [H-DESC, D-H-DESC, PRC-HC01]\n\nLas conclusiones son provisionales: provienen de reglas y parámetros candidatos de un prototipo académico, sin validación experta.",
+  "tipo_salida": "integrada",
+  "submodulos_consultados": [
+    "SM2",
+    "SM3"
+  ],
+  "tipos_salida_pasos": [
+    "explicacion",
+    "respaldo"
+  ],
+  "segundos_totales": 961.42
+}

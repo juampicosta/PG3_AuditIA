@@ -1,0 +1,485 @@
+{
+  "version": "PG3-AuditIA-1.2",
+  "fecha": "2026-11-19T02:21:28",
+  "modelo": "qwen2.5:7b",
+  "huella_prompts": "732cd87a253a",
+  "caso": "web",
+  "consulta_usuario": "¿Qué problemas de calidad tiene RQ-L01-E-v1?",
+  "pasos": [
+    {
+      "paso": 1,
+      "submodulo": "SM1",
+      "subconsulta": "¿Qué problemas de calidad tiene RQ-L01-E-v1?",
+      "enlace": null,
+      "traza": {
+        "prototipo": "PI4-SM1-1.0",
+        "fecha": "2026-11-19T02:24:18",
+        "modelo": "qwen2.5:7b",
+        "huella_prompts": "88da390d63e7",
+        "caso": "web_p1_SM1",
+        "consulta_usuario": "¿Qué problemas de calidad tiene RQ-L01-E-v1?",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"diagnostico_requerimiento\", \"entidades\": {\"requerimiento_id\": \"RQ-L01-E-v1\", \"requerimiento_texto\": null, \"observacion_id\": null, \"evaluacion_id\": null}, \"conceptos\": {\"criterio\": null}, \"filtros\": {\"estado_juicio\": null, \"banda_ambiguedad\": null}, \"condiciones\": {\"version\": 1, \"alcance\": \"vigente\"}, \"faltantes\": []}",
+              "modelo": "qwen2.5:7b",
+              "segundos": 123.2,
+              "tokens_entrada": 1930,
+              "tokens_salida": 116,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [],
+          "json_validado": {
+            "intencion": "diagnostico_requerimiento",
+            "entidades": {
+              "requerimiento_id": "RQ-L01-E-v1",
+              "requerimiento_texto": null,
+              "observacion_id": null,
+              "evaluacion_id": null
+            },
+            "conceptos": {
+              "criterio": null
+            },
+            "filtros": {
+              "estado_juicio": null,
+              "banda_ambiguedad": null
+            },
+            "condiciones": {
+              "version": 1,
+              "alcance": "vigente"
+            },
+            "faltantes": []
+          }
+        },
+        "intencion": "diagnostico_requerimiento",
+        "consultas_cypher": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 15,
+            "milisegundos": 164.8
+          },
+          {
+            "consulta": "Q1_diagnostico",
+            "parametros": {
+              "requerimiento_id": "RQ-L01-E-v1",
+              "criterio": null
+            },
+            "filas": 1,
+            "milisegundos": 692.9
+          },
+          {
+            "consulta": "Q6_reglas",
+            "parametros": {
+              "ids": [
+                "EVI-HC04",
+                "EVI-HC08",
+                "EVI-HC09",
+                "EVI-HC10",
+                "EVI-RD06"
+              ]
+            },
+            "filas": 5,
+            "milisegundos": 34.0
+          }
+        ],
+        "resolucion_entidad": {
+          "estado": "ok",
+          "puntaje": null,
+          "requerimiento": {
+            "requerimiento_id": "RQ-L01-E-v1",
+            "id_logico": "RQ-L01-E",
+            "texto": "Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.",
+            "documento_id": "DOC-L01-v1",
+            "version": 1
+          }
+        },
+        "paquete_evidencia": {
+          "intencion": "diagnostico_requerimiento",
+          "consulta_usuario": "¿Qué problemas de calidad tiene RQ-L01-E-v1?",
+          "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "requerimiento_consultado": {
+            "requerimiento_id": "RQ-L01-E-v1",
+            "id_logico": "RQ-L01-E",
+            "texto": "Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.",
+            "documento_id": "DOC-L01-v1",
+            "version": 1
+          },
+          "evaluaciones": [
+            {
+              "estado": "sin_hallazgo",
+              "texto_requerimiento": "Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.",
+              "reevalua_a": [],
+              "incidencias": [],
+              "vigente": true,
+              "version": 1,
+              "requerimiento_id": "RQ-L01-E-v1",
+              "fecha": "2026-11-19T02:20:13.987Z",
+              "entrada_valida": true,
+              "evaluacion_id": "EV-L01-E",
+              "juicios": [
+                {
+                  "estado": "cumple",
+                  "reglas": [
+                    "EVI-HC08"
+                  ],
+                  "justificacion": "Una obligación evaluable con unidad de aceptación.",
+                  "revision_senior_requerida": false,
+                  "banda_difusa": null,
+                  "resultados": [],
+                  "criterio": "atomicidad",
+                  "juicio_id": "J-EV-L01-E-atomicidad",
+                  "evidencias": [
+                    {
+                      "tipo": "analisis",
+                      "contenido": "Una obligación evaluable con unidad de aceptación. Fragmentos: Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación",
+                      "id": "E-J-EV-L01-E-atomicidad",
+                      "localizador": "J-EV-L01-E-atomicidad"
+                    },
+                    {
+                      "tipo": "fragmento",
+                      "contenido": "Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.",
+                      "id": "E-RQ-L01-E-v1",
+                      "localizador": "Especificacion_Tienda_Online.pdf · página 1, párrafo 8"
+                    }
+                  ],
+                  "grado_ambiguedad": null
+                },
+                {
+                  "estado": "cumple",
+                  "reglas": [
+                    "EVI-HC09"
+                  ],
+                  "justificacion": "Queda una sola lectura relevante tras revisar el alcance.",
+                  "revision_senior_requerida": false,
+                  "banda_difusa": "baja",
+                  "resultados": [],
+                  "criterio": "ambiguedad",
+                  "juicio_id": "J-EV-L01-E-ambiguedad",
+                  "evidencias": [
+                    {
+                      "tipo": "analisis",
+                      "contenido": "Queda una sola lectura relevante tras revisar el alcance.",
+                      "id": "E-J-EV-L01-E-ambiguedad",
+                      "localizador": "J-EV-L01-E-ambiguedad"
+                    },
+                    {
+                      "tipo": "fragmento",
+                      "contenido": "Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.",
+                      "id": "E-RQ-L01-E-v1",
+                      "localizador": "Especificacion_Tienda_Online.pdf · página 1, párrafo 8"
+                    }
+                  ],
+                  "grado_ambiguedad": 0.22142194272967175
+                },
+                {
+                  "estado": "cumple",
+                  "reglas": [
+                    "EVI-HC04"
+                  ],
+                  "justificacion": "El resultado descrito se comprueba con una prueba funcional observable.",
+                  "revision_senior_requerida": false,
+                  "banda_difusa": null,
+                  "resultados": [],
+                  "criterio": "verificabilidad",
+                  "juicio_id": "J-EV-L01-E-verificabilidad",
+                  "evidencias": [
+                    {
+                      "tipo": "fragmento",
+                      "contenido": "Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.",
+                      "id": "E-RQ-L01-E-v1",
+                      "localizador": "Especificacion_Tienda_Online.pdf · página 1, párrafo 8"
+                    },
+                    {
+                      "tipo": "analisis",
+                      "contenido": "El resultado descrito se comprueba con una prueba funcional observable. Método: Prueba funcional observable del resultado descrito",
+                      "id": "E-J-EV-L01-E-verificabilidad",
+                      "localizador": "J-EV-L01-E-verificabilidad"
+                    }
+                  ],
+                  "grado_ambiguedad": null
+                },
+                {
+                  "estado": "cumple",
+                  "reglas": [
+                    "EVI-HC10"
+                  ],
+                  "justificacion": "La información aplicable está identificada y no hay omisiones demostradas.",
+                  "revision_senior_requerida": false,
+                  "banda_difusa": null,
+                  "resultados": [],
+                  "criterio": "completitud",
+                  "juicio_id": "J-EV-L01-E-completitud",
+                  "evidencias": [
+                    {
+                      "tipo": "fragmento",
+                      "contenido": "Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.",
+                      "id": "E-RQ-L01-E-v1",
+                      "localizador": "Especificacion_Tienda_Online.pdf · página 1, párrafo 8"
+                    },
+                    {
+                      "tipo": "analisis",
+                      "contenido": "La información aplicable está identificada y no hay omisiones demostradas.",
+                      "id": "E-J-EV-L01-E-completitud",
+                      "localizador": "J-EV-L01-E-completitud"
+                    }
+                  ],
+                  "grado_ambiguedad": null
+                }
+              ],
+              "documento_id": "DOC-L01-v1",
+              "reevaluada_por": [],
+              "reglas_evaluacion": [
+                "EVI-RD06"
+              ]
+            }
+          ],
+          "reglas": [
+            {
+              "id": "EVI-HC04",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI existe un método finito, observable y con condición de aprobación ENTONCES verificabilidad cumple.",
+              "fuente": "PG1 §6.4"
+            },
+            {
+              "id": "EVI-HC08",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI hay una sola obligación con unidad de aceptación confirmada ENTONCES atomicidad cumple.",
+              "fuente": "PG1 §6.4"
+            },
+            {
+              "id": "EVI-HC09",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI tras revisar el alcance queda una sola lectura relevante ENTONCES ambigüedad cumple.",
+              "fuente": "PG1 §6.4"
+            },
+            {
+              "id": "EVI-HC10",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI la información aplicable está identificada y no hay omisiones demostradas ENTONCES completitud cumple.",
+              "fuente": "PG1 §6.4"
+            },
+            {
+              "id": "EVI-RD06",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI los cuatro juicios cumplen ENTONCES estado = sin_hallazgo (en el alcance local).",
+              "fuente": "PG1 §6.4"
+            }
+          ]
+        },
+        "explicacion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "respuesta": "RQ-L01-E-v1 cumple con todos los criterios de calidad evaluados. [J-EV-L01-E-atomicidad], [J-EV-L01-E-ambiguedad], [J-EV-L01-E-verificabilidad] y [J-EV-L01-E-completitud] están en estado \"cumple\". La evaluación EV-L01-E concluye sin hallazgos [EV-L01-E]. Las reglas y modelos utilizados son provisionales, del prototipo académico, sin validación experta.",
+              "violaciones": [],
+              "modelo": "qwen2.5:7b",
+              "segundos": 220.83,
+              "tokens_entrada": 3533,
+              "tokens_salida": 125
+            }
+          ],
+          "hechos_verificables": [
+            "Requerimiento RQ-L01-E-v1 («Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.»), documento DOC-L01-v1: la evaluación EV-L01-E quedó sin_hallazgo por la regla EVI-RD06.",
+            "Criterio atomicidad: cumple [J-EV-L01-E-atomicidad] por la regla EVI-HC08. Justificación registrada: «Una obligación evaluable con unidad de aceptación.».",
+            "Criterio ambiguedad: cumple [J-EV-L01-E-ambiguedad] por la regla EVI-HC09. Justificación registrada: «Queda una sola lectura relevante tras revisar el alcance.». Grado de ambigüedad 0.221, banda baja.",
+            "Criterio verificabilidad: cumple [J-EV-L01-E-verificabilidad] por la regla EVI-HC04. Justificación registrada: «El resultado descrito se comprueba con una prueba funcional observable.».",
+            "Criterio completitud: cumple [J-EV-L01-E-completitud] por la regla EVI-HC10. Justificación registrada: «La información aplicable está identificada y no hay omisiones demostradas.».",
+            "Regla EVI-HC04 (estado candidata, PG1 §6.4): SI existe un método finito, observable y con condición de aprobación ENTONCES verificabilidad cumple.",
+            "Regla EVI-HC08 (estado candidata, PG1 §6.4): SI hay una sola obligación con unidad de aceptación confirmada ENTONCES atomicidad cumple.",
+            "Regla EVI-HC09 (estado candidata, PG1 §6.4): SI tras revisar el alcance queda una sola lectura relevante ENTONCES ambigüedad cumple.",
+            "Regla EVI-HC10 (estado candidata, PG1 §6.4): SI la información aplicable está identificada y no hay omisiones demostradas ENTONCES completitud cumple.",
+            "Regla EVI-RD06 (estado candidata, PG1 §6.4): SI los cuatro juicios cumplen ENTONCES estado = sin_hallazgo (en el alcance local).",
+            "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+            "La respuesta debe mencionar estos IDs: EV-L01-E.",
+            "Estados que figuran en el paquete: cumple, sin hallazgo. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «incumple», «pendiente», «observado», «no evaluable», «resuelto», «por consultar» en la respuesta."
+          ],
+          "cobertura_requerida": {
+            "ids": [
+              "EV-L01-E"
+            ],
+            "estados": [
+              "cumple",
+              "sin_hallazgo"
+            ]
+          },
+          "resultado_verificacion": "aprobada"
+        },
+        "respuesta_final": "RQ-L01-E-v1 cumple con todos los criterios de calidad evaluados. [J-EV-L01-E-atomicidad], [J-EV-L01-E-ambiguedad], [J-EV-L01-E-verificabilidad] y [J-EV-L01-E-completitud] están en estado \"cumple\". La evaluación EV-L01-E concluye sin hallazgos [EV-L01-E]. Las reglas y modelos utilizados son provisionales, del prototipo académico, sin validación experta.",
+        "tipo_salida": "explicacion",
+        "segundos_totales": 344.93,
+        "archivo_traza": "submodulos/20261119_023032_309_web_p1_SM1.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM1",
+        "intencion": "diagnostico_requerimiento",
+        "fuentes": [
+          "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)"
+        ],
+        "consultas": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 15,
+            "milisegundos": 164.8,
+            "cypher": "// Q0. Requerimientos evaluados por SM1. Alimenta la resolución determinística de entidades.\n// Solo lectura. Sin parámetros.\nMATCH (ev:AuditIA_PG2:EvaluacionIndividual)-[:EVALUA]->(rq:AuditIA_PG2:Requerimiento),\n      (ev)-[:REVISA_DOCUMENTO]->(doc:AuditIA_PG2:DocumentoVersion)\nWITH rq, doc, collect(DISTINCT ev.id) AS evaluaciones\nRETURN rq.id AS requerimiento_id, rq.id_logico AS id_logico, rq.texto_original AS texto,\n       doc.id AS documento_id, toInteger(doc.version) AS version, evaluaciones\nORDER BY id_logico, version"
+          },
+          {
+            "consulta": "Q1_diagnostico",
+            "parametros": {
+              "requerimiento_id": "RQ-L01-E-v1",
+              "criterio": null
+            },
+            "filas": 1,
+            "milisegundos": 692.9,
+            "cypher": "// Q1. Diagnóstico local de un requerimiento: evaluaciones de SM1, juicios por criterio,\n// reglas aplicadas, evidencia, resultados derivados e incidencias de entrada.\n// Parámetros: $requerimiento_id (String), $criterio (String o null).\nMATCH (ev:AuditIA_PG2:EvaluacionIndividual)-[:EVALUA]->(rq:AuditIA_PG2:Requerimiento {id: $requerimiento_id}),\n      (ev)-[:REVISA_DOCUMENTO]->(doc:AuditIA_PG2:DocumentoVersion)\nOPTIONAL MATCH (ev)-[:CONTIENE_JUICIO]->(j:JuicioCriterio)-[:APLICA_CRITERIO]->(c:CriterioCalidad)\nWITH ev, rq, doc, j, c\nWHERE j IS NULL OR $criterio IS NULL OR c.nombre = $criterio\nWITH ev, rq, doc,\n     collect(CASE WHEN j IS NULL THEN null ELSE {\n       criterio: c.nombre,\n       juicio_id: j.id,\n       estado: j.estado,\n       justificacion: j.justificacion,\n       reglas: [(j)-[:APLICA_REGLA]->(r:Regla) | r.id],\n       evidencias: [(j)-[:SE_SUSTENTA_EN]->(e:Evidencia) |\n                    {id: e.id, tipo: e.tipo, contenido: e.contenido, localizador: e.localizador}],\n       resultados: [(o:ResultadoAnalisis)-[:DERIVA_DE_JUICIO]->(j) |\n                    {id: o.id,\n                     clase: CASE WHEN o:Hallazgo THEN 'Hallazgo' WHEN o:Pendiente THEN 'Pendiente' ELSE 'ResultadoAnalisis' END,\n                     motivo_pendiente: o.motivo_pendiente,\n                     dato_faltante: o.dato_faltante,\n                     severidad: head([(o)-[:TIENE_SEVERIDAD]->(sv:Severidad) | sv.valor])}],\n       grado_ambiguedad: j.grado_ambiguedad,\n       banda_difusa: j.banda_difusa,\n       revision_senior_requerida: coalesce(j.revision_senior_requerida, false)\n     } END) AS juicios\nRETURN {\n  evaluacion_id: ev.id,\n  estado: ev.estado,\n  fecha: toString(ev.fecha),\n  entrada_valida: ev.entrada_valida,\n  documento_id: doc.id,\n  version: toInteger(doc.version),\n  requerimiento_id: rq.id,\n  texto_requerimiento: rq.texto_original,\n  reglas_evaluacion: [(ev)-[:APLICA_REGLA]->(r:Regla) | r.id],\n  incidencias: [(ev)-[:GENERA]->(i:IncidenciaEntrada) |\n                {id: i.id, causa: i.causa, descripcion: i.descripcion,\n                 accion_correccion: i.accion_correccion,\n                 reglas: [(i)-[:APLICA_REGLA]->(ri:Regla) | ri.id]}],\n  reevaluada_por: [(nueva:Evaluacion)-[:REEVALUA]->(ev) | nueva.id],\n  reevalua_a: [(ev)-[:REEVALUA]->(anterior:Evaluacion) | anterior.id],\n  vigente: NOT EXISTS { MATCH (:Evaluacion)-[:REEVALUA]->(ev) },\n  juicios: juicios\n} AS evaluacion\nORDER BY ev.fecha, ev.id"
+          },
+          {
+            "consulta": "Q6_reglas",
+            "parametros": {
+              "ids": [
+                "EVI-HC04",
+                "EVI-HC08",
+                "EVI-HC09",
+                "EVI-HC10",
+                "EVI-RD06"
+              ]
+            },
+            "filas": 5,
+            "milisegundos": 34.0,
+            "cypher": "// Q6. Consulta complementaria: texto, estado y fuente de las reglas citadas en un paquete.\n// Parámetros: $ids (List<String>).\nMATCH (r:AuditIA_PG2:Regla)\nWHERE r.id IN $ids\nRETURN r.id AS id, r.modulo AS modulo, r.estado_validacion AS estado_validacion,\n       r.ejecucion AS ejecucion, r.descripcion AS descripcion, r.descripcion_fuente AS fuente\nORDER BY id"
+          }
+        ],
+        "reglas": [
+          {
+            "id": "EVI-HC04",
+            "descripcion": "SI existe un método finito, observable y con condición de aprobación ENTONCES verificabilidad cumple.",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "EVI-HC08",
+            "descripcion": "SI hay una sola obligación con unidad de aceptación confirmada ENTONCES atomicidad cumple.",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "EVI-HC09",
+            "descripcion": "SI tras revisar el alcance queda una sola lectura relevante ENTONCES ambigüedad cumple.",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "EVI-HC10",
+            "descripcion": "SI la información aplicable está identificada y no hay omisiones demostradas ENTONCES completitud cumple.",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "EVI-RD06",
+            "descripcion": "SI los cuatro juicios cumplen ENTONCES estado = sin_hallazgo (en el alcance local).",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          }
+        ],
+        "evidencias": [
+          {
+            "id": "E-J-EV-L01-E-atomicidad",
+            "contenido": "Una obligación evaluable con unidad de aceptación. Fragmentos: Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación",
+            "tipo": "analisis",
+            "localizador": "J-EV-L01-E-atomicidad",
+            "fuente": null
+          },
+          {
+            "id": "E-RQ-L01-E-v1",
+            "contenido": "Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.",
+            "tipo": "fragmento",
+            "localizador": "Especificacion_Tienda_Online.pdf · página 1, párrafo 8",
+            "fuente": null
+          },
+          {
+            "id": "E-J-EV-L01-E-ambiguedad",
+            "contenido": "Queda una sola lectura relevante tras revisar el alcance.",
+            "tipo": "analisis",
+            "localizador": "J-EV-L01-E-ambiguedad",
+            "fuente": null
+          },
+          {
+            "id": "E-J-EV-L01-E-verificabilidad",
+            "contenido": "El resultado descrito se comprueba con una prueba funcional observable. Método: Prueba funcional observable del resultado descrito",
+            "tipo": "analisis",
+            "localizador": "J-EV-L01-E-verificabilidad",
+            "fuente": null
+          },
+          {
+            "id": "E-J-EV-L01-E-completitud",
+            "contenido": "La información aplicable está identificada y no hay omisiones demostradas.",
+            "tipo": "analisis",
+            "localizador": "J-EV-L01-E-completitud",
+            "fuente": null
+          }
+        ],
+        "observaciones": [],
+        "verificacion": "aprobada",
+        "intentos_explicacion": 1,
+        "tipo_salida": "explicacion"
+      }
+    }
+  ],
+  "enrutamiento": {
+    "intentos": [
+      {
+        "salida": "{\"tipo\": \"consulta\", \"pasos\": [{\"submodulo\": \"SM1\", \"subconsulta\": \"¿Qué problemas de calidad tiene RQ-L01-E-v1?\", \"depende_de\": null}], \"motivo\": \"Pregunta solo por los problemas de calidad de un requerimiento, que calcula SM1.\"}",
+        "errores": [],
+        "normalizacion": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 155.01,
+        "tokens_entrada": 2023,
+        "tokens_salida": 71
+      }
+    ],
+    "huella_prompt": "732cd87a253a",
+    "fuente": "llm",
+    "plan": {
+      "tipo": "consulta",
+      "pasos": [
+        {
+          "submodulo": "SM1",
+          "subconsulta": "¿Qué problemas de calidad tiene RQ-L01-E-v1?",
+          "depende_de": null
+        }
+      ],
+      "motivo": "Pregunta solo por los problemas de calidad de un requerimiento, que calcula SM1."
+    }
+  },
+  "sintesis": {
+    "intentos": [],
+    "modo": "respuesta_del_submodulo"
+  },
+  "respuesta_final": "RQ-L01-E-v1 cumple con todos los criterios de calidad evaluados. [J-EV-L01-E-atomicidad], [J-EV-L01-E-ambiguedad], [J-EV-L01-E-verificabilidad] y [J-EV-L01-E-completitud] están en estado \"cumple\". La evaluación EV-L01-E concluye sin hallazgos [EV-L01-E]. Las reglas y modelos utilizados son provisionales, del prototipo académico, sin validación experta.",
+  "tipo_salida": "explicacion",
+  "submodulos_consultados": [
+    "SM1"
+  ],
+  "tipos_salida_pasos": [
+    "explicacion"
+  ],
+  "segundos_totales": 500.03
+}

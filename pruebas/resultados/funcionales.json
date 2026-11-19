@@ -1,0 +1,234 @@
+{
+  "fecha": "20261119_004605",
+  "total": 15,
+  "pasaron": 15,
+  "pruebas": [
+    {
+      "id": "PF-01",
+      "componente": "Recuperación de conocimiento",
+      "prueba": "SM1 recupera el diagnóstico de RQ-CAT-v1",
+      "esperado": "ambigüedad incumple, H-CAT-B, grado 0,781016 banda alta",
+      "obtenido": {
+        "ambiguedad_incumple": true,
+        "hallazgo": true,
+        "grado_0781016": true,
+        "banda_alta": true,
+        "consultas": [
+          "Q0_candidatos",
+          "Q1_diagnostico",
+          "Q6_reglas"
+        ]
+      },
+      "estado": "pasó",
+      "segundos": 8.39
+    },
+    {
+      "id": "PF-02",
+      "componente": "Ejecución de consultas",
+      "prueba": "SM2 recupera la comparación EV-DESC",
+      "esperado": "observado, H-DESC, grado de contradicción 0,843975",
+      "obtenido": {
+        "grado_0843975": true,
+        "observado": true,
+        "hallazgo": true,
+        "consultas": [
+          "Q0_candidatos",
+          "Q0a_ids_mencionados",
+          "Q2_grado_contradiccion",
+          "Q8_reglas"
+        ]
+      },
+      "estado": "pasó",
+      "segundos": 3.25
+    },
+    {
+      "id": "PF-03",
+      "componente": "Ejecución de consultas",
+      "prueba": "SM2 recupera la cobertura de Seguridad en DOC-SEG-DESCONOCIDO-v1",
+      "esperado": "pendiente P-SEG por perfil_insuficiente (ACC-RD12)",
+      "obtenido": {
+        "pendiente": true,
+        "P-SEG": true,
+        "regla_ACC_RD12": true,
+        "perfil_insuficiente": true
+      },
+      "estado": "pasó",
+      "segundos": 1.28
+    },
+    {
+      "id": "PF-04",
+      "componente": "Activación de reglas",
+      "prueba": "SM3 fundamenta la prioridad de H-DESC",
+      "esperado": "bloqueante, sustantivo, PRC-HC01, celda MPR-alta-alta, provisional",
+      "obtenido": {
+        "bloqueante": true,
+        "sustantivo": true,
+        "regla_PRC_HC01": true,
+        "provisional": true,
+        "celda_MPR_alta_alta": true
+      },
+      "estado": "pasó",
+      "segundos": 3.32
+    },
+    {
+      "id": "PF-05",
+      "componente": "Activación de reglas",
+      "prueba": "SM3 fundamenta la prioridad de P-TASA",
+      "esperado": "bloqueante con motivo preventivo (falta el dato, no hay defecto)",
+      "obtenido": {
+        "bloqueante": true,
+        "preventivo": true
+      },
+      "estado": "pasó",
+      "segundos": 0.22
+    },
+    {
+      "id": "PF-06",
+      "componente": "Lógica difusa",
+      "prueba": "Urgencia difusa de H-PRIO-EXCEPCION",
+      "esperado": "urgencia calculada dentro del universo [0, 10]",
+      "obtenido": {
+        "urgencia_calculada": true,
+        "en_universo_0_10": true,
+        "valores": [
+          7.380912
+        ]
+      },
+      "estado": "pasó",
+      "segundos": 1.11
+    },
+    {
+      "id": "PF-07",
+      "componente": "Lógica difusa",
+      "prueba": "Ambigüedad sin dato de entrada (RQ-AMB-SIN-DATO-v1)",
+      "esperado": "no se imputa un grado (null), no se rellena con 0,5",
+      "obtenido": {
+        "sin_grado_inventado": true,
+        "grados": [
+          null
+        ]
+      },
+      "estado": "pasó",
+      "segundos": 1.16
+    },
+    {
+      "id": "PF-08",
+      "componente": "Orquestación",
+      "prueba": "El validador del plan rechaza un ID inventado por el LLM",
+      "esperado": "error 'usa IDs que no están en la consulta'",
+      "obtenido": {
+        "rechaza_id_inventado": true,
+        "errores": [
+          "paso 1: usa IDs que no están en la consulta del usuario: ['H-INVENTADA']"
+        ]
+      },
+      "estado": "pasó",
+      "segundos": 0.0
+    },
+    {
+      "id": "PF-09",
+      "componente": "Orquestación",
+      "prueba": "Enrutador de respaldo por palabras clave",
+      "esperado": "contradicción + prioridad -> SM2, SM3; verbo de modificación -> acción no permitida",
+      "obtenido": {
+        "enruta_SM2_SM3": true,
+        "detecta_accion": true
+      },
+      "estado": "pasó",
+      "segundos": 0.0
+    },
+    {
+      "id": "PF-10",
+      "componente": "Orquestación",
+      "prueba": "Encadenamiento SM1 -> SM3 toma el ID del grafo",
+      "esperado": "elige H-CAT-B (primer Hallazgo del paquete)",
+      "obtenido": {
+        "elige_H_CAT_B": true,
+        "subconsulta": "¿Qué prioridad tiene su hallazgo? (observación H-CAT-B)",
+        "candidatas": [
+          "H-CAT-B",
+          "P-CAT-V",
+          "P-CAT-C"
+        ]
+      },
+      "estado": "pasó",
+      "segundos": 0.14
+    },
+    {
+      "id": "PF-11",
+      "componente": "Generación de respuestas",
+      "prueba": "El verificador GL05 rechaza una explicación infiel",
+      "esperado": "detecta prioridad alterada, regla y número inexistentes",
+      "obtenido": {
+        "rechaza_respuesta_infiel": true,
+        "violaciones": [
+          "ID no respaldado por el paquete: PRC-HC99",
+          "Número no respaldado por el paquete: 3.14"
+        ]
+      },
+      "estado": "pasó",
+      "segundos": 0.21
+    },
+    {
+      "id": "PF-12",
+      "componente": "Generación de respuestas",
+      "prueba": "El verificador de síntesis rechaza números y cierres inventados",
+      "esperado": "rechaza la síntesis infiel y acepta la fiel",
+      "obtenido": {
+        "rechaza_mala": true,
+        "acepta_buena": true,
+        "violaciones_mala": [
+          "incluye números que no figuran en las respuestas de los submódulos: ['0.95']",
+          "atribuye a H-DESC estado «resuelt» y los submódulos dicen «observad»",
+          "afirma un cierre que ninguna respuesta de submódulo afirma"
+        ]
+      },
+      "estado": "pasó",
+      "segundos": 0.0
+    },
+    {
+      "id": "PF-13",
+      "componente": "Seguridad",
+      "prueba": "Control de solo lectura sobre Cypher",
+      "esperado": "rechaza DETACH DELETE, acepta MATCH",
+      "obtenido": {
+        "rechaza_escritura": true,
+        "acepta_lectura": true
+      },
+      "estado": "pasó",
+      "segundos": 0.0
+    },
+    {
+      "id": "PF-14",
+      "componente": "Orquestación",
+      "prueba": "Normalización del plan y respaldo (corrección tras CTL-04)",
+      "esperado": "fusiona pasos repetidos del mismo submódulo; 'clientes habituales' no enruta a SM3",
+      "obtenido": {
+        "fusiona_pasos_repetidos": true,
+        "respaldo_no_confunde_cliente_con_SM3": true,
+        "notas": [
+          "paso 2 fusionado con el paso 1 (SM1)"
+        ]
+      },
+      "estado": "pasó",
+      "segundos": 0.0
+    },
+    {
+      "id": "PF-15",
+      "componente": "Generación de respuestas",
+      "prueba": "Verificador semántico de la síntesis (corrección tras la devolución)",
+      "esperado": "rechaza números asociados a otra variable y prioridades o motivos cambiados; acepta la síntesis fiel",
+      "obtenido": {
+        "rechaza_numeros_cruzados": true,
+        "rechaza_atributo_cambiado": true,
+        "acepta_sintesis_fiel": true,
+        "violaciones_cruzada": [
+          "asocia 7.38 a «activacion», pero en los submódulos corresponde a «urgencia»",
+          "asocia 0.539 a «urgencia», pero en los submódulos corresponde a «activacion»"
+        ]
+      },
+      "estado": "pasó",
+      "segundos": 0.0
+    }
+  ]
+}

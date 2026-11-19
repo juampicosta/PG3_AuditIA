@@ -1,0 +1,61 @@
+{
+  "prototipo": "PI4-SM3-1.0",
+  "fecha": "2026-11-14T12:27:36",
+  "modelo": "qwen2.5:7b",
+  "hilos": null,
+  "huella_prompts": "837a200f0dfe",
+  "caso": "E2E-04_p1_SM3",
+  "consulta_usuario": "¿Por qué no se pudo decidir si Seguridad es exigible en el documento DOC-SEG-DESCONOCIDO-v1 y qué hay que preguntarle al cliente para resolverlo?",
+  "extraccion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "salida_cruda": "{\"intencion\": \"clarificacion\", \"entidades\": {\"observacion_id\": null, \"observacion_texto\": \"Seguridad es exigible\", \"documento_id\": \"DOC-SEG-DESCONOCIDO-v1\"}, \"filtros\": {\"prioridad\": null, \"motivo\": null, \"estado_seguimiento\": \"abiertas\"}, \"matriz\": {\"severidad\": null, \"criticidad\": null}, \"faltantes\": [\"observación a consultar\"]}",
+        "modelo": "qwen2.5:7b",
+        "segundos": 120.71,
+        "tokens_entrada": 2809,
+        "tokens_salida": 105,
+        "errores_esquema": []
+      }
+    ],
+    "notas": [],
+    "json_validado": {
+      "intencion": "clarificacion",
+      "entidades": {
+        "observacion_id": null,
+        "observacion_texto": "Seguridad es exigible",
+        "documento_id": "DOC-SEG-DESCONOCIDO-v1"
+      },
+      "filtros": {
+        "prioridad": null,
+        "motivo": null,
+        "estado_seguimiento": "abiertas"
+      },
+      "matriz": {
+        "severidad": null,
+        "criticidad": null
+      },
+      "faltantes": [
+        "observación a consultar"
+      ]
+    }
+  },
+  "intencion": "clarificacion",
+  "consultas_cypher": [
+    {
+      "consulta": "Q0_observaciones",
+      "parametros": {},
+      "filas": 33,
+      "milisegundos": 2596.1
+    }
+  ],
+  "resolucion_entidad": {
+    "estado": "sin_coincidencia",
+    "puntaje": 0.0,
+    "observaciones": []
+  },
+  "tipo_salida": "aclaracion",
+  "motivo_cierre": "aclaracion_resolucion",
+  "respuesta_final": "No encontré en la base de conocimiento una observación recibida por SM3 que coincida con «Seguridad es exigible». No voy a suponer una ni a fabricar un paquete. Observaciones principales disponibles:\n  - H-CAT-B (hallazgo, DOC-CAT-v1): «Persisten dos lecturas: aprobación por percepción de rapidez o por un límite medido»\n  - H-DESC (hallazgo, DOC-DESC-v1): «La misma venta exige precio con y sin descuento»\n  - H-PRIO-EXCEPCION (hallazgo, DOC-PRIO-v1): «Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una»\n  - H-PRIO-FRONTERA (hallazgo, DOC-PRIO-v1): «Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una»\n  - H-PRIO-FUERA-RANGO (hallazgo, DOC-PRIO-v1): «Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una»\n  - H-PRIO-MAYOR (hallazgo, DOC-PRIO-v1): «Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una»\n  - H-PRIO-MENOR (hallazgo, DOC-PRIO-v1): «Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una»\n  - H-PRIO-SIN-HITO (hallazgo, DOC-PRIO-v1): «Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una»\n  - H-SEG (hallazgo, DOC-SEG-BRECHA-v1): «Resultado de cobertura de protección de datos sensibles»\n  - P-CAT-C (pendiente, DOC-CAT-v1): «No se recibió la información necesaria para determinar las partes aplicables.»\n  - P-CAT-V (pendiente, DOC-CAT-v1): «La aceptación necesaria no fue recibida»\n  - P-PED-FRONTERA (pendiente, DOC-PED-v1): «Solapamiento temporal no delimitado»\n  - P-SEG (pendiente, DOC-SEG-DESCONOCIDO-v1): «Resultado de cobertura de protección de datos sensibles»\n  - P-TASA (pendiente, DOC-TASA-v1): «El Anexo B citado no fue recibido»",
+  "segundos_totales": 123.31
+}

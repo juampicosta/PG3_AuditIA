@@ -1,0 +1,346 @@
+{
+  "prototipo": "PI4-SM2-1.0",
+  "fecha": "2026-11-14T02:07:36",
+  "modelo": "qwen2.5:7b",
+  "hilos": null,
+  "huella_prompts": "8d97773b8e67",
+  "caso": "E2E-02_p1_SM2",
+  "consulta_usuario": "¿Se contradicen los requerimientos de los descuentos de la venta de categoría A? ¿Por qué?",
+  "extraccion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "salida_cruda": "{\"intencion\": \"comparacion_requerimientos\", \"entidades\": {\"requerimiento_ids\": [], \"requerimiento_texto\": \"descuentos de la venta de categoría A\", \"documento_id\": null, \"evaluacion_id\": null, \"observacion_id\": null}, \"conceptos\": {\"categoria\": null}, \"filtros\": {\"tipo_analisis\": null, \"estado\": null}, \"condiciones\": {\"alcance\": \"vigente\"}, \"faltantes\": [\"requerimientos específicos\"]}",
+        "modelo": "qwen2.5:7b",
+        "segundos": 162.89,
+        "tokens_entrada": 2798,
+        "tokens_salida": 113,
+        "errores_esquema": []
+      }
+    ],
+    "notas": [],
+    "json_validado": {
+      "intencion": "comparacion_requerimientos",
+      "entidades": {
+        "requerimiento_ids": [],
+        "requerimiento_texto": "descuentos de la venta de categoría A",
+        "documento_id": null,
+        "evaluacion_id": null,
+        "observacion_id": null
+      },
+      "conceptos": {
+        "categoria": null
+      },
+      "filtros": {
+        "tipo_analisis": null,
+        "estado": null
+      },
+      "condiciones": {
+        "alcance": "vigente"
+      },
+      "faltantes": [
+        "requerimientos específicos"
+      ]
+    }
+  },
+  "intencion": "comparacion_requerimientos",
+  "consultas_cypher": [
+    {
+      "consulta": "Q0_candidatos",
+      "parametros": {},
+      "filas": 12,
+      "milisegundos": 65.1
+    },
+    {
+      "consulta": "Q1_comparacion_par",
+      "parametros": {
+        "requerimiento_ids": [
+          "RQ-DESC-A-v1",
+          "RQ-DESC-B-v1"
+        ]
+      },
+      "filas": 2,
+      "milisegundos": 2059.1
+    },
+    {
+      "consulta": "Q8_reglas",
+      "parametros": {
+        "ids": [
+          "ACC-RD03",
+          "ACC-RD05"
+        ]
+      },
+      "filas": 2,
+      "milisegundos": 46.8
+    }
+  ],
+  "resolucion_entidad": {
+    "estado": "ok",
+    "puntaje": 1.0,
+    "evaluaciones": [
+      "EV-DESC",
+      "EV-DESC-CONTROL"
+    ],
+    "requerimientos": [
+      "RQ-DESC-A-v1",
+      "RQ-DESC-B-v1"
+    ],
+    "id_logico": null,
+    "documentos": null,
+    "categoria": null,
+    "observacion": null,
+    "alternativas": []
+  },
+  "paquete_evidencia": {
+    "intencion": "comparacion_requerimientos",
+    "consulta_usuario": "¿Se contradicen los requerimientos de los descuentos de la venta de categoría A? ¿Por qué?",
+    "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+    "requerimientos_consultados": [
+      "RQ-DESC-A-v1",
+      "RQ-DESC-B-v1"
+    ],
+    "comparaciones": [
+      {
+        "resultados_incompatibles": true,
+        "modelo_id": "MD-CONTR-1.0",
+        "estado": "observado",
+        "reglas": [
+          "ACC-RD05"
+        ],
+        "excepcion_resuelve": false,
+        "resultado": {
+          "descripcion": "La misma venta exige precio con y sin descuento",
+          "motivo_pendiente": null,
+          "dato_faltante": null,
+          "id": "H-DESC",
+          "tipo_defecto": "contradiccion",
+          "clase": "Hallazgo"
+        },
+        "banda_difusa": "alta",
+        "requerimientos": [
+          {
+            "texto": "En la misma venta de categoría A no se debe aplicar ningún descuento.",
+            "escenario": {
+              "actor": "Sistema de ventas",
+              "estado": "confirmación",
+              "objeto": "misma venta A",
+              "id": "ESC-RQ-DESC-B-v1"
+            },
+            "id": "RQ-DESC-B-v1",
+            "obligacion": {
+              "accion": "calcular",
+              "resultado": "precio final sin descuento",
+              "modalidad": "obligacion",
+              "sujeto": "Sistema de ventas",
+              "objeto": "precio final",
+              "id": "O-RQ-DESC-B-v1"
+            }
+          },
+          {
+            "texto": "En una venta de categoría A se debe aplicar el descuento del 10 %.",
+            "escenario": {
+              "actor": "Sistema de ventas",
+              "estado": "confirmación",
+              "objeto": "misma venta A",
+              "id": "ESC-RQ-DESC-A-v1"
+            },
+            "id": "RQ-DESC-A-v1",
+            "obligacion": {
+              "accion": "calcular",
+              "resultado": "precio final con 10 % de descuento",
+              "modalidad": "obligacion",
+              "sujeto": "Sistema de ventas",
+              "objeto": "precio final",
+              "id": "O-RQ-DESC-A-v1"
+            }
+          }
+        ],
+        "evidencias": [
+          {
+            "tipo": "analisis",
+            "contenido": "RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.",
+            "id": "E-EV-DESC"
+          }
+        ],
+        "vigente": true,
+        "version": 1,
+        "grado_contradiccion": 0.843975,
+        "interpretacion_cerrada": true,
+        "evaluacion_id": "EV-DESC",
+        "documento_id": "DOC-DESC-v1",
+        "escenarios": "coincidentes",
+        "contradice": [
+          {
+            "hasta": "RQ-DESC-B-v1",
+            "desde": "RQ-DESC-A-v1",
+            "ambito": "misma venta A",
+            "regla": "ACC-RD05"
+          }
+        ]
+      },
+      {
+        "resultados_incompatibles": true,
+        "modelo_id": null,
+        "estado": "sin_hallazgo",
+        "reglas": [
+          "ACC-RD03"
+        ],
+        "excepcion_resuelve": false,
+        "resultado": null,
+        "banda_difusa": null,
+        "requerimientos": [
+          {
+            "texto": "En la misma venta de categoría A no se debe aplicar ningún descuento.",
+            "escenario": {
+              "actor": "Sistema de ventas",
+              "estado": "confirmación",
+              "objeto": "misma venta A",
+              "id": "ESC-RQ-DESC-B-v1"
+            },
+            "id": "RQ-DESC-B-v1",
+            "obligacion": {
+              "accion": "calcular",
+              "resultado": "precio final sin descuento",
+              "modalidad": "obligacion",
+              "sujeto": "Sistema de ventas",
+              "objeto": "precio final",
+              "id": "O-RQ-DESC-B-v1"
+            }
+          },
+          {
+            "texto": "En una venta de categoría A se debe aplicar el descuento del 10 %.",
+            "escenario": {
+              "actor": "Sistema de ventas",
+              "estado": "confirmación",
+              "objeto": "misma venta A",
+              "id": "ESC-RQ-DESC-A-v1"
+            },
+            "id": "RQ-DESC-A-v1",
+            "obligacion": {
+              "accion": "calcular",
+              "resultado": "precio final con 10 % de descuento",
+              "modalidad": "obligacion",
+              "sujeto": "Sistema de ventas",
+              "objeto": "precio final",
+              "id": "O-RQ-DESC-A-v1"
+            }
+          }
+        ],
+        "evidencias": [
+          {
+            "tipo": "analisis",
+            "contenido": "Control del par: las obligaciones se ubican en momentos excluyentes del escenario construido. La diferencia textual no demuestra contradicción simultánea.",
+            "id": "E-EV-DESC-CONTROL"
+          }
+        ],
+        "vigente": true,
+        "version": 1,
+        "grado_contradiccion": null,
+        "interpretacion_cerrada": true,
+        "evaluacion_id": "EV-DESC-CONTROL",
+        "documento_id": "DOC-DESC-v1",
+        "escenarios": "excluyentes",
+        "contradice": []
+      }
+    ],
+    "reglas": [
+      {
+        "id": "ACC-RD03",
+        "modulo": "analisis_cruzado",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI los escenarios del par son excluyentes y la interpretación está cerrada ENTONCES sin hallazgo para ese par.",
+        "fuente": "PG1 §6.5"
+      },
+      {
+        "id": "ACC-RD05",
+        "modulo": "analisis_cruzado",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI los escenarios coinciden, los resultados son incompatibles y ninguna excepción los concilia ENTONCES Hallazgo(contradiccion) y se deriva CONTRADICE.",
+        "fuente": "PG1 §6.5"
+      }
+    ]
+  },
+  "explicacion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "respuesta": "Se observó que los requerimientos RQ-DESC-A-v1 y RQ-DESC-B-v1 contradicen entre sí [EV-DESC, H-DESC]. La evaluación EV-DESC comparó los requerimientos en escenarios coincidentes, encontrando que el resultado es incompatível: RQ-DESC-A-v1 exige un 10% de descuento, mientras que RQ-DESC-B-v1 no permite ningún descuento en la misma venta de categoría A. Esto se deriva con la regla ACC-RD05 [EV-DESC, ACC-RD05]. La evaluación EV-DESC-CONTROL, que comparó los requerimientos en escenarios excluyentes, no encontró hallazgos [EV-DESC-CONTROL]. Esta evaluación sirvió como control de falsos positivos, pero no anula la contradicción identificada por EV-DESC. Es un resultado provisional del prototipo académico, sin validación experta.",
+        "violaciones": [
+          "No menciona ACC-RD03",
+          "No menciona el estado «observado»",
+          "No menciona el estado «sin_hallazgo»"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 256.96,
+        "tokens_entrada": 4042,
+        "tokens_salida": 212
+      },
+      {
+        "intento": 2,
+        "respuesta": "Se observó que los requerimientos RQ-DESC-A-v1 y RQ-DESC-B-v1 contradicen entre sí [EV-DESC, H-DESC]. La evaluación EV-DESC comparó los requerimientos en escenarios coincidentes, encontrando que el resultado es incompatível: RQ-DESC-A-v1 exige un 10% de descuento, mientras que RQ-DESC-B-v1 no permite ningún descuento en la misma venta de categoría A. Esto se deriva con la regla ACC-RD05 [EV-DESC, ACC-RD05]. La evaluación EV-DESC-CONTROL, que comparó los requerimientos en escenarios excluyentes, no encontró hallazgos [EV-DESC-CONTROL]. Esta evaluación sirvió como control de falsos positivos, pero no anula la contradicción identificada por EV-DESC [EV-DESC-CONTROL]. Es un resultado provisional del prototipo académico, sin validación experta.",
+        "violaciones": [
+          "No menciona ACC-RD03",
+          "No menciona el estado «observado»",
+          "No menciona el estado «sin_hallazgo»"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 66.73,
+        "tokens_entrada": 4354,
+        "tokens_salida": 218
+      },
+      {
+        "intento": 3,
+        "respuesta": "Se observó que los requerimientos RQ-DESC-A-v1 y RQ-DESC-B-v1 contradicen entre sí [EV-DESC, H-DESC]. La evaluación EV-DESC comparó los requerimientos en escenarios coincidentes, encontrando que el resultado es incompatível: RQ-DESC-A-v1 exige un 10% de descuento, mientras que RQ-DESC-B-v1 no permite ningún descuento en la misma venta de categoría A. Esto se deriva con la regla ACC-RD05 [EV-DESC, ACC-RD05]. La evaluación EV-DESC-CONTROL, que comparó los requerimientos en escenarios excluyentes, no encontró hallazgos [EV-DESC-CONTROL]. Esta evaluación sirvió como control de falsos positivos, pero no anula la contradicción identificada por EV-DESC [EV-DESC-CONTROL]. EV-DESC (observado) y EV-DESC-CONTROL (sin_hallazgo) comparan el mismo par con premisas distintas; cada conclusión vale para su premisa. Es un resultado provisional del prototipo académico, sin validación experta.",
+        "violaciones": [
+          "No menciona ACC-RD03"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 65.06,
+        "tokens_entrada": 4360,
+        "tokens_salida": 258
+      }
+    ],
+    "hechos_verificables": [
+      "Conclusiones registradas, para escribirlas en el texto corrido de la respuesta (ID con su estado exacto entre paréntesis; esto va en el texto y no entre corchetes): EV-DESC (observado, regla ACC-RD05, genera Hallazgo H-DESC); EV-DESC-CONTROL (sin_hallazgo, regla ACC-RD03, sin hallazgo ni pendiente).",
+      "La evaluación EV-DESC (DOC-DESC-v1, versión 1) comparó RQ-DESC-B-v1 («En la misma venta de categoría A no se debe aplicar ningún descuento.») y RQ-DESC-A-v1 («En una venta de categoría A se debe aplicar el descuento del 10 %.»). Premisas registradas: escenarios coincidentes, resultados_incompatibles = true, excepcion_resuelve = false, interpretacion_cerrada = true. Quedó observado por la regla ACC-RD05.",
+      "Obligación de RQ-DESC-B-v1 (O-RQ-DESC-B-v1): sujeto «Sistema de ventas», acción «calcular», objeto «precio final», modalidad obligacion, resultado «precio final sin descuento»; escenario ESC-RQ-DESC-B-v1 (actor «Sistema de ventas», objeto «misma venta A», estado «confirmación»).",
+      "Obligación de RQ-DESC-A-v1 (O-RQ-DESC-A-v1): sujeto «Sistema de ventas», acción «calcular», objeto «precio final», modalidad obligacion, resultado «precio final con 10 % de descuento»; escenario ESC-RQ-DESC-A-v1 (actor «Sistema de ventas», objeto «misma venta A», estado «confirmación»).",
+      "EV-DESC derivó la relación CONTRADICE de RQ-DESC-A-v1 a RQ-DESC-B-v1 con ámbito «misma venta A» (regla ACC-RD05).",
+      "EV-DESC genera el Hallazgo H-DESC (tipo_defecto contradiccion): «La misma venta exige precio con y sin descuento».",
+      "EV-DESC tiene grado de pertenencia a contradicción 0,844, banda alta, calculado con MD-CONTR-1.0. El grado mide la intensidad del conflicto; la que decidió el estado es la regla ACC-RD05.",
+      "Evidencia E-EV-DESC: «RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.».",
+      "La evaluación EV-DESC-CONTROL (DOC-DESC-v1, versión 1) comparó RQ-DESC-B-v1 («En la misma venta de categoría A no se debe aplicar ningún descuento.») y RQ-DESC-A-v1 («En una venta de categoría A se debe aplicar el descuento del 10 %.»). Premisas registradas: escenarios excluyentes, resultados_incompatibles = true, excepcion_resuelve = false, interpretacion_cerrada = true. Quedó sin_hallazgo por la regla ACC-RD03.",
+      "EV-DESC-CONTROL no derivó la relación CONTRADICE.",
+      "EV-DESC-CONTROL no genera hallazgo ni pendiente.",
+      "EV-DESC-CONTROL no tiene grado de contradicción calculado (grado_contradiccion = null): no debe estimarse un valor.",
+      "Evidencia E-EV-DESC-CONTROL: «Control del par: las obligaciones se ubican en momentos excluyentes del escenario construido. La diferencia textual no demuestra contradicción simultánea.».",
+      "Las evaluaciones EV-DESC, EV-DESC-CONTROL comparan el mismo par con premisas distintas (escenarios coincidentes frente a excluyentes); cada conclusión vale para su premisa. EV-DESC-CONTROL es una evaluación de control del par (evidencia E-EV-DESC-CONTROL): funciona como control de falsos positivos, no es un desacuerdo entre análisis y no anula a EV-DESC. La evidencia del control describe solo la premisa de ese control; no agrega una conclusión sobre la contradicción ni la confirma, limita o explica.",
+      "Regla ACC-RD03 (implementada, estado candidata, PG1 §6.5): SI los escenarios del par son excluyentes y la interpretación está cerrada ENTONCES sin hallazgo para ese par.",
+      "Regla ACC-RD05 (implementada, estado candidata, PG1 §6.5): SI los escenarios coinciden, los resultados son incompatibles y ninguna excepción los concilia ENTONCES Hallazgo(contradiccion) y se deriva CONTRADICE.",
+      "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+      "El paquete no registra un dato faltante ni una revisión pendiente: no propongas un siguiente paso.",
+      "La respuesta debe mencionar estos IDs: EV-DESC, H-DESC, EV-DESC-CONTROL, ACC-RD05, ACC-RD03.",
+      "La respuesta debe escribir textualmente estos estados, tal como figuran: observado, sin_hallazgo. Un verbo parecido (por ejemplo «se observó») no alcanza.",
+      "Estados que figuran en el paquete: observado, sin hallazgo. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «pendiente», «no evaluable», «resuelta», «resuelto», «por consultar», «no aplicable» en la respuesta."
+    ],
+    "cobertura_requerida": {
+      "ids": [
+        "EV-DESC",
+        "H-DESC",
+        "EV-DESC-CONTROL",
+        "ACC-RD05",
+        "ACC-RD03"
+      ],
+      "estados": [
+        "observado",
+        "sin_hallazgo"
+      ]
+    },
+    "resultado_verificacion": "rechazada; se emite la respuesta de respaldo"
+  },
+  "respuesta_final": "No pude generar una explicación verificable; resumo los datos recuperados de la base sin interpretarlos. Son resultados provisionales del prototipo, sin validación experta.\nEvaluación EV-DESC (observado, regla ACC-RD05): H-DESC.\nEvaluación EV-DESC-CONTROL (sin_hallazgo, regla ACC-RD03): sin resultado.",
+  "tipo_salida": "respaldo",
+  "segundos_totales": 553.83
+}

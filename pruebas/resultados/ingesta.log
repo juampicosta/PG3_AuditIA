@@ -1,0 +1,15 @@
+Preparación: {'reglas_activadas': 9, 'reglas': {'implementada': 41, 'catalogada': 25}}
+  OK  PI-01 · Réplica de EV-CAT-01 por el camino genérico
+  OK  PI-02 · Réplica de EV-DESC por el camino genérico
+  OK  PI-03 · EVI-HC01: dos obligaciones sin unidad de aceptación → atomicidad incumple
+  OK  PI-04 · EVI-HC06: acciones que forman una única unidad de aceptación → excepción (cumple)
+  OK  PI-05 · EVI-HC05 (omisión demostrada) y EVI-HC07 (método que no discrimina)
+  OK  PI-06 · EVI-HC03: el criterio de aceptación delimita el término vago → ambigüedad resuelta
+  OK  PI-07 · SM2: excepción, compatibles, región común, frontera y excluyentes
+  OK  PI-08 · SM3: severidad baja × criticidad media = celda mayor; hito acordado → PRC-HC04
+  OK  PI-09 · Borrador léxico sin LLM: estados de punta a punta
+  OK  PI-10 · Controles de integridad de PG2 sobre toda la base
+  OK  PI-12 · Documento completo (.docx, .pdf, .txt): detección, análisis por lote y comparación propuesta
+  OK  PI-11 · Limpieza: la base vuelve al conteo original
+
+12/12 pruebas pasadas · /app/pruebas/resultados/ingesta.json

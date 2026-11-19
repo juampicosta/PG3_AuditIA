@@ -1,0 +1,1 @@
+MATCH p=(ev:Evaluacion {id:'EV-DESC'})-[:GENERA]->(h:Hallazgo)<-[:PRIORIZA]-(d:DecisionPrioridad) MATCH (d)-[rc:USA_CONTEXTO]->(x),(h)-[rs:TIENE_SEVERIDAD]->(sv),(h)-[ra:AFECTA_REQUERIMIENTO]->(rq) RETURN p,rc,x,rs,sv,ra,rq;

@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AuditIA · asistente de auditoría de requerimientos</title>
+<style>
+  :root{
+    --tinta:#16264A; --tinta2:#2A3B63; --papel:#FFFFFF; --fondo:#EEF2F8; --cuadricula:#DCE4F0;
+    --gris:#5A6680; --linea:#D5DDEA; --marcador:#FFE45C; --marcador2:#FFF3A8;
+    --sm1:#2F6FD1; --sm1f:#E3EDFB; --sm2:#7B4BC4; --sm2f:#EEE6FA; --sm3:#C77700; --sm3f:#FDF0D9;
+    --neo:#12806A; --neof:#DDF3EC; --llm:#3D5AFE; --ok:#1E7A4C; --warn:#A8620A; --err:#B3261E;
+    --radio-hoja:4px; --radio-ctrl:10px;
+    --mono:"Cascadia Code",Consolas,ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:"Poppins","Segoe UI",system-ui,sans-serif;color:var(--tinta);font-size:15px;line-height:1.55;
+    background-color:var(--fondo);
+    background-image:linear-gradient(var(--cuadricula) 1px,transparent 1px),linear-gradient(90deg,var(--cuadricula) 1px,transparent 1px);
+    background-size:28px 28px}
+  :focus-visible{outline:3px solid var(--llm);outline-offset:2px}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+  header{background:var(--tinta);color:#fff}
+  .barra{max-width:1240px;margin:0 auto;padding:16px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+  .marca{display:flex;align-items:baseline;gap:12px}
+  .marca h1{margin:0;font-size:24px;font-weight:700;letter-spacing:-.3px}
+  .marca h1 mark{background:linear-gradient(transparent 55%,rgba(255,228,92,.85) 55%);color:#fff;padding:0 2px}
+  .marca p{margin:0;font-size:13px;color:#B9C6E0}
+  .estado{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+  .luz{display:flex;align-items:center;gap:7px;font-size:12.5px;background:var(--tinta2);padding:5px 11px;border-radius:99px;color:#E3E9F5}
+  .luz i{width:8px;height:8px;border-radius:50%;background:#8C97AE}
+  .luz.ok i{background:#4CD38A}.luz.mal i{background:#FF6B5E}
+
+  main{max-width:1240px;margin:0 auto;padding:28px 24px 64px}
+  .hoja{background:var(--papel);border:1px solid var(--linea);border-radius:var(--radio-hoja);box-shadow:0 1px 0 var(--linea),0 10px 24px -18px rgba(22,38,74,.35)}
+
+  /* --- zona principal: consulta + recorrido --- */
+  .escritorio{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:24px;align-items:start}
+  @media (max-width:980px){.escritorio{grid-template-columns:1fr}}
+  .consulta{padding:22px 24px}
+  .consulta h2{margin:0 0 4px;font-size:19px}
+  .consulta .ayuda{margin:0 0 14px;color:var(--gris);font-size:13.5px}
+  textarea{width:100%;min-height:118px;padding:14px 16px;font:inherit;font-size:15.5px;line-height:1.5;color:var(--tinta);
+    border:1px solid var(--linea);border-radius:var(--radio-ctrl);resize:vertical;
+    background:repeating-linear-gradient(transparent 0 30px,#EDF1F7 30px 31px);background-attachment:local}
+  textarea:focus{outline:none;border-color:var(--llm);box-shadow:0 0 0 3px rgba(61,90,254,.15)}
+  .acciones{display:flex;align-items:center;gap:12px;margin-top:12px}
+  .contador{font-size:12px;color:var(--gris);margin-left:auto}
+  button.principal{font:inherit;font-weight:600;font-size:15px;padding:11px 22px;border:0;border-radius:var(--radio-ctrl);background:var(--tinta);color:#fff;cursor:pointer}
+  button.principal:hover{background:var(--tinta2)}
+  button.principal:disabled{background:#8D99B3;cursor:progress}
+  .ejemplos{margin-top:18px}
+  .ejemplos h3{font-size:13.5px;margin:0 0 8px;color:var(--gris);font-weight:600}
+  .ejemplo{display:block;width:100%;text-align:left;font:inherit;font-size:13.5px;background:#F7F9FC;border:1px solid var(--linea);
+    border-radius:var(--radio-ctrl);padding:9px 12px;margin-bottom:7px;cursor:pointer;color:var(--tinta)}
+  .ejemplo:hover{border-color:var(--tinta2);background:#fff}
+  .ejemplo b{font-weight:600}
+  .ejemplo span{display:inline-block;font-size:11.5px;font-weight:600;border-radius:5px;padding:0 6px;margin-left:4px}
+
+  /* --- el recorrido (elemento protagonista) --- */
+  .recorrido{padding:18px 20px 16px}
+  .recorrido h2{margin:0;font-size:19px}
+  .recorrido .ayuda{margin:2px 0 6px;color:var(--gris);font-size:13.5px}
+  #mapa{width:100%;height:auto;display:block}
+  .nodo rect{fill:#fff;stroke:var(--linea);stroke-width:2;transition:fill .35s,stroke .35s}
+  .nodo text{font-family:Poppins,system-ui,sans-serif;fill:var(--tinta)}
+  .nodo .t{font-size:14px;font-weight:600}.nodo .s{font-size:11.5px;fill:var(--gris)}
+  .nodo{cursor:pointer}
+  .nodo:hover rect,.nodo.elegido rect{stroke:var(--tinta)}
+  .nodo.activo rect{stroke-width:3}
+  .nodo.hecho rect{stroke-width:2.5}
+  .cable{fill:none;stroke:#C5D0E2;stroke-width:2.5;transition:stroke .35s}
+  .cable.vivo{stroke:var(--tinta);stroke-dasharray:7 7;animation:flujo .8s linear infinite}
+  .cable.hecho{stroke:var(--tinta2)}
+  @keyframes flujo{to{stroke-dashoffset:-14}}
+  .nodo.activo{animation:latido 1.3s ease-in-out infinite}
+  @keyframes latido{50%{opacity:.62}}
+  .explica{margin-top:10px;border-left:4px solid var(--marcador);background:#FFFCEB;padding:10px 14px;border-radius:0 var(--radio-ctrl) var(--radio-ctrl) 0;font-size:13.8px;min-height:64px}
+  .explica b{display:block;font-size:14px}
+
+  /* --- progreso --- */
+  .progreso{margin-top:24px;padding:18px 22px;display:none}
+  .progreso.visible{display:block}
+  .progreso h2{margin:0 0 10px;font-size:17px;display:flex;gap:10px;align-items:baseline}
+  .progreso h2 small{font-size:13px;color:var(--gris);font-weight:400}
+  .linea-tiempo{list-style:none;margin:0;padding:0}
+  .linea-tiempo li{position:relative;padding:0 0 12px 26px;font-size:14px}
+  .linea-tiempo li::before{content:"";position:absolute;left:5px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--tinta2)}
+  .linea-tiempo li::after{content:"";position:absolute;left:9.5px;top:18px;bottom:0;width:1px;background:var(--linea)}
+  .linea-tiempo li:last-child::after{display:none}
+  .linea-tiempo li.actual::before{background:var(--marcador);box-shadow:0 0 0 3px rgba(255,228,92,.45);animation:latido 1.2s infinite}
+  .linea-tiempo .que{color:var(--gris);font-size:13px}
+
+  /* --- resultado --- */
+  .resultado{margin-top:28px}
+  .respuesta{padding:26px 30px}
+  .respuesta h2{margin:0 0 12px;font-size:21px}
+  .texto{font-size:16.5px;line-height:1.7;max-width:78ch;white-space:pre-wrap}
+  .id{background:linear-gradient(transparent 58%,var(--marcador) 58%);border:0;font:inherit;color:inherit;padding:0 1px;cursor:pointer;font-weight:600}
+  .id:hover{background:var(--marcador)}
+  .sm{display:inline-block;font-size:12px;font-weight:700;border-radius:6px;padding:1px 7px;vertical-align:1px}
+  .sm.SM1{background:var(--sm1f);color:var(--sm1)}.sm.SM2{background:var(--sm2f);color:var(--sm2)}.sm.SM3{background:var(--sm3f);color:var(--sm3)}
+  .pie{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:16px;padding-top:12px;border-top:1px dashed var(--linea);font-size:13px;color:var(--gris)}
+  .sello{display:inline-flex;align-items:center;gap:6px;font-weight:600;color:var(--ok)}
+  .sello.warn{color:var(--warn)}
+  .ficha-id{margin-top:14px;display:none;background:#FFFCEB;border:1px solid #F1E39A;border-radius:var(--radio-ctrl);padding:10px 14px;font-size:14px;max-width:78ch}
+  .ficha-id.visible{display:block}
+
+  .pasos{margin-top:22px}
+  .pasos > h2{font-size:18px;margin:0 0 4px}
+  .pasos > p{margin:0 0 14px;color:var(--gris);font-size:14px;max-width:80ch}
+  .paso{margin-bottom:16px;border-left:6px solid var(--c);}
+  .paso header{background:none;color:var(--tinta);display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:14px 20px 10px}
+  .paso header h3{margin:0;font-size:16px}
+  .paso header .meta{font-size:12.5px;color:var(--gris)}
+  .paso .sub{padding:0 20px 8px;font-size:14px;color:var(--gris)}
+  .paso .sub q{color:var(--tinta)}
+  .pestanas{display:flex;gap:4px;padding:0 16px;border-bottom:1px solid var(--linea);flex-wrap:wrap}
+  .pestanas button{font:inherit;font-size:13.5px;background:none;border:0;border-bottom:3px solid transparent;padding:8px 10px;cursor:pointer;color:var(--gris)}
+  .pestanas button[aria-selected="true"]{color:var(--tinta);border-color:var(--c);font-weight:600}
+  .panel{padding:14px 20px 18px;font-size:14px}
+  .panel[hidden]{display:none}
+  .panel .nota{color:var(--gris);font-size:13px;margin:0 0 10px;max-width:80ch}
+  pre{background:#13203D;color:#DCE6F7;padding:12px 14px;border-radius:8px;font:12.5px/1.5 var(--mono);overflow:auto;max-height:300px;margin:6px 0 14px}
+  table{border-collapse:collapse;width:100%;font-size:13.5px}
+  th,td{text-align:left;vertical-align:top;padding:7px 8px;border-bottom:1px solid var(--linea)}
+  th{font-weight:600;background:#F3F6FB}
+  code{font-family:var(--mono);font-size:12.5px;background:#EEF2F8;padding:1px 5px;border-radius:4px}
+  td code{white-space:nowrap}
+  .chequeo{display:flex;gap:10px;align-items:flex-start;margin-bottom:8px}
+  .chequeo i{flex:none;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:12px;color:#fff;background:var(--ok)}
+  .chequeo i.no{background:var(--warn)}
+  .error{padding:16px 20px;color:var(--err);font-weight:600}
+
+  /* --- cómo funciona --- */
+  .como{margin-top:40px;padding:24px 28px}
+  .como h2{margin:0 0 4px;font-size:19px}
+  .como > p{margin:0 0 16px;color:var(--gris);max-width:80ch}
+  .reglas-oro{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px}
+  .reglas-oro div{border-top:3px solid var(--tinta);padding-top:10px}
+  .reglas-oro b{display:block;margin-bottom:4px}
+  .reglas-oro p{margin:0;font-size:14px;color:var(--gris)}
+
+  /* --- modos --- */
+  .modos{display:flex;gap:6px;margin:0 0 22px;flex-wrap:wrap}
+  .modos button{font:inherit;font-size:15px;font-weight:600;padding:10px 18px;border:1px solid var(--linea);background:#fff;color:var(--gris);border-radius:var(--radio-ctrl);cursor:pointer}
+  .modos button[aria-selected="true"]{background:var(--tinta);color:#fff;border-color:var(--tinta)}
+  .modos small{display:block;font-weight:400;font-size:12px;opacity:.85}
+
+  /* --- análisis de requerimientos nuevos --- */
+  .flujo{display:grid;grid-template-columns:repeat(5,1fr);gap:0;margin:0 0 20px;padding:14px 18px;counter-reset:f}
+  @media (max-width:860px){.flujo{grid-template-columns:1fr 1fr}}
+  .flujo div{position:relative;padding:8px 12px 8px 40px;font-size:13px;color:var(--gris);border-left:1px dashed var(--linea)}
+  .flujo div:first-child{border-left:0}
+  .flujo div::before{counter-increment:f;content:counter(f);position:absolute;left:10px;top:8px;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#E7ECF5;color:var(--tinta);font-weight:700;font-size:12px}
+  .flujo div b{display:block;color:var(--tinta);font-size:13.5px}
+  .flujo div.activo::before{background:var(--marcador);box-shadow:0 0 0 3px rgba(255,228,92,.45)}
+  .flujo div.hecho::before{background:var(--ok);color:#fff;content:"✓"}
+  .ingreso{padding:22px 24px}
+  .ingreso h2,.revision > h2,.res-lote > h2{margin:0 0 4px;font-size:19px}
+  .ingreso .ayuda,.revision .ayuda{margin:0 0 12px;color:var(--gris);font-size:13.5px;max-width:90ch}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media (max-width:860px){.dos{grid-template-columns:1fr}}
+  .campo-largo label{display:block;font-weight:600;font-size:13.5px;margin:10px 0 4px}
+  .campo-largo label small{font-weight:400;color:var(--gris)}
+  .campo-largo textarea{min-height:84px}
+  .campo-largo input[type=text]{width:100%;font:inherit;padding:9px 12px;border:1px solid var(--linea);border-radius:var(--radio-ctrl)}
+  button.secundario{font:inherit;font-weight:600;font-size:14.5px;padding:10px 18px;border:1px solid var(--tinta);border-radius:var(--radio-ctrl);background:#fff;color:var(--tinta);cursor:pointer}
+  button.secundario:hover{background:#F3F6FB}
+  button.secundario:disabled{opacity:.5;cursor:progress}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+  .chips button{font:inherit;font-size:12.5px;border:1px solid var(--linea);background:#F7F9FC;border-radius:99px;padding:4px 11px;cursor:pointer;color:var(--tinta)}
+  .chips button:hover{border-color:var(--tinta2);background:#fff}
+  .revision{margin-top:24px}
+  .tarjeta-rq{margin-top:14px;padding:18px 22px;border-left:6px solid var(--sm1)}
+  .tarjeta-rq.cmp{border-left-color:var(--sm2)}
+  .tarjeta-rq.prio{border-left-color:var(--sm3)}
+  .tarjeta-rq h3{margin:0 0 4px;font-size:16px;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+  .tarjeta-rq blockquote{margin:6px 0 12px;padding:8px 12px;background:#F7F9FC;border-left:3px solid var(--linea);font-size:15px}
+  .lectura{font-size:13px;color:var(--gris);margin:0 0 10px}
+  .lectura b{color:var(--tinta);font-weight:600}
+  .lectura mark{background:var(--marcador2);padding:0 3px;border-radius:3px}
+  .criterios{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px}
+  .criterio{border:1px solid var(--linea);border-radius:var(--radio-ctrl);padding:12px 14px;background:#fff}
+  .criterio h4{margin:0 0 8px;font-size:14px;display:flex;justify-content:space-between;gap:8px;align-items:center}
+  .criterio label{display:flex;gap:8px;align-items:center;font-size:13px;margin:5px 0}
+  .criterio label.num{justify-content:space-between}
+  .criterio input[type=number]{width:72px;font:inherit;font-size:13px;padding:3px 6px;border:1px solid var(--linea);border-radius:6px}
+  .criterio select{font:inherit;font-size:13px;padding:3px 6px;border:1px solid var(--linea);border-radius:6px}
+  .criterio textarea{min-height:58px;font-size:13px;padding:7px 9px;background:#fff;margin-top:6px}
+  .criterio .sev{display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--gris);margin-top:6px;flex-wrap:wrap}
+  .previa{font-size:12px;font-weight:600;border-radius:99px;padding:2px 9px;white-space:nowrap}
+  .previa.cumple,.previa.sin_hallazgo{background:#E2F3EA;color:var(--ok)}
+  .previa.incumple,.previa.observado{background:#FDE7E4;color:var(--err)}
+  .previa.pendiente{background:#FDF0D9;color:var(--warn)}
+  .previa.nada{background:#EEF2F8;color:var(--gris)}
+  .nota-previa{font-size:12px;color:var(--gris);margin:8px 0 0}
+  .confirmar{display:flex;gap:12px;align-items:center;margin-top:18px;flex-wrap:wrap}
+  .avisos{margin:8px 0 0;padding:8px 12px;background:#FFF8E5;border:1px solid #F1E39A;border-radius:var(--radio-ctrl);font-size:13px}
+  .res-lote{margin-top:24px;padding:22px 26px}
+  .res-rq{margin-top:14px}
+  .res-rq h3{font-size:15.5px;margin:0 0 6px}
+  .estado-ev{font-size:13px;font-weight:700;border-radius:6px;padding:2px 8px}
+  .tabla-obs td,.tabla-obs th{font-size:13px}
+  .sugeridas{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+  .carga{display:flex;gap:12px;align-items:center;flex-wrap:wrap;padding:12px 14px;border:1px dashed var(--tinta2);border-radius:var(--radio-ctrl);background:#F7F9FC;margin:4px 0 14px}
+  .carga input[type=file]{font:inherit;font-size:13.5px}
+  .carga b{font-size:14px}
+  .doc-lista{margin:0 0 16px}
+  .doc-lista table td{font-size:13.5px}
+  .doc-lista .acciones{margin-top:10px;flex-wrap:wrap}
+  .separador{display:flex;align-items:center;gap:10px;color:var(--gris);font-size:12.5px;margin:4px 0 6px}
+  .separador::before,.separador::after{content:"";flex:1;border-top:1px solid var(--linea)}
+  details.tarjeta-rq > summary{cursor:pointer;list-style:none;display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+  details.tarjeta-rq > summary::-webkit-details-marker{display:none}
+  details.tarjeta-rq > summary::before{content:"▸";color:var(--gris);font-size:13px}
+  details.tarjeta-rq[open] > summary::before{content:"▾"}
+  details.tarjeta-rq > summary h3{margin:0}
+  .resumen-previa{display:inline-flex;gap:4px;flex-wrap:wrap}
+  details.avanzado{margin-top:6px;font-size:12.5px}
+  details.avanzado summary{cursor:pointer;color:var(--gris)}
+  .lotes{margin-top:28px;padding:18px 22px}
+  .lotes h2{margin:0 0 8px;font-size:17px}
+  .lotes table button{font:inherit;font-size:12.5px;border:1px solid var(--linea);background:#fff;border-radius:6px;padding:3px 9px;cursor:pointer}
+  footer{max-width:1240px;margin:0 auto;padding:0 24px 30px;font-size:12.5px;color:var(--gris)}
+</style>
+</head>
+<body>
+<header>
+  <div class="barra">
+    <div class="marca">
+      <h1>Audit<mark>IA</mark></h1>
+      <p>Asistente para auditar requerimientos de software antes de firmar</p>
+    </div>
+    <div class="estado" id="estado" aria-live="polite">
+      <span class="luz"><i></i>Verificando conexión</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <nav class="modos" role="tablist" aria-label="Modo de trabajo">
+    <button role="tab" aria-selected="true" data-modo="analizar">1 · Auditar un documento<small>cargás los requerimientos y AuditIA los diagnostica</small></button>
+    <button role="tab" aria-selected="false" data-modo="consultar">2 · Preguntarle a AuditIA<small>por qué salió cada diagnóstico y qué hacer</small></button>
+  </nav>
+  <div id="vista-consultar" hidden>
+  <div class="escritorio">
+    <section class="hoja consulta" aria-labelledby="t-consulta">
+      <h2 id="t-consulta">¿Qué querés saber del documento?</h2>
+      <p class="ayuda">Preguntá en lenguaje natural por la calidad de un requerimiento, una contradicción o dependencia, o la prioridad de una observación. Podés combinar varias cosas en la misma pregunta.</p>
+      <label for="consulta" class="ayuda" style="display:none">Consulta</label>
+      <textarea id="consulta" maxlength="600" placeholder="Por ejemplo: ¿Se contradicen los requerimientos de los descuentos de la venta de categoría A y por qué esa contradicción quedó como bloqueante?"></textarea>
+      <div class="acciones">
+        <button class="principal" id="enviar">Auditar consulta</button>
+        <span class="contador" id="contador">0 / 600</span>
+      </div>
+      <div class="ejemplos">
+        <h3>Casos para probar</h3>
+        <div id="ejemplos"></div>
+      </div>
+    </section>
+
+    <section class="hoja recorrido" aria-labelledby="t-recorrido">
+      <h2 id="t-recorrido">El recorrido de tu consulta</h2>
+      <p class="ayuda">Tocá cada pieza para ver qué hace. Mientras se procesa una consulta, el mapa muestra en qué parte está.</p>
+      <svg id="mapa" viewBox="0 0 700 440" role="img" aria-label="Mapa del recorrido: consulta, prompt maestro, submódulos SM1, SM2 y SM3, Neo4j, verificador y respuesta"></svg>
+      <div class="explica" id="explica" aria-live="polite"></div>
+    </section>
+  </div>
+
+  <section class="hoja progreso" id="progreso" aria-live="polite">
+    <h2>Procesando <small id="cronometro">0 s</small></h2>
+    <ol class="linea-tiempo" id="etapas"></ol>
+    <p class="ayuda" style="margin:4px 0 0;color:var(--gris);font-size:13px">El modelo corre en esta computadora, sin GPU: cada submódulo puede tardar unos minutos.</p>
+  </section>
+
+  <div class="resultado" id="resultado"></div>
+  </div>
+
+  <div id="vista-analizar">
+    <section class="hoja flujo" id="flujo" aria-label="Pasos del análisis">
+      <div data-f="texto"><b>Texto</b>escribís uno o dos requerimientos</div>
+      <div data-f="llm"><b>Propuesta</b>el LLM lee y propone premisas</div>
+      <div data-f="analista"><b>Confirmación</b>vos revisás y corregís</div>
+      <div data-f="reglas"><b>Reglas</b>Neo4j aplica las reglas y la lógica difusa</div>
+      <div data-f="consulta"><b>Consulta</b>el caso queda para SM1, SM2 y SM3</div>
+    </section>
+
+    <section class="hoja ingreso" aria-labelledby="t-ingreso">
+      <h2 id="t-ingreso">¿Qué requerimientos querés auditar?</h2>
+      <p class="ayuda">El modelo de lenguaje no decide si un requerimiento está bien o mal: lee el texto y propone las premisas (cuántas obligaciones tiene, qué términos son vagos, si hay un criterio medible, qué falta). Vos las confirmás y recién entonces las reglas del grafo calculan diagnósticos, severidades, prioridades y grados difusos.</p>
+      <div class="carga">
+        <b>Cargar un documento</b>
+        <input type="file" id="doc-archivo" accept=".txt,.md,.docx,.pdf" aria-label="Documento de requerimientos (.txt, .md, .docx o .pdf)">
+        <span class="contador" style="margin-left:0">.txt, .md, .docx o .pdf · se detectan las oraciones con «debe», «deberá», «permitirá»…</span>
+      </div>
+      <div class="doc-lista" id="doc-lista"></div>
+      <div class="separador">o escribilos a mano</div>
+      <div class="dos">
+        <div class="campo-largo"><label for="rq-a">Requerimiento A</label>
+          <textarea id="rq-a" maxlength="1000" placeholder="Por ejemplo: El sistema debe cargar rápidamente el catálogo de productos."></textarea></div>
+        <div class="campo-largo"><label for="rq-b">Requerimiento B <small>(opcional: se compara con A en SM2)</small></label>
+          <textarea id="rq-b" maxlength="1000" placeholder="Por ejemplo: Una vez confirmado, el pedido no puede cancelarse."></textarea></div>
+      </div>
+      <div class="dos">
+        <div class="campo-largo"><label for="rq-ctx">Contexto disponible <small>(opcional: criterio de aceptación, glosario, anexos recibidos)</small></label>
+          <textarea id="rq-ctx" maxlength="1500" placeholder="Por ejemplo: Criterio de aceptación: el catálogo carga en 2 segundos como máximo."></textarea></div>
+        <div class="campo-largo"><label for="rq-analista">Analista que confirma</label>
+          <input type="text" id="rq-analista" maxlength="80" value="Grupo 10">
+          <div class="chips" id="ejemplos-rq" aria-label="Ejemplos para probar"></div></div>
+      </div>
+      <div class="acciones">
+        <button class="principal" id="proponer-llm">Proponer premisas con el LLM</button>
+        <button class="secundario" id="proponer-rapido">Borrador rápido sin LLM</button>
+        <span class="contador" id="estado-propuesta"></span>
+      </div>
+    </section>
+
+    <div id="revision"></div>
+    <div id="res-lote"></div>
+
+    <section class="hoja lotes" aria-labelledby="t-lotes">
+      <h2 id="t-lotes">Requerimientos ya analizados</h2>
+      <div id="lista-lotes"><p class="ayuda" style="color:var(--gris)">Cargando…</p></div>
+    </section>
+  </div>
+
+  <section class="hoja como" aria-labelledby="t-como">
+    <h2 id="t-como">Cómo decide AuditIA</h2>
+    <p>El sistema separa lo que se sabe de cómo se cuenta. El conocimiento del auditor está guardado en un grafo; el modelo de lenguaje solo traduce entre ese grafo y vos.</p>
+    <div class="reglas-oro">
+      <div><b>El grafo tiene la última palabra</b><p>Diagnósticos, severidades, prioridades y estados salen de Neo4j: 66 reglas del catálogo y tres modelos difusos. El modelo de lenguaje no puede cambiarlos.</p></div>
+      <div><b>Requerimientos nuevos con las mismas reglas</b><p>Para un texto nuevo, el modelo de lenguaje solo propone premisas citando el texto; el analista las confirma y las reglas del grafo concluyen. Sin confirmación no se escribe nada.</p></div>
+      <div><b>Cada experto en lo suyo</b><p>SM1 juzga la calidad de cada requerimiento, SM2 compara requerimientos entre sí y SM3 decide qué tan urgente es tratar cada observación. El prompt maestro elige a quién preguntarle.</p></div>
+      <div><b>Nada se inventa</b><p>Si el modelo escribe un ID, un número o un estado que no está en la evidencia, el verificador rechaza la respuesta y la vuelve a pedir.</p></div>
+      <div><b>Todo se puede auditar</b><p>Debajo de cada respuesta están las consultas Cypher, las reglas, la evidencia y la verificación. La traza completa queda guardada en un archivo.</p></div>
+    </div>
+  </section>
+</main>
+<footer>AuditIA · PG3 · Grupo 10: Costa, Juan Pablo; Isgró, Tomás Valentino; Lucero, Bruno · Inteligencia Artificial, UTN FRM, 2026. Resultados provisionales de un prototipo académico, sin validación experta.</footer>
+
+<script>
+const $ = s => document.querySelector(s);
+const esc = t => String(t ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const SM = {
+  SM1:{nombre:"Calidad de cada requerimiento", color:"var(--sm1)", fondo:"var(--sm1f)"},
+  SM2:{nombre:"Requerimientos entre sí", color:"var(--sm2)", fondo:"var(--sm2f)"},
+  SM3:{nombre:"Prioridad y clarificación", color:"var(--sm3)", fondo:"var(--sm3f)"},
+};
+
+/* ------------------------------ mapa del recorrido ------------------------------ */
+const NODOS = {
+  consulta:{x:10,y:150,w:125,h:66,t:"Tu consulta",s:"lenguaje natural",color:"var(--tinta)",fondo:"#fff",
+    info:"Escribís la pregunta como se la harías a un analista senior. Primero se controla que sea una pregunta válida y de menos de 600 caracteres."},
+  maestro:{x:170,y:150,w:130,h:66,t:"Prompt maestro",s:"elige el camino",color:"var(--llm)",fondo:"#E8ECFF",
+    info:"El modelo de lenguaje lee la consulta y decide qué submódulos tienen que responder y en qué orden. Si escribe un ID que vos no mencionaste, el sistema rechaza el plan y lo vuelve a pedir."},
+  SM1:{x:335,y:40,w:170,h:66,t:"SM1 · Calidad",s:"un requerimiento",color:"var(--sm1)",fondo:"var(--sm1f)",
+    info:"Evaluación de calidad individual (Costa). Juzga atomicidad, ambigüedad, verificabilidad y completitud, y calcula cuán ambiguo es un requerimiento con lógica difusa."},
+  SM2:{x:335,y:150,w:170,h:66,t:"SM2 · Cruzado",s:"entre requerimientos",color:"var(--sm2)",fondo:"var(--sm2f)",
+    info:"Análisis cruzado y cobertura (Isgró). Detecta contradicciones, dependencias que faltan y categorías como Seguridad sin cubrir. Calcula el grado de contradicción."},
+  SM3:{x:335,y:260,w:170,h:66,t:"SM3 · Prioridad",s:"qué tratar primero",color:"var(--sm3)",fondo:"var(--sm3f)",
+    info:"Priorización y clarificación (Lucero). Asigna bloqueante, mayor o menor con la matriz MPR-01, calcula la urgencia difusa y muestra las preguntas al cliente y su seguimiento."},
+  neo:{x:335,y:370,w:170,h:62,t:"Neo4j",s:"fuente de verdad",color:"var(--neo)",fondo:"var(--neof)",
+    info:"La base de conocimiento: 617 nodos y 1191 relaciones con frames, reglas, modelos difusos, casos e historia. Los submódulos la consultan con Cypher fijo y de solo lectura."},
+  verif:{x:550,y:150,w:140,h:66,t:"Verificador",s:"nada inventado",color:"var(--ok)",fondo:"#E2F3EA",
+    info:"Revisa cada redacción: los IDs, números, estados y prioridades tienen que estar en la evidencia, y la respuesta tiene que aclarar que es provisional. Si no pasa, se reescribe."},
+  respuesta:{x:550,y:260,w:140,h:66,t:"Respuesta",s:"con su traza",color:"var(--tinta)",fondo:"#FFF6C2",
+    info:"La respuesta integrada, con el submódulo de origen de cada parte. Debajo vas a ver las consultas, las reglas y la evidencia que la justifican."},
+};
+const CABLES = [["consulta","maestro"],["maestro","SM1"],["maestro","SM2"],["maestro","SM3"],["SM1","verif"],["SM2","verif"],["SM3","verif"],["verif","respuesta"],["SM1","SM2"],["SM2","SM3"],["SM3","neo"]];
+function centro(n, lado){ const N=NODOS[n]; return {r:[N.x+N.w,N.y+N.h/2], l:[N.x,N.y+N.h/2], t:[N.x+N.w/2,N.y], b:[N.x+N.w/2,N.y+N.h]}[lado]; }
+function camino(a,b){
+  if(/^SM/.test(a) && (b==="neo"||/^SM/.test(b))){ const p=centro(a,"b"), q=centro(b,"t"); return `M${p[0]} ${p[1]} L${q[0]} ${q[1]}`; }
+  if(a==="verif"&&b==="respuesta"){ const p=centro(a,"b"), q=centro(b,"t"); return `M${p[0]} ${p[1]} L${q[0]} ${q[1]}`; }
+  const p=centro(a,"r"), q=centro(b,"l"), m=(p[0]+q[0])/2;
+  return `M${p[0]} ${p[1]} C ${m} ${p[1]}, ${m} ${q[1]}, ${q[0]} ${q[1]}`;
+}
+function dibujarMapa(){
+  let s = "";
+  for(const [a,b] of CABLES) s += `<path class="cable" id="c-${a}-${b}" d="${camino(a,b)}"/>`;
+  for(const [k,N] of Object.entries(NODOS)){
+    s += `<g class="nodo" id="n-${k}" tabindex="0" role="button" aria-label="${esc(N.t)}" style="--c:${N.color}">
+      <rect x="${N.x}" y="${N.y}" width="${N.w}" height="${N.h}" rx="8"/>
+      <text class="t" x="${N.x+N.w/2}" y="${N.y+(N.s?28:22)}" text-anchor="middle">${esc(N.t)}</text>
+      ${N.s?`<text class="s" x="${N.x+N.w/2}" y="${N.y+(N.h>60?50:47)}" text-anchor="middle">${esc(N.s)}</text>`:""}</g>`;
+  }
+  $("#mapa").innerHTML = s;
+  for(const k of Object.keys(NODOS)){
+    const g = $(`#n-${k}`);
+    const mostrar = () => { document.querySelectorAll(".nodo").forEach(n=>n.classList.remove("elegido")); g.classList.add("elegido");
+      $("#explica").innerHTML = `<b>${esc(NODOS[k].t)}</b>${esc(NODOS[k].info)}`; };
+    g.addEventListener("click", mostrar); g.addEventListener("keydown", e => { if(e.key==="Enter"||e.key===" "){e.preventDefault();mostrar();} });
+  }
+  $("#explica").innerHTML = `<b>Cuatro piezas, un solo asistente</b>El prompt maestro reparte la pregunta entre tres submódulos expertos; cada uno consulta el grafo de Neo4j, redacta con el modelo de lenguaje y pasa por el verificador antes de llegar a vos.`;
+}
+function pintarNodo(k, estado){
+  const g = $(`#n-${k}`); if(!g) return;
+  g.classList.remove("activo","hecho");
+  if(estado) g.classList.add(estado);
+  const N = NODOS[k];
+  g.querySelector("rect").style.fill = estado ? N.fondo : "#fff";
+  g.querySelector("rect").style.stroke = estado ? N.color : "";
+}
+function pintarCable(a,b,estado){ const c=$(`#c-${a}-${b}`); if(!c) return; c.classList.remove("vivo","hecho"); if(estado) c.classList.add(estado); }
+function reiniciarMapa(){ Object.keys(NODOS).forEach(k=>pintarNodo(k,null)); CABLES.forEach(([a,b])=>pintarCable(a,b,null)); }
+
+/* ------------------------------ estado del sistema ------------------------------ */
+async function verificarEstado(){
+  try{
+    const s = await (await fetch("/api/salud")).json();
+    const luz = (ok, txt) => `<span class="luz ${ok?"ok":"mal"}"><i></i>${esc(txt)}</span>`;
+    $("#estado").innerHTML =
+      luz(s.neo4j==="ok", s.neo4j==="ok" ? `Neo4j: ${s.nodos} nodos` : "Neo4j sin conexión") +
+      luz(s.ollama==="ok" && s.modelo_disponible, s.ollama==="ok" ? (s.modelo_disponible ? `Modelo ${s.modelo}` : `Falta el modelo ${s.modelo}`) : "Ollama sin conexión") +
+      luz((s.reglas_con_texto||0)>0, `${s.reglas ?? 0} reglas cargadas`);
+  }catch(e){ $("#estado").innerHTML = `<span class="luz mal"><i></i>La API no responde</span>`; }
+}
+
+/* ------------------------------ ejemplos ------------------------------ */
+async function cargarEjemplos(){
+  try{
+    const casos = await (await fetch("/api/ejemplos")).json();
+    $("#ejemplos").innerHTML = casos.filter(c=>c.id.startsWith("E2E")||c.id==="CTL-01").map(c => {
+      const sms = (c.titulo.match(/SM\d/g)||[]).filter((v,i,a)=>a.indexOf(v)===i);
+      const etiquetas = c.id==="CTL-01" ? `<span style="background:#FDE7E4;color:var(--err)">intento de modificar la base</span>` :
+        sms.map(s=>`<span style="background:${SM[s].fondo};color:${SM[s].color}">${s}</span>`).join("");
+      return `<button class="ejemplo" data-consulta="${esc(c.consulta)}"><b>${esc(c.titulo.replace(/\s*\(.*\)\s*$/,""))}</b>${etiquetas}</button>`;
+    }).join("");
+    document.querySelectorAll(".ejemplo").forEach(b => b.onclick = () => { $("#consulta").value = b.dataset.consulta; contar(); $("#consulta").focus(); });
+  }catch(e){}
+}
+function contar(){ $("#contador").textContent = `${$("#consulta").value.length} / 600`; }
+$("#consulta").addEventListener("input", contar);
+
+/* ------------------------------ ejecución ------------------------------ */
+const EXPLICA_ETAPA = {
+  enrutamiento:"El modelo de lenguaje lee tu pregunta y arma el plan: qué submódulos consultar y en qué orden.",
+  sintesis:"Se unen las respuestas de los submódulos en una sola y el verificador controla que no se haya agregado nada.",
+};
+function etapaANodos(e){
+  if(e.etapa==="enrutamiento") return {nodo:"maestro", cables:[["consulta","maestro"]]};
+  if(e.etapa==="sintesis") return {nodo:"verif", cables:[]};
+  const m = (e.detalle||"").match(/^(SM\d)/) || (e.detalle||"").match(/reenrutando a (SM\d)/);
+  if(!m) return null;
+  const bus = {SM1:[["SM1","SM2"],["SM2","SM3"],["SM3","neo"]], SM2:[["SM2","SM3"],["SM3","neo"]], SM3:[["SM3","neo"]]}[m[1]];
+  return {nodo:m[1], cables:[["maestro",m[1]], ...bus]};
+}
+function pintarProgreso(etapas, terminado){
+  reiniciarMapa(); pintarNodo("consulta","hecho");
+  etapas.forEach((e,i) => {
+    const r = etapaANodos(e); if(!r) return;
+    const actual = !terminado && i===etapas.length-1;
+    pintarNodo(r.nodo, actual ? "activo" : "hecho");
+    if(r.nodo.startsWith("SM")) pintarNodo("neo", actual ? "activo" : "hecho");
+    r.cables.forEach(([a,b]) => pintarCable(a,b, actual ? "vivo" : "hecho"));
+    if(r.nodo.startsWith("SM") && !actual) pintarCable(r.nodo,"verif","hecho");
+  });
+  $("#etapas").innerHTML = (etapas.length ? etapas : [{etapa:"cola", detalle:"Esperando turno"}]).map((e,i) => {
+    const actual = !terminado && i===etapas.length-1;
+    const titulo = e.etapa==="enrutamiento" ? "Prompt maestro" : e.etapa==="sintesis" ? "Síntesis y verificación" : e.etapa==="cola" ? "En cola" : `Paso ${e.etapa.replace("paso_","")}`;
+    const que = EXPLICA_ETAPA[e.etapa] || (e.etapa.startsWith("paso") ? "El submódulo extrae los parámetros, consulta Neo4j, redacta con la evidencia y pasa por el verificador." : "");
+    return `<li class="${actual?"actual":""}"><b>${esc(titulo)}</b> · ${esc(e.detalle)}<div class="que">${esc(que)}</div></li>`;
+  }).join("");
+}
+
+$("#enviar").onclick = async () => {
+  const consulta = $("#consulta").value.trim();
+  if(!consulta){ $("#consulta").focus(); return; }
+  $("#enviar").disabled = true; $("#enviar").textContent = "Auditando…"; $("#resultado").innerHTML = "";
+  $("#progreso").classList.add("visible"); pintarProgreso([], false);
+  const t0 = Date.now(); const reloj = setInterval(() => { const s=Math.round((Date.now()-t0)/1000); $("#cronometro").textContent = s>=60?`${Math.floor(s/60)} min ${s%60} s`:`${s} s`; }, 1000);
+  try{
+    const r = await fetch("/api/consultas", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({consulta})});
+    if(!r.ok) throw new Error(`La API respondió ${r.status}`);
+    const {id} = await r.json();
+    while(true){
+      await new Promise(res => setTimeout(res, 2500));
+      const t = await (await fetch(`/api/consultas/${id}`)).json();
+      const fin = t.estado==="terminado" || t.estado==="error";
+      pintarProgreso(t.etapas, fin);
+      if(t.estado==="terminado"){ pintarNodo("verif","hecho"); pintarNodo("respuesta","hecho"); pintarCable("verif","respuesta","hecho"); mostrar(t.resultado); break; }
+      if(t.estado==="error"){ $("#resultado").innerHTML = `<div class="hoja error">No se pudo completar la consulta: ${esc(t.error)}. Revisá que Neo4j y Ollama estén encendidos (indicadores de arriba) y volvé a intentar.</div>`; break; }
+    }
+  }catch(e){ $("#resultado").innerHTML = `<div class="hoja error">No hay conexión con la API (${esc(e.message)}). Comprobá que el contenedor app esté corriendo.</div>`; }
+  clearInterval(reloj); $("#enviar").disabled = false; $("#enviar").textContent = "Auditar consulta";
+  $("#progreso").classList.remove("visible");
+  $("#resultado").scrollIntoView({block:"start"});
+};
+
+/* ------------------------------ resultado ------------------------------ */
+const PATRON_ID = /\b(?:GL\d{2}|(?:RQ|EV|J|H|P|R|D|E|DOC|MD|MPR|EVI|PRC|ACC|SV|X|CR|S)-[A-Za-z0-9](?:[A-Za-z0-9.]|-(?=[A-Za-z0-9]))*)/g;
+let INDICE = {};
+function construirIndice(r){
+  INDICE = {};
+  for(const p of r.pasos||[]){
+    const t = p.trazabilidad||{};
+    for(const x of t.reglas||[]) INDICE[x.id] = {tipo:"Regla", texto:x.descripcion||"Regla del catálogo de PG1", extra:[x.fuente, x.estado_validacion].filter(Boolean).join(" · "), sm:p.submodulo};
+    for(const x of t.evidencias||[]) INDICE[x.id] = {tipo:"Evidencia", texto:x.contenido, extra:x.fuente||x.localizador||"", sm:p.submodulo};
+    for(const x of t.observaciones||[]) INDICE[x.id] = INDICE[x.id] || {tipo:x.clase==="Pendiente"?"Pendiente":"Observación", texto:`${x.clase} registrado en el grafo`, extra:"", sm:p.submodulo};
+  }
+}
+function marcarTexto(txt){
+  return esc(txt).replace(/\[(SM\d)\]/g, '<span class="sm $1">$1</span>').replace(PATRON_ID, id => `<button class="id" data-id="${id}">${id}</button>`);
+}
+function fichaId(id){
+  const f = INDICE[id];
+  const desc = f ? `<b>${esc(id)} · ${esc(f.tipo)}</b> (${esc(f.sm)})<br>${esc(f.texto)}${f.extra?`<br><span style="color:var(--gris)">${esc(f.extra)}</span>`:""}`
+                 : `<b>${esc(id)}</b><br>Identificador presente en la evidencia que devolvió Neo4j. Abrí la pestaña <i>Evidencia</i> del paso correspondiente para ver el detalle.`;
+  const el = $("#ficha-id"); el.innerHTML = desc; el.classList.add("visible");
+}
+
+function mostrar(r){
+  construirIndice(r);
+  const plan = r.enrutamiento?.plan || {};
+  const pasos = r.pasos || [];
+  const aprobadas = pasos.filter(p => p.trazabilidad?.verificacion === "aprobada").length;
+  const control = r.tipo_salida === "aclaracion";
+  const titulo = control ? ({accion_no_permitida:"Esta consulta no se puede ejecutar", fuera_de_dominio:"Esta consulta está fuera del dominio", requiere_aclaracion:"Falta un dato para responder"}[r.motivo_cierre] || "Aclaración") : "Respuesta";
+
+  let html = `<section class="hoja respuesta" aria-labelledby="t-resp">
+    <h2 id="t-resp">${esc(titulo)}</h2>
+    <div class="texto">${marcarTexto(r.respuesta)}</div>
+    <div class="ficha-id" id="ficha-id" aria-live="polite"></div>
+    <div class="pie">
+      ${pasos.length ? `<span class="sello ${aprobadas===pasos.length?"":"warn"}">✓ ${aprobadas} de ${pasos.length} explicaciones aprobadas por el verificador</span>` : ""}
+      ${pasos.length>1 ? `<span>Integración: ${r.sintesis?.modo==="sintesis_llm_verificada" ? "síntesis verificada" : "composición de las respuestas verificadas"}</span>` : ""}
+      <span>Plan: ${r.enrutamiento?.fuente==="llm" ? "prompt maestro" : (r.enrutamiento?.fuente ? "enrutador de respaldo" : "control de entrada")}</span>
+      <span>${esc(r.segundos)} s</span>
+      <span>Traza: <code>${esc(r.archivo_traza||"")}</code></span>
+    </div>
+  </section>`;
+
+  if(pasos.length){
+    html += `<section class="pasos"><h2>Cómo se llegó a esta respuesta</h2>
+      <p>${esc(plan.motivo || "")} Cada paso muestra lo que respondió el submódulo y, en las pestañas, las consultas a Neo4j, las reglas aplicadas, la evidencia y el control del verificador.</p>`;
+    pasos.forEach((p, i) => {
+      const t = p.trazabilidad || {}; const S = SM[p.submodulo];
+      const consultas = (t.consultas||[]).map(c => `<p class="nota"><code>${esc(c.consulta)}</code> devolvió ${c.filas} fila(s) en ${c.milisegundos} ms con los parámetros <code>${esc(JSON.stringify(c.parametros))}</code></p><pre>${esc(c.cypher||"")}</pre>`).join("") || `<p class="nota">Este paso no consultó la base.</p>`;
+      const reglas = (t.reglas||[]).length ? `<table><tr><th>Regla</th><th>Qué dice</th><th>Origen</th><th>Estado</th></tr>${t.reglas.map(x=>`<tr><td><code>${esc(x.id)}</code></td><td>${esc(x.descripcion||"")}</td><td>${esc(x.fuente||"")}</td><td>${esc(x.estado_validacion||"")}</td></tr>`).join("")}</table>` : `<p class="nota">Sin reglas en el paquete de evidencia.</p>`;
+      const evid = (t.evidencias||[]).length ? `<table><tr><th>Evidencia</th><th>Contenido</th><th>Fuente</th></tr>${t.evidencias.map(x=>`<tr><td><code>${esc(x.id)}</code></td><td>${esc(x.contenido)}</td><td>${esc(x.fuente||x.localizador||"")}</td></tr>`).join("")}</table>` : `<p class="nota">Sin evidencias en el paquete.</p>`;
+      const ok = t.verificacion === "aprobada";
+      const verif = `<div class="chequeo"><i class="${ok?"":"no"}">${ok?"✓":"!"}</i><div><b>Verificador GL05: ${esc(t.verificacion || t.tipo_salida || "sin explicación")}</b><br><span class="nota">Intentos de redacción: ${t.intentos_explicacion ?? 0}. Controla que IDs, números, estados y prioridades estén en la evidencia y que se aclare la provisionalidad.</span></div></div>
+        ${p.enlace ? `<div class="chequeo"><i>⇢</i><div><b>Encadenamiento</b><br><span class="nota">Observación tomada del resultado del paso anterior en Neo4j: ${esc((p.enlace.elegidas||[]).join(", ")||"ninguna")} (candidatas: ${esc((p.enlace.candidatas||[]).join(", "))}).</span></div></div>` : ""}
+        ${p.reenrutado_desde ? `<div class="chequeo"><i class="no">↺</i><div><b>Reenrutamiento</b><br><span class="nota">${esc(p.reenrutado_desde)} indicó que la consulta era de otro submódulo; respondió ${esc(p.submodulo)}.</span></div></div>` : ""}
+        <p class="nota">Fuentes: ${esc((t.fuentes||[]).join(" · "))}</p>`;
+      const id = `p${i}`;
+      html += `<article class="hoja paso" style="--c:${S.color}">
+        <header><span class="sm ${p.submodulo}">${p.submodulo}</span><h3>Paso ${p.paso} · ${esc(S.nombre)}</h3><span class="meta">${esc(t.intencion||"")} · ${esc(p.segundos)} s</span></header>
+        <div class="sub">Le preguntó: <q>${esc(p.subconsulta)}</q></div>
+        <div class="pestanas" role="tablist">
+          ${["Respuesta","Consultas Cypher","Reglas","Evidencia","Verificación"].map((n,j)=>`<button role="tab" aria-selected="${j===0}" aria-controls="${id}-${j}" data-paso="${id}" data-i="${j}">${n}</button>`).join("")}
+        </div>
+        <div class="panel" role="tabpanel" id="${id}-0"><div class="texto" style="font-size:15px">${marcarTexto(p.respuesta)}</div></div>
+        <div class="panel" role="tabpanel" id="${id}-1" hidden><p class="nota">Plantillas fijas de solo lectura: el modelo de lenguaje elige la intención, nunca escribe Cypher.</p>${consultas}</div>
+        <div class="panel" role="tabpanel" id="${id}-2" hidden>${reglas}</div>
+        <div class="panel" role="tabpanel" id="${id}-3" hidden>${evid}</div>
+        <div class="panel" role="tabpanel" id="${id}-4" hidden>${verif}</div>
+      </article>`;
+    });
+    html += `</section>`;
+  }
+  $("#resultado").innerHTML = html;
+  document.querySelectorAll(".pestanas button").forEach(b => b.onclick = () => {
+    const id = b.dataset.paso;
+    document.querySelectorAll(`[data-paso="${id}"]`).forEach(x => x.setAttribute("aria-selected", String(x===b)));
+    for(let j=0;j<5;j++) $(`#${id}-${j}`).hidden = String(j)!==b.dataset.i;
+  });
+  document.querySelectorAll(".id").forEach(b => b.onclick = () => fichaId(b.dataset.id));
+}
+
+
+/* ------------------------------ modos ------------------------------ */
+document.querySelectorAll(".modos button").forEach(b => b.onclick = () => cambiarModo(b.dataset.modo));
+function cambiarModo(m){
+  document.querySelectorAll(".modos button").forEach(x => x.setAttribute("aria-selected", String(x.dataset.modo===m)));
+  $("#vista-consultar").hidden = m!=="consultar"; $("#vista-analizar").hidden = m!=="analizar";
+  if(m==="analizar") cargarLotes();
+}
+
+/* ------------------------------ análisis de requerimientos nuevos ------------------------------ */
+const EJEMPLOS_RQ = [
+  {t:"Término vago", a:"El sistema debe cargar rápidamente el catálogo de productos.", b:"", c:""},
+  {t:"Vago + criterio recibido", a:"El sistema debe cargar rápidamente el catálogo de productos.", b:"", c:"Criterio de aceptación: el catálogo carga en 2 segundos como máximo."},
+  {t:"Dos obligaciones", a:"El sistema debe registrar el pedido y notificar al cliente por correo electrónico.", b:"", c:""},
+  {t:"Enumeración abierta", a:"El sistema debe admitir los medios de pago tarjeta, transferencia, etc.", b:"", c:""},
+  {t:"Contradicción (SM2)", a:"Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.", b:"Cuando el pedido está confirmado, el cliente no puede cancelarlo.", c:""},
+  {t:"Bien escrito", a:"El sistema debe exportar el reporte mensual de ventas en formato PDF.", b:"", c:""},
+];
+$("#ejemplos-rq").innerHTML = EJEMPLOS_RQ.map((e,i)=>`<button data-i="${i}">${esc(e.t)}</button>`).join("");
+document.querySelectorAll("#ejemplos-rq button").forEach(b => b.onclick = () => {
+  const e = EJEMPLOS_RQ[+b.dataset.i]; $("#rq-a").value=e.a; $("#rq-b").value=e.b; $("#rq-ctx").value=e.c;
+});
+const NOMBRE_CRIT = {atomicidad:"Atomicidad", ambiguedad:"Ambigüedad", verificabilidad:"Verificabilidad", completitud:"Completitud"};
+const CAMPOS = {
+  atomicidad:[["obligaciones_independientes","num","¿Cuántas cosas distintas pide?",0,20,1],
+              ["unidad_aceptacion_confirmada","bool","¿Se prueban juntas, como una sola cosa?"]],
+  ambiguedad:[["lecturas_residuales","num","¿De cuántas formas razonables se puede entender?",0,10,1],
+              ["delimitacion_confirmada","bool","¿El texto o el contexto aclara cuál vale?"],
+              ["aceptacion_delimita","bool","¿Un criterio de aceptación recibido lo define?"],
+              ["divergencia_lecturas","num","Cuánto difieren esas lecturas (0 a 10)",0,10,0.5,true],
+              ["delimitacion_contexto","num","Cuánto las acota el contexto (0 a 10)",0,10,0.5,true]],
+  verificabilidad:[["aceptacion_necesaria","bool","¿Hace falta un criterio de aceptación para probarlo?"],
+                   ["aceptacion_disponible","bool","¿Ese criterio fue entregado?"],
+                   ["comprobacion_definida","bool","¿Se sabe cómo probarlo?"],
+                   ["metodo_discrimina","bool","¿Esa prueba distingue si cumple o no?"]],
+  completitud:[["info_disponible","bool","¿Se recibió la información necesaria?"],
+               ["informacion_aplicable_identificada","bool","¿Está claro qué información aplica?"],
+               ["omisiones_demostradas","num","¿Cuántos datos indispensables faltan en el texto?",0,20,1]],
+};
+const QUE_MIRA = {
+  atomicidad:"Que pida una sola cosa. Si pide varias que se pueden probar por separado, hay que dividirlo.",
+  ambiguedad:"Que se entienda de una sola manera. Palabras como «rápido» o «fácil» admiten varias.",
+  verificabilidad:"Que se pueda probar si se cumplió. Sin criterio de aceptación, queda pendiente.",
+  completitud:"Que no le falte nada indispensable, como un «etc.» o un valor «a definir».",
+};
+const CAMPOS_CMP = [["escenarios","sel","¿Ocurren en la misma situación?",[["coincidentes","sí, la misma"],["parciales","en parte"],["excluyentes","no, son situaciones distintas"]]],
+  ["resultados_incompatibles","bool","¿Piden resultados que no pueden cumplirse a la vez?"],
+  ["excepcion_resuelve","bool","¿El texto dice cuál prevalece («salvo», «excepto»…)?"],
+  ["region_comun_definida","bool","¿Está claro en qué parte se superponen?"],
+  ["interpretacion_cerrada","bool","¿No quedan dudas sobre el alcance de cada uno?"],
+  ["solapamiento_escenario","num","Cuánto se superponen las situaciones (0 a 10)",0,10,0.5,true],
+  ["incompatibilidad_resultados","num","Cuán incompatibles son los resultados (0 a 10)",0,10,0.5,true]];
+const MPR = {"baja-baja":"menor","baja-media":"mayor","baja-alta":"bloqueante","media-baja":"mayor","media-media":"mayor","media-alta":"bloqueante","alta-baja":"mayor","alta-media":"bloqueante","alta-alta":"bloqueante"};
+let PROP = null;
+
+function flujo(etapa){
+  const orden = ["texto","llm","analista","reglas","consulta"]; const k = orden.indexOf(etapa);
+  document.querySelectorAll("#flujo div").forEach((d,i) => { d.classList.toggle("hecho", i<k); d.classList.toggle("activo", i===k); });
+}
+flujo("texto");
+
+// Vista previa: mismo orden de condiciones que 08_inferencia_casos_nuevos.cypher. La conclusión real la calcula Neo4j.
+function reglaSM1(c, j){
+  if(c==="verificabilidad" && j.aceptacion_necesaria===true && j.aceptacion_disponible===false) return ["EVI-RD03","pendiente"];
+  if(j.info_necesaria_identificada===true && j.info_disponible===false) return ["GL02","pendiente"];
+  if(c==="atomicidad"){ const n=+j.obligaciones_independientes;
+    if(n===1 && j.unidad_aceptacion_confirmada) return ["EVI-HC08","cumple"];
+    if(n>=2 && j.unidad_aceptacion_confirmada) return ["EVI-HC06","cumple"];
+    if(n>=2) return ["EVI-HC01","incumple"]; }
+  if(c==="ambiguedad"){ const n=+j.lecturas_residuales;
+    if(n>=2 && j.aceptacion_delimita) return ["EVI-HC03","cumple"];
+    if(n>=2 && !j.delimitacion_confirmada) return ["EVI-HC02","incumple"];
+    if(n===1) return ["EVI-HC09","cumple"]; }
+  if(c==="verificabilidad" && j.comprobacion_definida){ return j.metodo_discrimina===false ? ["EVI-HC07","incumple"] : ["EVI-HC04","cumple"]; }
+  if(c==="completitud" && j.informacion_aplicable_identificada){ const n=+j.omisiones_demostradas;
+    if(n>=1) return ["EVI-HC05","incumple"]; if(n===0) return ["EVI-HC10","cumple"]; }
+  return [null,"sin regla"];
+}
+function reglaSM2(c){
+  if(!c.datos_controlados) return [null,"sin regla"];
+  if(!c.interpretacion_cerrada) return ["ACC-RD07","pendiente"];
+  if(c.escenarios==="excluyentes") return ["ACC-RD03","sin_hallazgo"];
+  if(c.excepcion_resuelve) return ["ACC-RD04","sin_hallazgo"];
+  if(c.escenarios==="coincidentes") return c.resultados_incompatibles ? ["ACC-RD05","observado"] : ["ACC-RD18","sin_hallazgo"];
+  if(!c.region_comun_definida) return ["ACC-RD07","pendiente"];
+  return c.resultados_incompatibles ? ["ACC-RD06","observado"] : ["ACC-RD19","sin_hallazgo"];
+}
+function prioridadPrevia(esHallazgo, sev, pr){
+  if(!pr.criticidad_valor) return "bloqueante preventiva (PRC-RD02: falta la criticidad)";
+  if(pr.obligacion_esencial_indefinida && esHallazgo) return "bloqueante sustantiva (PRC-HC01)";
+  if(!sev) return "bloqueante preventiva (PRC-RD02: severidad desconocida)";
+  const cel = MPR[`${sev}-${pr.criticidad_valor}`];
+  if(cel==="bloqueante") return sev==="baja"&&pr.criticidad_valor==="alta" ? "bloqueante sustantiva (PRC-HC02)" : "bloqueante sustantiva (PRC-HC03)";
+  if(cel==="mayor" && pr.hito_acordado && !pr.bloqueo_sustantivo_confirmado) return "mayor en hito (PRC-HC04)";
+  if(cel==="menor" && pr.diferimiento_aceptado && pr.impacto_acotado) return "menor por diferimiento (PRC-HC05)";
+  return `bloqueante preventiva (PRC-RD02: celda ${cel} sin condición de tratamiento)`;
+}
+const etiqueta = ([r,e]) => `<span class="previa ${r?e:"nada"}">${r?`${esc(r)} → ${esc(e.replace("_"," "))}`:"ninguna regla aplica"}</span>`;
+
+function campoHTML(ruta, def, valor){
+  const [k,tipo,txt,a,b,paso] = def;
+  if(tipo==="bool") return `<label><input type="checkbox" data-ruta="${ruta}.${k}" ${valor?"checked":""}> ${esc(txt)}</label>`;
+  if(tipo==="sel") return `<label class="num">${esc(txt)} <select data-ruta="${ruta}.${k}">${a.map(([v,t])=>`<option value="${v}" ${v===valor?"selected":""}>${esc(t)}</option>`).join("")}</select></label>`;
+  return `<label class="num">${esc(txt)} <input type="number" min="${a}" max="${b}" step="${paso}" data-ruta="${ruta}.${k}" value="${valor ?? ""}"></label>`;
+}
+function camposHTML(ruta, defs, obj){
+  const normales = defs.filter(d=>!d[6]), difusos = defs.filter(d=>d[6]);
+  return normales.map(d=>campoHTML(ruta,d,obj[d[0]])).join("") + (difusos.length ? `<details class="avanzado"><summary>Valores para la lógica difusa</summary>
+    <p class="nota-previa" style="margin:2px 0 4px">Entradas del modelo difuso (resultado entre 0 y 1). No cambian si cumple o no: miden cuánto.</p>${difusos.map(d=>campoHTML(ruta,d,obj[d[0]])).join("")}</details>` : "");
+}
+function sevHTML(ruta, obj){
+  return `<div class="sev">Gravedad si resulta un defecto <select data-ruta="${ruta}.severidad_propuesta">${["","baja","media","alta"].map(o=>`<option value="${o}" ${o===(obj.severidad_propuesta||"")?"selected":""}>${o||"null (sin justificar)"}</option>`).join("")}</select>
+    <input type="number" min="0" max="10" step="0.5" data-ruta="${ruta}.puntuacion_severidad_propuesta" value="${obj.puntuacion_severidad_propuesta ?? ""}" aria-label="Puntuación de severidad"></div>`;
+}
+function lecturaHTML(ext){
+  const li = [];
+  if(ext.obligaciones?.length) li.push(`<b>Obligaciones:</b> ${ext.obligaciones.map(o=>`<mark>${esc(o)}</mark>`).join(" · ")}`);
+  li.push(`<b>Términos vagos:</b> ${ext.terminos_vagos?.length ? ext.terminos_vagos.map(o=>`<mark>${esc(o)}</mark>`).join(" ") : "ninguno"}`);
+  li.push(`<b>Criterio medible:</b> ${ext.criterio_medible ? `<mark>${esc(ext.criterio_medible)}</mark>` : "no hay"}`);
+  if(ext.omisiones?.length) li.push(`<b>Omisiones:</b> ${ext.omisiones.map(esc).join(" · ")}`);
+  if(ext.lecturas?.length) li.push(`<b>Lecturas:</b> ${ext.lecturas.map(esc).join(" / ")}`);
+  return `<p class="lectura">${li.join("<br>")}</p>`;
+}
+function renderRevision(){
+  const p = PROP; let h = `<section class="revision"><h2>Revisá lo que leyó AuditIA</h2>
+    <p class="ayuda">${p.fuente==="llm" ? `<b>${esc(p.llm?.modelo||"El LLM")}</b> leyó los requerimientos en ${esc(p.llm?.segundos ?? p.segundos)} s` : "<b>El borrador rápido</b> leyó los requerimientos"} y respondió unas preguntas sobre cada uno (las <i>premisas</i>). Con esas respuestas deciden las reglas del grafo. Normalmente solo tenés que mirar que tengan sentido; si alguna está mal, la corregís.</p>
+    <p class="ayuda">Los chips adelantan lo que van a concluir las reglas: <span class="previa cumple">cumple</span> está bien escrito, <span class="previa incumple">incumple</span> es un defecto (hallazgo) y <span class="previa pendiente">pendiente</span> significa que falta un dato para decidir. Tocá un requerimiento para ver sus preguntas.</p>`;
+  if(p.avisos?.length) h += `<div class="avisos">${p.avisos.map(esc).join("<br>")}</div>`;
+  const abierto = p.requerimientos.length <= 2 ? "open" : "";
+  if(p.documento) h += `<p class="ayuda">Documento: <b>${esc(p.documento)}</b> · ${p.requerimientos.length} requerimientos${p.requerimientos.length>2?" (tocá cada uno para abrir sus premisas)":""}.</p>`;
+  p.requerimientos.forEach((rq,i) => {
+    const pr = rq.premisas; const ruta = `requerimientos.${i}.premisas`;
+    h += `<details class="hoja tarjeta-rq" ${abierto}><summary><h3><span class="sm SM1">SM1</span> Requerimiento ${esc(rq.clave)}${rq.id_documento?` · ${esc(rq.id_documento)}`:""}</h3>
+      <span class="resumen-previa" data-resumen="${i}"></span>${p.requerimientos.length>2?`<span style="color:var(--gris);font-size:13px;flex-basis:100%">${esc(rq.texto)}</span>`:""}</summary>
+      <blockquote>${esc(rq.texto)}${rq.ubicacion?` <small style="color:var(--gris)">(${esc(rq.ubicacion)})</small>`:""}</blockquote>${lecturaHTML(rq.extraccion||{})}<div class="criterios">`;
+    for(const c of Object.keys(CAMPOS)){
+      const j = pr.criterios[c]; const rc = `${ruta}.criterios.${c}`;
+      h += `<div class="criterio"><h4>${NOMBRE_CRIT[c]} <span data-previa="${i}.${c}"></span></h4>
+        <p class="nota-previa" style="margin:0 0 6px">${esc(QUE_MIRA[c])}</p>
+        ${camposHTML(rc,CAMPOS[c],j)}
+        <textarea data-ruta="${rc}.justificacion" aria-label="Justificación de ${NOMBRE_CRIT[c]}">${esc(j.justificacion)}</textarea>
+        ${sevHTML(rc,j)}</div>`;
+    }
+    const pz = pr.prioridad; const rp = `${ruta}.prioridad`;
+    h += `</div><div class="criterio" style="margin-top:12px;border-color:#F0D9AE"><h4><span><span class="sm SM3">SM3</span> Qué tan importante es para el negocio</span></h4>
+      <p class="nota-previa" style="margin:0 0 6px">Esto no sale del texto: lo sabe el cliente o el analista. Con la gravedad del defecto y esta criticidad, SM3 decide la prioridad (matriz MPR-01). Si no se declara, queda «bloqueante preventiva» hasta saberla.</p>
+      <label class="num">Criticidad del requerimiento (la declara el negocio) <select data-ruta="${rp}.criticidad_valor">${[["","no declarada"],["baja","baja"],["media","media"],["alta","alta"]].map(([v,t])=>`<option value="${v}" ${v===(pz.criticidad_valor||"")?"selected":""}>${t}</option>`).join("")}</select></label>
+      <label class="num">Grado de criticidad (0 a 10) <input type="number" min="0" max="10" step="0.5" data-ruta="${rp}.grado_criticidad" value="${pz.grado_criticidad ?? ""}"></label>
+      ${[["obligacion_esencial_indefinida","Deja indefinida una obligación esencial"],["bloqueo_sustantivo_confirmado","Bloquea el avance (confirmado)"],["hito_acordado","Hay un hito acordado para resolverlo"],["diferimiento_aceptado","El cliente aceptó diferirlo"],["impacto_acotado","El impacto está acotado"]].map(([k,t])=>campoHTML(rp,[k,"bool",t],pz[k])).join("")}
+      <p class="nota-previa" data-previa-prio="${i}"></p></div></details>`;
+  });
+  (p.comparaciones||[]).forEach((cp,k) => {
+    const c = cp.premisas; const rc = `comparaciones.${k}.premisas`;
+    if(cp.incluir === undefined) cp.incluir = true;
+    const ta = p.requerimientos.find(r=>r.clave===cp.a), tb = p.requerimientos.find(r=>r.clave===cp.b);
+    h += `<div class="hoja tarjeta-rq cmp"><h3><span class="sm SM2">SM2</span> Comparación ${esc(cp.a)} frente a ${esc(cp.b)} <span data-previa="cmp-${k}"></span>
+        <label style="font-size:13px;font-weight:400;margin-left:auto"><input type="checkbox" data-ruta="comparaciones.${k}.incluir" ${cp.incluir?"checked":""}> analizar este par</label></h3>
+      ${p.requerimientos.length>2?`<p class="lectura">${esc(cp.a)}: ${esc(ta?.texto)}<br>${esc(cp.b)}: ${esc(tb?.texto)}<br><i>Par propuesto porque comparten objeto y acción (criterio de ACC-HC01).</i></p>`:""}
+      ${cp.extraccion?.justificacion ? `<p class="lectura"><b>Lectura:</b> ${esc(cp.extraccion.justificacion)}${cp.extraccion.region_comun?` · <b>Región común:</b> <mark>${esc(cp.extraccion.region_comun)}</mark>`:""}</p>`:""}
+      <p class="nota-previa" style="margin:0 0 8px">AuditIA encontró dos requerimientos que hablan de lo mismo. Estas preguntas describen la comparación; con ellas las reglas de SM2 deciden si hay una contradicción.</p>
+      <div class="criterio">${camposHTML(rc,CAMPOS_CMP,c)}
+      <label class="num">Ámbito común <input type="text" data-ruta="${rc}.ambito_comun" value="${esc(c.ambito_comun||"")}" style="width:60%;font:inherit;font-size:13px;padding:3px 6px;border:1px solid var(--linea);border-radius:6px"></label>
+      <textarea data-ruta="${rc}.justificacion" aria-label="Justificación de la comparación">${esc(c.justificacion)}</textarea>${sevHTML(rc,c)}
+      <p class="nota-previa" data-previa-prio="cmp-${k}"></p></div></div>`;
+  });
+  if(p.requerimientos.length > 2 && !(p.comparaciones||[]).length) h += `<p class="ayuda">No se encontraron pares que compartan objeto y acción: SM2 no compara ningún par en este lote.</p>`;
+  h += `<div class="confirmar"><button class="principal" id="confirmar">Confirmar premisas y aplicar las reglas</button>
+    <span class="contador" style="margin-left:0">Se escriben en Neo4j con un lote nuevo; los casos de PG2 no se tocan.</span></div></section>`;
+  $("#revision").innerHTML = h;
+  document.querySelectorAll("#revision [data-ruta]").forEach(el => el.addEventListener(el.type==="checkbox"||el.tagName==="SELECT"?"change":"input", () => { asignar(el); actualizarPrevias(); }));
+  $("#confirmar").onclick = confirmar;
+  actualizarPrevias();
+}
+function asignar(el){
+  const partes = el.dataset.ruta.split("."); let o = PROP;
+  for(let i=0;i<partes.length-1;i++) o = o[isNaN(partes[i]) ? partes[i] : +partes[i]];
+  const k = partes.at(-1);
+  if(el.type==="checkbox") o[k] = el.checked;
+  else if(el.type==="number") o[k] = el.value==="" ? null : +el.value;
+  else o[k] = el.value || (k.includes("severidad")||k==="criticidad_valor" ? null : "");
+}
+function actualizarPrevias(){
+  PROP.requerimientos.forEach((rq,i) => {
+    const sev = [], resumen = [];
+    for(const c of Object.keys(CAMPOS)){
+      const r = reglaSM1(c, rq.premisas.criterios[c]);
+      const el = document.querySelector(`[data-previa="${i}.${c}"]`); if(el) el.innerHTML = etiqueta(r);
+      resumen.push(`<span class="previa ${r[0]?r[1]:"nada"}" title="${esc(NOMBRE_CRIT[c])}">${esc(NOMBRE_CRIT[c])}: ${esc(r[1])}</span>`);
+      if(r[1]==="incumple") sev.push([`${NOMBRE_CRIT[c]}`, true, rq.premisas.criterios[c].severidad_propuesta]);
+      if(r[1]==="pendiente") sev.push([`${NOMBRE_CRIT[c]}`, false, null]);
+    }
+    const rs = document.querySelector(`[data-resumen="${i}"]`); if(rs) rs.innerHTML = resumen.join("");
+    const nota = document.querySelector(`[data-previa-prio="${i}"]`);
+    if(nota) nota.innerHTML = sev.length ? "Prioridad prevista: " + sev.map(([n,h,s]) => `${esc(n)} (${h?"hallazgo":"pendiente"}) → ${esc(prioridadPrevia(h,s,rq.premisas.prioridad))}`).join("; ")
+      : "Sin observaciones previstas: no hay nada que priorizar.";
+  });
+  (PROP.comparaciones||[]).forEach((cp,k) => {
+    const r = cp.incluir===false ? [null,"no se analiza"] : reglaSM2(cp.premisas);
+    const el = document.querySelector(`[data-previa="cmp-${k}"]`); if(el) el.innerHTML = cp.incluir===false ? `<span class="previa nada">no se analiza</span>` : etiqueta(r);
+    const prs = PROP.requerimientos.filter(x=>x.clave===cp.a||x.clave===cp.b).map(x=>x.premisas.prioridad).sort((a,b)=>(b.grado_criticidad??-1)-(a.grado_criticidad??-1));
+    const pr = {...prs[0], obligacion_esencial_indefinida: prs.some(x=>x.obligacion_esencial_indefinida), bloqueo_sustantivo_confirmado: prs.some(x=>x.bloqueo_sustantivo_confirmado),
+      hito_acordado: prs.every(x=>x.hito_acordado), diferimiento_aceptado: prs.every(x=>x.diferimiento_aceptado), impacto_acotado: prs.every(x=>x.impacto_acotado)};
+    const nota = document.querySelector(`[data-previa-prio="cmp-${k}"]`);
+    if(nota) nota.innerHTML = r[1]==="observado" ? `Prioridad prevista del hallazgo: ${esc(prioridadPrevia(true, cp.premisas.severidad_propuesta, pr))} (usa la criticidad más alta del par).`
+      : r[1]==="pendiente" ? `Prioridad prevista del pendiente: ${esc(prioridadPrevia(false, null, pr))}.` : "Sin observación prevista para el par.";
+  });
+}
+
+let DOC = null;
+$("#doc-archivo").addEventListener("change", async ev => {
+  const f = ev.target.files[0]; if(!f) return;
+  $("#doc-lista").innerHTML = `<p class="contador" style="margin:0">Leyendo ${esc(f.name)}…</p>`;
+  try{
+    const b64 = await new Promise((ok,mal) => { const r = new FileReader(); r.onload = () => ok(r.result); r.onerror = mal; r.readAsDataURL(f); });
+    const r = await fetch("/api/analisis/documentos", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({nombre:f.name, contenido_b64:b64})});
+    const d = await r.json(); if(!r.ok) throw new Error(d.detail || `La API respondió ${r.status}`);
+    DOC = d; renderDocumento();
+  }catch(e){ $("#doc-lista").innerHTML = `<p class="error" style="padding:0">No se pudo leer el documento: ${esc(e.message)}</p>`; }
+});
+function renderDocumento(){
+  const d = DOC;
+  if(!d.requerimientos.length){ $("#doc-lista").innerHTML = `<p class="avisos">${esc(d.aviso)}</p>`; return; }
+  $("#doc-lista").innerHTML = `<p class="ayuda" style="margin:0 0 6px"><b>${esc(d.nombre)}</b>: ${d.requerimientos.length} requerimientos detectados en ${d.parrafos} párrafos. Revisá que el texto extraído sea fiel al original (GL01) y elegí cuáles analizar.${d.truncado?" Se muestran los primeros.":""}</p>
+    <table><thead><tr><th><input type="checkbox" id="doc-todos" checked aria-label="Seleccionar todos"></th><th>ID</th><th>Texto extraído</th><th>Ubicación</th></tr></thead><tbody>` +
+    d.requerimientos.map((q,i)=>`<tr><td><input type="checkbox" class="doc-sel" data-i="${i}" checked aria-label="Analizar ${esc(q.id_documento||"requerimiento "+(i+1))}"></td>
+      <td><code>${esc(q.id_documento||"—")}</code></td><td>${esc(q.texto)}</td><td style="color:var(--gris);white-space:nowrap">${esc(q.ubicacion)}</td></tr>`).join("") +
+    `</tbody></table><div class="acciones"><button class="principal" id="doc-llm">Proponer con el LLM (hasta 2 seleccionados)</button>
+      <button class="secundario" id="doc-rapido">Borrador rápido para los seleccionados</button><span class="contador" id="doc-cuenta" style="margin-left:0"></span></div>`;
+  const cuenta = () => { const n = seleccionados().length; $("#doc-cuenta").textContent = `${n} seleccionado(s)`; $("#doc-llm").disabled = n<1 || n>2; };
+  document.querySelectorAll(".doc-sel").forEach(c => c.onchange = cuenta);
+  $("#doc-todos").onchange = e => { document.querySelectorAll(".doc-sel").forEach(c => c.checked = e.target.checked); cuenta(); };
+  $("#doc-llm").onclick = () => pedirPropuesta(true, seleccionados(), DOC.nombre);
+  $("#doc-rapido").onclick = () => pedirPropuesta(false, seleccionados(), DOC.nombre);
+  cuenta();
+}
+function seleccionados(){ return [...document.querySelectorAll(".doc-sel:checked")].map(c => DOC.requerimientos[+c.dataset.i]); }
+
+async function pedirPropuesta(usarLLM, items=null, documento=""){
+  const reqs = items || [$("#rq-a").value.trim(), $("#rq-b").value.trim()].filter(Boolean);
+  if(!reqs.length){ $("#rq-a").focus(); return; }
+  if(!items && reqs[0].length < 8){ $("#rq-a").focus(); return; }
+  const botones = [$("#proponer-llm"), $("#proponer-rapido"), $("#doc-llm"), $("#doc-rapido")].filter(Boolean); botones.forEach(b=>b.disabled=true);
+  $("#revision").innerHTML = ""; $("#res-lote").innerHTML = ""; flujo("llm");
+  const t0 = Date.now(); const reloj = setInterval(() => { const s=Math.round((Date.now()-t0)/1000);
+    $("#estado-propuesta").textContent = usarLLM ? `El LLM está leyendo… ${s>=60?`${Math.floor(s/60)} min ${s%60} s`:`${s} s`} (sin GPU puede tardar varios minutos)` : "Analizando…"; }, 1000);
+  try{
+    const r = await fetch("/api/analisis/propuestas", {method:"POST", headers:{"Content-Type":"application/json"},
+      body: JSON.stringify({requerimientos:reqs, contexto:$("#rq-ctx").value, usar_llm:usarLLM, documento})});
+    if(!r.ok) throw new Error((await r.json()).detail || `La API respondió ${r.status}`);
+    const {id} = await r.json();
+    while(true){
+      const t = await (await fetch(`/api/analisis/propuestas/${id}`)).json();
+      if(t.estado==="terminado"){ PROP = t.resultado; PROP.analista = $("#rq-analista").value; break; }
+      if(t.estado==="error") throw new Error(t.error);
+      await new Promise(res => setTimeout(res, 2000));
+    }
+    flujo("analista"); renderRevision(); $("#revision").scrollIntoView({block:"start"});
+  }catch(e){ $("#revision").innerHTML = `<div class="hoja error">No se pudo obtener la propuesta: ${esc(e.message)}</div>`; flujo("texto"); }
+  clearInterval(reloj); $("#estado-propuesta").textContent = ""; botones.forEach(b=>b.disabled=false);
+  if(DOC && $("#doc-cuenta")) document.querySelector(".doc-sel")?.dispatchEvent(new Event("change"));
+}
+$("#proponer-llm").onclick = () => pedirPropuesta(true);
+$("#proponer-rapido").onclick = () => pedirPropuesta(false);
+
+async function confirmar(){
+  $("#confirmar").disabled = true; $("#confirmar").textContent = "Aplicando reglas en Neo4j…"; flujo("reglas");
+  PROP.analista = $("#rq-analista").value;
+  try{
+    const r = await fetch("/api/analisis/lotes", {method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({propuesta:PROP})});
+    const res = await r.json();
+    if(!r.ok) throw new Error(res.detail || `La API respondió ${r.status}`);
+    flujo("consulta"); mostrarLote(res); cargarLotes(); $("#res-lote").scrollIntoView({block:"start"});
+  }catch(e){ $("#res-lote").innerHTML = `<div class="hoja error">No se pudieron aplicar las reglas: ${esc(e.message)}</div>`; flujo("analista"); }
+  $("#confirmar").disabled = false; $("#confirmar").textContent = "Confirmar premisas y aplicar las reglas";
+}
+const num = (x, d=3) => x==null ? "—" : (+x).toFixed(d);
+function mostrarLote(res){
+  let h = `<section class="hoja res-lote"><h2>Lo que concluyó el grafo · lote ${esc(res.lote)}${res.documento?` · ${esc(res.documento)}`:""}</h2>
+    <p class="ayuda" style="color:var(--gris);font-size:13.5px;margin:0 0 6px">Estados, reglas, severidades, prioridades y grados calculados por Neo4j con las mismas reglas y modelos difusos de PG2. Resultados provisionales, sin validación experta.</p>`;
+  for(const rq of res.requerimientos||[]){
+    const ev = rq.evaluacion||{};
+    h += `<div class="res-rq"><h3><span class="sm SM1">SM1</span> ${esc(rq.id)}${rq.id_documento?` <small style="font-weight:400;color:var(--gris)">(${esc(rq.id_documento)} en el documento)</small>`:""} <span class="previa ${esc(ev.estado)}">${esc((ev.estado||"").replace("_"," "))}</span> <small style="color:var(--gris);font-weight:400">${esc((ev.reglas||[]).join(", "))}</small></h3>
+      <blockquote style="margin:4px 0 8px;font-size:14px;color:var(--gris)">${esc(rq.texto)}</blockquote>
+      <table><thead><tr><th>Criterio</th><th>Estado</th><th>Regla</th><th>Justificación</th><th>Grado difuso</th></tr></thead><tbody>`;
+    for(const j of (ev.juicios||[]).sort((a,b)=>Object.keys(CAMPOS).indexOf(a.criterio)-Object.keys(CAMPOS).indexOf(b.criterio))){
+      h += `<tr><td>${esc(NOMBRE_CRIT[j.criterio]||j.criterio)}</td><td><span class="previa ${esc(j.estado||"nada")}">${esc(j.estado||"sin regla")}</span></td>
+        <td>${(j.reglas||[]).map(r=>`<code title="${esc(r.descripcion||"")}">${esc(r.id)}</code>`).join(" ")}</td><td>${esc(j.justificacion)}</td>
+        <td>${j.grado_ambiguedad!=null ? `${num(j.grado_ambiguedad)} · banda ${esc(j.banda)}${j.revision_senior?" · revisión senior":""}` : "—"}</td></tr>`;
+    }
+    h += `</tbody></table></div>`;
+  }
+  for(const c of (res.comparaciones || (res.comparacion ? [res.comparacion] : []))){
+    h += `<div class="res-rq"><h3><span class="sm SM2">SM2</span> ${esc(c.id)} · ${esc((c.requerimientos||[]).join(" frente a "))} <span class="previa ${esc(c.estado)}">${esc((c.estado||"").replace("_"," "))}</span></h3>
+      <p style="margin:0;font-size:14px">Escenarios ${esc(c.escenarios)} · ${(c.reglas||[]).map(r=>`<code title="${esc(r.descripcion||"")}">${esc(r.id)}</code> ${esc(r.descripcion||"")}`).join(" ")}
+      ${c.grado_contradiccion!=null ? `<br>Grado de contradicción ${num(c.grado_contradiccion)} · banda ${esc(c.banda)}${c.revision_senior?" · requiere revisión senior":""}` : ""}</p></div>`;
+  }
+  const obs = res.observaciones||[];
+  h += `<div class="res-rq"><h3><span class="sm SM3">SM3</span> Qué hay que resolver y en qué orden</h3>
+    <p style="margin:0 0 8px;font-size:13px;color:var(--gris)"><b>Hallazgo</b>: defecto demostrado. <b>Pendiente</b>: falta un dato para decidir. <b>Severidad</b>: gravedad del defecto. <b>Criticidad</b>: importancia para el negocio. <b>Prioridad</b>: qué atender primero (bloqueante, mayor o menor). <b>Urgencia difusa</b>: de 0 a 10, calculada con lógica difusa.</p>`;
+  if(!obs.length) h += `<p style="margin:0;font-size:14px">No se generaron hallazgos ni pendientes: en el alcance revisado, no hay nada que priorizar.</p>`;
+  else{
+    h += `<table class="tabla-obs"><thead><tr><th>ID</th><th>Tipo</th><th>Severidad</th><th>Criticidad</th><th>Prioridad</th><th>Urgencia difusa</th><th>Reglas</th></tr></thead><tbody>`;
+    for(const o of obs){ const d = o.decision||{};
+      h += `<tr><td><b>${esc(o.id)}</b><div style="color:var(--gris);font-size:12px">${esc(o.tipo_defecto||o.motivo_pendiente||"")}${o.dato_faltante?` · falta: ${esc(o.dato_faltante)}`:""}</div></td>
+        <td>${esc(o.clase)}</td><td>${o.severidad?.valor ? `${esc(o.severidad.valor)} (${num(o.severidad.grado,1)})` : "null"}</td>
+        <td>${d.criticidad?.valor ? `${esc(d.criticidad.valor)} (${num(d.criticidad.grado,1)})` : "no declarada"}</td>
+        <td><b>${esc(d.prioridad||"—")}</b> ${esc(d.motivo||"")}${d.categoria_matriz?`<div style="color:var(--gris);font-size:12px">celda MPR-01: ${esc(d.categoria_matriz)}</div>`:""}</td>
+        <td>${d.grado_urgencia!=null ? `${num(d.grado_urgencia,2)} · ${esc(d.banda)}` : "—"}</td>
+        <td>${[...(o.reglas||[]), ...(d.reglas||[])].map(r=>`<code>${esc(r)}</code>`).join(" ")}</td></tr>`;
+    }
+    h += `</tbody></table>`;
+  }
+  h += `</div>`;
+  if(res.controles) h += `<div class="pie"><span class="sello ${res.controles.todos_en_cero?"":"warn"}">${res.controles.todos_en_cero?"✓":"!"} Controles de integridad de PG2: ${Object.values(res.controles.conteos||{}).filter(v=>v===0).length}/${Object.keys(res.controles.conteos||{}).length} en cero</span>
+    ${res.tiempos?`<span>Escritura e inferencia: ${esc(res.tiempos.total_s)} s</span>`:""}${res.informe?`<span>Informe ${esc(res.informe.id)}: ${esc(res.informe.calidad_observada)}</span>`:""}</div>`;
+  if(res.consultas_sugeridas?.length){
+    h += `<div class="res-rq"><h3>Seguí con el asistente</h3><p style="margin:0;font-size:13.5px;color:var(--gris)">El caso ya es parte del grafo: SM1, SM2 y SM3 lo responden como a cualquier otro.</p><div class="sugeridas">`
+      + res.consultas_sugeridas.map(q=>`<button class="ejemplo" data-q="${esc(q)}">${esc(q)}</button>`).join("") + `</div></div>`;
+  }
+  h += `</section>`;
+  $("#res-lote").innerHTML = h;
+  document.querySelectorAll("#res-lote [data-q]").forEach(b => b.onclick = () => { cambiarModo("consultar"); $("#consulta").value = b.dataset.q; contar(); $("#consulta").focus(); window.scrollTo({top:0}); });
+}
+async function cargarLotes(){
+  try{
+    const lotes = (await (await fetch("/api/analisis/lotes")).json()).filter(l => (l.lote||"").startsWith("L"));
+    if(!lotes.length){ $("#lista-lotes").innerHTML = `<p class="ayuda" style="color:var(--gris);font-size:13.5px;margin:0">Todavía no se analizó ningún requerimiento nuevo.</p>`; return; }
+    $("#lista-lotes").innerHTML = `<table><thead><tr><th>Lote</th><th>Requerimientos</th><th>Observaciones</th><th></th></tr></thead><tbody>` +
+      lotes.map(l => `<tr><td><b>${esc(l.lote)}</b><div style="color:var(--gris);font-size:12px">${esc((l.fecha||"").slice(0,16).replace("T"," "))} · ${esc(l.analista||"")}</div></td>
+        <td>${(l.requerimientos||[]).filter(r=>r.id).map(r=>`<code>${esc(r.id)}</code> ${esc(r.texto)}`).join("<br>")}</td>
+        <td>${(l.observaciones||[]).map(o=>`<code>${esc(o)}</code>`).join(" ") || "ninguna"}</td>
+        <td style="white-space:nowrap"><button data-ver="${esc(l.lote)}">Ver</button> <button data-borrar="${esc(l.lote)}">Borrar</button></td></tr>`).join("") + `</tbody></table>`;
+    document.querySelectorAll("[data-ver]").forEach(b => b.onclick = async () => { const r = await (await fetch(`/api/analisis/lotes/${b.dataset.ver}`)).json(); mostrarLote(r); $("#res-lote").scrollIntoView({block:"start"}); });
+    document.querySelectorAll("[data-borrar]").forEach(b => b.onclick = async () => { b.disabled = true; await fetch(`/api/analisis/lotes/${b.dataset.borrar}`, {method:"DELETE"}); cargarLotes(); });
+  }catch(e){ $("#lista-lotes").innerHTML = `<p class="error" style="padding:0">No se pudo leer la lista de lotes.</p>`; }
+}
+
+dibujarMapa(); verificarEstado(); cargarEjemplos(); contar(); cargarLotes();
+setInterval(verificarEstado, 30000);
+</script>
+</body>
+</html>

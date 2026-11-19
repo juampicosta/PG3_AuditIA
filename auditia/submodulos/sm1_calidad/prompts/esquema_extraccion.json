@@ -1,0 +1,173 @@
+{
+  "type": "object",
+  "properties": {
+    "intencion": {
+      "type": "string",
+      "enum": [
+        "diagnostico_requerimiento",
+        "grado_ambiguedad",
+        "listar_juicios",
+        "seguimiento_observacion",
+        "historial_requerimiento",
+        "otro_submodulo",
+        "fuera_de_dominio",
+        "requiere_aclaracion"
+      ]
+    },
+    "entidades": {
+      "type": "object",
+      "properties": {
+        "requerimiento_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "requerimiento_texto": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observacion_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evaluacion_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "requerimiento_id",
+        "requerimiento_texto",
+        "observacion_id",
+        "evaluacion_id"
+      ]
+    },
+    "conceptos": {
+      "type": "object",
+      "properties": {
+        "criterio": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "atomicidad",
+                "ambiguedad",
+                "verificabilidad",
+                "completitud"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "criterio"
+      ]
+    },
+    "filtros": {
+      "type": "object",
+      "properties": {
+        "estado_juicio": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "cumple",
+                "incumple",
+                "pendiente"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "banda_ambiguedad": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "baja",
+                "media",
+                "alta"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "estado_juicio",
+        "banda_ambiguedad"
+      ]
+    },
+    "condiciones": {
+      "type": "object",
+      "properties": {
+        "version": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "alcance": {
+          "type": "string",
+          "enum": [
+            "vigente",
+            "original",
+            "todas"
+          ]
+        }
+      },
+      "required": [
+        "version",
+        "alcance"
+      ]
+    },
+    "faltantes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "intencion",
+    "entidades",
+    "conceptos",
+    "filtros",
+    "condiciones",
+    "faltantes"
+  ]
+}

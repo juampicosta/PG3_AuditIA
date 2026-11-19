@@ -1,0 +1,6323 @@
+[
+  {
+    "id": "F01",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F01",
+      "nombre": "DocumentoVersion",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F01"
+    }
+  },
+  {
+    "id": "F02",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F02",
+      "nombre": "Requerimiento",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F02"
+    }
+  },
+  {
+    "id": "F03",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F03",
+      "nombre": "Obligacion",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F03"
+    }
+  },
+  {
+    "id": "F04",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F04",
+      "nombre": "Evidencia",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F04"
+    }
+  },
+  {
+    "id": "F05",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F05",
+      "nombre": "Fuente",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F05"
+    }
+  },
+  {
+    "id": "F06",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F06",
+      "nombre": "Regla",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F06"
+    }
+  },
+  {
+    "id": "F07",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F07",
+      "nombre": "Responsable",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F07"
+    }
+  },
+  {
+    "id": "F08",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F08",
+      "nombre": "RevisionHumana",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F08"
+    }
+  },
+  {
+    "id": "F09",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F09",
+      "nombre": "Evaluacion",
+      "abstracta": true,
+      "origen": "PG1",
+      "localizador": "PG1 F09"
+    }
+  },
+  {
+    "id": "F10",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F10",
+      "nombre": "EvaluacionIndividual",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F10"
+    }
+  },
+  {
+    "id": "F11",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F11",
+      "nombre": "JuicioCriterio",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F11"
+    }
+  },
+  {
+    "id": "F12",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F12",
+      "nombre": "CriterioCalidad",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F12"
+    }
+  },
+  {
+    "id": "F13",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F13",
+      "nombre": "ContextoRequerimiento",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F13"
+    }
+  },
+  {
+    "id": "F14",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F14",
+      "nombre": "CriterioAceptacion",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F14"
+    }
+  },
+  {
+    "id": "F15",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F15",
+      "nombre": "EvaluacionCruzada",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F15"
+    }
+  },
+  {
+    "id": "F16",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F16",
+      "nombre": "Escenario",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F16"
+    }
+  },
+  {
+    "id": "F17",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F17",
+      "nombre": "Condicion",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F17"
+    }
+  },
+  {
+    "id": "F18",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F18",
+      "nombre": "ElementoNecesario",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F18"
+    }
+  },
+  {
+    "id": "F19",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F19",
+      "nombre": "Dependencia",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F19"
+    }
+  },
+  {
+    "id": "F20",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F20",
+      "nombre": "PerfilSistema",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F20"
+    }
+  },
+  {
+    "id": "F21",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F21",
+      "nombre": "CategoriaNFR",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F21"
+    }
+  },
+  {
+    "id": "F22",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F22",
+      "nombre": "ResultadoAnalisis",
+      "abstracta": true,
+      "origen": "PG1",
+      "localizador": "PG1 F22"
+    }
+  },
+  {
+    "id": "F23",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F23",
+      "nombre": "Hallazgo",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F23"
+    }
+  },
+  {
+    "id": "F24",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F24",
+      "nombre": "Pendiente",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F24"
+    }
+  },
+  {
+    "id": "F25",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F25",
+      "nombre": "IncidenciaEntrada",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F25"
+    }
+  },
+  {
+    "id": "F26",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F26",
+      "nombre": "Severidad",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F26"
+    }
+  },
+  {
+    "id": "F27",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F27",
+      "nombre": "Criticidad",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F27"
+    }
+  },
+  {
+    "id": "F28",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F28",
+      "nombre": "ContextoPrioridad",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F28"
+    }
+  },
+  {
+    "id": "F29",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F29",
+      "nombre": "DecisionPrioridad",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F29"
+    }
+  },
+  {
+    "id": "F30",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F30",
+      "nombre": "Pregunta",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F30"
+    }
+  },
+  {
+    "id": "F31",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F31",
+      "nombre": "Respuesta",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F31"
+    }
+  },
+  {
+    "id": "F32",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F32",
+      "nombre": "EstadoResolucion",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F32"
+    }
+  },
+  {
+    "id": "F33",
+    "labels": [
+      "Frame"
+    ],
+    "props": {
+      "id": "F33",
+      "nombre": "InformeAuditoria",
+      "abstracta": false,
+      "origen": "PG1",
+      "localizador": "PG1 F33"
+    }
+  },
+  {
+    "id": "L01",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L01",
+      "nombre": "CONTIENE",
+      "origen": "DocumentoVersion",
+      "destino": "Requerimiento",
+      "localizador": "PG1 L01"
+    }
+  },
+  {
+    "id": "L02",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L02",
+      "nombre": "ACTUALIZA",
+      "origen": "DocumentoVersion",
+      "destino": "DocumentoVersion",
+      "localizador": "PG1 L02"
+    }
+  },
+  {
+    "id": "L03",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L03",
+      "nombre": "EXPRESA",
+      "origen": "Requerimiento",
+      "destino": "Obligacion",
+      "localizador": "PG1 L03"
+    }
+  },
+  {
+    "id": "L04",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L04",
+      "nombre": "APLICA_EN",
+      "origen": "Obligacion",
+      "destino": "Escenario",
+      "localizador": "PG1 L04"
+    }
+  },
+  {
+    "id": "L05",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L05",
+      "nombre": "DELIMITADO_POR",
+      "origen": "Escenario",
+      "destino": "Condicion",
+      "localizador": "PG1 L05"
+    }
+  },
+  {
+    "id": "L06",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L06",
+      "nombre": "SE_INTERPRETA_CON",
+      "origen": "Requerimiento",
+      "destino": "ContextoRequerimiento",
+      "localizador": "PG1 L06"
+    }
+  },
+  {
+    "id": "L07",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L07",
+      "nombre": "DECLARA",
+      "origen": "ContextoRequerimiento",
+      "destino": "CriterioAceptacion",
+      "localizador": "PG1 L07"
+    }
+  },
+  {
+    "id": "L08",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L08",
+      "nombre": "REVISA_DOCUMENTO",
+      "origen": "Evaluacion",
+      "destino": "DocumentoVersion",
+      "localizador": "PG1 L08"
+    }
+  },
+  {
+    "id": "L09",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L09",
+      "nombre": "EVALUA",
+      "origen": "EvaluacionIndividual",
+      "destino": "Requerimiento",
+      "localizador": "PG1 L09"
+    }
+  },
+  {
+    "id": "L10",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L10",
+      "nombre": "CONTIENE_JUICIO",
+      "origen": "EvaluacionIndividual",
+      "destino": "JuicioCriterio",
+      "localizador": "PG1 L10"
+    }
+  },
+  {
+    "id": "L11",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L11",
+      "nombre": "APLICA_CRITERIO",
+      "origen": "JuicioCriterio",
+      "destino": "CriterioCalidad",
+      "localizador": "PG1 L11"
+    }
+  },
+  {
+    "id": "L12",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L12",
+      "nombre": "COMPARA",
+      "origen": "EvaluacionCruzada",
+      "destino": "Requerimiento",
+      "localizador": "PG1 L12"
+    }
+  },
+  {
+    "id": "L13",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L13",
+      "nombre": "RASTREA",
+      "origen": "EvaluacionCruzada",
+      "destino": "Dependencia",
+      "localizador": "PG1 L13"
+    }
+  },
+  {
+    "id": "L14",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L14",
+      "nombre": "TIENE_ORIGEN",
+      "origen": "Dependencia",
+      "destino": "Requerimiento",
+      "localizador": "PG1 L14"
+    }
+  },
+  {
+    "id": "L15",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L15",
+      "nombre": "REQUIERE",
+      "origen": "Dependencia",
+      "destino": "ElementoNecesario",
+      "localizador": "PG1 L15"
+    }
+  },
+  {
+    "id": "L16",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L16",
+      "nombre": "RESUELTA_POR",
+      "origen": "Dependencia",
+      "destino": "Requerimiento",
+      "localizador": "PG1 L16"
+    }
+  },
+  {
+    "id": "L17",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L17",
+      "nombre": "USA_PERFIL",
+      "origen": "EvaluacionCruzada",
+      "destino": "PerfilSistema",
+      "localizador": "PG1 L17"
+    }
+  },
+  {
+    "id": "L18",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L18",
+      "nombre": "EVALUA_CATEGORIA",
+      "origen": "EvaluacionCruzada",
+      "destino": "CategoriaNFR",
+      "localizador": "PG1 L18"
+    }
+  },
+  {
+    "id": "L19",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L19",
+      "nombre": "VINCULA_COBERTURA",
+      "origen": "EvaluacionCruzada",
+      "destino": "Requerimiento",
+      "localizador": "PG1 L19"
+    }
+  },
+  {
+    "id": "L20",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L20",
+      "nombre": "GENERA",
+      "origen": "Evaluacion",
+      "destino": "ResultadoAnalisis",
+      "localizador": "PG1 L20"
+    }
+  },
+  {
+    "id": "L21",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L21",
+      "nombre": "DERIVA_DE_JUICIO",
+      "origen": "ResultadoAnalisis",
+      "destino": "JuicioCriterio",
+      "localizador": "PG1 L21"
+    }
+  },
+  {
+    "id": "L22",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L22",
+      "nombre": "AFECTA_REQUERIMIENTO",
+      "origen": "ResultadoAnalisis",
+      "destino": "Requerimiento",
+      "localizador": "PG1 L22"
+    }
+  },
+  {
+    "id": "L23",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L23",
+      "nombre": "AFECTA_CATEGORIA",
+      "origen": "ResultadoAnalisis",
+      "destino": "CategoriaNFR",
+      "localizador": "PG1 L23"
+    }
+  },
+  {
+    "id": "L24",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L24",
+      "nombre": "TIENE_SEVERIDAD",
+      "origen": "Hallazgo|Pendiente",
+      "destino": "Severidad",
+      "localizador": "PG1 L24"
+    }
+  },
+  {
+    "id": "L25",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L25",
+      "nombre": "ES_UN",
+      "origen": "Frame",
+      "destino": "Frame",
+      "localizador": "PG1 L25"
+    }
+  },
+  {
+    "id": "L26",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L26",
+      "nombre": "REEVALUA",
+      "origen": "Evaluacion",
+      "destino": "Evaluacion",
+      "localizador": "PG1 L26"
+    }
+  },
+  {
+    "id": "L27",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L27",
+      "nombre": "CONSIDERA_RESPUESTA",
+      "origen": "Evaluacion",
+      "destino": "Respuesta",
+      "localizador": "PG1 L27"
+    }
+  },
+  {
+    "id": "L28",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L28",
+      "nombre": "CUESTIONA",
+      "origen": "IncidenciaEntrada",
+      "destino": "ResultadoAnalisis",
+      "localizador": "PG1 L28"
+    }
+  },
+  {
+    "id": "L29",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L29",
+      "nombre": "EXIGE",
+      "origen": "PerfilSistema",
+      "destino": "CategoriaNFR",
+      "localizador": "PG1 L29"
+    }
+  },
+  {
+    "id": "L30",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L30",
+      "nombre": "CUBRE",
+      "origen": "Requerimiento",
+      "destino": "CategoriaNFR",
+      "localizador": "PG1 L30"
+    }
+  },
+  {
+    "id": "L31",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L31",
+      "nombre": "CONTRADICE",
+      "origen": "Requerimiento",
+      "destino": "Requerimiento",
+      "localizador": "PG1 L31"
+    }
+  },
+  {
+    "id": "L32",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L32",
+      "nombre": "DEPENDE_DE",
+      "origen": "Requerimiento",
+      "destino": "ElementoNecesario",
+      "localizador": "PG1 L32"
+    }
+  },
+  {
+    "id": "L33",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L33",
+      "nombre": "TIENE_CRITICIDAD",
+      "origen": "Requerimiento",
+      "destino": "Criticidad",
+      "localizador": "PG1 L33"
+    }
+  },
+  {
+    "id": "L34",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L34",
+      "nombre": "PRIORIZA",
+      "origen": "DecisionPrioridad",
+      "destino": "ResultadoAnalisis",
+      "localizador": "PG1 L34"
+    }
+  },
+  {
+    "id": "L35",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L35",
+      "nombre": "USA_CONTEXTO",
+      "origen": "DecisionPrioridad",
+      "destino": "ContextoPrioridad",
+      "localizador": "PG1 L35"
+    }
+  },
+  {
+    "id": "L36",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L36",
+      "nombre": "SUSTITUYE_A",
+      "origen": "DecisionPrioridad",
+      "destino": "DecisionPrioridad",
+      "localizador": "PG1 L36"
+    }
+  },
+  {
+    "id": "L37",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L37",
+      "nombre": "SE_BASA_EN_REEVALUACION",
+      "origen": "DecisionPrioridad",
+      "destino": "Evaluacion",
+      "localizador": "PG1 L37"
+    }
+  },
+  {
+    "id": "L38",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L38",
+      "nombre": "TIENE_ESTADO",
+      "origen": "DecisionPrioridad",
+      "destino": "EstadoResolucion",
+      "localizador": "PG1 L38"
+    }
+  },
+  {
+    "id": "L39",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L39",
+      "nombre": "ACLARA",
+      "origen": "Pregunta",
+      "destino": "ResultadoAnalisis",
+      "localizador": "PG1 L39"
+    }
+  },
+  {
+    "id": "L40",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L40",
+      "nombre": "SE_ORIGINA_EN",
+      "origen": "Pregunta",
+      "destino": "DecisionPrioridad",
+      "localizador": "PG1 L40"
+    }
+  },
+  {
+    "id": "L41",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L41",
+      "nombre": "SE_DIRIGE_A",
+      "origen": "Pregunta",
+      "destino": "Responsable",
+      "localizador": "PG1 L41"
+    }
+  },
+  {
+    "id": "L42",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L42",
+      "nombre": "RESPONDE_A",
+      "origen": "Respuesta",
+      "destino": "Pregunta",
+      "localizador": "PG1 L42"
+    }
+  },
+  {
+    "id": "L43",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L43",
+      "nombre": "APORTADA_POR",
+      "origen": "Respuesta",
+      "destino": "Responsable",
+      "localizador": "PG1 L43"
+    }
+  },
+  {
+    "id": "L44",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L44",
+      "nombre": "REVISA",
+      "origen": "RevisionHumana",
+      "destino": "EntidadRevisable",
+      "localizador": "PG1 L44"
+    }
+  },
+  {
+    "id": "L45",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L45",
+      "nombre": "REALIZADA_POR",
+      "origen": "RevisionHumana",
+      "destino": "Responsable",
+      "localizador": "PG1 L45"
+    }
+  },
+  {
+    "id": "L46",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L46",
+      "nombre": "SE_SUSTENTA_EN",
+      "origen": "EntidadConSustento",
+      "destino": "Evidencia",
+      "localizador": "PG1 L46"
+    }
+  },
+  {
+    "id": "L47",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L47",
+      "nombre": "APLICA_REGLA",
+      "origen": "EntidadConReglas",
+      "destino": "Regla",
+      "localizador": "PG1 L47"
+    }
+  },
+  {
+    "id": "L48",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L48",
+      "nombre": "CITA_FUENTE",
+      "origen": "Evidencia|DocumentoVersion",
+      "destino": "Fuente",
+      "localizador": "PG1 L48"
+    }
+  },
+  {
+    "id": "L49",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L49",
+      "nombre": "SE_FUNDAMENTA_EN",
+      "origen": "Regla|CriterioCalidad",
+      "destino": "Fuente",
+      "localizador": "PG1 L49"
+    }
+  },
+  {
+    "id": "L50",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L50",
+      "nombre": "CONSOLIDA",
+      "origen": "InformeAuditoria",
+      "destino": "DocumentoVersion",
+      "localizador": "PG1 L50"
+    }
+  },
+  {
+    "id": "L51",
+    "labels": [
+      "TipoRelacion"
+    ],
+    "props": {
+      "id": "L51",
+      "nombre": "INCLUYE",
+      "origen": "InformeAuditoria",
+      "destino": "DecisionPrioridad",
+      "localizador": "PG1 L51"
+    }
+  },
+  {
+    "id": "GL01",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "GL01",
+      "estado_validacion": "candidata",
+      "modulo": "global",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "GL02",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "GL02",
+      "estado_validacion": "candidata",
+      "modulo": "global",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "GL03",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "GL03",
+      "estado_validacion": "candidata",
+      "modulo": "global",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "GL04",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "GL04",
+      "estado_validacion": "candidata",
+      "modulo": "global",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "GL05",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "GL05",
+      "estado_validacion": "candidata",
+      "modulo": "global",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "GL06",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "GL06",
+      "estado_validacion": "candidata",
+      "modulo": "global",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "GL07",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "GL07",
+      "estado_validacion": "candidata",
+      "modulo": "global",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "GL08",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "GL08",
+      "estado_validacion": "candidata",
+      "modulo": "global",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "GL09",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "GL09",
+      "estado_validacion": "candidata",
+      "modulo": "global",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-RD03",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-RD03",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-RD04",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-RD04",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-RD05",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-RD05",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-RD06",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-RD06",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-HC01",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-HC01",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-HC02",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-HC02",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-HC03",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-HC03",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-HC04",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-HC04",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-HC05",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-HC05",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-HC06",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-HC06",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-HC07",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-HC07",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-HC08",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-HC08",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-HC09",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-HC09",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-HC10",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-HC10",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "EVI-HC11",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "EVI-HC11",
+      "estado_validacion": "candidata",
+      "modulo": "evaluacion_individual",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD03",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD03",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD04",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD04",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD05",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD05",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD06",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD06",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD07",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD07",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD08",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD08",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD09",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD09",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD10",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD10",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD11",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD11",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD12",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD12",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD13",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD13",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD14",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD14",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD15",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD15",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD16",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD16",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD18",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD18",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-RD19",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-RD19",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-HC01",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-HC01",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-HC02",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-HC02",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-HC03",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-HC03",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "ACC-HC04",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "ACC-HC04",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "CAT-EX-SEG",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "CAT-EX-SEG",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "CAT-EX-PARC",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "CAT-EX-PARC",
+      "estado_validacion": "candidata",
+      "modulo": "analisis_cruzado",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-RD01",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-RD01",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-RD02",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-RD02",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-RD03",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-RD03",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-RD04",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-RD04",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-RD06",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-RD06",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-RD07",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-RD07",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-RD08",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-RD08",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-RD09",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-RD09",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-RD10",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-RD10",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-RD11",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-RD11",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-RD12",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-RD12",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-RD13",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-RD13",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-HC01",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-HC01",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-HC02",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-HC02",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-HC03",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-HC03",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-HC04",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-HC04",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-HC05",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-HC05",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "implementada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-HC06",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-HC06",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-HC07",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-HC07",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "PRC-HC08",
+    "labels": [
+      "Regla"
+    ],
+    "props": {
+      "id": "PRC-HC08",
+      "estado_validacion": "candidata",
+      "modulo": "priorizacion_clarificacion",
+      "ejecucion": "catalogada",
+      "version": "PG1-1.0",
+      "localizador": "PG1 sección 6"
+    }
+  },
+  {
+    "id": "S-PG1",
+    "labels": [
+      "Fuente"
+    ],
+    "props": {
+      "id": "S-PG1",
+      "nombre": "Grupo_10_PG1_U1.pdf",
+      "tipo": "documento",
+      "validez": "Alcance académico; sin validación experta adquirida",
+      "contacto": "Grupo_10_PG1_U1.pdf",
+      "estado": "consultada"
+    }
+  },
+  {
+    "id": "S-PG2",
+    "labels": [
+      "Fuente"
+    ],
+    "props": {
+      "id": "S-PG2",
+      "nombre": "Actividad PG2 (Grupal).pdf",
+      "tipo": "consigna",
+      "validez": "Alcance académico; sin validación experta adquirida",
+      "contacto": "Actividad PG2 (Grupal).pdf",
+      "estado": "consultada"
+    }
+  },
+  {
+    "id": "S-CASOS",
+    "labels": [
+      "Fuente"
+    ],
+    "props": {
+      "id": "S-CASOS",
+      "nombre": "Casos construidos del Grupo 10",
+      "tipo": "ejemplo",
+      "validez": "Alcance académico; sin validación experta adquirida",
+      "contacto": "Casos construidos del Grupo 10",
+      "estado": "consultada"
+    }
+  },
+  {
+    "id": "S-DEV",
+    "labels": [
+      "Fuente"
+    ],
+    "props": {
+      "id": "S-DEV",
+      "nombre": "Devolución docente de PG1",
+      "tipo": "devolucion",
+      "validez": "Alcance académico; sin validación experta adquirida",
+      "contacto": "Devolución docente de PG1",
+      "estado": "consultada"
+    }
+  },
+  {
+    "id": "RESP-NEG",
+    "labels": [
+      "Responsable"
+    ],
+    "props": {
+      "id": "RESP-NEG",
+      "rol": "referente_negocio",
+      "confirmado": true,
+      "nombre": "Rol de negocio del caso construido"
+    }
+  },
+  {
+    "id": "RESP-AN",
+    "labels": [
+      "Responsable"
+    ],
+    "props": {
+      "id": "RESP-AN",
+      "rol": "analista_funcional",
+      "confirmado": true,
+      "nombre": "Rol revisor del caso construido"
+    }
+  },
+  {
+    "id": "CQ-atomicidad",
+    "labels": [
+      "CriterioCalidad"
+    ],
+    "props": {
+      "id": "CQ-atomicidad",
+      "nombre": "atomicidad"
+    }
+  },
+  {
+    "id": "CQ-ambiguedad",
+    "labels": [
+      "CriterioCalidad"
+    ],
+    "props": {
+      "id": "CQ-ambiguedad",
+      "nombre": "ambiguedad"
+    }
+  },
+  {
+    "id": "CQ-verificabilidad",
+    "labels": [
+      "CriterioCalidad"
+    ],
+    "props": {
+      "id": "CQ-verificabilidad",
+      "nombre": "verificabilidad"
+    }
+  },
+  {
+    "id": "CQ-completitud",
+    "labels": [
+      "CriterioCalidad"
+    ],
+    "props": {
+      "id": "CQ-completitud",
+      "nombre": "completitud"
+    }
+  },
+  {
+    "id": "DOC-CAT-v1",
+    "labels": [
+      "DocumentoVersion"
+    ],
+    "props": {
+      "id": "DOC-CAT-v1",
+      "documento_id": "DOC-CAT",
+      "version": "1",
+      "titulo": "Especificación académica DOC-CAT-v1",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "materiales_disponibles": [
+        "Documento principal"
+      ],
+      "referencias_no_disponibles": []
+    }
+  },
+  {
+    "id": "RQ-CAT-v1",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-CAT-v1",
+      "id_logico": "RQ-CAT",
+      "texto_original": "El sistema debe cargar rápidamente el catálogo.",
+      "tipo": "funcional",
+      "localizador": "RQ-CAT-v1",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-CAT-v1",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-CAT-v1",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-CAT-v1",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-CAT-v1",
+      "tipo": "fragmento",
+      "contenido": "El sistema debe cargar rápidamente el catálogo.",
+      "localizador": "RQ-CAT-v1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-CAT-v1"
+    }
+  },
+  {
+    "id": "EV-CAT-01",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionIndividual"
+    ],
+    "props": {
+      "id": "EV-CAT-01",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "modulo_origen": "evaluacion_individual"
+    }
+  },
+  {
+    "id": "E-EV-CAT-01",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-CAT-01",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-CAT-01",
+      "localizador": "EV-CAT-01",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "J-EV-CAT-01-atomicidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-CAT-01-atomicidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Una obligación evaluable con unidad de aceptación confirmada.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "obligaciones_independientes": 1,
+      "unidad_aceptacion_confirmada": true
+    }
+  },
+  {
+    "id": "J-EV-CAT-01-ambiguedad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-CAT-01-ambiguedad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Persisten dos lecturas: aprobación por percepción de rapidez o por un límite medido; falta delimitación del caso.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "lecturas_residuales": 2,
+      "delimitacion_confirmada": false,
+      "divergencia_lecturas": 8.5,
+      "delimitacion_contexto": 1,
+      "valoracion_confirmada": true,
+      "alcance_valoracion_revisado": true,
+      "severidad_propuesta": "media",
+      "puntuacion_severidad_propuesta": 5.0
+    }
+  },
+  {
+    "id": "J-EV-CAT-01-verificabilidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-CAT-01-verificabilidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "La aceptación necesaria no fue recibida; no se puede fijar una condición de aprobación.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "aceptacion_necesaria": true,
+      "aceptacion_disponible": false,
+      "comprobacion_definida": false
+    }
+  },
+  {
+    "id": "J-EV-CAT-01-completitud",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-CAT-01-completitud",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "No se recibió la información necesaria para determinar las partes aplicables.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": false,
+      "contexto_suficiente": true,
+      "informacion_aplicable_identificada": false,
+      "omisiones_demostradas": null
+    }
+  },
+  {
+    "id": "DOC-CAT-v2",
+    "labels": [
+      "DocumentoVersion"
+    ],
+    "props": {
+      "id": "DOC-CAT-v2",
+      "documento_id": "DOC-CAT",
+      "version": "2",
+      "titulo": "Especificación académica DOC-CAT-v2",
+      "fecha": "2026-10-31T21:02:00-03:00",
+      "materiales_disponibles": [
+        "Documento principal"
+      ],
+      "referencias_no_disponibles": []
+    }
+  },
+  {
+    "id": "RQ-CAT-v2",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-CAT-v2",
+      "id_logico": "RQ-CAT",
+      "texto_original": "El sistema debe cargar el catálogo de 100 productos con lista interactiva en menos de 2 segundos en el entorno de prueba acordado.",
+      "tipo": "funcional",
+      "localizador": "RQ-CAT-v2",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-CAT-v2",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-CAT-v2",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-CAT-v2",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-CAT-v2",
+      "tipo": "fragmento",
+      "contenido": "El sistema debe cargar el catálogo de 100 productos con lista interactiva en menos de 2 segundos en el entorno de prueba acordado.",
+      "localizador": "RQ-CAT-v2",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:02:00-03:00",
+      "documento_version": "DOC-CAT-v2"
+    }
+  },
+  {
+    "id": "EV-CAT-02",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionIndividual"
+    ],
+    "props": {
+      "id": "EV-CAT-02",
+      "fecha": "2026-10-31T21:02:30-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "modulo_origen": "evaluacion_individual"
+    }
+  },
+  {
+    "id": "E-EV-CAT-02",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-CAT-02",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-CAT-02",
+      "localizador": "EV-CAT-02",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:02:30-03:00"
+    }
+  },
+  {
+    "id": "J-EV-CAT-02-atomicidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-CAT-02-atomicidad",
+      "fecha": "2026-10-31T21:02:30-03:00",
+      "justificacion": "Una obligación evaluable con unidad de aceptación confirmada.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "obligaciones_independientes": 1,
+      "unidad_aceptacion_confirmada": true
+    }
+  },
+  {
+    "id": "J-EV-CAT-02-ambiguedad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-CAT-02-ambiguedad",
+      "fecha": "2026-10-31T21:02:30-03:00",
+      "justificacion": "La aceptación disponible delimita una sola lectura relevante.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "lecturas_residuales": 1,
+      "delimitacion_confirmada": true,
+      "divergencia_lecturas": 8.5,
+      "delimitacion_contexto": 9.5,
+      "valoracion_confirmada": true,
+      "alcance_valoracion_revisado": true
+    }
+  },
+  {
+    "id": "J-EV-CAT-02-verificabilidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-CAT-02-verificabilidad",
+      "fecha": "2026-10-31T21:02:30-03:00",
+      "justificacion": "Hay un método finito y una condición observable de aprobación.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "aceptacion_necesaria": true,
+      "aceptacion_disponible": true,
+      "comprobacion_definida": true
+    }
+  },
+  {
+    "id": "J-EV-CAT-02-completitud",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-CAT-02-completitud",
+      "fecha": "2026-10-31T21:02:30-03:00",
+      "justificacion": "Las partes aplicables se identificaron y no se demostraron omisiones en ese alcance.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "informacion_aplicable_identificada": true,
+      "omisiones_demostradas": 0
+    }
+  },
+  {
+    "id": "CA-CAT-02",
+    "labels": [
+      "CriterioAceptacion"
+    ],
+    "props": {
+      "id": "CA-CAT-02",
+      "metodo": "Medir carga en entorno controlado",
+      "condicion_aprobacion": "100 productos con lista interactiva en menos de 2 segundos",
+      "entorno_prueba": "Caso académico del grupo"
+    }
+  },
+  {
+    "id": "DOC-DESC-v1",
+    "labels": [
+      "DocumentoVersion"
+    ],
+    "props": {
+      "id": "DOC-DESC-v1",
+      "documento_id": "DOC-DESC",
+      "version": "1",
+      "titulo": "Especificación académica DOC-DESC-v1",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "materiales_disponibles": [
+        "Documento principal"
+      ],
+      "referencias_no_disponibles": []
+    }
+  },
+  {
+    "id": "RQ-DESC-A-v1",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-DESC-A-v1",
+      "id_logico": "RQ-DESC-A",
+      "texto_original": "En una venta de categoría A se debe aplicar el descuento del 10 %.",
+      "tipo": "funcional",
+      "localizador": "RQ-DESC-A-v1",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-DESC-A-v1",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-DESC-A-v1",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-DESC-A-v1",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-DESC-A-v1",
+      "tipo": "fragmento",
+      "contenido": "En una venta de categoría A se debe aplicar el descuento del 10 %.",
+      "localizador": "RQ-DESC-A-v1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-DESC-v1"
+    }
+  },
+  {
+    "id": "O-RQ-DESC-A-v1",
+    "labels": [
+      "Obligacion"
+    ],
+    "props": {
+      "id": "O-RQ-DESC-A-v1",
+      "sujeto": "Sistema de ventas",
+      "accion": "calcular",
+      "objeto": "precio final",
+      "resultado": "precio final con 10 % de descuento",
+      "modalidad": "obligacion",
+      "aceptable_por_separado": true
+    }
+  },
+  {
+    "id": "ESC-RQ-DESC-A-v1",
+    "labels": [
+      "Escenario"
+    ],
+    "props": {
+      "id": "ESC-RQ-DESC-A-v1",
+      "actor": "Sistema de ventas",
+      "objeto": "misma venta A",
+      "estado": "confirmación"
+    }
+  },
+  {
+    "id": "COND-RQ-DESC-A-v1",
+    "labels": [
+      "Condicion"
+    ],
+    "props": {
+      "id": "COND-RQ-DESC-A-v1",
+      "descripcion": "categoría A y misma venta"
+    }
+  },
+  {
+    "id": "RQ-DESC-B-v1",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-DESC-B-v1",
+      "id_logico": "RQ-DESC-B",
+      "texto_original": "En la misma venta de categoría A no se debe aplicar ningún descuento.",
+      "tipo": "funcional",
+      "localizador": "RQ-DESC-B-v1",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-DESC-B-v1",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-DESC-B-v1",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-DESC-B-v1",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-DESC-B-v1",
+      "tipo": "fragmento",
+      "contenido": "En la misma venta de categoría A no se debe aplicar ningún descuento.",
+      "localizador": "RQ-DESC-B-v1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-DESC-v1"
+    }
+  },
+  {
+    "id": "O-RQ-DESC-B-v1",
+    "labels": [
+      "Obligacion"
+    ],
+    "props": {
+      "id": "O-RQ-DESC-B-v1",
+      "sujeto": "Sistema de ventas",
+      "accion": "calcular",
+      "objeto": "precio final",
+      "resultado": "precio final sin descuento",
+      "modalidad": "obligacion",
+      "aceptable_por_separado": true
+    }
+  },
+  {
+    "id": "ESC-RQ-DESC-B-v1",
+    "labels": [
+      "Escenario"
+    ],
+    "props": {
+      "id": "ESC-RQ-DESC-B-v1",
+      "actor": "Sistema de ventas",
+      "objeto": "misma venta A",
+      "estado": "confirmación"
+    }
+  },
+  {
+    "id": "COND-RQ-DESC-B-v1",
+    "labels": [
+      "Condicion"
+    ],
+    "props": {
+      "id": "COND-RQ-DESC-B-v1",
+      "descripcion": "categoría A y misma venta"
+    }
+  },
+  {
+    "id": "EV-DESC",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionCruzada"
+    ],
+    "props": {
+      "id": "EV-DESC",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "tipo_analisis": "comparacion",
+      "modulo_origen": "analisis_cruzado",
+      "datos_controlados": true,
+      "dato_necesario_faltante": false,
+      "escenarios": "coincidentes",
+      "resultados_incompatibles": true,
+      "excepcion_resuelve": false,
+      "interpretacion_cerrada": true,
+      "validacion_operativa": "candidata",
+      "solapamiento_escenario": 9.5,
+      "incompatibilidad_resultados": 9.5,
+      "valoracion_confirmada": true,
+      "severidad_propuesta": "alta",
+      "puntuacion_severidad_propuesta": 9.0
+    }
+  },
+  {
+    "id": "E-EV-DESC",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-DESC",
+      "tipo": "analisis",
+      "contenido": "RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.",
+      "localizador": "EV-DESC",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "EV-DESC-CONTROL",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionCruzada"
+    ],
+    "props": {
+      "id": "EV-DESC-CONTROL",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "tipo_analisis": "comparacion",
+      "modulo_origen": "analisis_cruzado",
+      "datos_controlados": true,
+      "dato_necesario_faltante": false,
+      "escenarios": "excluyentes",
+      "resultados_incompatibles": true,
+      "excepcion_resuelve": false,
+      "interpretacion_cerrada": true,
+      "validacion_operativa": "candidata",
+      "solapamiento_escenario": 1.0,
+      "incompatibilidad_resultados": 6.0,
+      "valoracion_confirmada": true
+    }
+  },
+  {
+    "id": "E-EV-DESC-CONTROL",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-DESC-CONTROL",
+      "tipo": "analisis",
+      "contenido": "Control del par: las obligaciones se ubican en momentos excluyentes del escenario construido. La diferencia textual no demuestra contradicción simultánea.",
+      "localizador": "EV-DESC-CONTROL",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "DOC-TASA-v1",
+    "labels": [
+      "DocumentoVersion"
+    ],
+    "props": {
+      "id": "DOC-TASA-v1",
+      "documento_id": "DOC-TASA",
+      "version": "1",
+      "titulo": "Especificación académica DOC-TASA-v1",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "materiales_disponibles": [
+        "Documento principal"
+      ],
+      "referencias_no_disponibles": [
+        "Anexo B"
+      ]
+    }
+  },
+  {
+    "id": "RQ-TASA-v1",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-TASA-v1",
+      "id_logico": "RQ-TASA",
+      "texto_original": "El sistema calcula el interés con la tasa del Anexo B.",
+      "tipo": "funcional",
+      "localizador": "RQ-TASA-v1",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-TASA-v1",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-TASA-v1",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-TASA-v1",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-TASA-v1",
+      "tipo": "fragmento",
+      "contenido": "El sistema calcula el interés con la tasa del Anexo B.",
+      "localizador": "RQ-TASA-v1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-TASA-v1"
+    }
+  },
+  {
+    "id": "EN-TASA-v1",
+    "labels": [
+      "ElementoNecesario"
+    ],
+    "props": {
+      "id": "EN-TASA-v1",
+      "concepto": "tasa aplicable",
+      "referencia": "Anexo B"
+    }
+  },
+  {
+    "id": "DEP-TASA-v1",
+    "labels": [
+      "Dependencia"
+    ],
+    "props": {
+      "id": "DEP-TASA-v1",
+      "estado": "en_revision"
+    }
+  },
+  {
+    "id": "EV-TASA-1",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionCruzada"
+    ],
+    "props": {
+      "id": "EV-TASA-1",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "tipo_analisis": "dependencia",
+      "modulo_origen": "analisis_cruzado",
+      "necesidad_confirmada": true,
+      "referencia_necesaria_disponible": false,
+      "busqueda_completa": false,
+      "cotejo_definicion": "no_disponible",
+      "validacion_definicion": false,
+      "datos_controlados": true,
+      "dato_necesario_faltante": true,
+      "validacion_operativa": "candidata"
+    }
+  },
+  {
+    "id": "E-EV-TASA-1",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-TASA-1",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-TASA-1",
+      "localizador": "EV-TASA-1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "DOC-TASA-v2",
+    "labels": [
+      "DocumentoVersion"
+    ],
+    "props": {
+      "id": "DOC-TASA-v2",
+      "documento_id": "DOC-TASA",
+      "version": "2",
+      "titulo": "Especificación académica DOC-TASA-v2",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "materiales_disponibles": [
+        "Documento principal"
+      ],
+      "referencias_no_disponibles": []
+    }
+  },
+  {
+    "id": "RQ-TASA-v2",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-TASA-v2",
+      "id_logico": "RQ-TASA",
+      "texto_original": "El sistema calcula el interés con la tasa del Anexo B.",
+      "tipo": "funcional",
+      "localizador": "RQ-TASA-v2",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-TASA-v2",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-TASA-v2",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-TASA-v2",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-TASA-v2",
+      "tipo": "fragmento",
+      "contenido": "El sistema calcula el interés con la tasa del Anexo B.",
+      "localizador": "RQ-TASA-v2",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-TASA-v2"
+    }
+  },
+  {
+    "id": "EN-TASA-v2",
+    "labels": [
+      "ElementoNecesario"
+    ],
+    "props": {
+      "id": "EN-TASA-v2",
+      "concepto": "tasa aplicable",
+      "referencia": "Anexo B"
+    }
+  },
+  {
+    "id": "DEP-TASA-v2",
+    "labels": [
+      "Dependencia"
+    ],
+    "props": {
+      "id": "DEP-TASA-v2",
+      "estado": "en_revision"
+    }
+  },
+  {
+    "id": "EV-TASA-2",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionCruzada"
+    ],
+    "props": {
+      "id": "EV-TASA-2",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "tipo_analisis": "dependencia",
+      "modulo_origen": "analisis_cruzado",
+      "necesidad_confirmada": true,
+      "referencia_necesaria_disponible": true,
+      "busqueda_completa": true,
+      "cotejo_definicion": "pertinente",
+      "validacion_definicion": true,
+      "datos_controlados": true,
+      "dato_necesario_faltante": false,
+      "validacion_operativa": "candidata"
+    }
+  },
+  {
+    "id": "E-EV-TASA-2",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-TASA-2",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-TASA-2",
+      "localizador": "EV-TASA-2",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "RQ-DEF-TASA-v2",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-DEF-TASA-v2",
+      "id_logico": "RQ-DEF-TASA",
+      "texto_original": "La tasa mensual aplicable es del 2 % en el escenario acordado del caso.",
+      "tipo": "funcional",
+      "localizador": "RQ-DEF-TASA-v2",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-DEF-TASA-v2",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-DEF-TASA-v2",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-DEF-TASA-v2",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-DEF-TASA-v2",
+      "tipo": "fragmento",
+      "contenido": "La tasa mensual aplicable es del 2 % en el escenario acordado del caso.",
+      "localizador": "RQ-DEF-TASA-v2",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-TASA-v2"
+    }
+  },
+  {
+    "id": "NFR-SEG",
+    "labels": [
+      "CategoriaNFR"
+    ],
+    "props": {
+      "id": "NFR-SEG",
+      "nombre": "Seguridad",
+      "necesidades": [
+        "protección de datos sensibles"
+      ]
+    }
+  },
+  {
+    "id": "DOC-SEG-BRECHA-v1",
+    "labels": [
+      "DocumentoVersion"
+    ],
+    "props": {
+      "id": "DOC-SEG-BRECHA-v1",
+      "documento_id": "DOC-SEG-BRECHA",
+      "version": "1",
+      "titulo": "Especificación académica DOC-SEG-BRECHA-v1",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "materiales_disponibles": [
+        "Documento principal"
+      ],
+      "referencias_no_disponibles": []
+    }
+  },
+  {
+    "id": "RQ-SEG-BRECHA-v1",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-SEG-BRECHA-v1",
+      "id_logico": "RQ-SEG-BRECHA",
+      "texto_original": "El sistema debe listar los productos.",
+      "tipo": "funcional",
+      "localizador": "RQ-SEG-BRECHA-v1",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-SEG-BRECHA-v1",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-SEG-BRECHA-v1",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-SEG-BRECHA-v1",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-SEG-BRECHA-v1",
+      "tipo": "fragmento",
+      "contenido": "El sistema debe listar los productos.",
+      "localizador": "RQ-SEG-BRECHA-v1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-SEG-BRECHA-v1"
+    }
+  },
+  {
+    "id": "PERFIL-BRECHA",
+    "labels": [
+      "PerfilSistema"
+    ],
+    "props": {
+      "id": "PERFIL-BRECHA",
+      "datos_sensibles": true,
+      "confirmado": true,
+      "operaciones_esenciales": [
+        "acceso a datos"
+      ]
+    }
+  },
+  {
+    "id": "E-PERFIL-BRECHA",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-PERFIL-BRECHA",
+      "tipo": "declaracion",
+      "contenido": "Perfil construido; datos sensibles True",
+      "localizador": "PERFIL-BRECHA",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "EV-SEG-BRECHA",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionCruzada"
+    ],
+    "props": {
+      "id": "EV-SEG-BRECHA",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "tipo_analisis": "cobertura",
+      "modulo_origen": "analisis_cruzado",
+      "datos_controlados": true,
+      "condicion_catalogo": true,
+      "busqueda_completa": true,
+      "mapa_cobertura_validado": true,
+      "cobertura": "ninguna",
+      "necesidades": [
+        "protección de datos sensibles"
+      ],
+      "partes_cubiertas": [],
+      "validacion_operativa": "candidata"
+    }
+  },
+  {
+    "id": "E-EV-SEG-BRECHA",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-SEG-BRECHA",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-SEG-BRECHA",
+      "localizador": "EV-SEG-BRECHA",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "DOC-SEG-OK-v1",
+    "labels": [
+      "DocumentoVersion"
+    ],
+    "props": {
+      "id": "DOC-SEG-OK-v1",
+      "documento_id": "DOC-SEG-OK",
+      "version": "1",
+      "titulo": "Especificación académica DOC-SEG-OK-v1",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "materiales_disponibles": [
+        "Documento principal"
+      ],
+      "referencias_no_disponibles": []
+    }
+  },
+  {
+    "id": "RQ-SEG-OK-v1",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-SEG-OK-v1",
+      "id_logico": "RQ-SEG-OK",
+      "texto_original": "El sistema debe registrar cada acceso autorizado a los datos sensibles.",
+      "tipo": "funcional",
+      "localizador": "RQ-SEG-OK-v1",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-SEG-OK-v1",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-SEG-OK-v1",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-SEG-OK-v1",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-SEG-OK-v1",
+      "tipo": "fragmento",
+      "contenido": "El sistema debe registrar cada acceso autorizado a los datos sensibles.",
+      "localizador": "RQ-SEG-OK-v1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-SEG-OK-v1"
+    }
+  },
+  {
+    "id": "PERFIL-OK",
+    "labels": [
+      "PerfilSistema"
+    ],
+    "props": {
+      "id": "PERFIL-OK",
+      "datos_sensibles": true,
+      "confirmado": true,
+      "operaciones_esenciales": [
+        "acceso a datos"
+      ]
+    }
+  },
+  {
+    "id": "E-PERFIL-OK",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-PERFIL-OK",
+      "tipo": "declaracion",
+      "contenido": "Perfil construido; datos sensibles True",
+      "localizador": "PERFIL-OK",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "EV-SEG-OK",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionCruzada"
+    ],
+    "props": {
+      "id": "EV-SEG-OK",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "tipo_analisis": "cobertura",
+      "modulo_origen": "analisis_cruzado",
+      "datos_controlados": true,
+      "condicion_catalogo": true,
+      "busqueda_completa": true,
+      "mapa_cobertura_validado": true,
+      "cobertura": "completa",
+      "necesidades": [
+        "protección de datos sensibles"
+      ],
+      "partes_cubiertas": [
+        "protección de datos sensibles"
+      ],
+      "validacion_operativa": "candidata"
+    }
+  },
+  {
+    "id": "E-EV-SEG-OK",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-SEG-OK",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-SEG-OK",
+      "localizador": "EV-SEG-OK",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "DOC-SEG-DESCONOCIDO-v1",
+    "labels": [
+      "DocumentoVersion"
+    ],
+    "props": {
+      "id": "DOC-SEG-DESCONOCIDO-v1",
+      "documento_id": "DOC-SEG-DESCONOCIDO",
+      "version": "1",
+      "titulo": "Especificación académica DOC-SEG-DESCONOCIDO-v1",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "materiales_disponibles": [
+        "Documento principal"
+      ],
+      "referencias_no_disponibles": []
+    }
+  },
+  {
+    "id": "RQ-SEG-DESCONOCIDO-v1",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-SEG-DESCONOCIDO-v1",
+      "id_logico": "RQ-SEG-DESCONOCIDO",
+      "texto_original": "El sistema debe listar los productos.",
+      "tipo": "funcional",
+      "localizador": "RQ-SEG-DESCONOCIDO-v1",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-SEG-DESCONOCIDO-v1",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-SEG-DESCONOCIDO-v1",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-SEG-DESCONOCIDO-v1",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-SEG-DESCONOCIDO-v1",
+      "tipo": "fragmento",
+      "contenido": "El sistema debe listar los productos.",
+      "localizador": "RQ-SEG-DESCONOCIDO-v1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-SEG-DESCONOCIDO-v1"
+    }
+  },
+  {
+    "id": "PERFIL-DESCONOCIDO",
+    "labels": [
+      "PerfilSistema"
+    ],
+    "props": {
+      "id": "PERFIL-DESCONOCIDO",
+      "datos_sensibles": null,
+      "confirmado": false,
+      "operaciones_esenciales": [
+        "acceso a datos"
+      ]
+    }
+  },
+  {
+    "id": "E-PERFIL-DESCONOCIDO",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-PERFIL-DESCONOCIDO",
+      "tipo": "declaracion",
+      "contenido": "Perfil construido; datos sensibles None",
+      "localizador": "PERFIL-DESCONOCIDO",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "EV-SEG-DESCONOCIDO",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionCruzada"
+    ],
+    "props": {
+      "id": "EV-SEG-DESCONOCIDO",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "tipo_analisis": "cobertura",
+      "modulo_origen": "analisis_cruzado",
+      "datos_controlados": true,
+      "condicion_catalogo": null,
+      "busqueda_completa": true,
+      "mapa_cobertura_validado": false,
+      "cobertura": "indeterminada",
+      "necesidades": [
+        "protección de datos sensibles"
+      ],
+      "partes_cubiertas": [],
+      "validacion_operativa": "candidata"
+    }
+  },
+  {
+    "id": "E-EV-SEG-DESCONOCIDO",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-SEG-DESCONOCIDO",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-SEG-DESCONOCIDO",
+      "localizador": "EV-SEG-DESCONOCIDO",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "DOC-ERROR-v1",
+    "labels": [
+      "DocumentoVersion"
+    ],
+    "props": {
+      "id": "DOC-ERROR-v1",
+      "documento_id": "DOC-ERROR",
+      "version": "1",
+      "titulo": "Especificación académica DOC-ERROR-v1",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "materiales_disponibles": [
+        "Documento principal"
+      ],
+      "referencias_no_disponibles": []
+    }
+  },
+  {
+    "id": "RQ-ERROR-v1",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-ERROR-v1",
+      "id_logico": "RQ-ERROR",
+      "texto_original": "El sistema no debe publicar datos privados.",
+      "tipo": "funcional",
+      "localizador": "RQ-ERROR-v1",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-ERROR-v1",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-ERROR-v1",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-ERROR-v1",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-ERROR-v1",
+      "tipo": "fragmento",
+      "contenido": "El sistema no debe publicar datos privados.",
+      "localizador": "RQ-ERROR-v1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-ERROR-v1"
+    }
+  },
+  {
+    "id": "EV-ERROR",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionIndividual"
+    ],
+    "props": {
+      "id": "EV-ERROR",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": false,
+      "publicado": false,
+      "estado": "en_revision",
+      "modulo_origen": "evaluacion_individual"
+    }
+  },
+  {
+    "id": "E-EV-ERROR",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-ERROR",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-ERROR",
+      "localizador": "EV-ERROR",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "X-CAT",
+    "labels": [
+      "ContextoPrioridad"
+    ],
+    "props": {
+      "id": "X-CAT",
+      "observacion_id": "H-CAT-B",
+      "info_para_priorizar_suficiente": false,
+      "necesidad_dato_confirmada": true,
+      "dato_para_priorizar_disponible": false,
+      "dato_para_resolver_identificado": true,
+      "dato_para_resolver": "Confirmar condición y alcance de CAT",
+      "obligacion_esencial_indefinida": false,
+      "bloqueo_sustantivo_confirmado": false,
+      "hito_acordado": false,
+      "diferimiento_aceptado": false,
+      "impacto_acotado": false,
+      "mapeo_alta_bloqueante": "candidato_activo",
+      "criticidad_valor": null
+    }
+  },
+  {
+    "id": "E-X-CAT",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-X-CAT",
+      "tipo": "declaracion",
+      "contenido": "Contexto de prioridad construido de CAT",
+      "localizador": "X-CAT",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "CR-CAT",
+    "labels": [
+      "Criticidad"
+    ],
+    "props": {
+      "id": "CR-CAT",
+      "valor": null,
+      "grado_criticidad": null,
+      "ambito": "Operación del caso CAT",
+      "fundamento": "Declaración construida",
+      "declarante_rol": "referente_negocio",
+      "modelo_difuso_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "X-CAT-PV",
+    "labels": [
+      "ContextoPrioridad"
+    ],
+    "props": {
+      "id": "X-CAT-PV",
+      "observacion_id": "P-CAT-V",
+      "info_para_priorizar_suficiente": false,
+      "necesidad_dato_confirmada": true,
+      "dato_para_priorizar_disponible": false,
+      "dato_para_resolver_identificado": true,
+      "dato_para_resolver": "Confirmar condición y alcance de CAT-PV",
+      "obligacion_esencial_indefinida": false,
+      "bloqueo_sustantivo_confirmado": false,
+      "hito_acordado": false,
+      "diferimiento_aceptado": false,
+      "impacto_acotado": false,
+      "mapeo_alta_bloqueante": "candidato_activo",
+      "criticidad_valor": null
+    }
+  },
+  {
+    "id": "E-X-CAT-PV",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-X-CAT-PV",
+      "tipo": "declaracion",
+      "contenido": "Contexto de prioridad construido de CAT-PV",
+      "localizador": "X-CAT-PV",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "CR-CAT-PV",
+    "labels": [
+      "Criticidad"
+    ],
+    "props": {
+      "id": "CR-CAT-PV",
+      "valor": null,
+      "grado_criticidad": null,
+      "ambito": "Operación del caso CAT-PV",
+      "fundamento": "Declaración construida",
+      "declarante_rol": "referente_negocio",
+      "modelo_difuso_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "X-CAT-PC",
+    "labels": [
+      "ContextoPrioridad"
+    ],
+    "props": {
+      "id": "X-CAT-PC",
+      "observacion_id": "P-CAT-C",
+      "info_para_priorizar_suficiente": false,
+      "necesidad_dato_confirmada": true,
+      "dato_para_priorizar_disponible": false,
+      "dato_para_resolver_identificado": true,
+      "dato_para_resolver": "Confirmar condición y alcance de CAT-PC",
+      "obligacion_esencial_indefinida": false,
+      "bloqueo_sustantivo_confirmado": false,
+      "hito_acordado": false,
+      "diferimiento_aceptado": false,
+      "impacto_acotado": false,
+      "mapeo_alta_bloqueante": "candidato_activo",
+      "criticidad_valor": null
+    }
+  },
+  {
+    "id": "E-X-CAT-PC",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-X-CAT-PC",
+      "tipo": "declaracion",
+      "contenido": "Contexto de prioridad construido de CAT-PC",
+      "localizador": "X-CAT-PC",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "CR-CAT-PC",
+    "labels": [
+      "Criticidad"
+    ],
+    "props": {
+      "id": "CR-CAT-PC",
+      "valor": null,
+      "grado_criticidad": null,
+      "ambito": "Operación del caso CAT-PC",
+      "fundamento": "Declaración construida",
+      "declarante_rol": "referente_negocio",
+      "modelo_difuso_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "X-DESC",
+    "labels": [
+      "ContextoPrioridad"
+    ],
+    "props": {
+      "id": "X-DESC",
+      "observacion_id": "H-DESC",
+      "info_para_priorizar_suficiente": true,
+      "necesidad_dato_confirmada": false,
+      "dato_para_priorizar_disponible": true,
+      "dato_para_resolver_identificado": true,
+      "dato_para_resolver": "Confirmar condición y alcance de DESC",
+      "obligacion_esencial_indefinida": true,
+      "bloqueo_sustantivo_confirmado": true,
+      "hito_acordado": false,
+      "diferimiento_aceptado": false,
+      "impacto_acotado": false,
+      "mapeo_alta_bloqueante": "candidato_activo",
+      "criticidad_valor": "alta"
+    }
+  },
+  {
+    "id": "E-X-DESC",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-X-DESC",
+      "tipo": "declaracion",
+      "contenido": "Contexto de prioridad construido de DESC",
+      "localizador": "X-DESC",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "CR-DESC",
+    "labels": [
+      "Criticidad"
+    ],
+    "props": {
+      "id": "CR-DESC",
+      "valor": "alta",
+      "grado_criticidad": 9.0,
+      "ambito": "Operación del caso DESC",
+      "fundamento": "Declaración construida",
+      "declarante_rol": "referente_negocio",
+      "modelo_difuso_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "X-TASA",
+    "labels": [
+      "ContextoPrioridad"
+    ],
+    "props": {
+      "id": "X-TASA",
+      "observacion_id": "P-TASA",
+      "info_para_priorizar_suficiente": false,
+      "necesidad_dato_confirmada": true,
+      "dato_para_priorizar_disponible": false,
+      "dato_para_resolver_identificado": true,
+      "dato_para_resolver": "Confirmar condición y alcance de TASA",
+      "obligacion_esencial_indefinida": false,
+      "bloqueo_sustantivo_confirmado": false,
+      "hito_acordado": false,
+      "diferimiento_aceptado": false,
+      "impacto_acotado": false,
+      "mapeo_alta_bloqueante": "candidato_activo",
+      "criticidad_valor": null
+    }
+  },
+  {
+    "id": "E-X-TASA",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-X-TASA",
+      "tipo": "declaracion",
+      "contenido": "Contexto de prioridad construido de TASA",
+      "localizador": "X-TASA",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "CR-TASA",
+    "labels": [
+      "Criticidad"
+    ],
+    "props": {
+      "id": "CR-TASA",
+      "valor": null,
+      "grado_criticidad": null,
+      "ambito": "Operación del caso TASA",
+      "fundamento": "Declaración construida",
+      "declarante_rol": "referente_negocio",
+      "modelo_difuso_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "X-SEG",
+    "labels": [
+      "ContextoPrioridad"
+    ],
+    "props": {
+      "id": "X-SEG",
+      "observacion_id": "H-SEG",
+      "info_para_priorizar_suficiente": false,
+      "necesidad_dato_confirmada": true,
+      "dato_para_priorizar_disponible": false,
+      "dato_para_resolver_identificado": true,
+      "dato_para_resolver": "Confirmar condición y alcance de SEG",
+      "obligacion_esencial_indefinida": false,
+      "bloqueo_sustantivo_confirmado": false,
+      "hito_acordado": false,
+      "diferimiento_aceptado": false,
+      "impacto_acotado": false,
+      "mapeo_alta_bloqueante": "candidato_activo",
+      "criticidad_valor": "alta"
+    }
+  },
+  {
+    "id": "E-X-SEG",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-X-SEG",
+      "tipo": "declaracion",
+      "contenido": "Contexto de prioridad construido de SEG",
+      "localizador": "X-SEG",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "CR-SEG",
+    "labels": [
+      "Criticidad"
+    ],
+    "props": {
+      "id": "CR-SEG",
+      "valor": "alta",
+      "grado_criticidad": 8.0,
+      "ambito": "Operación del caso SEG",
+      "fundamento": "Declaración construida",
+      "declarante_rol": "referente_negocio",
+      "modelo_difuso_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "X-SEG-P",
+    "labels": [
+      "ContextoPrioridad"
+    ],
+    "props": {
+      "id": "X-SEG-P",
+      "observacion_id": "P-SEG",
+      "info_para_priorizar_suficiente": false,
+      "necesidad_dato_confirmada": true,
+      "dato_para_priorizar_disponible": false,
+      "dato_para_resolver_identificado": true,
+      "dato_para_resolver": "Confirmar condición y alcance de SEG-P",
+      "obligacion_esencial_indefinida": false,
+      "bloqueo_sustantivo_confirmado": false,
+      "hito_acordado": false,
+      "diferimiento_aceptado": false,
+      "impacto_acotado": false,
+      "mapeo_alta_bloqueante": "candidato_activo",
+      "criticidad_valor": null
+    }
+  },
+  {
+    "id": "E-X-SEG-P",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-X-SEG-P",
+      "tipo": "declaracion",
+      "contenido": "Contexto de prioridad construido de SEG-P",
+      "localizador": "X-SEG-P",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "CR-SEG-P",
+    "labels": [
+      "Criticidad"
+    ],
+    "props": {
+      "id": "CR-SEG-P",
+      "valor": null,
+      "grado_criticidad": null,
+      "ambito": "Operación del caso SEG-P",
+      "fundamento": "Declaración construida",
+      "declarante_rol": "referente_negocio",
+      "modelo_difuso_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "DOC-PRIO-v1",
+    "labels": [
+      "DocumentoVersion"
+    ],
+    "props": {
+      "id": "DOC-PRIO-v1",
+      "documento_id": "DOC-PRIO",
+      "version": "1",
+      "titulo": "Especificación académica DOC-PRIO-v1",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "materiales_disponibles": [
+        "Documento principal"
+      ],
+      "referencias_no_disponibles": []
+    }
+  },
+  {
+    "id": "RQ-PRIO-v1",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-PRIO-v1",
+      "id_logico": "RQ-PRIO",
+      "texto_original": "El sistema debe exportar el informe en un formato estándar.",
+      "tipo": "funcional",
+      "localizador": "RQ-PRIO-v1",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-PRIO-v1",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-PRIO-v1",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-PRIO-v1",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-PRIO-v1",
+      "tipo": "fragmento",
+      "contenido": "El sistema debe exportar el informe en un formato estándar.",
+      "localizador": "RQ-PRIO-v1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-PRIO-v1"
+    }
+  },
+  {
+    "id": "EV-PRIO-MAYOR",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionIndividual"
+    ],
+    "props": {
+      "id": "EV-PRIO-MAYOR",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "modulo_origen": "evaluacion_individual"
+    }
+  },
+  {
+    "id": "E-EV-PRIO-MAYOR",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-PRIO-MAYOR",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-PRIO-MAYOR",
+      "localizador": "EV-PRIO-MAYOR",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "J-EV-PRIO-MAYOR-atomicidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-MAYOR-atomicidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Una obligación evaluable con unidad de aceptación confirmada.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "obligaciones_independientes": 1,
+      "unidad_aceptacion_confirmada": true
+    }
+  },
+  {
+    "id": "J-EV-PRIO-MAYOR-ambiguedad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-MAYOR-ambiguedad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una; análisis construido para probar el tratamiento de SM3.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "lecturas_residuales": 2,
+      "delimitacion_confirmada": false,
+      "severidad_propuesta": "media",
+      "puntuacion_severidad_propuesta": 5
+    }
+  },
+  {
+    "id": "J-EV-PRIO-MAYOR-verificabilidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-MAYOR-verificabilidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "La aceptación necesaria no fue recibida; no se puede fijar una condición de aprobación.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "aceptacion_necesaria": true,
+      "aceptacion_disponible": false,
+      "comprobacion_definida": false
+    }
+  },
+  {
+    "id": "J-EV-PRIO-MAYOR-completitud",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-MAYOR-completitud",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "No se recibió la información necesaria para determinar las partes aplicables.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": false,
+      "contexto_suficiente": true,
+      "informacion_aplicable_identificada": false,
+      "omisiones_demostradas": null
+    }
+  },
+  {
+    "id": "X-MAYOR",
+    "labels": [
+      "ContextoPrioridad"
+    ],
+    "props": {
+      "id": "X-MAYOR",
+      "observacion_id": "H-PRIO-MAYOR",
+      "info_para_priorizar_suficiente": true,
+      "necesidad_dato_confirmada": true,
+      "dato_para_priorizar_disponible": true,
+      "obligacion_esencial_indefinida": false,
+      "bloqueo_sustantivo_confirmado": false,
+      "hito_acordado": true,
+      "diferimiento_aceptado": false,
+      "impacto_acotado": false,
+      "mapeo_alta_bloqueante": "candidato_activo",
+      "criticidad_valor": "baja",
+      "criticidad_grado": 2
+    }
+  },
+  {
+    "id": "E-X-MAYOR",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-X-MAYOR",
+      "tipo": "acuerdo",
+      "contenido": "Hito/diferimiento del caso construido MAYOR",
+      "localizador": "X-MAYOR",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "CR-MAYOR",
+    "labels": [
+      "Criticidad"
+    ],
+    "props": {
+      "id": "CR-MAYOR",
+      "valor": "baja",
+      "grado_criticidad": 2,
+      "ambito": "Formato de exportación",
+      "fundamento": "Importancia construida para prueba",
+      "modelo_difuso_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "EV-PRIO-MENOR",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionIndividual"
+    ],
+    "props": {
+      "id": "EV-PRIO-MENOR",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "modulo_origen": "evaluacion_individual"
+    }
+  },
+  {
+    "id": "E-EV-PRIO-MENOR",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-PRIO-MENOR",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-PRIO-MENOR",
+      "localizador": "EV-PRIO-MENOR",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "J-EV-PRIO-MENOR-atomicidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-MENOR-atomicidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Una obligación evaluable con unidad de aceptación confirmada.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "obligaciones_independientes": 1,
+      "unidad_aceptacion_confirmada": true
+    }
+  },
+  {
+    "id": "J-EV-PRIO-MENOR-ambiguedad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-MENOR-ambiguedad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una; análisis construido para probar el tratamiento de SM3.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "lecturas_residuales": 2,
+      "delimitacion_confirmada": false,
+      "severidad_propuesta": "baja",
+      "puntuacion_severidad_propuesta": 1
+    }
+  },
+  {
+    "id": "J-EV-PRIO-MENOR-verificabilidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-MENOR-verificabilidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "La aceptación necesaria no fue recibida; no se puede fijar una condición de aprobación.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "aceptacion_necesaria": true,
+      "aceptacion_disponible": false,
+      "comprobacion_definida": false
+    }
+  },
+  {
+    "id": "J-EV-PRIO-MENOR-completitud",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-MENOR-completitud",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "No se recibió la información necesaria para determinar las partes aplicables.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": false,
+      "contexto_suficiente": true,
+      "informacion_aplicable_identificada": false,
+      "omisiones_demostradas": null
+    }
+  },
+  {
+    "id": "X-MENOR",
+    "labels": [
+      "ContextoPrioridad"
+    ],
+    "props": {
+      "id": "X-MENOR",
+      "observacion_id": "H-PRIO-MENOR",
+      "info_para_priorizar_suficiente": true,
+      "necesidad_dato_confirmada": true,
+      "dato_para_priorizar_disponible": true,
+      "obligacion_esencial_indefinida": false,
+      "bloqueo_sustantivo_confirmado": false,
+      "hito_acordado": false,
+      "diferimiento_aceptado": true,
+      "impacto_acotado": true,
+      "mapeo_alta_bloqueante": "candidato_activo",
+      "criticidad_valor": "baja",
+      "criticidad_grado": 1
+    }
+  },
+  {
+    "id": "E-X-MENOR",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-X-MENOR",
+      "tipo": "acuerdo",
+      "contenido": "Hito/diferimiento del caso construido MENOR",
+      "localizador": "X-MENOR",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "CR-MENOR",
+    "labels": [
+      "Criticidad"
+    ],
+    "props": {
+      "id": "CR-MENOR",
+      "valor": "baja",
+      "grado_criticidad": 1,
+      "ambito": "Formato de exportación",
+      "fundamento": "Importancia construida para prueba",
+      "modelo_difuso_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "EV-PRIO-EXCEPCION",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionIndividual"
+    ],
+    "props": {
+      "id": "EV-PRIO-EXCEPCION",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "modulo_origen": "evaluacion_individual"
+    }
+  },
+  {
+    "id": "E-EV-PRIO-EXCEPCION",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-PRIO-EXCEPCION",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-PRIO-EXCEPCION",
+      "localizador": "EV-PRIO-EXCEPCION",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "J-EV-PRIO-EXCEPCION-atomicidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-EXCEPCION-atomicidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Una obligación evaluable con unidad de aceptación confirmada.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "obligaciones_independientes": 1,
+      "unidad_aceptacion_confirmada": true
+    }
+  },
+  {
+    "id": "J-EV-PRIO-EXCEPCION-ambiguedad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-EXCEPCION-ambiguedad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una; análisis construido para probar el tratamiento de SM3.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "lecturas_residuales": 2,
+      "delimitacion_confirmada": false,
+      "severidad_propuesta": "baja",
+      "puntuacion_severidad_propuesta": 2
+    }
+  },
+  {
+    "id": "J-EV-PRIO-EXCEPCION-verificabilidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-EXCEPCION-verificabilidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "La aceptación necesaria no fue recibida; no se puede fijar una condición de aprobación.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "aceptacion_necesaria": true,
+      "aceptacion_disponible": false,
+      "comprobacion_definida": false
+    }
+  },
+  {
+    "id": "J-EV-PRIO-EXCEPCION-completitud",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-EXCEPCION-completitud",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "No se recibió la información necesaria para determinar las partes aplicables.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": false,
+      "contexto_suficiente": true,
+      "informacion_aplicable_identificada": false,
+      "omisiones_demostradas": null
+    }
+  },
+  {
+    "id": "X-EXCEPCION",
+    "labels": [
+      "ContextoPrioridad"
+    ],
+    "props": {
+      "id": "X-EXCEPCION",
+      "observacion_id": "H-PRIO-EXCEPCION",
+      "info_para_priorizar_suficiente": true,
+      "necesidad_dato_confirmada": true,
+      "dato_para_priorizar_disponible": true,
+      "obligacion_esencial_indefinida": false,
+      "bloqueo_sustantivo_confirmado": false,
+      "hito_acordado": false,
+      "diferimiento_aceptado": false,
+      "impacto_acotado": false,
+      "mapeo_alta_bloqueante": "candidato_activo",
+      "criticidad_valor": "alta",
+      "criticidad_grado": 8.5
+    }
+  },
+  {
+    "id": "E-X-EXCEPCION",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-X-EXCEPCION",
+      "tipo": "acuerdo",
+      "contenido": "Hito/diferimiento del caso construido EXCEPCION",
+      "localizador": "X-EXCEPCION",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "CR-EXCEPCION",
+    "labels": [
+      "Criticidad"
+    ],
+    "props": {
+      "id": "CR-EXCEPCION",
+      "valor": "alta",
+      "grado_criticidad": 8.5,
+      "ambito": "Formato de exportación",
+      "fundamento": "Importancia construida para prueba",
+      "modelo_difuso_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "EV-PRIO-FRONTERA",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionIndividual"
+    ],
+    "props": {
+      "id": "EV-PRIO-FRONTERA",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "modulo_origen": "evaluacion_individual"
+    }
+  },
+  {
+    "id": "E-EV-PRIO-FRONTERA",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-PRIO-FRONTERA",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-PRIO-FRONTERA",
+      "localizador": "EV-PRIO-FRONTERA",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "J-EV-PRIO-FRONTERA-atomicidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-FRONTERA-atomicidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Una obligación evaluable con unidad de aceptación confirmada.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "obligaciones_independientes": 1,
+      "unidad_aceptacion_confirmada": true
+    }
+  },
+  {
+    "id": "J-EV-PRIO-FRONTERA-ambiguedad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-FRONTERA-ambiguedad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una; análisis construido para probar el tratamiento de SM3.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "lecturas_residuales": 2,
+      "delimitacion_confirmada": false,
+      "severidad_propuesta": "media",
+      "puntuacion_severidad_propuesta": 6.5
+    }
+  },
+  {
+    "id": "J-EV-PRIO-FRONTERA-verificabilidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-FRONTERA-verificabilidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "La aceptación necesaria no fue recibida; no se puede fijar una condición de aprobación.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "aceptacion_necesaria": true,
+      "aceptacion_disponible": false,
+      "comprobacion_definida": false
+    }
+  },
+  {
+    "id": "J-EV-PRIO-FRONTERA-completitud",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-FRONTERA-completitud",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "No se recibió la información necesaria para determinar las partes aplicables.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": false,
+      "contexto_suficiente": true,
+      "informacion_aplicable_identificada": false,
+      "omisiones_demostradas": null
+    }
+  },
+  {
+    "id": "X-FRONTERA",
+    "labels": [
+      "ContextoPrioridad"
+    ],
+    "props": {
+      "id": "X-FRONTERA",
+      "observacion_id": "H-PRIO-FRONTERA",
+      "info_para_priorizar_suficiente": true,
+      "necesidad_dato_confirmada": true,
+      "dato_para_priorizar_disponible": true,
+      "obligacion_esencial_indefinida": false,
+      "bloqueo_sustantivo_confirmado": false,
+      "hito_acordado": true,
+      "diferimiento_aceptado": false,
+      "impacto_acotado": false,
+      "mapeo_alta_bloqueante": "candidato_activo",
+      "criticidad_valor": "media",
+      "criticidad_grado": 6.5
+    }
+  },
+  {
+    "id": "E-X-FRONTERA",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-X-FRONTERA",
+      "tipo": "acuerdo",
+      "contenido": "Hito/diferimiento del caso construido FRONTERA",
+      "localizador": "X-FRONTERA",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "CR-FRONTERA",
+    "labels": [
+      "Criticidad"
+    ],
+    "props": {
+      "id": "CR-FRONTERA",
+      "valor": "media",
+      "grado_criticidad": 6.5,
+      "ambito": "Formato de exportación",
+      "fundamento": "Importancia construida para prueba",
+      "modelo_difuso_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "EV-PRIO-SIN-HITO",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionIndividual"
+    ],
+    "props": {
+      "id": "EV-PRIO-SIN-HITO",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "modulo_origen": "evaluacion_individual"
+    }
+  },
+  {
+    "id": "E-EV-PRIO-SIN-HITO",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-PRIO-SIN-HITO",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-PRIO-SIN-HITO",
+      "localizador": "EV-PRIO-SIN-HITO",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "J-EV-PRIO-SIN-HITO-atomicidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-SIN-HITO-atomicidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Una obligación evaluable con unidad de aceptación confirmada.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "obligaciones_independientes": 1,
+      "unidad_aceptacion_confirmada": true
+    }
+  },
+  {
+    "id": "J-EV-PRIO-SIN-HITO-ambiguedad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-SIN-HITO-ambiguedad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una; análisis construido para probar el tratamiento de SM3.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "lecturas_residuales": 2,
+      "delimitacion_confirmada": false,
+      "severidad_propuesta": "media",
+      "puntuacion_severidad_propuesta": 5
+    }
+  },
+  {
+    "id": "J-EV-PRIO-SIN-HITO-verificabilidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-SIN-HITO-verificabilidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "La aceptación necesaria no fue recibida; no se puede fijar una condición de aprobación.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "aceptacion_necesaria": true,
+      "aceptacion_disponible": false,
+      "comprobacion_definida": false
+    }
+  },
+  {
+    "id": "J-EV-PRIO-SIN-HITO-completitud",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-SIN-HITO-completitud",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "No se recibió la información necesaria para determinar las partes aplicables.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": false,
+      "contexto_suficiente": true,
+      "informacion_aplicable_identificada": false,
+      "omisiones_demostradas": null
+    }
+  },
+  {
+    "id": "X-SIN-HITO",
+    "labels": [
+      "ContextoPrioridad"
+    ],
+    "props": {
+      "id": "X-SIN-HITO",
+      "observacion_id": "H-PRIO-SIN-HITO",
+      "info_para_priorizar_suficiente": true,
+      "necesidad_dato_confirmada": true,
+      "dato_para_priorizar_disponible": true,
+      "obligacion_esencial_indefinida": false,
+      "bloqueo_sustantivo_confirmado": false,
+      "hito_acordado": false,
+      "diferimiento_aceptado": false,
+      "impacto_acotado": false,
+      "mapeo_alta_bloqueante": "candidato_activo",
+      "criticidad_valor": "baja",
+      "criticidad_grado": 2
+    }
+  },
+  {
+    "id": "E-X-SIN-HITO",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-X-SIN-HITO",
+      "tipo": "acuerdo",
+      "contenido": "Hito/diferimiento del caso construido SIN-HITO",
+      "localizador": "X-SIN-HITO",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "CR-SIN-HITO",
+    "labels": [
+      "Criticidad"
+    ],
+    "props": {
+      "id": "CR-SIN-HITO",
+      "valor": "baja",
+      "grado_criticidad": 2,
+      "ambito": "Formato de exportación",
+      "fundamento": "Importancia construida para prueba",
+      "modelo_difuso_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "EV-PRIO-FUERA-RANGO",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionIndividual"
+    ],
+    "props": {
+      "id": "EV-PRIO-FUERA-RANGO",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "modulo_origen": "evaluacion_individual"
+    }
+  },
+  {
+    "id": "E-EV-PRIO-FUERA-RANGO",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-PRIO-FUERA-RANGO",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-PRIO-FUERA-RANGO",
+      "localizador": "EV-PRIO-FUERA-RANGO",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "J-EV-PRIO-FUERA-RANGO-atomicidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-FUERA-RANGO-atomicidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Una obligación evaluable con unidad de aceptación confirmada.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "obligaciones_independientes": 1,
+      "unidad_aceptacion_confirmada": true
+    }
+  },
+  {
+    "id": "J-EV-PRIO-FUERA-RANGO-ambiguedad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-FUERA-RANGO-ambiguedad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una; análisis construido para probar el tratamiento de SM3.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "lecturas_residuales": 2,
+      "delimitacion_confirmada": false,
+      "severidad_propuesta": "media",
+      "puntuacion_severidad_propuesta": 12
+    }
+  },
+  {
+    "id": "J-EV-PRIO-FUERA-RANGO-verificabilidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-FUERA-RANGO-verificabilidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "La aceptación necesaria no fue recibida; no se puede fijar una condición de aprobación.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "aceptacion_necesaria": true,
+      "aceptacion_disponible": false,
+      "comprobacion_definida": false
+    }
+  },
+  {
+    "id": "J-EV-PRIO-FUERA-RANGO-completitud",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-PRIO-FUERA-RANGO-completitud",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "No se recibió la información necesaria para determinar las partes aplicables.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": false,
+      "contexto_suficiente": true,
+      "informacion_aplicable_identificada": false,
+      "omisiones_demostradas": null
+    }
+  },
+  {
+    "id": "X-FUERA-RANGO",
+    "labels": [
+      "ContextoPrioridad"
+    ],
+    "props": {
+      "id": "X-FUERA-RANGO",
+      "observacion_id": "H-PRIO-FUERA-RANGO",
+      "info_para_priorizar_suficiente": true,
+      "necesidad_dato_confirmada": true,
+      "dato_para_priorizar_disponible": true,
+      "obligacion_esencial_indefinida": false,
+      "bloqueo_sustantivo_confirmado": false,
+      "hito_acordado": true,
+      "diferimiento_aceptado": false,
+      "impacto_acotado": false,
+      "mapeo_alta_bloqueante": "candidato_activo",
+      "criticidad_valor": "media",
+      "criticidad_grado": 5
+    }
+  },
+  {
+    "id": "E-X-FUERA-RANGO",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-X-FUERA-RANGO",
+      "tipo": "acuerdo",
+      "contenido": "Hito/diferimiento del caso construido FUERA-RANGO",
+      "localizador": "X-FUERA-RANGO",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "CR-FUERA-RANGO",
+    "labels": [
+      "Criticidad"
+    ],
+    "props": {
+      "id": "CR-FUERA-RANGO",
+      "valor": "media",
+      "grado_criticidad": 5,
+      "ambito": "Formato de exportación",
+      "fundamento": "Importancia construida para prueba",
+      "modelo_difuso_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "MPR-baja-baja",
+    "labels": [
+      "CeldaMatriz"
+    ],
+    "props": {
+      "id": "MPR-baja-baja",
+      "severidad": "baja",
+      "criticidad": "baja",
+      "categoria": "menor",
+      "version": "MPR-01-1.0",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MPR-baja-media",
+    "labels": [
+      "CeldaMatriz"
+    ],
+    "props": {
+      "id": "MPR-baja-media",
+      "severidad": "baja",
+      "criticidad": "media",
+      "categoria": "mayor",
+      "version": "MPR-01-1.0",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MPR-baja-alta",
+    "labels": [
+      "CeldaMatriz"
+    ],
+    "props": {
+      "id": "MPR-baja-alta",
+      "severidad": "baja",
+      "criticidad": "alta",
+      "categoria": "bloqueante",
+      "version": "MPR-01-1.0",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MPR-media-baja",
+    "labels": [
+      "CeldaMatriz"
+    ],
+    "props": {
+      "id": "MPR-media-baja",
+      "severidad": "media",
+      "criticidad": "baja",
+      "categoria": "mayor",
+      "version": "MPR-01-1.0",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MPR-media-media",
+    "labels": [
+      "CeldaMatriz"
+    ],
+    "props": {
+      "id": "MPR-media-media",
+      "severidad": "media",
+      "criticidad": "media",
+      "categoria": "mayor",
+      "version": "MPR-01-1.0",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MPR-media-alta",
+    "labels": [
+      "CeldaMatriz"
+    ],
+    "props": {
+      "id": "MPR-media-alta",
+      "severidad": "media",
+      "criticidad": "alta",
+      "categoria": "bloqueante",
+      "version": "MPR-01-1.0",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MPR-alta-baja",
+    "labels": [
+      "CeldaMatriz"
+    ],
+    "props": {
+      "id": "MPR-alta-baja",
+      "severidad": "alta",
+      "criticidad": "baja",
+      "categoria": "mayor",
+      "version": "MPR-01-1.0",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MPR-alta-media",
+    "labels": [
+      "CeldaMatriz"
+    ],
+    "props": {
+      "id": "MPR-alta-media",
+      "severidad": "alta",
+      "criticidad": "media",
+      "categoria": "bloqueante",
+      "version": "MPR-01-1.0",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MPR-alta-alta",
+    "labels": [
+      "CeldaMatriz"
+    ],
+    "props": {
+      "id": "MPR-alta-alta",
+      "severidad": "alta",
+      "criticidad": "alta",
+      "categoria": "bloqueante",
+      "version": "MPR-01-1.0",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "CONTROL-SIN-ANEXO",
+    "labels": [
+      "CasoMetrica"
+    ],
+    "props": {
+      "id": "CONTROL-SIN-ANEXO",
+      "hallazgos_demostrados": 0,
+      "juicios_cerrados": 3,
+      "juicios_aplicables": 4,
+      "pendientes_contexto": 1,
+      "calidad_observada": "sin_defectos_demostrados"
+    }
+  },
+  {
+    "id": "CONTROL-ANEXO-RECIBIDO",
+    "labels": [
+      "CasoMetrica"
+    ],
+    "props": {
+      "id": "CONTROL-ANEXO-RECIBIDO",
+      "hallazgos_demostrados": 0,
+      "juicios_cerrados": 4,
+      "juicios_aplicables": 4,
+      "pendientes_contexto": 0,
+      "calidad_observada": "sin_defectos_demostrados"
+    }
+  },
+  {
+    "id": "CONTROL-CON-DEFECTO",
+    "labels": [
+      "CasoMetrica"
+    ],
+    "props": {
+      "id": "CONTROL-CON-DEFECTO",
+      "hallazgos_demostrados": 1,
+      "juicios_cerrados": 4,
+      "juicios_aplicables": 4,
+      "pendientes_contexto": 0,
+      "calidad_observada": "con_defectos_demostrados"
+    }
+  },
+  {
+    "id": "DOC-HAB-v1",
+    "labels": [
+      "DocumentoVersion"
+    ],
+    "props": {
+      "id": "DOC-HAB-v1",
+      "documento_id": "DOC-HAB",
+      "version": "1",
+      "titulo": "Especificación académica DOC-HAB-v1",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "materiales_disponibles": [
+        "Documento principal"
+      ],
+      "referencias_no_disponibles": []
+    }
+  },
+  {
+    "id": "RQ-HAB-v1",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-HAB-v1",
+      "id_logico": "RQ-HAB",
+      "texto_original": "El sistema debe notificar a los clientes habituales.",
+      "tipo": "funcional",
+      "localizador": "RQ-HAB-v1",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-HAB-v1",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-HAB-v1",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-HAB-v1",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-HAB-v1",
+      "tipo": "fragmento",
+      "contenido": "El sistema debe notificar a los clientes habituales.",
+      "localizador": "RQ-HAB-v1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-HAB-v1"
+    }
+  },
+  {
+    "id": "EV-HAB",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionIndividual"
+    ],
+    "props": {
+      "id": "EV-HAB",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "modulo_origen": "evaluacion_individual"
+    }
+  },
+  {
+    "id": "E-EV-HAB",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-HAB",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-HAB",
+      "localizador": "EV-HAB",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "J-EV-HAB-atomicidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-HAB-atomicidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Cotejo construido de atomicidad",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "obligaciones_independientes": 1,
+      "unidad_aceptacion_confirmada": true
+    }
+  },
+  {
+    "id": "J-EV-HAB-ambiguedad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-HAB-ambiguedad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "El glosario define compras frecuentes sin fijar frecuencia; valoración 6/5, pero falta cerrar la interpretación para el juicio.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": false,
+      "contexto_suficiente": true,
+      "lecturas_residuales": 2,
+      "delimitacion_confirmada": false,
+      "divergencia_lecturas": 6,
+      "delimitacion_contexto": 5,
+      "valoracion_confirmada": true,
+      "alcance_valoracion_revisado": true
+    }
+  },
+  {
+    "id": "J-EV-HAB-verificabilidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-HAB-verificabilidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Cotejo construido de verificabilidad",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "aceptacion_necesaria": true,
+      "aceptacion_disponible": false,
+      "comprobacion_definida": false
+    }
+  },
+  {
+    "id": "J-EV-HAB-completitud",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-HAB-completitud",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Cotejo construido de completitud",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": false,
+      "contexto_suficiente": true,
+      "informacion_aplicable_identificada": false,
+      "omisiones_demostradas": null
+    }
+  },
+  {
+    "id": "E-HAB-GLOSARIO",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-HAB-GLOSARIO",
+      "tipo": "documento",
+      "contenido": "Cliente habitual: cliente con compras frecuentes. No fija una frecuencia.",
+      "localizador": "Glosario construido de DOC-HAB-v1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-HAB-v1"
+    }
+  },
+  {
+    "id": "DOC-AMB-SIN-DATO-v1",
+    "labels": [
+      "DocumentoVersion"
+    ],
+    "props": {
+      "id": "DOC-AMB-SIN-DATO-v1",
+      "documento_id": "DOC-AMB-SIN-DATO",
+      "version": "1",
+      "titulo": "Especificación académica DOC-AMB-SIN-DATO-v1",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "materiales_disponibles": [
+        "Documento principal"
+      ],
+      "referencias_no_disponibles": []
+    }
+  },
+  {
+    "id": "RQ-AMB-SIN-DATO-v1",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-AMB-SIN-DATO-v1",
+      "id_logico": "RQ-AMB-SIN-DATO",
+      "texto_original": "El sistema debe responder de forma adecuada.",
+      "tipo": "funcional",
+      "localizador": "RQ-AMB-SIN-DATO-v1",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-AMB-SIN-DATO-v1",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-AMB-SIN-DATO-v1",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-AMB-SIN-DATO-v1",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-AMB-SIN-DATO-v1",
+      "tipo": "fragmento",
+      "contenido": "El sistema debe responder de forma adecuada.",
+      "localizador": "RQ-AMB-SIN-DATO-v1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-AMB-SIN-DATO-v1"
+    }
+  },
+  {
+    "id": "EV-AMB-SIN-DATO",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionIndividual"
+    ],
+    "props": {
+      "id": "EV-AMB-SIN-DATO",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "modulo_origen": "evaluacion_individual"
+    }
+  },
+  {
+    "id": "E-EV-AMB-SIN-DATO",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-AMB-SIN-DATO",
+      "tipo": "analisis",
+      "contenido": "Premisas registradas por el grupo para EV-AMB-SIN-DATO",
+      "localizador": "EV-AMB-SIN-DATO",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "J-EV-AMB-SIN-DATO-atomicidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-AMB-SIN-DATO-atomicidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Cotejo construido de atomicidad",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "obligaciones_independientes": 1,
+      "unidad_aceptacion_confirmada": true
+    }
+  },
+  {
+    "id": "J-EV-AMB-SIN-DATO-ambiguedad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-AMB-SIN-DATO-ambiguedad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "No hay valoración fundamentada de divergencia y delimitación.",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": false,
+      "contexto_suficiente": true,
+      "lecturas_residuales": 2,
+      "delimitacion_confirmada": false
+    }
+  },
+  {
+    "id": "J-EV-AMB-SIN-DATO-verificabilidad",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-AMB-SIN-DATO-verificabilidad",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Cotejo construido de verificabilidad",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": true,
+      "contexto_suficiente": true,
+      "aceptacion_necesaria": true,
+      "aceptacion_disponible": false,
+      "comprobacion_definida": false
+    }
+  },
+  {
+    "id": "J-EV-AMB-SIN-DATO-completitud",
+    "labels": [
+      "JuicioCriterio"
+    ],
+    "props": {
+      "id": "J-EV-AMB-SIN-DATO-completitud",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "justificacion": "Cotejo construido de completitud",
+      "revision_semantica_completa": true,
+      "info_necesaria_identificada": true,
+      "info_disponible": false,
+      "contexto_suficiente": true,
+      "informacion_aplicable_identificada": false,
+      "omisiones_demostradas": null
+    }
+  },
+  {
+    "id": "DOC-PED-v1",
+    "labels": [
+      "DocumentoVersion"
+    ],
+    "props": {
+      "id": "DOC-PED-v1",
+      "documento_id": "DOC-PED",
+      "version": "1",
+      "titulo": "Especificación académica DOC-PED-v1",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "materiales_disponibles": [
+        "Documento principal"
+      ],
+      "referencias_no_disponibles": []
+    }
+  },
+  {
+    "id": "RQ-PED-A-v1",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-PED-A-v1",
+      "id_logico": "RQ-PED-A",
+      "texto_original": "Se permite modificar el pedido antes del despacho.",
+      "tipo": "funcional",
+      "localizador": "RQ-PED-A-v1",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-PED-A-v1",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-PED-A-v1",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-PED-A-v1",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-PED-A-v1",
+      "tipo": "fragmento",
+      "contenido": "Se permite modificar el pedido antes del despacho.",
+      "localizador": "RQ-PED-A-v1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-PED-v1"
+    }
+  },
+  {
+    "id": "RQ-PED-B-v1",
+    "labels": [
+      "Requerimiento"
+    ],
+    "props": {
+      "id": "RQ-PED-B-v1",
+      "id_logico": "RQ-PED-B",
+      "texto_original": "Se prohíbe modificar el pedido después de la preparación.",
+      "tipo": "funcional",
+      "localizador": "RQ-PED-B-v1",
+      "entrada_valida": true
+    }
+  },
+  {
+    "id": "CTX-RQ-PED-B-v1",
+    "labels": [
+      "ContextoRequerimiento"
+    ],
+    "props": {
+      "id": "CTX-RQ-PED-B-v1",
+      "referencias_disponibles": [],
+      "alcance_controlado": true
+    }
+  },
+  {
+    "id": "E-RQ-PED-B-v1",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-RQ-PED-B-v1",
+      "tipo": "fragmento",
+      "contenido": "Se prohíbe modificar el pedido después de la preparación.",
+      "localizador": "RQ-PED-B-v1",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "documento_version": "DOC-PED-v1"
+    }
+  },
+  {
+    "id": "EV-PED-FRONTERA",
+    "labels": [
+      "Evaluacion",
+      "EvaluacionCruzada"
+    ],
+    "props": {
+      "id": "EV-PED-FRONTERA",
+      "fecha": "2026-10-31T21:00:00-03:00",
+      "entrada_valida": true,
+      "publicado": false,
+      "estado": "en_revision",
+      "tipo_analisis": "comparacion",
+      "modulo_origen": "analisis_cruzado",
+      "datos_controlados": true,
+      "dato_necesario_faltante": false,
+      "escenarios": "parciales",
+      "resultados_incompatibles": true,
+      "excepcion_resuelve": false,
+      "interpretacion_cerrada": false,
+      "region_comun_definida": false,
+      "validacion_operativa": "candidata",
+      "solapamiento_escenario": 5.0,
+      "incompatibilidad_resultados": 8.0,
+      "valoracion_confirmada": true
+    }
+  },
+  {
+    "id": "E-EV-PED-FRONTERA",
+    "labels": [
+      "Evidencia"
+    ],
+    "props": {
+      "id": "E-EV-PED-FRONTERA",
+      "tipo": "analisis",
+      "contenido": "Antes del despacho y después de la preparación pueden compartir un intervalo no delimitado. Las valoraciones 5 y 8 describen el conflicto; no prueban su región exacta.",
+      "localizador": "EV-PED-FRONTERA",
+      "naturaleza": "caso_construido",
+      "autor_registro": "Grupo 10",
+      "fecha": "2026-10-31T21:00:00-03:00"
+    }
+  },
+  {
+    "id": "S-PI3-AMB",
+    "labels": [
+      "Fuente"
+    ],
+    "props": {
+      "id": "S-PI3-AMB",
+      "nombre": "Costa_Juan_Pablo_PI3_U1.pdf",
+      "tipo": "documento",
+      "estado": "consultada",
+      "contacto": "Costa_Juan_Pablo_PI3_U1.pdf",
+      "validez": "Formalización candidata; sin calibración con expertos reales"
+    }
+  },
+  {
+    "id": "MD-AMB-1.0",
+    "labels": [
+      "ModeloDifuso"
+    ],
+    "props": {
+      "id": "MD-AMB-1.0",
+      "nombre": "Ambigüedad residual",
+      "version": "1.0",
+      "estado_validacion": "candidata",
+      "tipo": "Mamdani",
+      "operador_and": "min",
+      "operador_or": "max",
+      "agregacion": "max",
+      "desdifusificacion": "centroide discreto",
+      "puntos": 1001,
+      "paso": 0.001,
+      "pi3_adjuntado": true,
+      "localizador": "Costa PI3 §§2-3"
+    }
+  },
+  {
+    "id": "MD-AMB-1.0-x",
+    "labels": [
+      "VariableDifusa"
+    ],
+    "props": {
+      "id": "MD-AMB-1.0-x",
+      "nombre": "Divergencia_Lecturas",
+      "rol": "entrada",
+      "min": 0.0,
+      "max": 10.0,
+      "slot": "premisa_x",
+      "modelo_version": "MD-AMB-1.0"
+    }
+  },
+  {
+    "id": "MD-AMB-1.0-x-baja",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-AMB-1.0-x-baja",
+      "nombre": "Baja",
+      "codigo": "baja",
+      "centro": 0.0,
+      "sigma": 1.8,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-AMB-1.0-x-media",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-AMB-1.0-x-media",
+      "nombre": "Media",
+      "codigo": "media",
+      "centro": 5.0,
+      "sigma": 1.5,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-AMB-1.0-x-alta",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-AMB-1.0-x-alta",
+      "nombre": "Alta",
+      "codigo": "alta",
+      "centro": 10.0,
+      "sigma": 1.9,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-AMB-1.0-y",
+    "labels": [
+      "VariableDifusa"
+    ],
+    "props": {
+      "id": "MD-AMB-1.0-y",
+      "nombre": "Delimitacion_Contexto",
+      "rol": "entrada",
+      "min": 0.0,
+      "max": 10.0,
+      "slot": "premisa_y",
+      "modelo_version": "MD-AMB-1.0"
+    }
+  },
+  {
+    "id": "MD-AMB-1.0-y-baja",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-AMB-1.0-y-baja",
+      "nombre": "Débil",
+      "codigo": "baja",
+      "centro": 0.0,
+      "sigma": 1.9,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-AMB-1.0-y-media",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-AMB-1.0-y-media",
+      "nombre": "Parcial",
+      "codigo": "media",
+      "centro": 5.0,
+      "sigma": 1.5,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-AMB-1.0-y-alta",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-AMB-1.0-y-alta",
+      "nombre": "Fuerte",
+      "codigo": "alta",
+      "centro": 10.0,
+      "sigma": 1.8,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-AMB-1.0-z",
+    "labels": [
+      "VariableDifusa"
+    ],
+    "props": {
+      "id": "MD-AMB-1.0-z",
+      "nombre": "Ambiguedad_Residual",
+      "rol": "salida",
+      "min": 0.0,
+      "max": 1.0,
+      "slot": "F11.grado_ambiguedad",
+      "modelo_version": "MD-AMB-1.0"
+    }
+  },
+  {
+    "id": "MD-AMB-1.0-z-baja",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-AMB-1.0-z-baja",
+      "nombre": "Baja",
+      "codigo": "baja",
+      "centro": 0.0,
+      "sigma": 0.18,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-AMB-1.0-z-media",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-AMB-1.0-z-media",
+      "nombre": "Media",
+      "codigo": "media",
+      "centro": 0.5,
+      "sigma": 0.15,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-AMB-1.0-z-alta",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-AMB-1.0-z-alta",
+      "nombre": "Alta",
+      "codigo": "alta",
+      "centro": 1.0,
+      "sigma": 0.18,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "AMB-RB1",
+    "labels": [
+      "ReglaDifusa"
+    ],
+    "props": {
+      "id": "AMB-RB1",
+      "antecedente": "min(xa, yb)",
+      "salida": "alta",
+      "estado_validacion": "candidata",
+      "origen": "Costa PI3 §§2-3",
+      "regla_crisp": "EVI-HC02",
+      "orden": 1
+    }
+  },
+  {
+    "id": "AMB-RB2",
+    "labels": [
+      "ReglaDifusa"
+    ],
+    "props": {
+      "id": "AMB-RB2",
+      "antecedente": "min(xa, ym)",
+      "salida": "media",
+      "estado_validacion": "candidata",
+      "origen": "Costa PI3 §§2-3",
+      "regla_crisp": "EVI-HC02/HC03",
+      "orden": 2
+    }
+  },
+  {
+    "id": "AMB-RB3",
+    "labels": [
+      "ReglaDifusa"
+    ],
+    "props": {
+      "id": "AMB-RB3",
+      "antecedente": "min(xm, max(yb, ym))",
+      "salida": "media",
+      "estado_validacion": "candidata",
+      "origen": "Costa PI3 §§2-3",
+      "regla_crisp": "EVI-HC02",
+      "orden": 3
+    }
+  },
+  {
+    "id": "AMB-RB4",
+    "labels": [
+      "ReglaDifusa"
+    ],
+    "props": {
+      "id": "AMB-RB4",
+      "antecedente": "max(xb, ya)",
+      "salida": "baja",
+      "estado_validacion": "candidata",
+      "origen": "Costa PI3 §§2-3",
+      "regla_crisp": "EVI-HC03/HC09",
+      "orden": 4
+    }
+  },
+  {
+    "id": "S-PI3-CONTR",
+    "labels": [
+      "Fuente"
+    ],
+    "props": {
+      "id": "S-PI3-CONTR",
+      "nombre": "Isgro_Tomas_Valentino_PI3_U1.pdf",
+      "tipo": "documento",
+      "estado": "consultada",
+      "contacto": "Isgro_Tomas_Valentino_PI3_U1.pdf",
+      "validez": "Formalización candidata; sin calibración con expertos reales"
+    }
+  },
+  {
+    "id": "MD-CONTR-1.0",
+    "labels": [
+      "ModeloDifuso"
+    ],
+    "props": {
+      "id": "MD-CONTR-1.0",
+      "nombre": "Pertenencia a contradicción",
+      "version": "1.0",
+      "estado_validacion": "candidata",
+      "tipo": "Mamdani",
+      "operador_and": "min",
+      "operador_or": "max",
+      "agregacion": "max",
+      "desdifusificacion": "centroide discreto",
+      "puntos": 1001,
+      "paso": 0.001,
+      "pi3_adjuntado": true,
+      "localizador": "Isgró PI3 §§2-3"
+    }
+  },
+  {
+    "id": "MD-CONTR-1.0-x",
+    "labels": [
+      "VariableDifusa"
+    ],
+    "props": {
+      "id": "MD-CONTR-1.0-x",
+      "nombre": "Solapamiento_Escenario",
+      "rol": "entrada",
+      "min": 0.0,
+      "max": 10.0,
+      "slot": "premisa_x",
+      "modelo_version": "MD-CONTR-1.0"
+    }
+  },
+  {
+    "id": "MD-CONTR-1.0-x-baja",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-CONTR-1.0-x-baja",
+      "nombre": "Bajo",
+      "codigo": "baja",
+      "centro": 0.0,
+      "sigma": 1.8,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-CONTR-1.0-x-media",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-CONTR-1.0-x-media",
+      "nombre": "Medio",
+      "codigo": "media",
+      "centro": 5.0,
+      "sigma": 1.5,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-CONTR-1.0-x-alta",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-CONTR-1.0-x-alta",
+      "nombre": "Alto",
+      "codigo": "alta",
+      "centro": 10.0,
+      "sigma": 1.8,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-CONTR-1.0-y",
+    "labels": [
+      "VariableDifusa"
+    ],
+    "props": {
+      "id": "MD-CONTR-1.0-y",
+      "nombre": "Incompatibilidad_Resultados",
+      "rol": "entrada",
+      "min": 0.0,
+      "max": 10.0,
+      "slot": "premisa_y",
+      "modelo_version": "MD-CONTR-1.0"
+    }
+  },
+  {
+    "id": "MD-CONTR-1.0-y-baja",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-CONTR-1.0-y-baja",
+      "nombre": "Baja",
+      "codigo": "baja",
+      "centro": 0.0,
+      "sigma": 2,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-CONTR-1.0-y-media",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-CONTR-1.0-y-media",
+      "nombre": "Media",
+      "codigo": "media",
+      "centro": 5.0,
+      "sigma": 1.5,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-CONTR-1.0-y-alta",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-CONTR-1.0-y-alta",
+      "nombre": "Alta",
+      "codigo": "alta",
+      "centro": 10.0,
+      "sigma": 1.8,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-CONTR-1.0-z",
+    "labels": [
+      "VariableDifusa"
+    ],
+    "props": {
+      "id": "MD-CONTR-1.0-z",
+      "nombre": "Pertenencia_Contradiccion",
+      "rol": "salida",
+      "min": 0.0,
+      "max": 1.0,
+      "slot": "F15.grado_contradiccion",
+      "modelo_version": "MD-CONTR-1.0"
+    }
+  },
+  {
+    "id": "MD-CONTR-1.0-z-baja",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-CONTR-1.0-z-baja",
+      "nombre": "Baja",
+      "codigo": "baja",
+      "centro": 0.0,
+      "sigma": 0.18,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-CONTR-1.0-z-media",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-CONTR-1.0-z-media",
+      "nombre": "Intermedia",
+      "codigo": "media",
+      "centro": 0.5,
+      "sigma": 0.15,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-CONTR-1.0-z-alta",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-CONTR-1.0-z-alta",
+      "nombre": "Alta",
+      "codigo": "alta",
+      "centro": 1.0,
+      "sigma": 0.18,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "CONTR-RB1",
+    "labels": [
+      "ReglaDifusa"
+    ],
+    "props": {
+      "id": "CONTR-RB1",
+      "antecedente": "min(xa, ya)",
+      "salida": "alta",
+      "estado_validacion": "candidata",
+      "origen": "Isgró PI3 §§2-3",
+      "regla_crisp": "ACC-RD05",
+      "orden": 1
+    }
+  },
+  {
+    "id": "CONTR-RB2",
+    "labels": [
+      "ReglaDifusa"
+    ],
+    "props": {
+      "id": "CONTR-RB2",
+      "antecedente": "min(xm, ya)",
+      "salida": "media",
+      "estado_validacion": "candidata",
+      "origen": "Isgró PI3 §§2-3",
+      "regla_crisp": "ACC-RD06/RD07",
+      "orden": 2
+    }
+  },
+  {
+    "id": "CONTR-RB3",
+    "labels": [
+      "ReglaDifusa"
+    ],
+    "props": {
+      "id": "CONTR-RB3",
+      "antecedente": "min(xa, ym)",
+      "salida": "media",
+      "estado_validacion": "candidata",
+      "origen": "Isgró PI3 §§2-3",
+      "regla_crisp": "ACC-RD05",
+      "orden": 3
+    }
+  },
+  {
+    "id": "CONTR-RB4",
+    "labels": [
+      "ReglaDifusa"
+    ],
+    "props": {
+      "id": "CONTR-RB4",
+      "antecedente": "max(xb, yb)",
+      "salida": "baja",
+      "estado_validacion": "candidata",
+      "origen": "Isgró PI3 §§2-3",
+      "regla_crisp": "ACC-RD03/RD18/RD19",
+      "orden": 4
+    }
+  },
+  {
+    "id": "S-PI3-URG",
+    "labels": [
+      "Fuente"
+    ],
+    "props": {
+      "id": "S-PI3-URG",
+      "nombre": "Lucero_Bruno_PI3_U1.pdf",
+      "tipo": "documento",
+      "estado": "consultada",
+      "contacto": "Lucero_Bruno_PI3_U1.pdf",
+      "validez": "Formalización candidata; sin calibración con expertos reales"
+    }
+  },
+  {
+    "id": "MD-URG-1.0",
+    "labels": [
+      "ModeloDifuso"
+    ],
+    "props": {
+      "id": "MD-URG-1.0",
+      "nombre": "Urgencia de atención",
+      "version": "1.0",
+      "estado_validacion": "candidata",
+      "tipo": "Mamdani",
+      "operador_and": "min",
+      "operador_or": "max",
+      "agregacion": "max",
+      "desdifusificacion": "centroide discreto",
+      "puntos": 1001,
+      "paso": 0.01,
+      "pi3_adjuntado": true,
+      "localizador": "Lucero PI3 §§2-3"
+    }
+  },
+  {
+    "id": "MD-URG-1.0-x",
+    "labels": [
+      "VariableDifusa"
+    ],
+    "props": {
+      "id": "MD-URG-1.0-x",
+      "nombre": "Severidad_Base",
+      "rol": "entrada",
+      "min": 0.0,
+      "max": 10.0,
+      "slot": "F26.grado_severidad",
+      "modelo_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "MD-URG-1.0-x-baja",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-URG-1.0-x-baja",
+      "nombre": "Baja",
+      "codigo": "baja",
+      "centro": 0.0,
+      "sigma": 1.8,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-URG-1.0-x-media",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-URG-1.0-x-media",
+      "nombre": "Media",
+      "codigo": "media",
+      "centro": 5.0,
+      "sigma": 1.6,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-URG-1.0-x-alta",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-URG-1.0-x-alta",
+      "nombre": "Alta",
+      "codigo": "alta",
+      "centro": 10.0,
+      "sigma": 1.8,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-URG-1.0-y",
+    "labels": [
+      "VariableDifusa"
+    ],
+    "props": {
+      "id": "MD-URG-1.0-y",
+      "nombre": "Criticidad_Requerimiento",
+      "rol": "entrada",
+      "min": 0.0,
+      "max": 10.0,
+      "slot": "F27.grado_criticidad",
+      "modelo_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "MD-URG-1.0-y-baja",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-URG-1.0-y-baja",
+      "nombre": "Baja",
+      "codigo": "baja",
+      "centro": 0.0,
+      "sigma": 1.8,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-URG-1.0-y-media",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-URG-1.0-y-media",
+      "nombre": "Media",
+      "codigo": "media",
+      "centro": 5.0,
+      "sigma": 1.6,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-URG-1.0-y-alta",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-URG-1.0-y-alta",
+      "nombre": "Alta",
+      "codigo": "alta",
+      "centro": 10.0,
+      "sigma": 1.8,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-URG-1.0-z",
+    "labels": [
+      "VariableDifusa"
+    ],
+    "props": {
+      "id": "MD-URG-1.0-z",
+      "nombre": "Urgencia_Atencion",
+      "rol": "salida",
+      "min": 0.0,
+      "max": 10.0,
+      "slot": "F29.grado_urgencia",
+      "modelo_version": "MD-URG-1.0"
+    }
+  },
+  {
+    "id": "MD-URG-1.0-z-baja",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-URG-1.0-z-baja",
+      "nombre": "Baja",
+      "codigo": "baja",
+      "centro": 0.0,
+      "sigma": 1.8,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-URG-1.0-z-media",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-URG-1.0-z-media",
+      "nombre": "Media",
+      "codigo": "media",
+      "centro": 5.0,
+      "sigma": 1.5,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "MD-URG-1.0-z-alta",
+    "labels": [
+      "EtiquetaDifusa"
+    ],
+    "props": {
+      "id": "MD-URG-1.0-z-alta",
+      "nombre": "Alta",
+      "codigo": "alta",
+      "centro": 10.0,
+      "sigma": 1.8,
+      "funcion": "gaussiana",
+      "estado_validacion": "candidata"
+    }
+  },
+  {
+    "id": "URG-RB1",
+    "labels": [
+      "ReglaDifusa"
+    ],
+    "props": {
+      "id": "URG-RB1",
+      "antecedente": "min(ya, max(xm, xa))",
+      "salida": "alta",
+      "estado_validacion": "candidata",
+      "origen": "Lucero PI3 §§2-3",
+      "regla_crisp": "PRC-HC03",
+      "orden": 1
+    }
+  },
+  {
+    "id": "URG-RB2",
+    "labels": [
+      "ReglaDifusa"
+    ],
+    "props": {
+      "id": "URG-RB2",
+      "antecedente": "min(xa, ym)",
+      "salida": "alta",
+      "estado_validacion": "candidata",
+      "origen": "Lucero PI3 §§2-3",
+      "regla_crisp": "PRC-HC03",
+      "orden": 2
+    }
+  },
+  {
+    "id": "URG-RB3",
+    "labels": [
+      "ReglaDifusa"
+    ],
+    "props": {
+      "id": "URG-RB3",
+      "antecedente": "min(xb, ya)",
+      "salida": "alta",
+      "estado_validacion": "candidata",
+      "origen": "Lucero PI3 §§2-3",
+      "regla_crisp": "PRC-HC02",
+      "orden": 3
+    }
+  },
+  {
+    "id": "URG-RB4",
+    "labels": [
+      "ReglaDifusa"
+    ],
+    "props": {
+      "id": "URG-RB4",
+      "antecedente": "min(xm, max(ym, yb))",
+      "salida": "media",
+      "estado_validacion": "candidata",
+      "origen": "Lucero PI3 §§2-3",
+      "regla_crisp": "PRC-HC04",
+      "orden": 4
+    }
+  },
+  {
+    "id": "URG-RB5",
+    "labels": [
+      "ReglaDifusa"
+    ],
+    "props": {
+      "id": "URG-RB5",
+      "antecedente": "max(min(xa, yb), min(xb, ym))",
+      "salida": "media",
+      "estado_validacion": "candidata",
+      "origen": "Lucero PI3 §§2-3",
+      "regla_crisp": "MPR-01",
+      "orden": 5
+    }
+  },
+  {
+    "id": "URG-RB6",
+    "labels": [
+      "ReglaDifusa"
+    ],
+    "props": {
+      "id": "URG-RB6",
+      "antecedente": "min(xb, yb)",
+      "salida": "baja",
+      "estado_validacion": "candidata",
+      "origen": "Lucero PI3 §§2-3",
+      "regla_crisp": "PRC-HC05",
+      "orden": 6
+    }
+  }
+]

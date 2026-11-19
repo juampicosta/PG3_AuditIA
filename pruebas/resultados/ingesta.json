@@ -1,0 +1,925 @@
+{
+  "fecha": "2026-11-19T02:17:28",
+  "version": "PG3-1.3",
+  "preparacion": {
+    "reglas_activadas": 9,
+    "reglas": {
+      "implementada": 41,
+      "catalogada": 25
+    }
+  },
+  "lotes": [
+    "T01",
+    "T02",
+    "T03",
+    "T04",
+    "T05",
+    "T06",
+    "T07",
+    "T08",
+    "T09",
+    "T10",
+    "T11",
+    "T12",
+    "T13",
+    "T14",
+    "T15",
+    "T16",
+    "T17"
+  ],
+  "pruebas": [
+    {
+      "id": "PI-01",
+      "nombre": "Réplica de EV-CAT-01 por el camino genérico",
+      "estado": "pasada",
+      "controles": [
+        {
+          "control": "estados por criterio iguales a EV-CAT-01",
+          "ok": true,
+          "detalle": {
+            "nuevo": {
+              "ambiguedad": "incumple",
+              "verificabilidad": "pendiente",
+              "atomicidad": "cumple",
+              "completitud": "pendiente"
+            },
+            "pg2": {
+              "completitud": "pendiente",
+              "verificabilidad": "pendiente",
+              "ambiguedad": "incumple",
+              "atomicidad": "cumple"
+            }
+          }
+        },
+        {
+          "control": "regla de ambigüedad EVI-HC02",
+          "ok": true,
+          "detalle": [
+            "EVI-HC02"
+          ]
+        },
+        {
+          "control": "evaluación observada (EVI-RD04)",
+          "ok": true,
+          "detalle": null
+        },
+        {
+          "control": "grado de ambigüedad idéntico",
+          "ok": true,
+          "detalle": {
+            "nuevo": 0.7810157758841172,
+            "pg2": 0.7810157758841172
+          }
+        },
+        {
+          "control": "misma banda difusa",
+          "ok": true,
+          "detalle": {
+            "nuevo": "alta",
+            "pg2": "alta"
+          }
+        },
+        {
+          "control": "hallazgo H-…-AMB con severidad media",
+          "ok": true,
+          "detalle": {
+            "descripcion": "Persisten dos lecturas por «rápidamente»; ningún criterio las delimita.",
+            "motivo_pendiente": null,
+            "reglas": [
+              "GL06",
+              "GL07",
+              "EVI-HC02"
+            ],
+            "decision": {
+              "motivo": "preventivo",
+              "reglas": [
+                "PRC-RD02"
+              ],
+              "estado_resolucion": "por_consultar",
+              "categoria_matriz": null,
+              "id": "D-H-T01-A-AMB",
+              "grado_urgencia": null,
+              "criticidad": {
+                "grado": null,
+                "valor": null
+              },
+              "prioridad": "bloqueante",
+              "banda": null
+            },
+            "dato_faltante": null,
+            "severidad": {
+              "grado": 5.0,
+              "valor": "media"
+            },
+            "origen": "EV-T01-A",
+            "id": "H-T01-A-AMB",
+            "tipo_defecto": "ambiguedad",
+            "modulo": "evaluacion_individual",
+            "clase": "Hallazgo"
+          }
+        },
+        {
+          "control": "misma prioridad y motivo que D-H-CAT-B",
+          "ok": true,
+          "detalle": {
+            "nuevo": {
+              "motivo": "preventivo",
+              "reglas": [
+                "PRC-RD02"
+              ],
+              "estado_resolucion": "por_consultar",
+              "categoria_matriz": null,
+              "id": "D-H-T01-A-AMB",
+              "grado_urgencia": null,
+              "criticidad": {
+                "grado": null,
+                "valor": null
+              },
+              "prioridad": "bloqueante",
+              "banda": null
+            },
+            "pg2": [
+              "bloqueante",
+              "preventivo"
+            ]
+          }
+        },
+        {
+          "control": "misma regla de prioridad",
+          "ok": true,
+          "detalle": {
+            "nuevo": [
+              "PRC-RD02"
+            ],
+            "pg2": [
+              "PRC-RD02"
+            ]
+          }
+        },
+        {
+          "control": "dos pendientes (verificabilidad y completitud)",
+          "ok": true,
+          "detalle": [
+            "P-T01-A-COM",
+            "P-T01-A-VER",
+            "H-T01-A-AMB"
+          ]
+        },
+        {
+          "control": "controles PG2 en cero",
+          "ok": true,
+          "detalle": {
+            "resultados_sin_trazabilidad": 0,
+            "decisiones_candidatas_no_provisionales": 0,
+            "incidencias_priorizadas": 0,
+            "cardinalidades_incorrectas": 0,
+            "cierres_sin_reevaluacion": 0,
+            "sigmas_invalidos": 0,
+            "grados_fuera_de_rango": 0,
+            "ciclos_de_reevaluacion": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "PI-02",
+      "nombre": "Réplica de EV-DESC por el camino genérico",
+      "estado": "pasada",
+      "controles": [
+        {
+          "control": "comparación observada con ACC-RD05",
+          "ok": true,
+          "detalle": {
+            "grado_contradiccion": 0.8439745371591536,
+            "estado": "observado",
+            "reglas": [
+              {
+                "descripcion": "SI los escenarios coinciden, los resultados son incompatibles y ninguna excepción los concilia ENTONCES Hallazgo(contradiccion) y se deriva CONTRADICE.",
+                "id": "ACC-RD05"
+              }
+            ],
+            "revision_senior": null,
+            "requerimientos": [
+              "RQ-T02-B-v1",
+              "RQ-T02-A-v1"
+            ],
+            "id": "EV-T02-AB",
+            "escenarios": "coincidentes",
+            "banda": "alta"
+          }
+        },
+        {
+          "control": "grado de contradicción idéntico",
+          "ok": true,
+          "detalle": {
+            "nuevo": 0.8439745371591536,
+            "pg2": 0.8439745371591536
+          }
+        },
+        {
+          "control": "hallazgo de contradicción con severidad alta",
+          "ok": true,
+          "detalle": {
+            "descripcion": "Los precios finales son incompatibles y no se declaró una excepción conciliadora.",
+            "motivo_pendiente": null,
+            "reglas": [
+              "GL06",
+              "GL07",
+              "ACC-RD05"
+            ],
+            "decision": {
+              "motivo": "sustantivo",
+              "reglas": [
+                "PRC-HC01"
+              ],
+              "estado_resolucion": "por_consultar",
+              "categoria_matriz": "bloqueante",
+              "id": "D-H-T02-AB",
+              "grado_urgencia": 8.082999080276148,
+              "criticidad": {
+                "grado": 9.0,
+                "valor": "alta"
+              },
+              "prioridad": "bloqueante",
+              "banda": "alta"
+            },
+            "dato_faltante": null,
+            "severidad": {
+              "grado": 9.0,
+              "valor": "alta"
+            },
+            "origen": "EV-T02-AB",
+            "id": "H-T02-AB",
+            "tipo_defecto": "contradiccion",
+            "modulo": "analisis_cruzado",
+            "clase": "Hallazgo"
+          }
+        },
+        {
+          "control": "CONTRADICE derivada",
+          "ok": true,
+          "detalle": 1
+        },
+        {
+          "control": "misma prioridad, motivo y regla que D-H-DESC",
+          "ok": true,
+          "detalle": {
+            "nuevo": {
+              "motivo": "sustantivo",
+              "reglas": [
+                "PRC-HC01"
+              ],
+              "estado_resolucion": "por_consultar",
+              "categoria_matriz": "bloqueante",
+              "id": "D-H-T02-AB",
+              "grado_urgencia": 8.082999080276148,
+              "criticidad": {
+                "grado": 9.0,
+                "valor": "alta"
+              },
+              "prioridad": "bloqueante",
+              "banda": "alta"
+            },
+            "pg2": {
+              "grado": 0.8439745371591536,
+              "banda": "alta",
+              "prioridad": "bloqueante",
+              "motivo": "sustantivo",
+              "urgencia": 8.082999080276148,
+              "banda_u": "alta",
+              "reglas_d": [
+                "PRC-HC01"
+              ]
+            }
+          }
+        },
+        {
+          "control": "grado de urgencia idéntico",
+          "ok": true,
+          "detalle": {
+            "nuevo": 8.082999080276148,
+            "pg2": 8.082999080276148
+          }
+        },
+        {
+          "control": "controles PG2 en cero",
+          "ok": true,
+          "detalle": {
+            "resultados_sin_trazabilidad": 0,
+            "decisiones_candidatas_no_provisionales": 0,
+            "incidencias_priorizadas": 0,
+            "cardinalidades_incorrectas": 0,
+            "cierres_sin_reevaluacion": 0,
+            "sigmas_invalidos": 0,
+            "grados_fuera_de_rango": 0,
+            "ciclos_de_reevaluacion": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "PI-03",
+      "nombre": "EVI-HC01: dos obligaciones sin unidad de aceptación → atomicidad incumple",
+      "estado": "pasada",
+      "controles": [
+        {
+          "control": "borrador detecta 2 obligaciones",
+          "ok": true,
+          "detalle": {
+            "revision_semantica_completa": true,
+            "info_necesaria_identificada": true,
+            "info_disponible": true,
+            "contexto_suficiente": true,
+            "obligaciones_independientes": 2,
+            "unidad_aceptacion_confirmada": false,
+            "justificacion": "2 obligaciones aceptables por separado: registrar el pedido; notificar al cliente por correo.",
+            "fragmentos": [
+              "registrar el pedido",
+              "notificar al cliente por correo."
+            ],
+            "severidad_propuesta": "baja",
+            "puntuacion_severidad_propuesta": 3.0
+          }
+        },
+        {
+          "control": "juicio incumple por EVI-HC01",
+          "ok": true,
+          "detalle": {
+            "estado": "incumple",
+            "reglas": [
+              {
+                "descripcion": "SI hay dos o más obligaciones aceptables por separado y no se confirma una unidad de aceptación ENTONCES atomicidad incumple.",
+                "id": "EVI-HC01"
+              }
+            ],
+            "justificacion": "2 obligaciones aceptables por separado: registrar el pedido; notificar al cliente por correo.",
+            "revision_senior": null,
+            "criterio": "atomicidad",
+            "id": "J-EV-T03-A-atomicidad",
+            "banda": null,
+            "grado_ambiguedad": null
+          }
+        },
+        {
+          "control": "hallazgo H-…-ATO",
+          "ok": true,
+          "detalle": [
+            "H-T03-A-ATO"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PI-04",
+      "nombre": "EVI-HC06: acciones que forman una única unidad de aceptación → excepción (cumple)",
+      "estado": "pasada",
+      "controles": [
+        {
+          "control": "juicio cumple por EVI-HC06",
+          "ok": true,
+          "detalle": {
+            "estado": "cumple",
+            "reglas": [
+              {
+                "descripcion": "SI acciones o condiciones forman una única unidad de aceptación ENTONCES se registra excepción de atomicidad.",
+                "id": "EVI-HC06"
+              }
+            ],
+            "justificacion": "2 obligaciones aceptables por separado: registrar el pedido; notificar al cliente por correo.",
+            "revision_senior": null,
+            "criterio": "atomicidad",
+            "id": "J-EV-T04-A-atomicidad",
+            "banda": null,
+            "grado_ambiguedad": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "PI-05",
+      "nombre": "EVI-HC05 (omisión demostrada) y EVI-HC07 (método que no discrimina)",
+      "estado": "pasada",
+      "controles": [
+        {
+          "control": "borrador detecta la enumeración abierta",
+          "ok": true,
+          "detalle": {
+            "revision_semantica_completa": true,
+            "info_necesaria_identificada": true,
+            "info_disponible": true,
+            "contexto_suficiente": true,
+            "informacion_aplicable_identificada": true,
+            "omisiones_demostradas": 1,
+            "omisiones": [
+              "Enumeración o valor abierto: «etc»"
+            ],
+            "justificacion": "Omisión indispensable: Enumeración o valor abierto: «etc»",
+            "fragmentos": [
+              "Enumeración o valor abierto: «etc»"
+            ],
+            "severidad_propuesta": "media",
+            "puntuacion_severidad_propuesta": 6.0
+          }
+        },
+        {
+          "control": "completitud incumple por EVI-HC05",
+          "ok": true,
+          "detalle": {
+            "estado": "incumple",
+            "reglas": [
+              {
+                "descripcion": "SI con información aplicable identificada se demuestra al menos una omisión indispensable ENTONCES completitud incumple.",
+                "id": "EVI-HC05"
+              }
+            ],
+            "justificacion": "Omisión indispensable: Enumeración o valor abierto: «etc»",
+            "revision_senior": null,
+            "criterio": "completitud",
+            "id": "J-EV-T05-A-completitud",
+            "banda": null,
+            "grado_ambiguedad": null
+          }
+        },
+        {
+          "control": "verificabilidad incumple por EVI-HC07",
+          "ok": true,
+          "detalle": {
+            "estado": "incumple",
+            "reglas": [
+              {
+                "descripcion": "SI se demuestra que el método y contexto fijados no discriminan cumplimiento ENTONCES verificabilidad incumple.",
+                "id": "EVI-HC07"
+              }
+            ],
+            "justificacion": "El resultado descrito se comprueba con una prueba funcional observable.",
+            "revision_senior": null,
+            "criterio": "verificabilidad",
+            "id": "J-EV-T05-A-verificabilidad",
+            "banda": null,
+            "grado_ambiguedad": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "PI-06",
+      "nombre": "EVI-HC03: el criterio de aceptación delimita el término vago → ambigüedad resuelta",
+      "estado": "pasada",
+      "controles": [
+        {
+          "control": "ambigüedad cumple por EVI-HC03",
+          "ok": true,
+          "detalle": {
+            "estado": "cumple",
+            "reglas": [
+              {
+                "descripcion": "SI una aceptación o referencia accesible elimina las alternativas de un aspecto ENTONCES ese aspecto queda resuelto.",
+                "id": "EVI-HC03"
+              }
+            ],
+            "justificacion": "Persisten dos lecturas por «rápidamente»; el criterio «en 2 segundos» las delimita.",
+            "revision_senior": null,
+            "criterio": "ambiguedad",
+            "id": "J-EV-T06-A-ambiguedad",
+            "banda": "baja",
+            "grado_ambiguedad": 0.22142194272967175
+          }
+        },
+        {
+          "control": "verificabilidad cumple por EVI-HC04",
+          "ok": true,
+          "detalle": {
+            "estado": "cumple",
+            "reglas": [
+              {
+                "descripcion": "SI existe un método finito, observable y con condición de aprobación ENTONCES verificabilidad cumple.",
+                "id": "EVI-HC04"
+              }
+            ],
+            "justificacion": "La condición «en 2 segundos» fija una aprobación observable.",
+            "revision_senior": null,
+            "criterio": "verificabilidad",
+            "id": "J-EV-T06-A-verificabilidad",
+            "banda": null,
+            "grado_ambiguedad": null
+          }
+        },
+        {
+          "control": "grado difuso en banda baja",
+          "ok": true,
+          "detalle": "baja"
+        }
+      ]
+    },
+    {
+      "id": "PI-07",
+      "nombre": "SM2: excepción, compatibles, región común, frontera y excluyentes",
+      "estado": "pasada",
+      "controles": [
+        {
+          "control": "ACC-RD04 → sin_hallazgo",
+          "ok": true,
+          "detalle": {
+            "estado": "sin_hallazgo",
+            "reglas": [
+              "ACC-RD04"
+            ],
+            "observacion": null
+          }
+        },
+        {
+          "control": "ACC-RD18 → sin_hallazgo",
+          "ok": true,
+          "detalle": {
+            "estado": "sin_hallazgo",
+            "reglas": [
+              "ACC-RD18"
+            ],
+            "observacion": null
+          }
+        },
+        {
+          "control": "ACC-RD06 → observado",
+          "ok": true,
+          "detalle": {
+            "estado": "observado",
+            "reglas": [
+              "ACC-RD06"
+            ],
+            "observacion": "H-T09-AB"
+          }
+        },
+        {
+          "control": "ACC-RD06 deriva contradiccion_en_region",
+          "ok": true,
+          "detalle": {
+            "descripcion": "Caso de ACC-RD06.",
+            "motivo_pendiente": null,
+            "reglas": [
+              "GL06",
+              "GL07",
+              "ACC-RD06"
+            ],
+            "decision": {
+              "motivo": "preventivo",
+              "reglas": [
+                "PRC-RD02"
+              ],
+              "estado_resolucion": "por_consultar",
+              "categoria_matriz": null,
+              "id": "D-H-T09-AB",
+              "grado_urgencia": null,
+              "criticidad": {
+                "grado": null,
+                "valor": null
+              },
+              "prioridad": "bloqueante",
+              "banda": null
+            },
+            "dato_faltante": null,
+            "severidad": {
+              "grado": 9.0,
+              "valor": "alta"
+            },
+            "origen": "EV-T09-AB",
+            "id": "H-T09-AB",
+            "tipo_defecto": "contradiccion_en_region",
+            "modulo": "analisis_cruzado",
+            "clase": "Hallazgo"
+          }
+        },
+        {
+          "control": "ACC-RD19 → sin_hallazgo",
+          "ok": true,
+          "detalle": {
+            "estado": "sin_hallazgo",
+            "reglas": [
+              "ACC-RD19"
+            ],
+            "observacion": null
+          }
+        },
+        {
+          "control": "ACC-RD07 → pendiente",
+          "ok": true,
+          "detalle": {
+            "estado": "pendiente",
+            "reglas": [
+              "ACC-RD07"
+            ],
+            "observacion": "P-T11-AB"
+          }
+        },
+        {
+          "control": "ACC-RD07 deriva Pendiente(frontera_semantica) sin severidad",
+          "ok": true,
+          "detalle": {
+            "descripcion": "Caso de ACC-RD07.",
+            "motivo_pendiente": "frontera_semantica",
+            "reglas": [
+              "GL06",
+              "GL07",
+              "ACC-RD07"
+            ],
+            "decision": {
+              "motivo": "preventivo",
+              "reglas": [
+                "PRC-RD02"
+              ],
+              "estado_resolucion": "por_consultar",
+              "categoria_matriz": null,
+              "id": "D-P-T11-AB",
+              "grado_urgencia": null,
+              "criticidad": {
+                "grado": null,
+                "valor": null
+              },
+              "prioridad": "bloqueante",
+              "banda": null
+            },
+            "dato_faltante": "Delimitar la región común entre los escenarios",
+            "severidad": {
+              "grado": null,
+              "valor": null
+            },
+            "origen": "EV-T11-AB",
+            "id": "P-T11-AB",
+            "tipo_defecto": null,
+            "modulo": "analisis_cruzado",
+            "clase": "Pendiente"
+          }
+        },
+        {
+          "control": "ACC-RD03 → sin_hallazgo",
+          "ok": true,
+          "detalle": {
+            "estado": "sin_hallazgo",
+            "reglas": [
+              "ACC-RD03"
+            ],
+            "observacion": null
+          }
+        }
+      ]
+    },
+    {
+      "id": "PI-08",
+      "nombre": "SM3: severidad baja × criticidad media = celda mayor; hito acordado → PRC-HC04",
+      "estado": "pasada",
+      "controles": [
+        {
+          "control": "categoría de matriz mayor",
+          "ok": true,
+          "detalle": {
+            "motivo": "en_hito",
+            "reglas": [
+              "PRC-HC04"
+            ],
+            "estado_resolucion": "por_consultar",
+            "categoria_matriz": "mayor",
+            "id": "D-H-T13-A-ATO",
+            "grado_urgencia": 5.000000000000045,
+            "criticidad": {
+              "grado": 5.0,
+              "valor": "media"
+            },
+            "prioridad": "mayor",
+            "banda": "media"
+          }
+        },
+        {
+          "control": "prioridad mayor en hito (PRC-HC04)",
+          "ok": true,
+          "detalle": {
+            "motivo": "en_hito",
+            "reglas": [
+              "PRC-HC04"
+            ],
+            "estado_resolucion": "por_consultar",
+            "categoria_matriz": "mayor",
+            "id": "D-H-T13-A-ATO",
+            "grado_urgencia": 5.000000000000045,
+            "criticidad": {
+              "grado": 5.0,
+              "valor": "media"
+            },
+            "prioridad": "mayor",
+            "banda": "media"
+          }
+        },
+        {
+          "control": "urgencia difusa calculada",
+          "ok": true,
+          "detalle": {
+            "motivo": "en_hito",
+            "reglas": [
+              "PRC-HC04"
+            ],
+            "estado_resolucion": "por_consultar",
+            "categoria_matriz": "mayor",
+            "id": "D-H-T13-A-ATO",
+            "grado_urgencia": 5.000000000000045,
+            "criticidad": {
+              "grado": 5.0,
+              "valor": "media"
+            },
+            "prioridad": "mayor",
+            "banda": "media"
+          }
+        }
+      ]
+    },
+    {
+      "id": "PI-09",
+      "nombre": "Borrador léxico sin LLM: estados de punta a punta",
+      "estado": "pasada",
+      "controles": [
+        {
+          "control": "«El sistema debe exportar el reporte mensual en formato PDF.» → sin_hallazgo",
+          "ok": true,
+          "detalle": {
+            "estado": "sin_hallazgo",
+            "juicios": {
+              "ambiguedad": "cumple",
+              "completitud": "cumple",
+              "verificabilidad": "cumple",
+              "atomicidad": "cumple"
+            }
+          }
+        },
+        {
+          "control": "«La búsqueda de productos debe responder en menos de 2 segundos.» → sin_hallazgo",
+          "ok": true,
+          "detalle": {
+            "estado": "sin_hallazgo",
+            "juicios": {
+              "ambiguedad": "cumple",
+              "verificabilidad": "cumple",
+              "completitud": "cumple",
+              "atomicidad": "cumple"
+            }
+          }
+        },
+        {
+          "control": "«La aplicación debe ser fácil de usar.» → observado",
+          "ok": true,
+          "detalle": {
+            "estado": "observado",
+            "juicios": {
+              "ambiguedad": "incumple",
+              "atomicidad": "cumple",
+              "verificabilidad": "pendiente",
+              "completitud": "cumple"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "PI-10",
+      "nombre": "Controles de integridad de PG2 sobre toda la base",
+      "estado": "pasada",
+      "controles": [
+        {
+          "control": "07_controles.cypher en cero",
+          "ok": true,
+          "detalle": {
+            "resultados_sin_trazabilidad": 0,
+            "decisiones_candidatas_no_provisionales": 0,
+            "incidencias_priorizadas": 0,
+            "cardinalidades_incorrectas": 0,
+            "cierres_sin_reevaluacion": 0,
+            "sigmas_invalidos": 0,
+            "grados_fuera_de_rango": 0,
+            "ciclos_de_reevaluacion": 0
+          }
+        }
+      ]
+    },
+    {
+      "id": "PI-12",
+      "nombre": "Documento completo (.docx, .pdf, .txt): detección, análisis por lote y comparación propuesta",
+      "estado": "pasada",
+      "controles": [
+        {
+          "control": "Especificacion_Tienda_Online.docx: 9 requerimientos detectados con su ID",
+          "ok": true,
+          "detalle": [
+            "RF-01",
+            "RF-02",
+            "RF-03",
+            "RF-04",
+            "RF-05",
+            "RF-06",
+            "RF-07",
+            "RNF-01",
+            "RNF-02"
+          ]
+        },
+        {
+          "control": "estados por requerimiento del documento",
+          "ok": true,
+          "detalle": {
+            "RNF-02": "observado",
+            "RF-04": "observado",
+            "RF-02": "observado",
+            "RF-07": "sin_hallazgo",
+            "RF-06": "sin_hallazgo",
+            "RNF-01": "sin_hallazgo",
+            "RF-03": "observado",
+            "RF-05": "sin_hallazgo",
+            "RF-01": "sin_hallazgo"
+          }
+        },
+        {
+          "control": "SM2 propone solo el par RF-05/RF-06 y lo observa (ACC-RD05)",
+          "ok": true,
+          "detalle": [
+            [
+              "EV-T17-EF",
+              "observado",
+              [
+                "ACC-RD05"
+              ]
+            ]
+          ]
+        },
+        {
+          "control": "el documento queda registrado con su nombre",
+          "ok": true,
+          "detalle": "Especificacion_Tienda_Online.docx"
+        },
+        {
+          "control": "controles PG2 en cero",
+          "ok": true,
+          "detalle": {
+            "resultados_sin_trazabilidad": 0,
+            "decisiones_candidatas_no_provisionales": 0,
+            "incidencias_priorizadas": 0,
+            "cardinalidades_incorrectas": 0,
+            "cierres_sin_reevaluacion": 0,
+            "sigmas_invalidos": 0,
+            "grados_fuera_de_rango": 0,
+            "ciclos_de_reevaluacion": 0
+          }
+        },
+        {
+          "control": "Especificacion_Tienda_Online.pdf: 9 requerimientos detectados con su ID",
+          "ok": true,
+          "detalle": [
+            "RF-01",
+            "RF-02",
+            "RF-03",
+            "RF-04",
+            "RF-05",
+            "RF-06",
+            "RF-07",
+            "RNF-01",
+            "RNF-02"
+          ]
+        },
+        {
+          "control": "Especificacion_Tienda_Online.txt: 9 requerimientos detectados con su ID",
+          "ok": true,
+          "detalle": [
+            "RF-01",
+            "RF-02",
+            "RF-03",
+            "RF-04",
+            "RF-05",
+            "RF-06",
+            "RF-07",
+            "RNF-01",
+            "RNF-02"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "PI-11",
+      "nombre": "Limpieza: la base vuelve al conteo original",
+      "estado": "pasada",
+      "controles": [
+        {
+          "control": "nodos y relaciones iguales a antes",
+          "ok": true,
+          "detalle": {
+            "antes": {
+              "nodos": 617,
+              "relaciones": 1191
+            },
+            "despues": {
+              "nodos": 617,
+              "relaciones": 1191
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "resumen": {
+    "pasadas": 12,
+    "total": 12,
+    "segundos": 14.3
+  }
+}

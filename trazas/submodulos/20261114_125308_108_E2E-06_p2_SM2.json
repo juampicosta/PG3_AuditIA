@@ -1,0 +1,180 @@
+{
+  "prototipo": "PI4-SM2-1.0",
+  "fecha": "2026-11-14T12:46:03",
+  "modelo": "qwen2.5:7b",
+  "hilos": null,
+  "huella_prompts": "8d97773b8e67",
+  "caso": "E2E-06_p2_SM2",
+  "consulta_usuario": "¿Qué análisis cruzados siguen pendientes?",
+  "extraccion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "salida_cruda": "{\"intencion\": \"listar_analisis\", \"entidades\": {\"requerimiento_ids\": [], \"requerimiento_texto\": null, \"documento_id\": null, \"evaluacion_id\": null, \"observacion_id\": null}, \"conceptos\": {\"categoria\": null}, \"filtros\": {\"tipo_analisis\": null, \"estado\": \"pendiente\"}, \"condiciones\": {\"alcance\": \"vigente\"}, \"faltantes\": []}",
+        "modelo": "qwen2.5:7b",
+        "segundos": 185.84,
+        "tokens_entrada": 2784,
+        "tokens_salida": 100,
+        "errores_esquema": []
+      }
+    ],
+    "notas": [],
+    "json_validado": {
+      "intencion": "listar_analisis",
+      "entidades": {
+        "requerimiento_ids": [],
+        "requerimiento_texto": null,
+        "documento_id": null,
+        "evaluacion_id": null,
+        "observacion_id": null
+      },
+      "conceptos": {
+        "categoria": null
+      },
+      "filtros": {
+        "tipo_analisis": null,
+        "estado": "pendiente"
+      },
+      "condiciones": {
+        "alcance": "vigente"
+      },
+      "faltantes": []
+    }
+  },
+  "intencion": "listar_analisis",
+  "consultas_cypher": [
+    {
+      "consulta": "Q0_candidatos",
+      "parametros": {},
+      "filas": 12,
+      "milisegundos": 4073.6
+    },
+    {
+      "consulta": "Q5_listado_analisis",
+      "parametros": {
+        "tipo_analisis": null,
+        "estado": "pendiente",
+        "solo_vigentes": true
+      },
+      "filas": 2,
+      "milisegundos": 5748.0
+    },
+    {
+      "consulta": "Q8_reglas",
+      "parametros": {
+        "ids": [
+          "ACC-RD07",
+          "ACC-RD12"
+        ]
+      },
+      "filas": 2,
+      "milisegundos": 344.3
+    }
+  ],
+  "paquete_evidencia": {
+    "intencion": "listar_analisis",
+    "consulta_usuario": "¿Qué análisis cruzados siguen pendientes?",
+    "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+    "filtros_aplicados": {
+      "tipo_analisis": null,
+      "estado": "pendiente",
+      "solo_vigentes": true
+    },
+    "total_analisis": 2,
+    "analisis": [
+      {
+        "grado_contradiccion": null,
+        "estado": "pendiente",
+        "reglas": [
+          "ACC-RD12"
+        ],
+        "banda_difusa": null,
+        "dato_faltante": "Confirmar existencia de datos sensibles",
+        "motivo_o_defecto": "perfil_insuficiente",
+        "tipo_analisis": "cobertura",
+        "evaluacion_id": "EV-SEG-DESCONOCIDO",
+        "vigente": true,
+        "documento_id": "DOC-SEG-DESCONOCIDO-v1",
+        "resultado_id": "P-SEG",
+        "clase": "Pendiente"
+      },
+      {
+        "grado_contradiccion": 0.5,
+        "estado": "pendiente",
+        "reglas": [
+          "ACC-RD07"
+        ],
+        "banda_difusa": "intermedia",
+        "dato_faltante": "Precisar el intervalo entre preparación y despacho",
+        "motivo_o_defecto": "frontera_semantica",
+        "tipo_analisis": "comparacion",
+        "evaluacion_id": "EV-PED-FRONTERA",
+        "vigente": true,
+        "documento_id": "DOC-PED-v1",
+        "resultado_id": "P-PED-FRONTERA",
+        "clase": "Pendiente"
+      }
+    ],
+    "reglas": [
+      {
+        "id": "ACC-RD07",
+        "modulo": "analisis_cruzado",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI no puede cerrarse la interpretación del escenario ENTONCES Pendiente(frontera_semantica).",
+        "fuente": "PG1 §6.5"
+      },
+      {
+        "id": "ACC-RD12",
+        "modulo": "analisis_cruzado",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI se desconoce la condición del catálogo ENTONCES Pendiente(perfil_insuficiente).",
+        "fuente": "PG1 §6.5"
+      }
+    ]
+  },
+  "explicacion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "respuesta": "Las evaluaciones pendientes son EV-SEG-DESCONOCIDO (pendiente, regla ACC-RD12, genera Pendiente P-SEG) y EV-PED-FRONTERA (pendiente, regla ACC-RD07, genera Pendiente P-PED-FRONTERA).\n\nSe comparó la cobertura del documento DOC-SEG-DESCONOCIDO-v1 con la regla ACC-RD12, encontrando que se desconoce la condición del catálogo, lo que genera un Pendiente P-SEG con el dato faltante \"Confirmar existencia de datos sensibles\". \n\nPara EV-PED-FRONTERA, se revisó la comparación del documento DOC-PED-v1 con ACC-RD07, identificando que no puede cerrarse la interpretación del escenario, lo que genera un Pendiente P-PED-FRONTERA con el dato faltante \"Precisar el intervalo entre preparación y despacho\" y un grado de contradicción intermedio de 0,500.\n\nEstos resultados son provisionales del prototipo académico, sin validación experta.",
+        "violaciones": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 193.08,
+        "tokens_entrada": 2419,
+        "tokens_salida": 248
+      }
+    ],
+    "hechos_verificables": [
+      "Conclusiones registradas, para escribirlas en el texto corrido de la respuesta (ID con su estado exacto entre paréntesis; esto va en el texto y no entre corchetes): EV-SEG-DESCONOCIDO (pendiente, regla ACC-RD12, genera Pendiente P-SEG); EV-PED-FRONTERA (pendiente, regla ACC-RD07, genera Pendiente P-PED-FRONTERA).",
+      "Filtros aplicados: tipo_analisis = null, estado = pendiente, solo vigentes = true. Total de evaluaciones recuperadas: 2.",
+      "EV-SEG-DESCONOCIDO (cobertura, DOC-SEG-DESCONOCIDO-v1): pendiente por ACC-RD12; genera Pendiente P-SEG (perfil_insuficiente) con dato faltante «Confirmar existencia de datos sensibles».",
+      "EV-PED-FRONTERA (comparacion, DOC-PED-v1): pendiente por ACC-RD07; genera Pendiente P-PED-FRONTERA (frontera_semantica) con dato faltante «Precisar el intervalo entre preparación y despacho»; grado de contradicción 0,500, banda intermedia.",
+      "Solo se listan evaluaciones vigentes: las que otra evaluación REEVALUA quedan como historia y no aparecen en este listado.",
+      "Regla ACC-RD07 (implementada, estado candidata, PG1 §6.5): SI no puede cerrarse la interpretación del escenario ENTONCES Pendiente(frontera_semantica).",
+      "Regla ACC-RD12 (implementada, estado candidata, PG1 §6.5): SI se desconoce la condición del catálogo ENTONCES Pendiente(perfil_insuficiente).",
+      "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+      "La respuesta debe mencionar estos IDs: EV-SEG-DESCONOCIDO, P-SEG, EV-PED-FRONTERA, P-PED-FRONTERA, ACC-RD12, ACC-RD07.",
+      "La respuesta debe escribir textualmente estos estados, tal como figuran: pendiente. Un verbo parecido (por ejemplo «se observó») no alcanza.",
+      "Estados que figuran en el paquete: pendiente. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «observado», «sin hallazgo», «no evaluable», «resuelta», «resuelto», «por consultar», «no aplicable» en la respuesta."
+    ],
+    "cobertura_requerida": {
+      "ids": [
+        "EV-SEG-DESCONOCIDO",
+        "P-SEG",
+        "EV-PED-FRONTERA",
+        "P-PED-FRONTERA",
+        "ACC-RD12",
+        "ACC-RD07"
+      ],
+      "estados": [
+        "pendiente"
+      ]
+    },
+    "resultado_verificacion": "aprobada"
+  },
+  "respuesta_final": "Las evaluaciones pendientes son EV-SEG-DESCONOCIDO (pendiente, regla ACC-RD12, genera Pendiente P-SEG) y EV-PED-FRONTERA (pendiente, regla ACC-RD07, genera Pendiente P-PED-FRONTERA).\n\nSe comparó la cobertura del documento DOC-SEG-DESCONOCIDO-v1 con la regla ACC-RD12, encontrando que se desconoce la condición del catálogo, lo que genera un Pendiente P-SEG con el dato faltante \"Confirmar existencia de datos sensibles\". \n\nPara EV-PED-FRONTERA, se revisó la comparación del documento DOC-PED-v1 con ACC-RD07, identificando que no puede cerrarse la interpretación del escenario, lo que genera un Pendiente P-PED-FRONTERA con el dato faltante \"Precisar el intervalo entre preparación y despacho\" y un grado de contradicción intermedio de 0,500.\n\nEstos resultados son provisionales del prototipo académico, sin validación experta.",
+  "tipo_salida": "explicacion",
+  "segundos_totales": 389.1
+}

@@ -1,0 +1,39 @@
+AuditIA · PG3 · Grupo 10 (5K10) · Inteligencia Artificial · UTN FRM · 2026
+Costa, Juan Pablo · Isgró, Tomás Valentino · Lucero, Bruno
+
+Contenido de esta carpeta
+  Grupo_10_5K10_PG3_ProyectoFinal.pdf   Informe final (incluye manual de uso, infografía y presentación)
+  Grupo_10_PG3_Paquete_Tecnico.zip      Proyecto completo: código, Cypher, exportación de Neo4j, configuración,
+                                        trazas y resultados de las pruebas
+
+Forma rápida en Windows (Docker Desktop abierto)
+  instalar.bat              primera vez: levanta todo, baja el modelo, carga la base y corre las pruebas
+  iniciar.bat               las veces siguientes: levanta los contenedores y abre la miniapp
+  correr_pruebas_ingesta.bat  pruebas del análisis de requerimientos nuevos (v1.3)
+
+Reproducción manual (Docker Desktop, en la carpeta PG3_AuditIA extraída del ZIP)
+  copy .env.example .env                                   (Linux/macOS: cp)
+  docker compose up -d --build
+  docker compose exec ollama ollama pull qwen2.5:7b        (solo la primera vez)
+  docker compose exec app python preparar_base.py          (carga la base de PG2 y las reglas)
+  docker compose exec app python -m auditia --verificar
+
+  Miniapp: http://localhost:8010   ·   API: http://localhost:8010/docs   ·   Neo4j: http://localhost:7476
+
+  Nota: por defecto Docker crea un volumen nuevo para el modelo. Si ya tenés qwen2.5:7b en otro volumen,
+  poné su nombre en OLLAMA_VOLUME dentro de .env para no descargarlo de nuevo.
+
+Analizar requerimientos nuevos (v1.3)
+  En la miniapp, pestaña "Analizar requerimientos nuevos": cargás un documento (.txt, .md, .docx o .pdf;
+  hay uno de ejemplo en la carpeta ejemplos) o escribís los requerimientos a mano. El LLM lee hasta dos
+  por vez; el borrador léxico, todos los seleccionados. El LLM
+  (o el borrador léxico, sin LLM) propone las premisas, las revisás y al confirmar Neo4j aplica las
+  reglas (08_inferencia_casos_nuevos.cypher + 04_difusa acotado + 06_informes). El caso queda
+  consultable desde "Consultar a AuditIA" (IDs RQ-L01-A-v1, H-L01-A-AMB, etc.). Se puede borrar.
+
+Pruebas
+  docker compose exec app python pruebas/probar_ingesta.py         (análisis de requerimientos nuevos)
+  docker compose exec app python pruebas/ejecutar_pruebas.py --funcionales
+  docker compose exec app python pruebas/ejecutar_pruebas.py --e2e
+
+Ver la sección 11 del informe para el manual completo.

@@ -1,0 +1,179 @@
+{
+  "prototipo": "PI4-SM3-1.0",
+  "fecha": "2026-11-14T12:53:08",
+  "modelo": "qwen2.5:7b",
+  "hilos": null,
+  "huella_prompts": "837a200f0dfe",
+  "caso": "E2E-06_p3_SM3",
+  "consulta_usuario": "¿Qué observaciones bloquean la firma por un problema de fondo?",
+  "extraccion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "salida_cruda": "{\"intencion\": \"listar_prioridades\", \"entidades\": {\"observacion_id\": null, \"observacion_texto\": null, \"documento_id\": null}, \"filtros\": {\"prioridad\": \"bloqueante\", \"motivo\": \"sustantivo\", \"estado_seguimiento\": \"abiertas\"}, \"matriz\": {\"severidad\": null, \"criticidad\": null}, \"faltantes\": []}",
+        "modelo": "qwen2.5:7b",
+        "segundos": 29.82,
+        "tokens_entrada": 2782,
+        "tokens_salida": 95,
+        "errores_esquema": []
+      }
+    ],
+    "notas": [],
+    "json_validado": {
+      "intencion": "listar_prioridades",
+      "entidades": {
+        "observacion_id": null,
+        "observacion_texto": null,
+        "documento_id": null
+      },
+      "filtros": {
+        "prioridad": "bloqueante",
+        "motivo": "sustantivo",
+        "estado_seguimiento": "abiertas"
+      },
+      "matriz": {
+        "severidad": null,
+        "criticidad": null
+      },
+      "faltantes": []
+    }
+  },
+  "intencion": "listar_prioridades",
+  "consultas_cypher": [
+    {
+      "consulta": "Q1_listado_prioridades",
+      "parametros": {
+        "prioridad": "bloqueante",
+        "motivo": "sustantivo",
+        "documento_id": null,
+        "estado": "abiertas"
+      },
+      "filas": 2,
+      "milisegundos": 760.8
+    },
+    {
+      "consulta": "Q9_reglas",
+      "parametros": {
+        "ids": [
+          "PRC-HC01",
+          "PRC-HC02"
+        ]
+      },
+      "filas": 2,
+      "milisegundos": 26.8
+    }
+  ],
+  "paquete_evidencia": {
+    "intencion": "listar_prioridades",
+    "consulta_usuario": "¿Qué observaciones bloquean la firma por un problema de fondo?",
+    "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+    "filtros_aplicados": {
+      "prioridad": "bloqueante",
+      "motivo": "sustantivo",
+      "documento_id": null,
+      "estado": "abiertas"
+    },
+    "total_decisiones": 2,
+    "decisiones": [
+      {
+        "observacion": "H-DESC",
+        "tipo": "hallazgo",
+        "modulo_origen": "analisis_cruzado",
+        "descripcion": "La misma venta exige precio con y sin descuento",
+        "documento": "DOC-DESC-v1",
+        "decision": "D-H-DESC",
+        "prioridad": "bloqueante",
+        "motivo": "sustantivo",
+        "regla": "PRC-HC01",
+        "severidad": "alta",
+        "criticidad": "alta",
+        "grado_urgencia": 8.083,
+        "banda_urgencia": "alta",
+        "estado": "por_consultar",
+        "provisional": true,
+        "emitible": false
+      },
+      {
+        "observacion": "H-PRIO-EXCEPCION",
+        "tipo": "hallazgo",
+        "modulo_origen": "evaluacion_individual",
+        "descripcion": "Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una; análisis construido para probar el tratamiento de SM3.",
+        "documento": "DOC-PRIO-v1",
+        "decision": "D-H-PRIO-EXCEPCION",
+        "prioridad": "bloqueante",
+        "motivo": "sustantivo",
+        "regla": "PRC-HC02",
+        "severidad": "baja",
+        "criticidad": "alta",
+        "grado_urgencia": 7.381,
+        "banda_urgencia": "alta",
+        "estado": "por_consultar",
+        "provisional": true,
+        "emitible": false
+      }
+    ],
+    "reglas": [
+      {
+        "id": "PRC-HC01",
+        "modulo": "priorizacion_clarificacion",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI un hallazgo deja indefinida una obligación esencial ENTONCES prioridad bloqueante, motivo sustantivo.",
+        "fuente": "PG1 §6.6"
+      },
+      {
+        "id": "PRC-HC02",
+        "modulo": "priorizacion_clarificacion",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI severidad = baja y criticidad = alta (mapeo candidato activo) ENTONCES bloqueante sustantiva provisional, sin cambiar la severidad.",
+        "fuente": "PG1 §6.6"
+      }
+    ]
+  },
+  "explicacion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "respuesta": "La decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible [H-DESC, D-H-DESC, PRC-HC01]. La decisión D-H-PRIO-EXCEPCION también tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible [H-PRIO-EXCEPCION, D-H-PRIO-EXCEPCION, PRC-HC02].\n\nLa regla PRC-HC01 establece que si un hallazgo deja indefinida una obligación esencial, la prioridad es bloqueante y el motivo es sustantivo. En este caso, el hallazgo H-DESC (ID: H-DESC) indica que la misma venta exige precio con y sin descuento, dejando indefinida una obligación esencial, lo que justifica la prioridad bloqueante y el motivo sustantivo.\n\nLa regla PRC-HC02, en tanto, indica que si la severidad es baja y la criticidad es alta, la prioridad es bloqueante y sustantiva provisional, sin cambiar la severidad. El hallazgo H-PRIO-EXCEPCION (ID: H-PRIO-EXCEPCION) muestra lecturas CSV y PDF para formato estándar, sin una definición que seleccione una, con severidad baja y criticidad alta, lo que también justifica la prioridad bloqueante y el motivo sustantivo.",
+        "violaciones": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 221.98,
+        "tokens_entrada": 2925,
+        "tokens_salida": 333
+      }
+    ],
+    "hechos_verificables": [
+      "Filtros aplicados: prioridad bloqueante, motivo sustantivo, documento null, estado abiertas. Decisiones vigentes recuperadas: 2. El orden es el de la consulta: prioridad y, dentro de ella, grado de urgencia descendente.",
+      "H-DESC (hallazgo, emitida por analisis_cruzado, documento DOC-DESC-v1; descripción «La misma venta exige precio con y sin descuento»): decisión D-H-DESC, prioridad bloqueante, motivo sustantivo, regla PRC-HC01, severidad alta, criticidad alta, grado_urgencia 8.083, banda alta, seguimiento por_consultar; provisional = true, emitible = false.",
+      "H-PRIO-EXCEPCION (hallazgo, emitida por evaluacion_individual, documento DOC-PRIO-v1; descripción «Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una; análisis construido para probar el tratamiento de SM3.»): decisión D-H-PRIO-EXCEPCION, prioridad bloqueante, motivo sustantivo, regla PRC-HC02, severidad baja, criticidad alta, grado_urgencia 7.381, banda alta, seguimiento por_consultar; provisional = true, emitible = false.",
+      "Regla PRC-HC01 (estado candidata, ejecución en PG2: implementada, PG1 §6.6): SI un hallazgo deja indefinida una obligación esencial ENTONCES prioridad bloqueante, motivo sustantivo.",
+      "Regla PRC-HC02 (estado candidata, ejecución en PG2: implementada, PG1 §6.6): SI severidad = baja y criticidad = alta (mapeo candidato activo) ENTONCES bloqueante sustantiva provisional, sin cambiar la severidad.",
+      "Las decisiones, reglas, celdas y modelos citados son provisionales o candidatos: resultado del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+      "emitible = false: la respuesta debe decir que la recomendación todavía no es emitible.",
+      "La respuesta debe mencionar estos IDs: H-DESC, D-H-DESC, PRC-HC01, H-PRIO-EXCEPCION, D-H-PRIO-EXCEPCION, PRC-HC02. Entre corchetes van solo IDs, por ejemplo [H-DESC, D-H-DESC]; los valores se escriben con palabras, fuera de los corchetes.",
+      "La respuesta debe nombrar con palabras estos valores: bloqueante, por consultar, sustantivo.",
+      "La respuesta debe explicar primero el fundamento de cada decisión (premisas, evidencia y regla con su significado) y cerrar cada una con una oración como: «La decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible.»",
+      "Valores de prioridad, motivo y estado que figuran en el paquete: bloqueante, por_consultar, sustantivo. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas «preventivo», «en hito», «diferimiento», «resuelto», «pendiente complemento», «observado», «sin hallazgo», «no evaluable» como conclusión."
+    ],
+    "cobertura_requerida": {
+      "ids": [
+        "H-DESC",
+        "D-H-DESC",
+        "PRC-HC01",
+        "H-PRIO-EXCEPCION",
+        "D-H-PRIO-EXCEPCION",
+        "PRC-HC02"
+      ],
+      "valores": [
+        "bloqueante",
+        "por_consultar",
+        "sustantivo"
+      ]
+    },
+    "resultado_verificacion": "aprobada"
+  },
+  "respuesta_final": "La decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible [H-DESC, D-H-DESC, PRC-HC01]. La decisión D-H-PRIO-EXCEPCION también tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible [H-PRIO-EXCEPCION, D-H-PRIO-EXCEPCION, PRC-HC02].\n\nLa regla PRC-HC01 establece que si un hallazgo deja indefinida una obligación esencial, la prioridad es bloqueante y el motivo es sustantivo. En este caso, el hallazgo H-DESC (ID: H-DESC) indica que la misma venta exige precio con y sin descuento, dejando indefinida una obligación esencial, lo que justifica la prioridad bloqueante y el motivo sustantivo.\n\nLa regla PRC-HC02, en tanto, indica que si la severidad es baja y la criticidad es alta, la prioridad es bloqueante y sustantiva provisional, sin cambiar la severidad. El hallazgo H-PRIO-EXCEPCION (ID: H-PRIO-EXCEPCION) muestra lecturas CSV y PDF para formato estándar, sin una definición que seleccione una, con severidad baja y criticidad alta, lo que también justifica la prioridad bloqueante y el motivo sustantivo.",
+  "tipo_salida": "explicacion",
+  "segundos_totales": 252.59
+}

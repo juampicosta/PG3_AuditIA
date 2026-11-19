@@ -1,0 +1,21 @@
+{
+  "type": "object",
+  "properties": {
+    "tipo": {"type": "string", "enum": ["consulta", "requiere_aclaracion", "accion_no_permitida", "fuera_de_dominio"]},
+    "pasos": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "properties": {
+          "submodulo": {"type": "string", "enum": ["SM1", "SM2", "SM3"]},
+          "subconsulta": {"type": "string"},
+          "depende_de": {"type": ["integer", "null"]}
+        },
+        "required": ["submodulo", "subconsulta", "depende_de"]
+      }
+    },
+    "motivo": {"type": "string"}
+  },
+  "required": ["tipo", "pasos", "motivo"]
+}

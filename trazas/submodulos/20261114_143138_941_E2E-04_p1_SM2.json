@@ -1,0 +1,214 @@
+{
+  "prototipo": "PI4-SM2-1.0",
+  "fecha": "2026-11-14T14:25:41",
+  "modelo": "qwen2.5:7b",
+  "hilos": null,
+  "huella_prompts": "8d97773b8e67",
+  "caso": "E2E-04_p1_SM2",
+  "consulta_usuario": "¿Por qué no se pudo decidir si Seguridad es exigible en el documento DOC-SEG-DESCONOCIDO-v1?",
+  "extraccion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "salida_cruda": "{\"intencion\": \"cobertura_categoria\", \"entidades\": {\"requerimiento_ids\": [], \"requerimiento_texto\": null, \"documento_id\": \"DOC-SEG-DESCONOCIDO-v1\", \"evaluacion_id\": null, \"observacion_id\": null}, \"conceptos\": {\"categoria\": \"Seguridad\"}, \"filtros\": {\"tipo_analisis\": null, \"estado\": null}, \"condiciones\": {\"alcance\": \"vigente\"}, \"faltantes\": []}",
+        "modelo": "qwen2.5:7b",
+        "segundos": 159.58,
+        "tokens_entrada": 2802,
+        "tokens_salida": 108,
+        "errores_esquema": []
+      }
+    ],
+    "notas": [],
+    "json_validado": {
+      "intencion": "cobertura_categoria",
+      "entidades": {
+        "requerimiento_ids": [],
+        "requerimiento_texto": null,
+        "documento_id": "DOC-SEG-DESCONOCIDO-v1",
+        "evaluacion_id": null,
+        "observacion_id": null
+      },
+      "conceptos": {
+        "categoria": "Seguridad"
+      },
+      "filtros": {
+        "tipo_analisis": null,
+        "estado": null
+      },
+      "condiciones": {
+        "alcance": "vigente"
+      },
+      "faltantes": []
+    }
+  },
+  "intencion": "cobertura_categoria",
+  "consultas_cypher": [
+    {
+      "consulta": "Q0_candidatos",
+      "parametros": {},
+      "filas": 12,
+      "milisegundos": 54.5
+    },
+    {
+      "consulta": "Q0a_ids_mencionados",
+      "parametros": {
+        "ids": [
+          "DOC-SEG-DESCONOCIDO-v1"
+        ]
+      },
+      "filas": 1,
+      "milisegundos": 37.1
+    },
+    {
+      "consulta": "Q4_cobertura_categoria",
+      "parametros": {
+        "categoria": "Seguridad",
+        "documento_ids": [
+          "DOC-SEG-DESCONOCIDO-v1"
+        ]
+      },
+      "filas": 1,
+      "milisegundos": 39.3
+    },
+    {
+      "consulta": "Q8_reglas",
+      "parametros": {
+        "ids": [
+          "ACC-RD12"
+        ]
+      },
+      "filas": 1,
+      "milisegundos": 21.6
+    }
+  ],
+  "resolucion_entidad": {
+    "estado": "ok",
+    "puntaje": null,
+    "evaluaciones": [
+      "EV-SEG-DESCONOCIDO"
+    ],
+    "requerimientos": [],
+    "id_logico": null,
+    "documentos": [
+      "DOC-SEG-DESCONOCIDO-v1"
+    ],
+    "categoria": "Seguridad",
+    "observacion": null,
+    "alternativas": []
+  },
+  "paquete_evidencia": {
+    "intencion": "cobertura_categoria",
+    "consulta_usuario": "¿Por qué no se pudo decidir si Seguridad es exigible en el documento DOC-SEG-DESCONOCIDO-v1?",
+    "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+    "categoria_consultada": "Seguridad",
+    "documentos_consultados": [
+      "DOC-SEG-DESCONOCIDO-v1"
+    ],
+    "coberturas": [
+      {
+        "cobertura": "indeterminada",
+        "busqueda_completa": true,
+        "estado": "pendiente",
+        "reglas": [
+          "ACC-RD12"
+        ],
+        "resultado": {
+          "motivo_pendiente": "perfil_insuficiente",
+          "dato_faltante": "Confirmar existencia de datos sensibles",
+          "severidad": {
+            "valor": null,
+            "id": "SV-P-SEG"
+          },
+          "id": "P-SEG",
+          "tipo_defecto": null,
+          "clase": "Pendiente"
+        },
+        "categoria": {
+          "id": "NFR-SEG",
+          "nombre": "Seguridad"
+        },
+        "evidencias": [
+          {
+            "tipo": "analisis",
+            "contenido": "Premisas registradas por el grupo para EV-SEG-DESCONOCIDO",
+            "id": "E-EV-SEG-DESCONOCIDO"
+          }
+        ],
+        "cubre": [],
+        "version": 1,
+        "perfil": {
+          "datos_sensibles": null,
+          "operaciones_esenciales": [
+            "acceso a datos"
+          ],
+          "confirmado": false,
+          "id": "PERFIL-DESCONOCIDO"
+        },
+        "necesidades": [
+          "protección de datos sensibles"
+        ],
+        "requerimientos_del_documento": [
+          {
+            "texto": "El sistema debe listar los productos.",
+            "id": "RQ-SEG-DESCONOCIDO-v1"
+          }
+        ],
+        "exige": [],
+        "condicion_catalogo": null,
+        "evaluacion_id": "EV-SEG-DESCONOCIDO",
+        "documento_id": "DOC-SEG-DESCONOCIDO-v1",
+        "partes_cubiertas": []
+      }
+    ],
+    "reglas": [
+      {
+        "id": "ACC-RD12",
+        "modulo": "analisis_cruzado",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI se desconoce la condición del catálogo ENTONCES Pendiente(perfil_insuficiente).",
+        "fuente": "PG1 §6.5"
+      }
+    ]
+  },
+  "explicacion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "respuesta": "EV-SEG-DESCONOCIDO (pendiente) revisó la categoría Seguridad (NFR-SEG) en el documento DOC-SEG-DESCONOCIDO-v1 con el perfil PERFIL-DESCONOCIDO (datos_sensibles = null, confirmado = false). La evidencia E-EV-SEG-DESCONOCIDO solo registra \"Premisas registradas por el grupo para EV-SEG-DESCONOCIDO\". La regla ACC-RD12 (implementada, estado candidata) determina que si se desconoce la condición del catálogo, se genera un Pendiente(perfil_insuficiente). Como condicion_catalogo = null, se generó el Pendiente P-SEG (motivo perfil_insuficiente; dato faltante: \"Confirmar existencia de datos sensibles\"). Este resultado es provisional del prototipo académico, sin validación experta.",
+        "violaciones": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 168.79,
+        "tokens_entrada": 2440,
+        "tokens_salida": 195
+      }
+    ],
+    "hechos_verificables": [
+      "Conclusiones registradas, para escribirlas en el texto corrido de la respuesta (ID con su estado exacto entre paréntesis; esto va en el texto y no entre corchetes): EV-SEG-DESCONOCIDO (pendiente, regla ACC-RD12, genera Pendiente P-SEG).",
+      "Documento DOC-SEG-DESCONOCIDO-v1: la evaluación EV-SEG-DESCONOCIDO revisó la categoría Seguridad (NFR-SEG) con el perfil PERFIL-DESCONOCIDO (datos_sensibles = null, confirmado = false). Necesidades: protección de datos sensibles. Partes cubiertas: ninguna. condicion_catalogo = null; busqueda_completa = true; cobertura «indeterminada». Quedó pendiente por la regla ACC-RD12.",
+      "No se derivó EXIGE para el perfil PERFIL-DESCONOCIDO: la condición del catálogo no está confirmada (condicion_catalogo = null). No es una brecha demostrada.",
+      "La cobertura de DOC-SEG-DESCONOCIDO-v1 quedó «indeterminada»: no se afirma que falte cobertura; antes hay que decidir si la categoría es exigible.",
+      "EV-SEG-DESCONOCIDO genera el Pendiente P-SEG (motivo perfil_insuficiente; dato faltante: «Confirmar existencia de datos sensibles»). Un pendiente es falta de información, no un defecto demostrado.",
+      "La evidencia E-EV-SEG-DESCONOCIDO solo registra «Premisas registradas por el grupo para EV-SEG-DESCONOCIDO»: no aporta un argumento propio; el fundamento está en las propiedades anteriores.",
+      "Regla ACC-RD12 (implementada, estado candidata, PG1 §6.5): SI se desconoce la condición del catálogo ENTONCES Pendiente(perfil_insuficiente).",
+      "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+      "La respuesta debe mencionar estos IDs: P-SEG, EV-SEG-DESCONOCIDO, ACC-RD12.",
+      "La respuesta debe escribir textualmente estos estados, tal como figuran: pendiente. Un verbo parecido (por ejemplo «se observó») no alcanza.",
+      "Estados que figuran en el paquete: pendiente. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «observado», «sin hallazgo», «no evaluable», «resuelta», «resuelto», «por consultar», «no aplicable» en la respuesta."
+    ],
+    "cobertura_requerida": {
+      "ids": [
+        "P-SEG",
+        "EV-SEG-DESCONOCIDO",
+        "ACC-RD12"
+      ],
+      "estados": [
+        "pendiente"
+      ]
+    },
+    "resultado_verificacion": "aprobada"
+  },
+  "respuesta_final": "EV-SEG-DESCONOCIDO (pendiente) revisó la categoría Seguridad (NFR-SEG) en el documento DOC-SEG-DESCONOCIDO-v1 con el perfil PERFIL-DESCONOCIDO (datos_sensibles = null, confirmado = false). La evidencia E-EV-SEG-DESCONOCIDO solo registra \"Premisas registradas por el grupo para EV-SEG-DESCONOCIDO\". La regla ACC-RD12 (implementada, estado candidata) determina que si se desconoce la condición del catálogo, se genera un Pendiente(perfil_insuficiente). Como condicion_catalogo = null, se generó el Pendiente P-SEG (motivo perfil_insuficiente; dato faltante: \"Confirmar existencia de datos sensibles\"). Este resultado es provisional del prototipo académico, sin validación experta.",
+  "tipo_salida": "explicacion",
+  "segundos_totales": 328.53
+}

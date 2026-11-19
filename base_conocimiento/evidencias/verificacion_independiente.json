@@ -1,0 +1,107 @@
+{
+  "metodo": "Mamdani MIN/MAX; suma sobre 1001 puntos",
+  "tolerancia_absoluta": 1e-09,
+  "comparaciones": [
+    {
+      "id": "D-H-DESC",
+      "modelo": "MD-URG-1.0",
+      "cypher": 8.082999080276148,
+      "python": 8.082999080276148,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "id": "D-H-PRIO-EXCEPCION",
+      "modelo": "MD-URG-1.0",
+      "cypher": 7.380912227007634,
+      "python": 7.380912227007634,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "id": "D-H-PRIO-FRONTERA",
+      "modelo": "MD-URG-1.0",
+      "cypher": 5.274902538355625,
+      "python": 5.274902538355625,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "id": "D-H-PRIO-MAYOR",
+      "modelo": "MD-URG-1.0",
+      "cypher": 4.999999999999984,
+      "python": 4.999999999999982,
+      "error_absoluto": 1.7763568394002505e-15,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "id": "D-H-PRIO-MENOR",
+      "modelo": "MD-URG-1.0",
+      "cypher": 1.9170009197239117,
+      "python": 1.9170009197239115,
+      "error_absoluto": 2.220446049250313e-16,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "id": "D-H-PRIO-SIN-HITO",
+      "modelo": "MD-URG-1.0",
+      "cypher": 4.999999999999984,
+      "python": 4.999999999999982,
+      "error_absoluto": 1.7763568394002505e-15,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "id": "EV-DESC",
+      "modelo": "MD-CONTR-1.0",
+      "cypher": 0.8439745371591536,
+      "python": 0.8439745371591536,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "id": "EV-PED-FRONTERA",
+      "modelo": "MD-CONTR-1.0",
+      "cypher": 0.4999999999999974,
+      "python": 0.4999999999999974,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "id": "J-EV-CAT-01-ambiguedad",
+      "modelo": "MD-AMB-1.0",
+      "cypher": 0.7810157758841172,
+      "python": 0.7810157758841172,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "id": "J-EV-CAT-02-ambiguedad",
+      "modelo": "MD-AMB-1.0",
+      "cypher": 0.15602546284084878,
+      "python": 0.15602546284084878,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "id": "J-EV-HAB-ambiguedad",
+      "modelo": "MD-AMB-1.0",
+      "cypher": 0.5012543956225133,
+      "python": 0.5012543956225133,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    }
+  ],
+  "control_matematico_aislado_CONTR_1_6": 0.17792903141493063,
+  "nota_control": "No se publica en el flujo con escenarios excluyentes; PT36 prueba la inhibición crisp."
+}

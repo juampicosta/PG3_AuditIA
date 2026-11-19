@@ -1,0 +1,317 @@
+{
+  "metodo": "Mamdani MIN/MAX, centroide discreto de 1001 puntos (implementación independiente de Cypher)",
+  "tolerancia_absoluta": 1e-09,
+  "total": 22,
+  "pasados": 22,
+  "error_maximo": 1.7763568394002505e-15,
+  "comparaciones": [
+    {
+      "fuente": "evidencia_PG2",
+      "id": "D-H-DESC",
+      "modelo": "MD-URG-1.0",
+      "entrada": [
+        9,
+        9
+      ],
+      "grado_registrado": 8.082999080276148,
+      "grado_python": 8.082999080276148,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "evidencia_PG2",
+      "id": "D-H-PRIO-EXCEPCION",
+      "modelo": "MD-URG-1.0",
+      "entrada": [
+        2,
+        8.5
+      ],
+      "grado_registrado": 7.380912227007634,
+      "grado_python": 7.380912227007634,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "evidencia_PG2",
+      "id": "D-H-PRIO-FRONTERA",
+      "modelo": "MD-URG-1.0",
+      "entrada": [
+        6.5,
+        6.5
+      ],
+      "grado_registrado": 5.274902538355625,
+      "grado_python": 5.274902538355625,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "evidencia_PG2",
+      "id": "D-H-PRIO-MAYOR",
+      "modelo": "MD-URG-1.0",
+      "entrada": [
+        5,
+        2
+      ],
+      "grado_registrado": 4.999999999999984,
+      "grado_python": 4.999999999999982,
+      "error_absoluto": 1.7763568394002505e-15,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "evidencia_PG2",
+      "id": "D-H-PRIO-MENOR",
+      "modelo": "MD-URG-1.0",
+      "entrada": [
+        1,
+        1
+      ],
+      "grado_registrado": 1.9170009197239117,
+      "grado_python": 1.9170009197239115,
+      "error_absoluto": 2.220446049250313e-16,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "evidencia_PG2",
+      "id": "D-H-PRIO-SIN-HITO",
+      "modelo": "MD-URG-1.0",
+      "entrada": [
+        5,
+        2
+      ],
+      "grado_registrado": 4.999999999999984,
+      "grado_python": 4.999999999999982,
+      "error_absoluto": 1.7763568394002505e-15,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "evidencia_PG2",
+      "id": "EV-DESC",
+      "modelo": "MD-CONTR-1.0",
+      "entrada": [
+        9.5,
+        9.5
+      ],
+      "grado_registrado": 0.8439745371591536,
+      "grado_python": 0.8439745371591536,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "evidencia_PG2",
+      "id": "EV-PED-FRONTERA",
+      "modelo": "MD-CONTR-1.0",
+      "entrada": [
+        5,
+        8
+      ],
+      "grado_registrado": 0.4999999999999974,
+      "grado_python": 0.4999999999999974,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "evidencia_PG2",
+      "id": "J-EV-CAT-01-ambiguedad",
+      "modelo": "MD-AMB-1.0",
+      "entrada": [
+        8.5,
+        1
+      ],
+      "grado_registrado": 0.7810157758841172,
+      "grado_python": 0.7810157758841172,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "evidencia_PG2",
+      "id": "J-EV-CAT-02-ambiguedad",
+      "modelo": "MD-AMB-1.0",
+      "entrada": [
+        8.5,
+        9.5
+      ],
+      "grado_registrado": 0.15602546284084878,
+      "grado_python": 0.15602546284084878,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "evidencia_PG2",
+      "id": "J-EV-HAB-ambiguedad",
+      "modelo": "MD-AMB-1.0",
+      "entrada": [
+        6,
+        5
+      ],
+      "grado_registrado": 0.5012543956225133,
+      "grado_python": 0.5012543956225133,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "base_recargada_PG3",
+      "id": "D-H-DESC",
+      "modelo": "MD-URG-1.0",
+      "entrada": [
+        9.0,
+        9.0
+      ],
+      "grado_registrado": 8.082999080276148,
+      "grado_python": 8.082999080276148,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "base_recargada_PG3",
+      "id": "D-H-PRIO-EXCEPCION",
+      "modelo": "MD-URG-1.0",
+      "entrada": [
+        2,
+        8.5
+      ],
+      "grado_registrado": 7.380912227007634,
+      "grado_python": 7.380912227007634,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "base_recargada_PG3",
+      "id": "D-H-PRIO-FRONTERA",
+      "modelo": "MD-URG-1.0",
+      "entrada": [
+        6.5,
+        6.5
+      ],
+      "grado_registrado": 5.274902538355625,
+      "grado_python": 5.274902538355625,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "base_recargada_PG3",
+      "id": "D-H-PRIO-MAYOR",
+      "modelo": "MD-URG-1.0",
+      "entrada": [
+        5,
+        2
+      ],
+      "grado_registrado": 4.999999999999984,
+      "grado_python": 4.999999999999982,
+      "error_absoluto": 1.7763568394002505e-15,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "base_recargada_PG3",
+      "id": "D-H-PRIO-MENOR",
+      "modelo": "MD-URG-1.0",
+      "entrada": [
+        1,
+        1
+      ],
+      "grado_registrado": 1.9170009197239117,
+      "grado_python": 1.9170009197239115,
+      "error_absoluto": 2.220446049250313e-16,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "base_recargada_PG3",
+      "id": "D-H-PRIO-SIN-HITO",
+      "modelo": "MD-URG-1.0",
+      "entrada": [
+        5,
+        2
+      ],
+      "grado_registrado": 4.999999999999984,
+      "grado_python": 4.999999999999982,
+      "error_absoluto": 1.7763568394002505e-15,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "base_recargada_PG3",
+      "id": "EV-DESC",
+      "modelo": "MD-CONTR-1.0",
+      "entrada": [
+        9.5,
+        9.5
+      ],
+      "grado_registrado": 0.8439745371591536,
+      "grado_python": 0.8439745371591536,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "base_recargada_PG3",
+      "id": "EV-PED-FRONTERA",
+      "modelo": "MD-CONTR-1.0",
+      "entrada": [
+        5.0,
+        8.0
+      ],
+      "grado_registrado": 0.4999999999999974,
+      "grado_python": 0.4999999999999974,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "base_recargada_PG3",
+      "id": "J-EV-CAT-01-ambiguedad",
+      "modelo": "MD-AMB-1.0",
+      "entrada": [
+        8.5,
+        1
+      ],
+      "grado_registrado": 0.7810157758841172,
+      "grado_python": 0.7810157758841172,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "base_recargada_PG3",
+      "id": "J-EV-CAT-02-ambiguedad",
+      "modelo": "MD-AMB-1.0",
+      "entrada": [
+        8.5,
+        9.5
+      ],
+      "grado_registrado": 0.15602546284084878,
+      "grado_python": 0.15602546284084878,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    },
+    {
+      "fuente": "base_recargada_PG3",
+      "id": "J-EV-HAB-ambiguedad",
+      "modelo": "MD-AMB-1.0",
+      "entrada": [
+        6,
+        5
+      ],
+      "grado_registrado": 0.5012543956225133,
+      "grado_python": 0.5012543956225133,
+      "error_absoluto": 0.0,
+      "error_maximo_activaciones": 0.0,
+      "estado": "pasado"
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "prototipo": "PI4-SM1-1.0",
+  "fecha": "2026-11-14T12:43:49",
+  "modelo": "qwen2.5:7b",
+  "huella_prompts": "88da390d63e7",
+  "caso": "E2E-06_p1_SM1",
+  "consulta_usuario": "¿Qué juicios de ambigüedad siguen pendientes?",
+  "extraccion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "salida_cruda": "{\"intencion\": \"listar_juicios\", \"entidades\": {\"requerimiento_id\": null, \"requerimiento_texto\": null, \"observacion_id\": null, \"evaluacion_id\": null}, \"conceptos\": {\"criterio\": \"ambiguedad\"}, \"filtros\": {\"estado_juicio\": \"pendiente\", \"banda_ambiguedad\": null}, \"condiciones\": {\"version\": null, \"alcance\": \"vigente\"}, \"faltantes\": []}",
+        "modelo": "qwen2.5:7b",
+        "segundos": 34.08,
+        "tokens_entrada": 1929,
+        "tokens_salida": 112,
+        "errores_esquema": []
+      }
+    ],
+    "notas": [],
+    "json_validado": {
+      "intencion": "listar_juicios",
+      "entidades": {
+        "requerimiento_id": null,
+        "requerimiento_texto": null,
+        "observacion_id": null,
+        "evaluacion_id": null
+      },
+      "conceptos": {
+        "criterio": "ambiguedad"
+      },
+      "filtros": {
+        "estado_juicio": "pendiente",
+        "banda_ambiguedad": null
+      },
+      "condiciones": {
+        "version": null,
+        "alcance": "vigente"
+      },
+      "faltantes": []
+    }
+  },
+  "intencion": "listar_juicios",
+  "consultas_cypher": [
+    {
+      "consulta": "Q3_listado_juicios",
+      "parametros": {
+        "criterio": "ambiguedad",
+        "estado": "pendiente",
+        "banda": null,
+        "solo_vigentes": true
+      },
+      "filas": 2,
+      "milisegundos": 969.2
+    },
+    {
+      "consulta": "Q6_reglas",
+      "parametros": {
+        "ids": [
+          "GL02"
+        ]
+      },
+      "filas": 1,
+      "milisegundos": 29.1
+    }
+  ],
+  "paquete_evidencia": {
+    "intencion": "listar_juicios",
+    "consulta_usuario": "¿Qué juicios de ambigüedad siguen pendientes?",
+    "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+    "filtros_aplicados": {
+      "criterio": "ambiguedad",
+      "estado": "pendiente",
+      "banda": null,
+      "solo_vigentes": true
+    },
+    "total_juicios": 2,
+    "juicios": [
+      {
+        "estado": "pendiente",
+        "reglas": [
+          "GL02"
+        ],
+        "texto_requerimiento": "El sistema debe responder de forma adecuada.",
+        "banda_difusa": null,
+        "version": 1,
+        "requerimiento_id": "RQ-AMB-SIN-DATO-v1",
+        "resultados": [
+          "R-J-EV-AMB-SIN-DATO-ambiguedad"
+        ],
+        "criterio": "ambiguedad",
+        "juicio_id": "J-EV-AMB-SIN-DATO-ambiguedad",
+        "evaluacion_id": "EV-AMB-SIN-DATO",
+        "documento_id": "DOC-AMB-SIN-DATO-v1",
+        "estado_evaluacion": "pendiente",
+        "grado_ambiguedad": null
+      },
+      {
+        "estado": "pendiente",
+        "reglas": [
+          "GL02"
+        ],
+        "texto_requerimiento": "El sistema debe notificar a los clientes habituales.",
+        "banda_difusa": "media",
+        "version": 1,
+        "requerimiento_id": "RQ-HAB-v1",
+        "resultados": [
+          "R-J-EV-HAB-ambiguedad"
+        ],
+        "criterio": "ambiguedad",
+        "juicio_id": "J-EV-HAB-ambiguedad",
+        "evaluacion_id": "EV-HAB",
+        "documento_id": "DOC-HAB-v1",
+        "estado_evaluacion": "pendiente",
+        "grado_ambiguedad": 0.501254
+      }
+    ],
+    "reglas": [
+      {
+        "id": "GL02",
+        "modulo": "global",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+        "fuente": "PG1 §6.3"
+      }
+    ]
+  },
+  "explicacion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "respuesta": "Los juicios de ambigüedad que siguen pendientes son [J-EV-AMB-SIN-DATO-ambiguedad] y [J-EV-HAB-ambiguedad]. Según la regla GL02, estado candidata, estos análisis quedan pendientes debido a la falta de datos necesarios para concluir. [J-EV-AMB-SIN-DATO-ambiguedad] para el requerimiento RQ-AMB-SIN-DATO-v1, y [J-EV-HAB-ambiguedad] para RQ-HAB-v1, con un grado de ambigüedad calculado de 0.501 y banda media.",
+        "violaciones": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 87.72,
+        "tokens_entrada": 1892,
+        "tokens_salida": 147
+      }
+    ],
+    "hechos_verificables": [
+      "J-EV-AMB-SIN-DATO-ambiguedad: requerimiento RQ-AMB-SIN-DATO-v1 («El sistema debe responder de forma adecuada.»), criterio ambiguedad, estado pendiente por GL02; sin grado calculado.",
+      "J-EV-HAB-ambiguedad: requerimiento RQ-HAB-v1 («El sistema debe notificar a los clientes habituales.»), criterio ambiguedad, estado pendiente por GL02; grado 0.501, banda media.",
+      "Regla GL02 (estado candidata, PG1 §6.3): SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+      "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+      "La respuesta debe mencionar estos IDs: J-EV-AMB-SIN-DATO-ambiguedad, J-EV-HAB-ambiguedad.",
+      "Estados que figuran en el paquete: pendiente. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «cumple», «incumple», «observado», «sin hallazgo», «no evaluable», «resuelto», «por consultar» en la respuesta."
+    ],
+    "cobertura_requerida": {
+      "ids": [
+        "J-EV-AMB-SIN-DATO-ambiguedad",
+        "J-EV-HAB-ambiguedad"
+      ],
+      "estados": []
+    },
+    "resultado_verificacion": "aprobada"
+  },
+  "respuesta_final": "Los juicios de ambigüedad que siguen pendientes son [J-EV-AMB-SIN-DATO-ambiguedad] y [J-EV-HAB-ambiguedad]. Según la regla GL02, estado candidata, estos análisis quedan pendientes debido a la falta de datos necesarios para concluir. [J-EV-AMB-SIN-DATO-ambiguedad] para el requerimiento RQ-AMB-SIN-DATO-v1, y [J-EV-HAB-ambiguedad] para RQ-HAB-v1, con un grado de ambigüedad calculado de 0.501 y banda media.",
+  "tipo_salida": "explicacion",
+  "segundos_totales": 122.81
+}

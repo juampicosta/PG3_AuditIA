@@ -1,0 +1,954 @@
+{
+  "version": "PG3-AuditIA-1.0",
+  "fecha": "2026-11-14T01:46:25",
+  "modelo": "qwen2.5:7b",
+  "huella_prompts": "45af5da3ce6b",
+  "caso": "E2E-01",
+  "consulta_usuario": "¿Qué problemas de calidad tiene el requerimiento de cargar rápidamente el catálogo y con qué prioridad hay que tratar su hallazgo de ambigüedad?",
+  "pasos": [
+    {
+      "paso": 1,
+      "submodulo": "SM1",
+      "subconsulta": "¿Qué problemas de calidad tiene el requerimiento de cargar rápidamente el catálogo?",
+      "enlace": null,
+      "traza": {
+        "prototipo": "PI4-SM1-1.0",
+        "fecha": "2026-11-14T01:49:38",
+        "modelo": "qwen2.5:7b",
+        "huella_prompts": "88da390d63e7",
+        "caso": "E2E-01_p1_SM1",
+        "consulta_usuario": "¿Qué problemas de calidad tiene el requerimiento de cargar rápidamente el catálogo?",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"diagnostico_requerimiento\", \"entidades\": {\"requerimiento_id\": null, \"requerimiento_texto\": \"cargar rápidamente el catálogo\", \"observacion_id\": null, \"evaluacion_id\": null}, \"conceptos\": {\"criterio\": null}, \"filtros\": {\"estado_juicio\": null, \"banda_ambiguedad\": null}, \"condiciones\": {\"version\": null, \"alcance\": \"vigente\"}, \"faltantes\": [\"criterio a evaluar\"]}",
+              "modelo": "qwen2.5:7b",
+              "segundos": 115.79,
+              "tokens_entrada": 1934,
+              "tokens_salida": 122,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [],
+          "json_validado": {
+            "intencion": "diagnostico_requerimiento",
+            "entidades": {
+              "requerimiento_id": null,
+              "requerimiento_texto": "cargar rápidamente el catálogo",
+              "observacion_id": null,
+              "evaluacion_id": null
+            },
+            "conceptos": {
+              "criterio": null
+            },
+            "filtros": {
+              "estado_juicio": null,
+              "banda_ambiguedad": null
+            },
+            "condiciones": {
+              "version": null,
+              "alcance": "vigente"
+            },
+            "faltantes": [
+              "criterio a evaluar"
+            ]
+          }
+        },
+        "intencion": "diagnostico_requerimiento",
+        "consultas_cypher": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 6,
+            "milisegundos": 780.7
+          },
+          {
+            "consulta": "Q1_diagnostico",
+            "parametros": {
+              "requerimiento_id": "RQ-CAT-v1",
+              "criterio": null
+            },
+            "filas": 1,
+            "milisegundos": 208.0
+          },
+          {
+            "consulta": "Q6_reglas",
+            "parametros": {
+              "ids": [
+                "EVI-HC02",
+                "EVI-HC08",
+                "EVI-RD03",
+                "EVI-RD04",
+                "GL02"
+              ]
+            },
+            "filas": 5,
+            "milisegundos": 104.7
+          }
+        ],
+        "resolucion_entidad": {
+          "estado": "ok",
+          "puntaje": 1.0,
+          "requerimiento": {
+            "requerimiento_id": "RQ-CAT-v1",
+            "id_logico": "RQ-CAT",
+            "texto": "El sistema debe cargar rápidamente el catálogo.",
+            "documento_id": "DOC-CAT-v1",
+            "version": 1
+          }
+        },
+        "paquete_evidencia": {
+          "intencion": "diagnostico_requerimiento",
+          "consulta_usuario": "¿Qué problemas de calidad tiene el requerimiento de cargar rápidamente el catálogo?",
+          "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "requerimiento_consultado": {
+            "requerimiento_id": "RQ-CAT-v1",
+            "id_logico": "RQ-CAT",
+            "texto": "El sistema debe cargar rápidamente el catálogo.",
+            "documento_id": "DOC-CAT-v1",
+            "version": 1
+          },
+          "otras_versiones_del_requerimiento": [
+            {
+              "requerimiento_id": "RQ-CAT-v2",
+              "id_logico": "RQ-CAT",
+              "texto": "El sistema debe cargar el catálogo de 100 productos con lista interactiva en menos de 2 segundos en el entorno de prueba acordado.",
+              "documento_id": "DOC-CAT-v2",
+              "version": 2
+            }
+          ],
+          "evaluaciones": [
+            {
+              "estado": "observado",
+              "texto_requerimiento": "El sistema debe cargar rápidamente el catálogo.",
+              "reevalua_a": [],
+              "incidencias": [],
+              "vigente": false,
+              "version": 1,
+              "requerimiento_id": "RQ-CAT-v1",
+              "fecha": "2026-10-31T21:00:00-03:00",
+              "entrada_valida": true,
+              "evaluacion_id": "EV-CAT-01",
+              "juicios": [
+                {
+                  "estado": "cumple",
+                  "reglas": [
+                    "EVI-HC08"
+                  ],
+                  "justificacion": "Una obligación evaluable con unidad de aceptación confirmada.",
+                  "revision_senior_requerida": false,
+                  "banda_difusa": null,
+                  "resultados": [],
+                  "criterio": "atomicidad",
+                  "juicio_id": "J-EV-CAT-01-atomicidad",
+                  "evidencias": [
+                    {
+                      "tipo": "fragmento",
+                      "contenido": "El sistema debe cargar rápidamente el catálogo.",
+                      "id": "E-RQ-CAT-v1",
+                      "localizador": "RQ-CAT-v1"
+                    }
+                  ],
+                  "grado_ambiguedad": null
+                },
+                {
+                  "estado": "incumple",
+                  "reglas": [
+                    "EVI-HC02"
+                  ],
+                  "justificacion": "Persisten dos lecturas: aprobación por percepción de rapidez o por un límite medido; falta delimitación del caso.",
+                  "revision_senior_requerida": false,
+                  "banda_difusa": "alta",
+                  "resultados": [
+                    {
+                      "motivo_pendiente": null,
+                      "dato_faltante": null,
+                      "severidad": "media",
+                      "id": "H-CAT-B",
+                      "clase": "Hallazgo"
+                    }
+                  ],
+                  "criterio": "ambiguedad",
+                  "juicio_id": "J-EV-CAT-01-ambiguedad",
+                  "evidencias": [
+                    {
+                      "tipo": "fragmento",
+                      "contenido": "El sistema debe cargar rápidamente el catálogo.",
+                      "id": "E-RQ-CAT-v1",
+                      "localizador": "RQ-CAT-v1"
+                    }
+                  ],
+                  "grado_ambiguedad": 0.7810157758841172
+                },
+                {
+                  "estado": "pendiente",
+                  "reglas": [
+                    "EVI-RD03"
+                  ],
+                  "justificacion": "La aceptación necesaria no fue recibida; no se puede fijar una condición de aprobación.",
+                  "revision_senior_requerida": false,
+                  "banda_difusa": null,
+                  "resultados": [
+                    {
+                      "motivo_pendiente": "aceptacion_no_recibida",
+                      "dato_faltante": "Criterio de aceptación y alcance",
+                      "severidad": null,
+                      "id": "P-CAT-V",
+                      "clase": "Pendiente"
+                    }
+                  ],
+                  "criterio": "verificabilidad",
+                  "juicio_id": "J-EV-CAT-01-verificabilidad",
+                  "evidencias": [
+                    {
+                      "tipo": "fragmento",
+                      "contenido": "El sistema debe cargar rápidamente el catálogo.",
+                      "id": "E-RQ-CAT-v1",
+                      "localizador": "RQ-CAT-v1"
+                    }
+                  ],
+                  "grado_ambiguedad": null
+                },
+                {
+                  "estado": "pendiente",
+                  "reglas": [
+                    "GL02"
+                  ],
+                  "justificacion": "No se recibió la información necesaria para determinar las partes aplicables.",
+                  "revision_senior_requerida": false,
+                  "banda_difusa": null,
+                  "resultados": [
+                    {
+                      "motivo_pendiente": "aceptacion_no_recibida",
+                      "dato_faltante": "Criterio de aceptación y alcance",
+                      "severidad": null,
+                      "id": "P-CAT-C",
+                      "clase": "Pendiente"
+                    }
+                  ],
+                  "criterio": "completitud",
+                  "juicio_id": "J-EV-CAT-01-completitud",
+                  "evidencias": [
+                    {
+                      "tipo": "fragmento",
+                      "contenido": "El sistema debe cargar rápidamente el catálogo.",
+                      "id": "E-RQ-CAT-v1",
+                      "localizador": "RQ-CAT-v1"
+                    }
+                  ],
+                  "grado_ambiguedad": null
+                }
+              ],
+              "documento_id": "DOC-CAT-v1",
+              "reevaluada_por": [
+                "EV-CAT-02"
+              ],
+              "reglas_evaluacion": [
+                "EVI-RD04"
+              ]
+            }
+          ],
+          "reglas": [
+            {
+              "id": "EVI-HC02",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+              "fuente": "PG1 §6.4"
+            },
+            {
+              "id": "EVI-HC08",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI hay una sola obligación con unidad de aceptación confirmada ENTONCES atomicidad cumple.",
+              "fuente": "PG1 §6.4"
+            },
+            {
+              "id": "EVI-RD03",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI criterio = verificabilidad, la aceptación es necesaria y no está disponible ENTONCES el juicio queda pendiente.",
+              "fuente": "PG1 §6.4"
+            },
+            {
+              "id": "EVI-RD04",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI hay cuatro juicios informados y al menos uno incumple ENTONCES estado = observado.",
+              "fuente": "PG1 §6.4"
+            },
+            {
+              "id": "GL02",
+              "modulo": "global",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+              "fuente": "PG1 §6.3"
+            }
+          ]
+        },
+        "explicacion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "respuesta": "El requerimiento RQ-CAT-v1 «El sistema debe cargar rápidamente el catálogo» incumple el criterio de ambigüedad [J-EV-CAT-01-ambiguedad] por la regla EVI-HC02, con un grado de ambigüedad de 0.781 y una banda alta, generando un Hallazgo H-CAT-B con severidad media. Esto se debe a que persisten dos lecturas: aprobación por percepción de rapidez o por un límite medido, sin delimitación del caso. Además, el requerimiento queda pendiente en verificabilidad [J-EV-CAT-01-verificabilidad] y completitud [J-EV-CAT-01-completitud] debido a la falta de criterio de aceptación y alcance. Estos resultados son provisionales, del prototipo académico, sin validación experta.",
+              "violaciones": [
+                "No menciona el estado «observado»"
+              ],
+              "modelo": "qwen2.5:7b",
+              "segundos": 228.16,
+              "tokens_entrada": 3631,
+              "tokens_salida": 206
+            },
+            {
+              "intento": 2,
+              "respuesta": "El requerimiento RQ-CAT-v1 incumple el criterio de ambigüedad [J-EV-CAT-01-ambiguedad] por la regla EVI-HC02, con un grado de ambigüedad de 0.781 y una banda alta, generando un Hallazgo H-CAT-B con severidad media. El juicio quedó observado [EV-CAT-01] por la regla EVI-RD04. La verificabilidad [J-EV-CAT-01-verificabilidad] y la completitud [J-EV-CAT-01-completitud] del requerimiento están pendientes, generando los respectivos Pendientes P-CAT-V y P-CAT-C.",
+              "violaciones": [
+                "No aclara que el resultado es provisional o candidato, sin validación experta"
+              ],
+              "modelo": "qwen2.5:7b",
+              "segundos": 42.14,
+              "tokens_entrada": 3686,
+              "tokens_salida": 166
+            },
+            {
+              "intento": 3,
+              "respuesta": "El requerimiento RQ-CAT-v1 «El sistema debe cargar rápidamente el catálogo» incumple el criterio de ambigüedad [J-EV-CAT-01-ambiguedad] por la regla EVI-HC02, con un grado de ambigüedad de 0.781 y una banda alta, generando un Hallazgo H-CAT-B con severidad media. Este hallazgo es provisional, del prototipo académico, sin validación experta. La evaluación EV-CAT-01 quedó observado [EV-CAT-01] por la regla EVI-RD04.",
+              "violaciones": [
+                "No menciona el estado «pendiente»"
+              ],
+              "modelo": "qwen2.5:7b",
+              "segundos": 38.43,
+              "tokens_entrada": 3695,
+              "tokens_salida": 148
+            }
+          ],
+          "hechos_verificables": [
+            "Requerimiento RQ-CAT-v1 («El sistema debe cargar rápidamente el catálogo.»), documento DOC-CAT-v1: la evaluación EV-CAT-01 quedó observado por la regla EVI-RD04.",
+            "La evaluación EV-CAT-01 fue reevaluada por EV-CAT-02: su resultado se conserva como historia de la versión 1 y no es el estado vigente.",
+            "Criterio atomicidad: cumple [J-EV-CAT-01-atomicidad] por la regla EVI-HC08. Justificación registrada: «Una obligación evaluable con unidad de aceptación confirmada.».",
+            "Criterio ambiguedad: incumple [J-EV-CAT-01-ambiguedad] por la regla EVI-HC02. Justificación registrada: «Persisten dos lecturas: aprobación por percepción de rapidez o por un límite medido; falta delimitación del caso.». Grado de ambigüedad 0.781, banda alta. Genera Hallazgo H-CAT-B con severidad propuesta media.",
+            "Criterio verificabilidad: pendiente [J-EV-CAT-01-verificabilidad] por la regla EVI-RD03. Justificación registrada: «La aceptación necesaria no fue recibida; no se puede fijar una condición de aprobación.». Genera Pendiente P-CAT-V (dato faltante: Criterio de aceptación y alcance).",
+            "Criterio completitud: pendiente [J-EV-CAT-01-completitud] por la regla GL02. Justificación registrada: «No se recibió la información necesaria para determinar las partes aplicables.». Genera Pendiente P-CAT-C (dato faltante: Criterio de aceptación y alcance).",
+            "Regla EVI-HC02 (estado candidata, PG1 §6.4): SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+            "Regla EVI-HC08 (estado candidata, PG1 §6.4): SI hay una sola obligación con unidad de aceptación confirmada ENTONCES atomicidad cumple.",
+            "Regla EVI-RD03 (estado candidata, PG1 §6.4): SI criterio = verificabilidad, la aceptación es necesaria y no está disponible ENTONCES el juicio queda pendiente.",
+            "Regla EVI-RD04 (estado candidata, PG1 §6.4): SI hay cuatro juicios informados y al menos uno incumple ENTONCES estado = observado.",
+            "Regla GL02 (estado candidata, PG1 §6.3): SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+            "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+            "La respuesta debe mencionar estos IDs: EV-CAT-01.",
+            "Estados que figuran en el paquete: cumple, incumple, observado, pendiente. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «sin hallazgo», «no evaluable», «resuelto», «por consultar» en la respuesta."
+          ],
+          "cobertura_requerida": {
+            "ids": [
+              "EV-CAT-01"
+            ],
+            "estados": [
+              "cumple",
+              "incumple",
+              "observado",
+              "pendiente"
+            ]
+          },
+          "resultado_verificacion": "rechazada; se emite la respuesta de respaldo"
+        },
+        "respuesta_final": "No pude generar una explicación verificable; resumo los datos recuperados de la base sin interpretarlos. Son resultados provisionales del prototipo, sin validación experta.\nEvaluación EV-CAT-01 (observado) de RQ-CAT-v1. atomicidad: cumple [J-EV-CAT-01-atomicidad]; ambiguedad: incumple [J-EV-CAT-01-ambiguedad]; verificabilidad: pendiente [J-EV-CAT-01-verificabilidad]; completitud: pendiente [J-EV-CAT-01-completitud]",
+        "tipo_salida": "respaldo",
+        "segundos_totales": 425.65,
+        "archivo_traza": "submodulos/20261114_015731_123_E2E-01_p1_SM1.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM1",
+        "intencion": "diagnostico_requerimiento",
+        "fuentes": [
+          "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)"
+        ],
+        "consultas": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 6,
+            "milisegundos": 780.7,
+            "cypher": "// Q0. Requerimientos evaluados por SM1. Alimenta la resolución determinística de entidades.\n// Solo lectura. Sin parámetros.\nMATCH (ev:AuditIA_PG2:EvaluacionIndividual)-[:EVALUA]->(rq:AuditIA_PG2:Requerimiento),\n      (ev)-[:REVISA_DOCUMENTO]->(doc:AuditIA_PG2:DocumentoVersion)\nWITH rq, doc, collect(DISTINCT ev.id) AS evaluaciones\nRETURN rq.id AS requerimiento_id, rq.id_logico AS id_logico, rq.texto_original AS texto,\n       doc.id AS documento_id, toInteger(doc.version) AS version, evaluaciones\nORDER BY id_logico, version"
+          },
+          {
+            "consulta": "Q1_diagnostico",
+            "parametros": {
+              "requerimiento_id": "RQ-CAT-v1",
+              "criterio": null
+            },
+            "filas": 1,
+            "milisegundos": 208.0,
+            "cypher": "// Q1. Diagnóstico local de un requerimiento: evaluaciones de SM1, juicios por criterio,\n// reglas aplicadas, evidencia, resultados derivados e incidencias de entrada.\n// Parámetros: $requerimiento_id (String), $criterio (String o null).\nMATCH (ev:AuditIA_PG2:EvaluacionIndividual)-[:EVALUA]->(rq:AuditIA_PG2:Requerimiento {id: $requerimiento_id}),\n      (ev)-[:REVISA_DOCUMENTO]->(doc:AuditIA_PG2:DocumentoVersion)\nOPTIONAL MATCH (ev)-[:CONTIENE_JUICIO]->(j:JuicioCriterio)-[:APLICA_CRITERIO]->(c:CriterioCalidad)\nWITH ev, rq, doc, j, c\nWHERE j IS NULL OR $criterio IS NULL OR c.nombre = $criterio\nWITH ev, rq, doc,\n     collect(CASE WHEN j IS NULL THEN null ELSE {\n       criterio: c.nombre,\n       juicio_id: j.id,\n       estado: j.estado,\n       justificacion: j.justificacion,\n       reglas: [(j)-[:APLICA_REGLA]->(r:Regla) | r.id],\n       evidencias: [(j)-[:SE_SUSTENTA_EN]->(e:Evidencia) |\n                    {id: e.id, tipo: e.tipo, contenido: e.contenido, localizador: e.localizador}],\n       resultados: [(o:ResultadoAnalisis)-[:DERIVA_DE_JUICIO]->(j) |\n                    {id: o.id,\n                     clase: CASE WHEN o:Hallazgo THEN 'Hallazgo' WHEN o:Pendiente THEN 'Pendiente' ELSE 'ResultadoAnalisis' END,\n                     motivo_pendiente: o.motivo_pendiente,\n                     dato_faltante: o.dato_faltante,\n                     severidad: head([(o)-[:TIENE_SEVERIDAD]->(sv:Severidad) | sv.valor])}],\n       grado_ambiguedad: j.grado_ambiguedad,\n       banda_difusa: j.banda_difusa,\n       revision_senior_requerida: coalesce(j.revision_senior_requerida, false)\n     } END) AS juicios\nRETURN {\n  evaluacion_id: ev.id,\n  estado: ev.estado,\n  fecha: toString(ev.fecha),\n  entrada_valida: ev.entrada_valida,\n  documento_id: doc.id,\n  version: toInteger(doc.version),\n  requerimiento_id: rq.id,\n  texto_requerimiento: rq.texto_original,\n  reglas_evaluacion: [(ev)-[:APLICA_REGLA]->(r:Regla) | r.id],\n  incidencias: [(ev)-[:GENERA]->(i:IncidenciaEntrada) |\n                {id: i.id, causa: i.causa, descripcion: i.descripcion,\n                 accion_correccion: i.accion_correccion,\n                 reglas: [(i)-[:APLICA_REGLA]->(ri:Regla) | ri.id]}],\n  reevaluada_por: [(nueva:Evaluacion)-[:REEVALUA]->(ev) | nueva.id],\n  reevalua_a: [(ev)-[:REEVALUA]->(anterior:Evaluacion) | anterior.id],\n  vigente: NOT EXISTS { MATCH (:Evaluacion)-[:REEVALUA]->(ev) },\n  juicios: juicios\n} AS evaluacion\nORDER BY ev.fecha, ev.id"
+          },
+          {
+            "consulta": "Q6_reglas",
+            "parametros": {
+              "ids": [
+                "EVI-HC02",
+                "EVI-HC08",
+                "EVI-RD03",
+                "EVI-RD04",
+                "GL02"
+              ]
+            },
+            "filas": 5,
+            "milisegundos": 104.7,
+            "cypher": "// Q6. Consulta complementaria: texto, estado y fuente de las reglas citadas en un paquete.\n// Parámetros: $ids (List<String>).\nMATCH (r:AuditIA_PG2:Regla)\nWHERE r.id IN $ids\nRETURN r.id AS id, r.modulo AS modulo, r.estado_validacion AS estado_validacion,\n       r.ejecucion AS ejecucion, r.descripcion AS descripcion, r.descripcion_fuente AS fuente\nORDER BY id"
+          }
+        ],
+        "reglas": [
+          {
+            "id": "EVI-HC02",
+            "descripcion": "SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "EVI-HC08",
+            "descripcion": "SI hay una sola obligación con unidad de aceptación confirmada ENTONCES atomicidad cumple.",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "EVI-RD03",
+            "descripcion": "SI criterio = verificabilidad, la aceptación es necesaria y no está disponible ENTONCES el juicio queda pendiente.",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "EVI-RD04",
+            "descripcion": "SI hay cuatro juicios informados y al menos uno incumple ENTONCES estado = observado.",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "GL02",
+            "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+            "fuente": "PG1 §6.3",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          }
+        ],
+        "evidencias": [
+          {
+            "id": "E-RQ-CAT-v1",
+            "contenido": "El sistema debe cargar rápidamente el catálogo.",
+            "tipo": "fragmento",
+            "localizador": "RQ-CAT-v1",
+            "fuente": null
+          }
+        ],
+        "observaciones": [
+          {
+            "id": "H-CAT-B",
+            "clase": "Hallazgo"
+          },
+          {
+            "id": "P-CAT-V",
+            "clase": "Pendiente"
+          },
+          {
+            "id": "P-CAT-C",
+            "clase": "Pendiente"
+          }
+        ],
+        "verificacion": "rechazada; se emite la respuesta de respaldo",
+        "intentos_explicacion": 3,
+        "tipo_salida": "respaldo"
+      }
+    },
+    {
+      "paso": 2,
+      "submodulo": "SM3",
+      "subconsulta": "¿Por qué tiene esa prioridad el hallazgo de ambigüedad del requerimiento de cargar rápidamente el catálogo? (observación H-CAT-B)",
+      "enlace": {
+        "estado": "enlazado",
+        "elegidas": [
+          "H-CAT-B"
+        ],
+        "candidatas": [
+          "H-CAT-B",
+          "P-CAT-V",
+          "P-CAT-C"
+        ],
+        "criterio": "primer Hallazgo del paquete de evidencia; si no hay, primer Pendiente"
+      },
+      "traza": {
+        "prototipo": "PI4-SM3-1.0",
+        "fecha": "2026-11-14T01:57:31",
+        "modelo": "qwen2.5:7b",
+        "hilos": null,
+        "huella_prompts": "837a200f0dfe",
+        "caso": "E2E-01_p2_SM3",
+        "consulta_usuario": "¿Por qué tiene esa prioridad el hallazgo de ambigüedad del requerimiento de cargar rápidamente el catálogo? (observación H-CAT-B)",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"fundamento_prioridad\", \"entidades\": {\"observacion_id\": \"H-CAT-B\", \"observacion_texto\": \"ambigüedad del requerimiento de cargar rápidamente el catálogo\", \"documento_id\": null}, \"filtros\": {\"prioridad\": null, \"motivo\": null, \"estado_seguimiento\": \"abiertas\"}, \"matriz\": {\"severidad\": null, \"criticidad\": null}, \"faltantes\": []}",
+              "modelo": "qwen2.5:7b",
+              "segundos": 163.31,
+              "tokens_entrada": 2805,
+              "tokens_salida": 108,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [],
+          "json_validado": {
+            "intencion": "fundamento_prioridad",
+            "entidades": {
+              "observacion_id": "H-CAT-B",
+              "observacion_texto": "ambigüedad del requerimiento de cargar rápidamente el catálogo",
+              "documento_id": null
+            },
+            "filtros": {
+              "prioridad": null,
+              "motivo": null,
+              "estado_seguimiento": "abiertas"
+            },
+            "matriz": {
+              "severidad": null,
+              "criticidad": null
+            },
+            "faltantes": []
+          }
+        },
+        "intencion": "fundamento_prioridad",
+        "consultas_cypher": [
+          {
+            "consulta": "Q0_observaciones",
+            "parametros": {},
+            "filas": 33,
+            "milisegundos": 97.1
+          },
+          {
+            "consulta": "Q2_fundamento_decision",
+            "parametros": {
+              "observacion_id": "H-CAT-B"
+            },
+            "filas": 1,
+            "milisegundos": 61.4
+          },
+          {
+            "consulta": "Q4_seguimiento_pg2",
+            "parametros": {
+              "observacion_id": "H-CAT-B"
+            },
+            "filas": 1,
+            "milisegundos": 73.5
+          },
+          {
+            "consulta": "Q9_reglas",
+            "parametros": {
+              "ids": [
+                "EVI-HC02",
+                "GL07",
+                "PRC-RD02",
+                "PRC-RD09"
+              ]
+            },
+            "filas": 4,
+            "milisegundos": 32.4
+          }
+        ],
+        "resolucion_entidad": {
+          "estado": "ok",
+          "puntaje": 1.0,
+          "observaciones": [
+            "H-CAT-B"
+          ]
+        },
+        "paquete_evidencia": {
+          "intencion": "fundamento_prioridad",
+          "consulta_usuario": "¿Por qué tiene esa prioridad el hallazgo de ambigüedad del requerimiento de cargar rápidamente el catálogo? (observación H-CAT-B)",
+          "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "fundamento": {
+            "provisional": true,
+            "revisada_humanamente": true,
+            "estado": "resuelto",
+            "tipo": "hallazgo",
+            "motivo": "preventivo",
+            "reevaluaciones_del_origen": [
+              {
+                "estado": "sin_hallazgo",
+                "documento_id": "DOC-CAT-v2",
+                "resultado_reevaluacion": "resuelta",
+                "decision_se_basa_en_ella": true,
+                "id": "EV-CAT-02"
+              }
+            ],
+            "dato_faltante_origen": null,
+            "evaluacion_origen_id": "EV-CAT-01",
+            "severidad": {
+              "grado_severidad": 5.0,
+              "valor": "media",
+              "propuesta_por": "evaluacion_individual",
+              "id": "SV-H-CAT-B"
+            },
+            "observacion_id": "H-CAT-B",
+            "criticidad": {
+              "grado_criticidad": null,
+              "declarante_rol": "referente_negocio",
+              "valor": null,
+              "fundamento": "Declaración construida",
+              "ambito": "Operación del caso CAT",
+              "id": "CR-CAT"
+            },
+            "prioridad": "bloqueante",
+            "contexto": {
+              "mapeo_alta_bloqueante": "candidato_activo",
+              "diferimiento_aceptado": false,
+              "obligacion_esencial_indefinida": false,
+              "bloqueo_sustantivo_confirmado": false,
+              "id": "X-CAT",
+              "dato_para_priorizar_disponible": false,
+              "info_para_priorizar_suficiente": false,
+              "impacto_acotado": false,
+              "necesidad_dato_confirmada": true,
+              "hito_acordado": false
+            },
+            "celda_mpr01": null,
+            "revision_senior_requerida": false,
+            "decision_id": "D-H-CAT-B-R2",
+            "evidencia_decision": [
+              {
+                "contenido": "Premisas registradas por el grupo para EV-CAT-02",
+                "fuente": "S-CASOS",
+                "id": "E-EV-CAT-02"
+              }
+            ],
+            "descripcion_origen": "Persisten dos lecturas: aprobación por percepción de rapidez o por un límite medido; falta delimitación del caso.",
+            "modulo_origen": "evaluacion_individual",
+            "emitible": false,
+            "regla": "PRC-RD09",
+            "decision_anterior": {
+              "estado": "por_consultar",
+              "motivo": "preventivo",
+              "id": "D-H-CAT-B",
+              "regla": "PRC-RD02",
+              "prioridad": "bloqueante"
+            }
+          },
+          "seguimiento_pg2": {
+            "grado_ambiguedad_origen": 0.7810157758841172,
+            "descripcion": "Persisten dos lecturas: aprobación por percepción de rapidez o por un límite medido; falta delimitación del caso.",
+            "estado": "resuelto",
+            "motivo": "preventivo",
+            "modelo_difuso": null,
+            "grado_urgencia": null,
+            "observacion_id": "H-CAT-B",
+            "prioridad": "bloqueante",
+            "version_origen": "1",
+            "reglas_decision": [
+              "PRC-RD09"
+            ],
+            "decision_id": "D-H-CAT-B-R2",
+            "modulo_origen": "evaluacion_individual",
+            "provisional": true,
+            "estado_evaluacion_vigente": "sin_hallazgo",
+            "dato_faltante": null,
+            "evaluacion_origen_id": "EV-CAT-01",
+            "reglas_origen": [
+              "GL07",
+              "EVI-HC02"
+            ],
+            "modelo_ambiguedad": "MD-AMB-1.0",
+            "version": "2",
+            "evidencia_origen": [
+              {
+                "contenido": "El sistema debe cargar rápidamente el catálogo.",
+                "tipo": "fragmento",
+                "fuente": "S-CASOS",
+                "id": "E-RQ-CAT-v1",
+                "localizador": "RQ-CAT-v1"
+              }
+            ],
+            "grado_contradiccion": null,
+            "tratamiento_activo": false,
+            "descripcion_corresponde_a": "observacion_historica",
+            "modelo_diagnostico": null,
+            "documento_origen_id": "DOC-CAT-v1",
+            "evidencia_decision": [
+              {
+                "contenido": "Premisas registradas por el grupo para EV-CAT-02",
+                "tipo": "analisis",
+                "fuente": "S-CASOS",
+                "id": "E-EV-CAT-02",
+                "localizador": "EV-CAT-02"
+              }
+            ],
+            "evaluacion_id": "EV-CAT-02",
+            "documento_id": "DOC-CAT-v2",
+            "emitible": false,
+            "evidencia_evaluacion_vigente": [
+              {
+                "contenido": "Premisas registradas por el grupo para EV-CAT-02",
+                "tipo": "analisis",
+                "fuente": "S-CASOS",
+                "id": "E-EV-CAT-02",
+                "localizador": "EV-CAT-02"
+              }
+            ],
+            "grado_ambiguedad": 0.15602546284084878
+          },
+          "reglas": [
+            {
+              "id": "EVI-HC02",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+              "fuente": "PG1 §6.4"
+            },
+            {
+              "id": "GL07",
+              "modulo": "global",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+              "fuente": "PG1 §6.3"
+            },
+            {
+              "id": "PRC-RD02",
+              "modulo": "priorizacion_clarificacion",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI falta un dato confirmado como necesario para elegir el tratamiento ENTONCES prioridad bloqueante, motivo preventivo, provisional.",
+              "fuente": "PG1 §6.6"
+            },
+            {
+              "id": "PRC-RD09",
+              "modulo": "priorizacion_clarificacion",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI la respuesta está validada, la reevaluación del origen informa resuelta, autorizada y con versión coincidente, y la revisión es conforme ENTONCES nuevo estado resuelto.",
+              "fuente": "PG1 §6.6"
+            }
+          ]
+        },
+        "explicacion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "respuesta": "La observación H-CAT-B tiene prioridad bloqueante y motivo preventivo, según la decisión D-H-CAT-B-R2 [H-CAT-B, D-H-CAT-B-R2, PRC-RD09, D-H-CAT-B].\n\nLa decisión D-H-CAT-B-R2 se basa en la reevaluación EV-CAT-02 sobre DOC-CAT-v2, que informa resuelta, sin hallazgos, y en la regla PRC-RD09, que establece que si la respuesta está validada, la reevaluación del origen informa resuelta, autorizada y con versión coincidente, y la revisión es conforme, el estado es resuelto. La severidad propuesta es media, y la celda de la matriz no se encuentra debido a la falta de criticidad y severidad calculadas.\n\nLa decisión D-H-CAT-B-R2 tiene prioridad bloqueante, motivo preventivo y seguimiento resuelto; es provisional y todavía no es emitible.",
+              "violaciones": [],
+              "modelo": "qwen2.5:7b",
+              "segundos": 283.43,
+              "tokens_entrada": 4397,
+              "tokens_salida": 221
+            }
+          ],
+          "hechos_verificables": [
+            "Observación H-CAT-B (hallazgo) emitida por evaluacion_individual en la evaluación EV-CAT-01. Descripción registrada: «Persisten dos lecturas: aprobación por percepción de rapidez o por un límite medido; falta delimitación del caso.».",
+            "Severidad SV-H-CAT-B: media (grado_severidad 5.000), propuesta por evaluacion_individual. SM3 no la modifica.",
+            "Criticidad CR-CAT: valor null (desconocida), ámbito «Operación del caso CAT».",
+            "celda_mpr01 = null: con severidad o criticidad null la consulta no encuentra una celda de la matriz.",
+            "Premisas del contexto X-CAT: mapeo_alta_bloqueante = candidato_activo; diferimiento_aceptado = false; obligacion_esencial_indefinida = false; bloqueo_sustantivo_confirmado = false; dato_para_priorizar_disponible = false; info_para_priorizar_suficiente = false; impacto_acotado = false; necesidad_dato_confirmada = true; hito_acordado = false.",
+            "Decisión vigente D-H-CAT-B-R2, prioridad bloqueante, motivo preventivo, regla PRC-RD09, seguimiento resuelto; provisional = true, emitible = false. revisada_humanamente = true.",
+            "La decisión vigente sustituye a D-H-CAT-B (prioridad bloqueante, motivo preventivo, regla PRC-RD02, seguimiento por_consultar), que se conserva como historia.",
+            "La decisión vigente se basa en la reevaluación EV-CAT-02 sobre DOC-CAT-v2 (estado sin_hallazgo, resultado_reevaluacion resuelta).",
+            "Evidencia de la decisión: E-EV-CAT-02, «Premisas registradas por el grupo para EV-CAT-02» (fuente S-CASOS).",
+            "Seguimiento (Q4 de PG2): evaluación vigente EV-CAT-02 sobre DOC-CAT-v2 con estado sin_hallazgo; tratamiento_activo = false; reglas del origen GL07, EVI-HC02.",
+            "Evidencia del origen: E-RQ-CAT-v1, «El sistema debe cargar rápidamente el catálogo.».",
+            "Regla EVI-HC02 (estado candidata, ejecución en PG2: implementada, PG1 §6.4): SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+            "Regla GL07 (estado candidata, ejecución en PG2: implementada, PG1 §6.3): SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+            "Regla PRC-RD02 (estado candidata, ejecución en PG2: implementada, PG1 §6.6): SI falta un dato confirmado como necesario para elegir el tratamiento ENTONCES prioridad bloqueante, motivo preventivo, provisional.",
+            "Regla PRC-RD09 (estado candidata, ejecución en PG2: implementada, PG1 §6.6): SI la respuesta está validada, la reevaluación del origen informa resuelta, autorizada y con versión coincidente, y la revisión es conforme ENTONCES nuevo estado resuelto.",
+            "Las decisiones, reglas, celdas y modelos citados son provisionales o candidatos: resultado del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+            "emitible = false: la respuesta debe decir que la recomendación todavía no es emitible.",
+            "La respuesta debe mencionar estos IDs: H-CAT-B, D-H-CAT-B-R2, PRC-RD09, D-H-CAT-B. Entre corchetes van solo IDs, por ejemplo [H-CAT-B, D-H-CAT-B-R2]; los valores se escriben con palabras, fuera de los corchetes.",
+            "La respuesta debe nombrar con palabras estos valores: bloqueante, preventivo, resuelto.",
+            "La respuesta debe explicar primero el fundamento de cada decisión (premisas, evidencia y regla con su significado) y cerrar cada una con una oración como: «La decisión D-H-CAT-B-R2 tiene prioridad bloqueante, motivo preventivo y seguimiento resuelto; es provisional y todavía no es emitible.»",
+            "Valores de prioridad, motivo y estado que figuran en el paquete: bloqueante, por_consultar, preventivo, resuelto, sin_hallazgo. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas «sustantivo», «en hito», «diferimiento», «pendiente complemento», «observado», «no evaluable» como conclusión."
+          ],
+          "cobertura_requerida": {
+            "ids": [
+              "H-CAT-B",
+              "D-H-CAT-B-R2",
+              "PRC-RD09",
+              "D-H-CAT-B"
+            ],
+            "valores": [
+              "bloqueante",
+              "preventivo",
+              "resuelto"
+            ]
+          },
+          "resultado_verificacion": "aprobada"
+        },
+        "respuesta_final": "La observación H-CAT-B tiene prioridad bloqueante y motivo preventivo, según la decisión D-H-CAT-B-R2 [H-CAT-B, D-H-CAT-B-R2, PRC-RD09, D-H-CAT-B].\n\nLa decisión D-H-CAT-B-R2 se basa en la reevaluación EV-CAT-02 sobre DOC-CAT-v2, que informa resuelta, sin hallazgos, y en la regla PRC-RD09, que establece que si la respuesta está validada, la reevaluación del origen informa resuelta, autorizada y con versión coincidente, y la revisión es conforme, el estado es resuelto. La severidad propuesta es media, y la celda de la matriz no se encuentra debido a la falta de criticidad y severidad calculadas.\n\nLa decisión D-H-CAT-B-R2 tiene prioridad bloqueante, motivo preventivo y seguimiento resuelto; es provisional y todavía no es emitible.",
+        "tipo_salida": "explicacion",
+        "segundos_totales": 447.03,
+        "archivo_traza": "submodulos/20261114_020548_352_E2E-01_p2_SM3.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM3",
+        "intencion": "fundamento_prioridad",
+        "fuentes": [
+          "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "S-CASOS"
+        ],
+        "consultas": [
+          {
+            "consulta": "Q0_observaciones",
+            "parametros": {},
+            "filas": 33,
+            "milisegundos": 97.1,
+            "cypher": "// Q0. Observaciones recibidas por SM3 con su decisión vigente, si la tienen. Alimenta la resolución\n// determinística de entidades: el LLM nunca elige un ID del grafo. Solo lectura. Sin parámetros.\nMATCH (ev:AuditIA_PG2:Evaluacion)-[:GENERA]->(o:ResultadoAnalisis), (ev)-[:REVISA_DOCUMENTO]->(doc:DocumentoVersion)\nOPTIONAL MATCH (d:DecisionPrioridad)-[:PRIORIZA]->(o)\nWHERE NOT EXISTS { MATCH (:DecisionPrioridad)-[:SUSTITUYE_A]->(d) }\nRETURN o.id AS observacion_id,\n       CASE WHEN o:Hallazgo THEN 'hallazgo' WHEN o:Pendiente THEN 'pendiente'\n            WHEN o:IncidenciaEntrada THEN 'incidencia_entrada' ELSE 'resultado' END AS tipo,\n       o.modulo_origen AS modulo_origen, o.descripcion AS descripcion, o.tipo_defecto AS tipo_defecto,\n       o.dato_faltante AS dato_faltante, doc.id AS documento_id,\n       [(o)-[:AFECTA_REQUERIMIENTO]->(rq:Requerimiento) | rq.texto_original] AS textos_requerimiento,\n       d.id AS decision_id\nORDER BY observacion_id"
+          },
+          {
+            "consulta": "Q2_fundamento_decision",
+            "parametros": {
+              "observacion_id": "H-CAT-B"
+            },
+            "filas": 1,
+            "milisegundos": 61.4,
+            "cypher": "// Q2. ¿Por qué una observación recibió su prioridad? Decisión vigente con sus premisas (ContextoPrioridad),\n// regla aplicada, severidad del emisor, criticidad declarada, celda de MPR-01, decisión anterior (SUSTITUYE_A),\n// evidencia y reevaluaciones de la evaluación de origen, indicando si la decisión se basa en cada una.\n// Parámetro: $observacion_id (String).\nMATCH (o:AuditIA_PG2:ResultadoAnalisis {id: $observacion_id})<-[:PRIORIZA]-(d:DecisionPrioridad)\nWHERE NOT EXISTS { MATCH (:DecisionPrioridad)-[:SUSTITUYE_A]->(d) }\nMATCH (d)-[:USA_CONTEXTO]->(x:ContextoPrioridad), (d)-[:APLICA_REGLA]->(r:Regla),\n      (d)-[:TIENE_ESTADO]->(er:EstadoResolucion), (o)-[:TIENE_SEVERIDAD]->(sv:Severidad),\n      (origen:Evaluacion)-[:GENERA]->(o)\nOPTIONAL MATCH (cr:AuditIA_PG2:Criticidad {id: d.criticidad_id})\nOPTIONAL MATCH (celda:AuditIA_PG2:CeldaMatriz {severidad: sv.valor, criticidad: cr.valor})\nOPTIONAL MATCH (d)-[:SUSTITUYE_A]->(prev:DecisionPrioridad)\nRETURN {\n  observacion_id: o.id,\n  tipo: CASE WHEN o:Hallazgo THEN 'hallazgo' ELSE 'pendiente' END,\n  modulo_origen: o.modulo_origen,\n  evaluacion_origen_id: origen.id,\n  descripcion_origen: o.descripcion,\n  dato_faltante_origen: o.dato_faltante,\n  severidad: {id: sv.id, valor: sv.valor, grado_severidad: sv.grado_severidad, propuesta_por: sv.propuesta_por},\n  criticidad: CASE WHEN cr IS NULL THEN null ELSE\n    {id: cr.id, valor: cr.valor, grado_criticidad: cr.grado_criticidad, ambito: cr.ambito,\n     fundamento: cr.fundamento, declarante_rol: cr.declarante_rol} END,\n  celda_mpr01: CASE WHEN celda IS NULL THEN null ELSE\n    {id: celda.id, categoria: celda.categoria, version: celda.version, estado_validacion: celda.estado_validacion} END,\n  contexto: x {.id, .info_para_priorizar_suficiente, .necesidad_dato_confirmada, .dato_para_priorizar_disponible,\n               .obligacion_esencial_indefinida, .bloqueo_sustantivo_confirmado, .hito_acordado,\n               .diferimiento_aceptado, .impacto_acotado, .mapeo_alta_bloqueante},\n  decision_id: d.id, prioridad: d.prioridad, motivo: d.motivo, regla: r.id,\n  estado: er.valor, provisional: d.provisional, emitible: d.emitible,\n  revisada_humanamente: d.revisada_humanamente,\n  revision_senior_requerida: coalesce(d.revision_senior_requerida, false),\n  decision_anterior: CASE WHEN prev IS NULL THEN null ELSE\n    {id: prev.id, prioridad: prev.prioridad, motivo: prev.motivo,\n     regla: head([(prev)-[:APLICA_REGLA]->(rp:Regla) | rp.id]),\n     estado: head([(prev)-[:TIENE_ESTADO]->(ep:EstadoResolucion) | ep.valor])} END,\n  evidencia_decision: [(d)-[:SE_SUSTENTA_EN]->(e:Evidencia) |\n    {id: e.id, contenido: e.contenido, fuente: head([(e)-[:CITA_FUENTE]->(f:Fuente) | f.id])}],\n  reevaluaciones_del_origen: [(posterior:Evaluacion)-[:REEVALUA]->(origen) |\n    {id: posterior.id, estado: posterior.estado, resultado_reevaluacion: posterior.resultado_reevaluacion,\n     documento_id: head([(posterior)-[:REVISA_DOCUMENTO]->(dp:DocumentoVersion) | dp.id]),\n     decision_se_basa_en_ella: EXISTS { MATCH (d)-[:SE_BASA_EN_REEVALUACION]->(posterior) }}]\n} AS fundamento"
+          },
+          {
+            "consulta": "Q4_seguimiento_pg2",
+            "parametros": {
+              "observacion_id": "H-CAT-B"
+            },
+            "filas": 1,
+            "milisegundos": 73.5,
+            "cypher": "// Q4. Consulta Q4_paquete_llm.cypher de PG2, reutilizada sin cambios: es el contrato de PI4 (PG2 §4.1).\n// En SM3 se lee el seguimiento del tratamiento: prioridad, motivo, estado, tratamiento_activo, provisional y emitible.\n// Parámetro: $observacion_id (String).\nMATCH (o:AuditIA_PG2:ResultadoAnalisis {id:$observacion_id})<-[:GENERA]-(origen)-[:REVISA_DOCUMENTO]->(doc_origen),\n      (d:DecisionPrioridad)-[:PRIORIZA]->(o),(d)-[:TIENE_ESTADO]->(er)\nWHERE NOT EXISTS {MATCH (:DecisionPrioridad)-[:SUSTITUYE_A]->(d)}\nOPTIONAL MATCH (d)-[:SE_BASA_EN_REEVALUACION]->(reevaluacion:Evaluacion)\nWITH o,origen,doc_origen,d,er,coalesce(reevaluacion,origen) AS actual\nMATCH (actual)-[:REVISA_DOCUMENTO]->(doc)\nOPTIONAL MATCH (o)-[:DERIVA_DE_JUICIO]->(jo)-[:APLICA_CRITERIO]->(criterio)\nOPTIONAL MATCH (actual)-[:CONTIENE_JUICIO]->(ja)-[:APLICA_CRITERIO]->(criterio)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja\nOPTIONAL MATCH (o)-[:SE_SUSTENTA_EN]->(eo)-[:CITA_FUENTE]->(fo)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,\n collect(DISTINCT CASE WHEN eo IS NOT NULL THEN {id:eo.id,tipo:eo.tipo,contenido:eo.contenido,localizador:eo.localizador,fuente:fo.id} END) AS evidencia_origen\nOPTIONAL MATCH (d)-[:SE_SUSTENTA_EN]->(ed)-[:CITA_FUENTE]->(fd)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,\n collect(DISTINCT CASE WHEN ed IS NOT NULL THEN {id:ed.id,tipo:ed.tipo,contenido:ed.contenido,localizador:ed.localizador,fuente:fd.id} END) AS evidencia_decision\nOPTIONAL MATCH (actual)-[:SE_SUSTENTA_EN]->(ea)-[:CITA_FUENTE]->(fa)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,evidencia_decision,\n collect(DISTINCT CASE WHEN ea IS NOT NULL THEN {id:ea.id,tipo:ea.tipo,contenido:ea.contenido,localizador:ea.localizador,fuente:fa.id} END) AS evidencia_evaluacion_vigente\nOPTIONAL MATCH (o)-[:APLICA_REGLA]->(r1)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,evidencia_decision,evidencia_evaluacion_vigente,collect(DISTINCT r1.id) AS reglas_origen\nOPTIONAL MATCH (d)-[:APLICA_REGLA]->(r2)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,evidencia_decision,evidencia_evaluacion_vigente,reglas_origen,collect(DISTINCT r2.id) AS reglas_decision\nRETURN {observacion_id:o.id,documento_id:doc.id,version:doc.version,\n documento_origen_id:doc_origen.id,version_origen:doc_origen.version,\n modulo_origen:o.modulo_origen,evaluacion_id:actual.id,evaluacion_origen_id:origen.id,\n estado_evaluacion_vigente:actual.estado,descripcion:o.descripcion,descripcion_corresponde_a:'observacion_historica',\n grado_ambiguedad:ja.grado_ambiguedad,grado_ambiguedad_origen:jo.grado_ambiguedad,\n modelo_ambiguedad:ja.modelo_difuso_version,\n grado_contradiccion:actual.grado_contradiccion,modelo_diagnostico:actual.modelo_difuso_version,\n decision_id:d.id,prioridad:d.prioridad,motivo:d.motivo,estado:er.valor,\n provisional:d.provisional,emitible:d.emitible,tratamiento_activo:er.valor<>'resuelto',dato_faltante:o.dato_faltante,\n grado_urgencia:d.grado_urgencia,modelo_difuso:d.modelo_difuso_version,\n reglas_origen:reglas_origen,reglas_decision:reglas_decision,\n evidencia_origen:evidencia_origen,evidencia_decision:evidencia_decision,\n evidencia_evaluacion_vigente:evidencia_evaluacion_vigente} AS paquete"
+          },
+          {
+            "consulta": "Q9_reglas",
+            "parametros": {
+              "ids": [
+                "EVI-HC02",
+                "GL07",
+                "PRC-RD02",
+                "PRC-RD09"
+              ]
+            },
+            "filas": 4,
+            "milisegundos": 32.4,
+            "cypher": "// Q9. Consulta complementaria: texto, estado de validación, ejecución en PG2 y fuente de las reglas citadas.\n// Parámetros: $ids (List<String>).\nMATCH (r:AuditIA_PG2:Regla)\nWHERE r.id IN $ids\nRETURN r.id AS id, r.modulo AS modulo, r.estado_validacion AS estado_validacion,\n       r.ejecucion AS ejecucion, r.descripcion AS descripcion, r.descripcion_fuente AS fuente\nORDER BY id"
+          }
+        ],
+        "reglas": [
+          {
+            "id": "EVI-HC02",
+            "descripcion": "SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "GL07",
+            "descripcion": "SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+            "fuente": "PG1 §6.3",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "PRC-RD02",
+            "descripcion": "SI falta un dato confirmado como necesario para elegir el tratamiento ENTONCES prioridad bloqueante, motivo preventivo, provisional.",
+            "fuente": "PG1 §6.6",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "PRC-RD09",
+            "descripcion": "SI la respuesta está validada, la reevaluación del origen informa resuelta, autorizada y con versión coincidente, y la revisión es conforme ENTONCES nuevo estado resuelto.",
+            "fuente": "PG1 §6.6",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          }
+        ],
+        "evidencias": [
+          {
+            "id": "E-EV-CAT-02",
+            "contenido": "Premisas registradas por el grupo para EV-CAT-02",
+            "tipo": "analisis",
+            "localizador": "EV-CAT-02",
+            "fuente": "S-CASOS"
+          },
+          {
+            "id": "E-RQ-CAT-v1",
+            "contenido": "El sistema debe cargar rápidamente el catálogo.",
+            "tipo": "fragmento",
+            "localizador": "RQ-CAT-v1",
+            "fuente": "S-CASOS"
+          }
+        ],
+        "observaciones": [
+          {
+            "id": "H-CAT-B",
+            "clase": "hallazgo"
+          }
+        ],
+        "verificacion": "aprobada",
+        "intentos_explicacion": 1,
+        "tipo_salida": "explicacion"
+      }
+    }
+  ],
+  "enrutamiento": {
+    "intentos": [
+      {
+        "salida": "{\n  \"tipo\": \"consulta\",\n  \"pasos\": [\n    {\n      \"submodulo\": \"SM1\",\n      \"subconsulta\": \"¿Qué problemas de calidad tiene el requerimiento de cargar rápidamente el catálogo?\",\n      \"depende_de\": null\n    },\n    {\n      \"submodulo\": \"SM3\",\n      \"subconsulta\": \"¿Por qué tiene esa prioridad el hallazgo de ambigüedad del requerimiento de cargar rápidamente el catálogo?\",\n      \"depende_de\": 1\n    }\n  ],\n  \"motivo\": \"El diagnóstico de calidad es de SM1 y la prioridad del hallazgo resultante es de SM3.\"\n}",
+        "errores": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 171.23,
+        "tokens_entrada": 1809,
+        "tokens_salida": 152
+      }
+    ],
+    "huella_prompt": "45af5da3ce6b",
+    "fuente": "llm",
+    "plan": {
+      "tipo": "consulta",
+      "pasos": [
+        {
+          "submodulo": "SM1",
+          "subconsulta": "¿Qué problemas de calidad tiene el requerimiento de cargar rápidamente el catálogo?",
+          "depende_de": null
+        },
+        {
+          "submodulo": "SM3",
+          "subconsulta": "¿Por qué tiene esa prioridad el hallazgo de ambigüedad del requerimiento de cargar rápidamente el catálogo?",
+          "depende_de": 1
+        }
+      ],
+      "motivo": "El diagnóstico de calidad es de SM1 y la prioridad del hallazgo resultante es de SM3."
+    }
+  },
+  "sintesis": {
+    "intentos": [
+      {
+        "texto": "El requerimiento RQ-CAT-v1 tiene un problema de ambigüedad según la evaluación EV-CAT-01, marcada como incumplida. La observación H-CAT-B tiene prioridad bloqueante y motivo preventivo, basada en la decisión D-H-CAT-B-R2, que se apoya en la reevaluación EV-CAT-02 y la regla PRC-RD09. La severidad propuesta es media, pero la celda de la matriz no se encuentra debido a la falta de criticidad y severidad calculadas. Las conclusiones son provisionales, derivadas de reglas y parámetros del prototipo académico sin validación experta. [SM1], [SM3]",
+        "violaciones": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 71.09,
+        "tokens_entrada": 933,
+        "tokens_salida": 162
+      }
+    ],
+    "modo": "sintesis_llm_verificada"
+  },
+  "respuesta_final": "El requerimiento RQ-CAT-v1 tiene un problema de ambigüedad según la evaluación EV-CAT-01, marcada como incumplida. La observación H-CAT-B tiene prioridad bloqueante y motivo preventivo, basada en la decisión D-H-CAT-B-R2, que se apoya en la reevaluación EV-CAT-02 y la regla PRC-RD09. La severidad propuesta es media, pero la celda de la matriz no se encuentra debido a la falta de criticidad y severidad calculadas. Las conclusiones son provisionales, derivadas de reglas y parámetros del prototipo académico sin validación experta. [SM1], [SM3]",
+  "tipo_salida": "integrada",
+  "submodulos_consultados": [
+    "SM1",
+    "SM3"
+  ],
+  "tipos_salida_pasos": [
+    "explicacion",
+    "respaldo"
+  ],
+  "segundos_totales": 1117.16
+}

@@ -1,0 +1,303 @@
+{
+  "prototipo": "PI4-SM3-1.0",
+  "fecha": "2026-11-14T02:17:50",
+  "modelo": "qwen2.5:7b",
+  "hilos": null,
+  "huella_prompts": "837a200f0dfe",
+  "caso": "E2E-02_p2_SM3",
+  "consulta_usuario": "¿Por qué quedó como bloqueante la contradicción de los descuentos de la venta de categoría A? (observación H-DESC)",
+  "extraccion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "salida_cruda": "{\"intencion\": \"fundamento_prioridad\", \"entidades\": {\"observacion_id\": \"H-DESC\", \"observacion_texto\": null, \"documento_id\": null}, \"filtros\": {\"prioridad\": \"bloqueante\", \"motivo\": null, \"estado_seguimiento\": \"abiertas\"}, \"matriz\": {\"severidad\": null, \"criticidad\": null}, \"faltantes\": []}",
+        "modelo": "qwen2.5:7b",
+        "segundos": 23.79,
+        "tokens_entrada": 2799,
+        "tokens_salida": 94,
+        "errores_esquema": []
+      }
+    ],
+    "notas": [
+      "Se ignoran los filtros de prioridad y motivo: la intención fundamento_prioridad no los usa."
+    ],
+    "json_validado": {
+      "intencion": "fundamento_prioridad",
+      "entidades": {
+        "observacion_id": "H-DESC",
+        "observacion_texto": null,
+        "documento_id": null
+      },
+      "filtros": {
+        "prioridad": null,
+        "motivo": null,
+        "estado_seguimiento": "abiertas"
+      },
+      "matriz": {
+        "severidad": null,
+        "criticidad": null
+      },
+      "faltantes": []
+    }
+  },
+  "intencion": "fundamento_prioridad",
+  "consultas_cypher": [
+    {
+      "consulta": "Q0_observaciones",
+      "parametros": {},
+      "filas": 33,
+      "milisegundos": 53.8
+    },
+    {
+      "consulta": "Q2_fundamento_decision",
+      "parametros": {
+        "observacion_id": "H-DESC"
+      },
+      "filas": 1,
+      "milisegundos": 28.9
+    },
+    {
+      "consulta": "Q4_seguimiento_pg2",
+      "parametros": {
+        "observacion_id": "H-DESC"
+      },
+      "filas": 1,
+      "milisegundos": 24.5
+    },
+    {
+      "consulta": "Q9_reglas",
+      "parametros": {
+        "ids": [
+          "ACC-RD05",
+          "GL07",
+          "PRC-HC01"
+        ]
+      },
+      "filas": 3,
+      "milisegundos": 23.4
+    }
+  ],
+  "resolucion_entidad": {
+    "estado": "ok",
+    "puntaje": 1.0,
+    "observaciones": [
+      "H-DESC"
+    ]
+  },
+  "paquete_evidencia": {
+    "intencion": "fundamento_prioridad",
+    "consulta_usuario": "¿Por qué quedó como bloqueante la contradicción de los descuentos de la venta de categoría A? (observación H-DESC)",
+    "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+    "fundamento": {
+      "provisional": true,
+      "revisada_humanamente": false,
+      "estado": "por_consultar",
+      "tipo": "hallazgo",
+      "motivo": "sustantivo",
+      "reevaluaciones_del_origen": [],
+      "dato_faltante_origen": null,
+      "evaluacion_origen_id": "EV-DESC",
+      "severidad": {
+        "grado_severidad": 9.0,
+        "valor": "alta",
+        "propuesta_por": "analisis_cruzado",
+        "id": "SV-H-DESC"
+      },
+      "observacion_id": "H-DESC",
+      "criticidad": {
+        "grado_criticidad": 9.0,
+        "declarante_rol": "referente_negocio",
+        "valor": "alta",
+        "fundamento": "Declaración construida",
+        "ambito": "Operación del caso DESC",
+        "id": "CR-DESC"
+      },
+      "prioridad": "bloqueante",
+      "contexto": {
+        "mapeo_alta_bloqueante": "candidato_activo",
+        "diferimiento_aceptado": false,
+        "obligacion_esencial_indefinida": true,
+        "bloqueo_sustantivo_confirmado": true,
+        "id": "X-DESC",
+        "dato_para_priorizar_disponible": true,
+        "info_para_priorizar_suficiente": true,
+        "impacto_acotado": false,
+        "necesidad_dato_confirmada": false,
+        "hito_acordado": false
+      },
+      "celda_mpr01": {
+        "estado_validacion": "candidata",
+        "categoria": "bloqueante",
+        "id": "MPR-alta-alta",
+        "version": "MPR-01-1.0"
+      },
+      "revision_senior_requerida": false,
+      "decision_id": "D-H-DESC",
+      "evidencia_decision": [
+        {
+          "contenido": "Contexto de prioridad construido de DESC",
+          "fuente": "S-CASOS",
+          "id": "E-X-DESC"
+        }
+      ],
+      "descripcion_origen": "La misma venta exige precio con y sin descuento",
+      "modulo_origen": "analisis_cruzado",
+      "emitible": false,
+      "regla": "PRC-HC01",
+      "decision_anterior": null
+    },
+    "seguimiento_pg2": {
+      "grado_ambiguedad_origen": null,
+      "descripcion": "La misma venta exige precio con y sin descuento",
+      "estado": "por_consultar",
+      "motivo": "sustantivo",
+      "modelo_difuso": "MD-URG-1.0",
+      "grado_urgencia": 8.082999080276148,
+      "observacion_id": "H-DESC",
+      "prioridad": "bloqueante",
+      "version_origen": "1",
+      "reglas_decision": [
+        "PRC-HC01"
+      ],
+      "decision_id": "D-H-DESC",
+      "modulo_origen": "analisis_cruzado",
+      "provisional": true,
+      "estado_evaluacion_vigente": "observado",
+      "dato_faltante": null,
+      "evaluacion_origen_id": "EV-DESC",
+      "reglas_origen": [
+        "GL07",
+        "ACC-RD05"
+      ],
+      "modelo_ambiguedad": null,
+      "version": "1",
+      "evidencia_origen": [
+        {
+          "contenido": "En la misma venta de categoría A no se debe aplicar ningún descuento.",
+          "tipo": "fragmento",
+          "fuente": "S-CASOS",
+          "id": "E-RQ-DESC-B-v1",
+          "localizador": "RQ-DESC-B-v1"
+        },
+        {
+          "contenido": "En una venta de categoría A se debe aplicar el descuento del 10 %.",
+          "tipo": "fragmento",
+          "fuente": "S-CASOS",
+          "id": "E-RQ-DESC-A-v1",
+          "localizador": "RQ-DESC-A-v1"
+        },
+        {
+          "contenido": "RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.",
+          "tipo": "analisis",
+          "fuente": "S-CASOS",
+          "id": "E-EV-DESC",
+          "localizador": "EV-DESC"
+        }
+      ],
+      "grado_contradiccion": 0.8439745371591536,
+      "tratamiento_activo": true,
+      "descripcion_corresponde_a": "observacion_historica",
+      "modelo_diagnostico": "MD-CONTR-1.0",
+      "documento_origen_id": "DOC-DESC-v1",
+      "evidencia_decision": [
+        {
+          "contenido": "Contexto de prioridad construido de DESC",
+          "tipo": "declaracion",
+          "fuente": "S-CASOS",
+          "id": "E-X-DESC",
+          "localizador": "X-DESC"
+        }
+      ],
+      "evaluacion_id": "EV-DESC",
+      "documento_id": "DOC-DESC-v1",
+      "emitible": false,
+      "evidencia_evaluacion_vigente": [
+        {
+          "contenido": "RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.",
+          "tipo": "analisis",
+          "fuente": "S-CASOS",
+          "id": "E-EV-DESC",
+          "localizador": "EV-DESC"
+        }
+      ],
+      "grado_ambiguedad": null
+    },
+    "reglas": [
+      {
+        "id": "ACC-RD05",
+        "modulo": "analisis_cruzado",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI los escenarios coinciden, los resultados son incompatibles y ninguna excepción los concilia ENTONCES Hallazgo(contradiccion) y se deriva CONTRADICE.",
+        "fuente": "PG1 §6.5"
+      },
+      {
+        "id": "GL07",
+        "modulo": "global",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+        "fuente": "PG1 §6.3"
+      },
+      {
+        "id": "PRC-HC01",
+        "modulo": "priorizacion_clarificacion",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI un hallazgo deja indefinida una obligación esencial ENTONCES prioridad bloqueante, motivo sustantivo.",
+        "fuente": "PG1 §6.6"
+      }
+    ]
+  },
+  "explicacion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "respuesta": "La contradicción de los descuentos en la venta de categoría A quedó como bloqueante debido a que el hallazgo H-DESC indica que la misma venta exige precio con y sin descuento, lo cual es incompatible. La severidad y criticidad son altas, y el contexto X-DESC confirma que la obligación esencial queda indefinida. La regla PRC-HC01, en su versión candidata, determina que un hallazgo que deja indefinida una obligación esencial genera una prioridad bloqueante, motivo sustantivo. La decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible. [H-DESC, D-H-DESC, PRC-HC01]",
+        "violaciones": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 272.9,
+        "tokens_entrada": 4425,
+        "tokens_salida": 172
+      }
+    ],
+    "hechos_verificables": [
+      "Observación H-DESC (hallazgo) emitida por analisis_cruzado en la evaluación EV-DESC. Descripción registrada: «La misma venta exige precio con y sin descuento».",
+      "Severidad SV-H-DESC: alta (grado_severidad 9.000), propuesta por analisis_cruzado. SM3 no la modifica.",
+      "Criticidad CR-DESC: alta (grado_criticidad 9.000), ámbito «Operación del caso DESC», fundamento «Declaración construida», declarada por referente_negocio.",
+      "Celda de MPR-01: MPR-alta-alta, categoría bloqueante, versión MPR-01-1.0, estado_validacion candidata.",
+      "Premisas del contexto X-DESC: mapeo_alta_bloqueante = candidato_activo; diferimiento_aceptado = false; obligacion_esencial_indefinida = true; bloqueo_sustantivo_confirmado = true; dato_para_priorizar_disponible = true; info_para_priorizar_suficiente = true; impacto_acotado = false; necesidad_dato_confirmada = false; hito_acordado = false.",
+      "Decisión vigente D-H-DESC, prioridad bloqueante, motivo sustantivo, regla PRC-HC01, seguimiento por_consultar; provisional = true, emitible = false. revisada_humanamente = false.",
+      "Evidencia de la decisión: E-X-DESC, «Contexto de prioridad construido de DESC» (fuente S-CASOS).",
+      "Seguimiento (Q4 de PG2): evaluación vigente EV-DESC sobre DOC-DESC-v1 con estado observado; tratamiento_activo = true; reglas del origen GL07, ACC-RD05. Grado de contradicción de la evaluación de origen: 0.844 (MD-CONTR-1.0). Grado de urgencia de la decisión: 8.083 (MD-URG-1.0).",
+      "Evidencia del origen: E-RQ-DESC-B-v1, «En la misma venta de categoría A no se debe aplicar ningún descuento.».",
+      "Evidencia del origen: E-RQ-DESC-A-v1, «En una venta de categoría A se debe aplicar el descuento del 10 %.».",
+      "Evidencia del origen: E-EV-DESC, «RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.».",
+      "Regla ACC-RD05 (estado candidata, ejecución en PG2: implementada, PG1 §6.5): SI los escenarios coinciden, los resultados son incompatibles y ninguna excepción los concilia ENTONCES Hallazgo(contradiccion) y se deriva CONTRADICE.",
+      "Regla GL07 (estado candidata, ejecución en PG2: implementada, PG1 §6.3): SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+      "Regla PRC-HC01 (estado candidata, ejecución en PG2: implementada, PG1 §6.6): SI un hallazgo deja indefinida una obligación esencial ENTONCES prioridad bloqueante, motivo sustantivo.",
+      "Las decisiones, reglas, celdas y modelos citados son provisionales o candidatos: resultado del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+      "emitible = false: la respuesta debe decir que la recomendación todavía no es emitible.",
+      "La respuesta debe mencionar estos IDs: H-DESC, D-H-DESC, PRC-HC01. Entre corchetes van solo IDs, por ejemplo [H-DESC, D-H-DESC]; los valores se escriben con palabras, fuera de los corchetes.",
+      "La respuesta debe nombrar con palabras estos valores: bloqueante, por consultar, sustantivo.",
+      "La respuesta debe explicar primero el fundamento de cada decisión (premisas, evidencia y regla con su significado) y cerrar cada una con una oración como: «La decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible.»",
+      "Valores de prioridad, motivo y estado que figuran en el paquete: bloqueante, observado, por_consultar, sustantivo. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas «preventivo», «en hito», «diferimiento», «resuelto», «pendiente complemento», «sin hallazgo», «no evaluable» como conclusión."
+    ],
+    "cobertura_requerida": {
+      "ids": [
+        "H-DESC",
+        "D-H-DESC",
+        "PRC-HC01"
+      ],
+      "valores": [
+        "bloqueante",
+        "por_consultar",
+        "sustantivo"
+      ]
+    },
+    "resultado_verificacion": "aprobada"
+  },
+  "respuesta_final": "La contradicción de los descuentos en la venta de categoría A quedó como bloqueante debido a que el hallazgo H-DESC indica que la misma venta exige precio con y sin descuento, lo cual es incompatible. La severidad y criticidad son altas, y el contexto X-DESC confirma que la obligación esencial queda indefinida. La regla PRC-HC01, en su versión candidata, determina que un hallazgo que deja indefinida una obligación esencial genera una prioridad bloqueante, motivo sustantivo. La decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible. [H-DESC, D-H-DESC, PRC-HC01]",
+  "tipo_salida": "explicacion",
+  "segundos_totales": 296.83
+}

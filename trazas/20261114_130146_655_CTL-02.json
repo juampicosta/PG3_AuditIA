@@ -1,0 +1,32 @@
+{
+  "version": "PG3-AuditIA-1.0",
+  "fecha": "2026-11-14T13:01:39",
+  "modelo": "qwen2.5:7b",
+  "huella_prompts": "45af5da3ce6b",
+  "caso": "CTL-02",
+  "consulta_usuario": "¿Cuál es la mejor pizzería de Mendoza para ir el sábado?",
+  "pasos": [],
+  "enrutamiento": {
+    "intentos": [
+      {
+        "salida": "{\"tipo\": \"fuera_de_dominio\", \"pasos\": [], \"motivo\": \"Pregunta por recomendaciones, que no están en la base de conocimiento.\"}",
+        "errores": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 7.33,
+        "tokens_entrada": 1789,
+        "tokens_salida": 39
+      }
+    ],
+    "huella_prompt": "45af5da3ce6b",
+    "fuente": "llm",
+    "plan": {
+      "tipo": "fuera_de_dominio",
+      "pasos": [],
+      "motivo": "Pregunta por recomendaciones, que no están en la base de conocimiento."
+    }
+  },
+  "tipo_salida": "aclaracion",
+  "motivo_cierre": "fuera_de_dominio",
+  "respuesta_final": "AuditIA solo responde consultas sobre la auditoría de calidad de los requerimientos registrados en su base de conocimiento: juicios de calidad (SM1), contradicciones, dependencias y cobertura (SM2), y prioridad, urgencia y clarificación (SM3). No estima esfuerzo ni costos y no opina. Ejemplo: «¿Se contradicen los requerimientos de los descuentos y por qué quedó bloqueante?»",
+  "segundos_totales": 7.33
+}

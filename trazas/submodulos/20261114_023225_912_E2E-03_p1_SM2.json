@@ -1,0 +1,301 @@
+{
+  "prototipo": "PI4-SM2-1.0",
+  "fecha": "2026-11-14T02:25:57",
+  "modelo": "qwen2.5:7b",
+  "hilos": null,
+  "huella_prompts": "8d97773b8e67",
+  "caso": "E2E-03_p1_SM2",
+  "consulta_usuario": "¿De qué depende el cálculo del interés, se resolvió esa dependencia?",
+  "extraccion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "salida_cruda": "{\"intencion\": \"dependencia_requerimiento\", \"entidades\": {\"requerimiento_ids\": [], \"requerimiento_texto\": \"cálculo del interés\", \"documento_id\": null, \"evaluacion_id\": null, \"observacion_id\": null}, \"conceptos\": {\"categoria\": null}, \"filtros\": {\"tipo_analisis\": null, \"estado\": null}, \"condiciones\": {\"alcance\": \"vigente\"}, \"faltantes\": []}",
+        "modelo": "qwen2.5:7b",
+        "segundos": 22.39,
+        "tokens_entrada": 2795,
+        "tokens_salida": 103,
+        "errores_esquema": []
+      }
+    ],
+    "notas": [],
+    "json_validado": {
+      "intencion": "dependencia_requerimiento",
+      "entidades": {
+        "requerimiento_ids": [],
+        "requerimiento_texto": "cálculo del interés",
+        "documento_id": null,
+        "evaluacion_id": null,
+        "observacion_id": null
+      },
+      "conceptos": {
+        "categoria": null
+      },
+      "filtros": {
+        "tipo_analisis": null,
+        "estado": null
+      },
+      "condiciones": {
+        "alcance": "vigente"
+      },
+      "faltantes": []
+    }
+  },
+  "intencion": "dependencia_requerimiento",
+  "consultas_cypher": [
+    {
+      "consulta": "Q0_candidatos",
+      "parametros": {},
+      "filas": 12,
+      "milisegundos": 34.1
+    },
+    {
+      "consulta": "Q3_dependencia",
+      "parametros": {
+        "id_logico": "RQ-TASA"
+      },
+      "filas": 2,
+      "milisegundos": 974.8
+    },
+    {
+      "consulta": "Q8_reglas",
+      "parametros": {
+        "ids": [
+          "ACC-RD08",
+          "GL02",
+          "GL03"
+        ]
+      },
+      "filas": 3,
+      "milisegundos": 28.5
+    }
+  ],
+  "resolucion_entidad": {
+    "estado": "ok",
+    "puntaje": 1.0,
+    "evaluaciones": [
+      "EV-TASA-1",
+      "EV-TASA-2"
+    ],
+    "requerimientos": [
+      "RQ-TASA-v1",
+      "RQ-TASA-v2"
+    ],
+    "id_logico": "RQ-TASA",
+    "documentos": null,
+    "categoria": null,
+    "observacion": null,
+    "alternativas": []
+  },
+  "paquete_evidencia": {
+    "intencion": "dependencia_requerimiento",
+    "consulta_usuario": "¿De qué depende el cálculo del interés, se resolvió esa dependencia?",
+    "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+    "requerimiento_logico": "RQ-TASA",
+    "dependencias": [
+      {
+        "busqueda_completa": false,
+        "reglas": [
+          "GL02"
+        ],
+        "cotejo_definicion": "no_disponible",
+        "resultado": {
+          "descripcion": "El Anexo B citado no fue recibido",
+          "motivo_pendiente": "referencia_no_disponible",
+          "dato_faltante": "Anexo B",
+          "id": "P-TASA",
+          "seguimiento_sm3": [
+            {
+              "estado": "por_consultar",
+              "decision_id": "D-P-TASA"
+            }
+          ],
+          "clase": "Pendiente"
+        },
+        "reevalua_a": [],
+        "evidencias": [
+          {
+            "tipo": "analisis",
+            "contenido": "Premisas registradas por el grupo para EV-TASA-1",
+            "id": "E-EV-TASA-1"
+          }
+        ],
+        "vigente": false,
+        "version": 1,
+        "dependencia_id": "DEP-TASA-v1",
+        "estado_dependencia": "pendiente",
+        "requerimiento_id": "RQ-TASA-v1",
+        "elemento_necesario": {
+          "concepto": "tasa aplicable",
+          "id": "EN-TASA-v1",
+          "referencia": "Anexo B"
+        },
+        "texto": "El sistema calcula el interés con la tasa del Anexo B.",
+        "resuelta_por": [],
+        "evaluacion_id": "EV-TASA-1",
+        "referencia_necesaria_disponible": false,
+        "documento_id": "DOC-TASA-v1",
+        "reevaluada_por": [
+          "EV-TASA-2"
+        ],
+        "referencias_no_disponibles": [
+          "Anexo B"
+        ],
+        "estado_evaluacion": "pendiente"
+      },
+      {
+        "busqueda_completa": true,
+        "reglas": [
+          "GL03",
+          "ACC-RD08"
+        ],
+        "cotejo_definicion": "pertinente",
+        "resultado": null,
+        "reevalua_a": [
+          "EV-TASA-1"
+        ],
+        "evidencias": [
+          {
+            "tipo": "analisis",
+            "contenido": "Premisas registradas por el grupo para EV-TASA-2",
+            "id": "E-EV-TASA-2"
+          }
+        ],
+        "vigente": true,
+        "version": 2,
+        "dependencia_id": "DEP-TASA-v2",
+        "estado_dependencia": "resuelta",
+        "requerimiento_id": "RQ-TASA-v2",
+        "elemento_necesario": {
+          "concepto": "tasa aplicable",
+          "id": "EN-TASA-v2",
+          "referencia": "Anexo B"
+        },
+        "texto": "El sistema calcula el interés con la tasa del Anexo B.",
+        "resuelta_por": [
+          {
+            "texto": "La tasa mensual aplicable es del 2 % en el escenario acordado del caso.",
+            "id": "RQ-DEF-TASA-v2"
+          }
+        ],
+        "evaluacion_id": "EV-TASA-2",
+        "referencia_necesaria_disponible": true,
+        "documento_id": "DOC-TASA-v2",
+        "reevaluada_por": [],
+        "referencias_no_disponibles": [],
+        "estado_evaluacion": "sin_hallazgo"
+      }
+    ],
+    "reglas": [
+      {
+        "id": "ACC-RD08",
+        "modulo": "analisis_cruzado",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI la necesidad está confirmada y una definición disponible y pertinente la resuelve ENTONCES dependencia resuelta, sin hallazgo.",
+        "fuente": "PG1 §6.5"
+      },
+      {
+        "id": "GL02",
+        "modulo": "global",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+        "fuente": "PG1 §6.3"
+      },
+      {
+        "id": "GL03",
+        "modulo": "global",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI llega una respuesta validada o una versión corregida vinculada a una evaluación publicada ENTONCES se crea una evaluación nueva que REEVALUA la anterior; los resultados históricos no se modifican.",
+        "fuente": "PG1 §6.3"
+      }
+    ]
+  },
+  "explicacion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "respuesta": "El cálculo del interés depende de la tasa aplicable, que se define en el Anexo B. Se resolvió la dependencia en la versión 2 del requerimiento, pero la versión 1 aún registra una dependencia pendiente.\n\nEV-TASA-1 rastreó la dependencia DEP-TASA-v1, encontrando que la referencia al Anexo B no estaba disponible, lo que generó un Pendiente P-TASA [P-TASA]. EV-TASA-2 reevaluó a EV-TASA-1, encontrando que la dependencia DEP-TASA-v2 estaba resuelta por RQ-DEF-TASA-v2, que define la tasa mensual aplicable como 2% [DEP-TASA-v2, EV-TASA-2, RQ-DEF-TASA-v2]. El seguimiento de P-TASA en SM3 (D-P-TASA) sigue por_consultar, aunque la dependencia quedó resuelta en EV-TASA-2 [D-P-TASA].\n\nEs un resultado provisional del prototipo académico, sin validación experta.",
+        "violaciones": [
+          "No menciona GL02",
+          "No menciona GL03",
+          "No menciona ACC-RD08",
+          "No menciona el estado «sin_hallazgo»"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 179.17,
+        "tokens_entrada": 3618,
+        "tokens_salida": 242
+      },
+      {
+        "intento": 2,
+        "respuesta": "El cálculo del interés depende de la tasa aplicable, que se define en el Anexo B. Se resolvió la dependencia en la versión 2 del requerimiento.\n\nEV-TASA-1 rastreó la dependencia DEP-TASA-v1, encontrando que la referencia al Anexo B no estaba disponible, lo que generó un Pendiente P-TASA [P-TASA] [GL02] [GL03] [ACC-RD08]. EV-TASA-2 reevaluó a EV-TASA-1, encontrando que la dependencia DEP-TASA-v2 estaba resuelta por RQ-DEF-TASA-v2, que define la tasa mensual aplicable como 2% [DEP-TASA-v2, EV-TASA-2, RQ-DEF-TASA-v2] [GL03] [ACC-RD08]. El seguimiento de P-TASA en SM3 (D-P-TASA) sigue por_consultar, aunque la dependencia quedó resuelta en EV-TASA-2 [D-P-TASA].\n\nEs un resultado provisional del prototipo académico, sin validación experta.",
+        "violaciones": [
+          "No menciona el estado «sin_hallazgo»"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 74.32,
+        "tokens_entrada": 3964,
+        "tokens_salida": 257
+      },
+      {
+        "intento": 3,
+        "respuesta": "El cálculo del interés depende de la tasa aplicable, que se define en el Anexo B. Se resolvió la dependencia en la versión 2 del requerimiento.\n\nEV-TASA-1 rastreó la dependencia DEP-TASA-v1, encontrando que la referencia al Anexo B no estaba disponible, lo que generó un Pendiente P-TASA [P-TASA] [GL02] [GL03] [ACC-RD08]. EV-TASA-2 reevaluó a EV-TASA-1, encontrando que la dependencia DEP-TASA-v2 estaba resuelta por RQ-DEF-TASA-v2, que define la tasa mensual aplicable como 2% [DEP-TASA-v2, EV-TASA-2, RQ-DEF-TASA-v2] [GL03] [ACC-RD08]. El seguimiento de P-TASA en SM3 (D-P-TASA) sigue por_consultar, aunque la dependencia quedó resuelta en EV-TASA-2 [D-P-TASA].\n\nEs un resultado provisional del prototipo académico, sin validación experta.",
+        "violaciones": [
+          "No menciona el estado «sin_hallazgo»"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 71.53,
+        "tokens_entrada": 3956,
+        "tokens_salida": 257
+      }
+    ],
+    "hechos_verificables": [
+      "Conclusiones registradas, para escribirlas en el texto corrido de la respuesta (ID con su estado exacto entre paréntesis; esto va en el texto y no entre corchetes): EV-TASA-1 (pendiente, regla GL02, genera Pendiente P-TASA); DEP-TASA-v1 (pendiente); P-TASA con seguimiento D-P-TASA (por_consultar); EV-TASA-2 (sin_hallazgo, regla GL03, ACC-RD08, sin hallazgo ni pendiente); DEP-TASA-v2 (resuelta, resuelta por RQ-DEF-TASA-v2).",
+      "Versión 1 (DOC-TASA-v1): RQ-TASA-v1 («El sistema calcula el interés con la tasa del Anexo B.») depende del elemento necesario EN-TASA-v1 (concepto «tasa aplicable», referencia «Anexo B»). Referencias no disponibles en el documento: Anexo B.",
+      "La evaluación EV-TASA-1 rastreó la dependencia DEP-TASA-v1: estado de la dependencia pendiente; referencia_necesaria_disponible = false; cotejo de la definición «no_disponible»; busqueda_completa = false. La evaluación quedó pendiente por la regla GL02.",
+      "EV-TASA-1 fue reevaluada por EV-TASA-2: su resultado se conserva como historia de la versión 1 y no se modifica.",
+      "EV-TASA-1 genera el Pendiente P-TASA (motivo referencia_no_disponible; dato faltante: «Anexo B»): «El Anexo B citado no fue recibido». Un anexo no recibido no prueba que la información no exista: no es un hallazgo.",
+      "El seguimiento de P-TASA en SM3 es la decisión D-P-TASA con estado por_consultar: la base no registra que ese seguimiento se haya cerrado, aunque otra versión haya resuelto la dependencia.",
+      "La evidencia E-EV-TASA-1 solo registra «Premisas registradas por el grupo para EV-TASA-1»: no aporta un argumento propio; el fundamento está en las propiedades anteriores.",
+      "Versión 2 (DOC-TASA-v2): RQ-TASA-v2 («El sistema calcula el interés con la tasa del Anexo B.») depende del elemento necesario EN-TASA-v2 (concepto «tasa aplicable», referencia «Anexo B»). Referencias no disponibles en el documento: ninguna.",
+      "La evaluación EV-TASA-2 rastreó la dependencia DEP-TASA-v2: estado de la dependencia resuelta; referencia_necesaria_disponible = true; cotejo de la definición «pertinente»; busqueda_completa = true. La evaluación quedó sin_hallazgo por la regla GL03, ACC-RD08.",
+      "La dependencia DEP-TASA-v2 figura resuelta por RQ-DEF-TASA-v2 («La tasa mensual aplicable es del 2 % en el escenario acordado del caso.»). La definición está en RQ-DEF-TASA-v2, no en RQ-TASA-v2, que es el requerimiento que depende.",
+      "EV-TASA-2 REEVALUA a EV-TASA-1.",
+      "EV-TASA-2 no genera hallazgo ni pendiente.",
+      "La evidencia E-EV-TASA-2 solo registra «Premisas registradas por el grupo para EV-TASA-2»: no aporta un argumento propio; el fundamento está en las propiedades anteriores.",
+      "Regla ACC-RD08 (implementada, estado candidata, PG1 §6.5): SI la necesidad está confirmada y una definición disponible y pertinente la resuelve ENTONCES dependencia resuelta, sin hallazgo.",
+      "Regla GL02 (implementada, estado candidata, PG1 §6.3): SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+      "Regla GL03 (implementada, estado candidata, PG1 §6.3): SI llega una respuesta validada o una versión corregida vinculada a una evaluación publicada ENTONCES se crea una evaluación nueva que REEVALUA la anterior; los resultados históricos no se modifican.",
+      "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+      "Antes de la oración final de provisionalidad, escribí esta oración exacta: «El seguimiento de P-TASA en SM3 (D-P-TASA) sigue por_consultar, aunque la dependencia quedó resuelta en EV-TASA-2.»",
+      "La respuesta debe mencionar estos IDs: P-TASA, EV-TASA-1, DEP-TASA-v1, EV-TASA-2, DEP-TASA-v2, GL02, GL03, ACC-RD08.",
+      "La respuesta debe escribir textualmente estos estados, tal como figuran: pendiente, por_consultar, resuelta, sin_hallazgo. Un verbo parecido (por ejemplo «se observó») no alcanza.",
+      "Estados que figuran en el paquete: pendiente, por consultar, resuelta, sin hallazgo. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «observado», «no evaluable», «resuelto», «no aplicable» en la respuesta."
+    ],
+    "cobertura_requerida": {
+      "ids": [
+        "P-TASA",
+        "EV-TASA-1",
+        "DEP-TASA-v1",
+        "EV-TASA-2",
+        "DEP-TASA-v2",
+        "GL02",
+        "GL03",
+        "ACC-RD08"
+      ],
+      "estados": [
+        "pendiente",
+        "por_consultar",
+        "resuelta",
+        "sin_hallazgo"
+      ]
+    },
+    "resultado_verificacion": "rechazada; se emite la respuesta de respaldo"
+  },
+  "respuesta_final": "No pude generar una explicación verificable; resumo los datos recuperados de la base sin interpretarlos. Son resultados provisionales del prototipo, sin validación experta.\nVersión 1: evaluación EV-TASA-1 pendiente; dependencia DEP-TASA-v1 pendiente.\nVersión 2: evaluación EV-TASA-2 sin_hallazgo; dependencia DEP-TASA-v2 resuelta.",
+  "tipo_salida": "respaldo",
+  "segundos_totales": 348.46
+}

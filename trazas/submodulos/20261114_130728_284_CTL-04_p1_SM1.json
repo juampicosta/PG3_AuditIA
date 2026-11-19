@@ -1,0 +1,311 @@
+{
+  "prototipo": "PI4-SM1-1.0",
+  "fecha": "2026-11-14T13:03:04",
+  "modelo": "qwen2.5:7b",
+  "huella_prompts": "88da390d63e7",
+  "caso": "CTL-04_p1_SM1",
+  "consulta_usuario": "¿Qué tan ambiguo es el requerimiento de notificar a los clientes habituales y cómo se calculó?",
+  "extraccion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "salida_cruda": "{\"intencion\": \"grado_ambiguedad\", \"entidades\": {\"requerimiento_id\": null, \"requerimiento_texto\": \"notificar a los clientes habituales\", \"observacion_id\": null, \"evaluacion_id\": null}, \"conceptos\": {\"criterio\": \"ambiguedad\"}, \"filtros\": {\"estado_juicio\": null, \"banda_ambiguedad\": null}, \"condiciones\": {\"version\": null, \"alcance\": \"vigente\"}, \"faltantes\": [\"requerimiento a consultar\"]}",
+        "modelo": "qwen2.5:7b",
+        "segundos": 60.48,
+        "tokens_entrada": 1939,
+        "tokens_salida": 124,
+        "errores_esquema": []
+      }
+    ],
+    "notas": [],
+    "json_validado": {
+      "intencion": "grado_ambiguedad",
+      "entidades": {
+        "requerimiento_id": null,
+        "requerimiento_texto": "notificar a los clientes habituales",
+        "observacion_id": null,
+        "evaluacion_id": null
+      },
+      "conceptos": {
+        "criterio": "ambiguedad"
+      },
+      "filtros": {
+        "estado_juicio": null,
+        "banda_ambiguedad": null
+      },
+      "condiciones": {
+        "version": null,
+        "alcance": "vigente"
+      },
+      "faltantes": [
+        "requerimiento a consultar"
+      ]
+    }
+  },
+  "intencion": "grado_ambiguedad",
+  "consultas_cypher": [
+    {
+      "consulta": "Q0_candidatos",
+      "parametros": {},
+      "filas": 6,
+      "milisegundos": 1733.0
+    },
+    {
+      "consulta": "Q2_grado_ambiguedad",
+      "parametros": {
+        "requerimiento_id": "RQ-HAB-v1"
+      },
+      "filas": 1,
+      "milisegundos": 496.5
+    },
+    {
+      "consulta": "Q6_reglas",
+      "parametros": {
+        "ids": [
+          "EVI-HC02",
+          "GL02"
+        ]
+      },
+      "filas": 2,
+      "milisegundos": 14.5
+    }
+  ],
+  "resolucion_entidad": {
+    "estado": "ok",
+    "puntaje": 1.0,
+    "requerimiento": {
+      "requerimiento_id": "RQ-HAB-v1",
+      "id_logico": "RQ-HAB",
+      "texto": "El sistema debe notificar a los clientes habituales.",
+      "documento_id": "DOC-HAB-v1",
+      "version": 1
+    }
+  },
+  "paquete_evidencia": {
+    "intencion": "grado_ambiguedad",
+    "consulta_usuario": "¿Qué tan ambiguo es el requerimiento de notificar a los clientes habituales y cómo se calculó?",
+    "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+    "requerimiento_consultado": {
+      "requerimiento_id": "RQ-HAB-v1",
+      "id_logico": "RQ-HAB",
+      "texto": "El sistema debe notificar a los clientes habituales.",
+      "documento_id": "DOC-HAB-v1",
+      "version": 1
+    },
+    "juicios_de_ambiguedad": [
+      {
+        "modelo_metodo": "Mamdani min/max, centroide discreto",
+        "estado_juicio": "pendiente",
+        "texto_requerimiento": "El sistema debe notificar a los clientes habituales.",
+        "justificacion": "El glosario define compras frecuentes sin fijar frecuencia; valoración 6/5, pero falta cerrar la interpretación para el juicio.",
+        "resultado_difuso_provisional": true,
+        "vigente": true,
+        "requerimiento_id": "RQ-HAB-v1",
+        "revision_senior_requerida": true,
+        "juicio_id": "J-EV-HAB-ambiguedad",
+        "reglas_difusas_activadas": [
+          "AMB-RB1",
+          "AMB-RB2",
+          "AMB-RB3",
+          "AMB-RB4"
+        ],
+        "reglas_juicio": [
+          "GL02"
+        ],
+        "estado_calculo_difuso": "calculado",
+        "estado_evaluacion": "pendiente",
+        "modelo_id": "MD-AMB-1.0",
+        "banda_difusa": "media",
+        "reglas_difusas": [
+          {
+            "id": "AMB-RB4",
+            "regla_crisp": "EVI-HC03/HC09",
+            "orden": 4,
+            "antecedente": "max(xb, ya)",
+            "salida": "baja"
+          },
+          {
+            "id": "AMB-RB3",
+            "regla_crisp": "EVI-HC02",
+            "orden": 3,
+            "antecedente": "min(xm, max(yb, ym))",
+            "salida": "media"
+          },
+          {
+            "id": "AMB-RB2",
+            "regla_crisp": "EVI-HC02/HC03",
+            "orden": 2,
+            "antecedente": "min(xa, ym)",
+            "salida": "media"
+          },
+          {
+            "id": "AMB-RB1",
+            "regla_crisp": "EVI-HC02",
+            "orden": 1,
+            "antecedente": "min(xa, yb)",
+            "salida": "alta"
+          }
+        ],
+        "evidencias": [
+          {
+            "tipo": "documento",
+            "contenido": "Cliente habitual: cliente con compras frecuentes. No fija una frecuencia.",
+            "id": "E-HAB-GLOSARIO",
+            "localizador": "Glosario construido de DOC-HAB-v1"
+          },
+          {
+            "tipo": "fragmento",
+            "contenido": "El sistema debe notificar a los clientes habituales.",
+            "id": "E-RQ-HAB-v1",
+            "localizador": "RQ-HAB-v1"
+          }
+        ],
+        "version": 1,
+        "delimitacion_contexto": 5,
+        "valoracion_confirmada": true,
+        "divergencia_lecturas": 6,
+        "modelo_estado_validacion": "candidata",
+        "etiquetas": [
+          {
+            "sigma": 0.18,
+            "etiqueta": "Alta",
+            "pertenencia_entrada": null,
+            "centro": 1.0,
+            "variable": "Ambiguedad_Residual",
+            "rol": "salida"
+          },
+          {
+            "sigma": 0.15,
+            "etiqueta": "Media",
+            "pertenencia_entrada": null,
+            "centro": 0.5,
+            "variable": "Ambiguedad_Residual",
+            "rol": "salida"
+          },
+          {
+            "sigma": 0.18,
+            "etiqueta": "Baja",
+            "pertenencia_entrada": null,
+            "centro": 0.0,
+            "variable": "Ambiguedad_Residual",
+            "rol": "salida"
+          },
+          {
+            "sigma": 1.8,
+            "etiqueta": "Fuerte",
+            "pertenencia_entrada": 0.021,
+            "centro": 10.0,
+            "variable": "Delimitacion_Contexto",
+            "rol": "entrada"
+          },
+          {
+            "sigma": 1.5,
+            "etiqueta": "Parcial",
+            "pertenencia_entrada": 1.0,
+            "centro": 5.0,
+            "variable": "Delimitacion_Contexto",
+            "rol": "entrada"
+          },
+          {
+            "sigma": 1.9,
+            "etiqueta": "Débil",
+            "pertenencia_entrada": 0.031,
+            "centro": 0.0,
+            "variable": "Delimitacion_Contexto",
+            "rol": "entrada"
+          },
+          {
+            "sigma": 1.9,
+            "etiqueta": "Alta",
+            "pertenencia_entrada": 0.109,
+            "centro": 10.0,
+            "variable": "Divergencia_Lecturas",
+            "rol": "entrada"
+          },
+          {
+            "sigma": 1.5,
+            "etiqueta": "Media",
+            "pertenencia_entrada": 0.801,
+            "centro": 5.0,
+            "variable": "Divergencia_Lecturas",
+            "rol": "entrada"
+          },
+          {
+            "sigma": 1.8,
+            "etiqueta": "Baja",
+            "pertenencia_entrada": 0.004,
+            "centro": 0.0,
+            "variable": "Divergencia_Lecturas",
+            "rol": "entrada"
+          }
+        ],
+        "evaluacion_id": "EV-HAB",
+        "activaciones": [
+          0.031,
+          0.109,
+          0.801,
+          0.021
+        ],
+        "documento_id": "DOC-HAB-v1",
+        "fuente_modelo": "Costa_Juan_Pablo_PI3_U1.pdf",
+        "grado_ambiguedad": 0.501254
+      }
+    ],
+    "reglas": [
+      {
+        "id": "EVI-HC02",
+        "modulo": "evaluacion_individual",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+        "fuente": "PG1 §6.4"
+      },
+      {
+        "id": "GL02",
+        "modulo": "global",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+        "fuente": "PG1 §6.3"
+      }
+    ]
+  },
+  "explicacion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "respuesta": "El requerimiento \"El sistema debe notificar a los clientes habituales\" es considerado pendiente [J-EV-HAB-ambiguedad]. Esto se debe a que el glosario define \"cliente habitual\" sin fijar una frecuencia de compras, lo que genera incertidumbre [E-HAB-GLOSARIO]. La evaluación difusa AMB-RB3, con un grado de 0.501, indica una ambigüedad media [AMB-RB3]. Las reglas GL02 y EVI-HC02, en estado candidata, no determinaron un estado definitivo. Este resultado es provisional, del prototipo académico, sin validación experta [GL02, EVI-HC02].",
+        "violaciones": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 179.72,
+        "tokens_entrada": 3448,
+        "tokens_salida": 166
+      }
+    ],
+    "hechos_verificables": [
+      "Juicio J-EV-HAB-ambiguedad del requerimiento RQ-HAB-v1 («El sistema debe notificar a los clientes habituales.»): estado pendiente por la regla GL02. Justificación registrada: «El glosario define compras frecuentes sin fijar frecuencia; valoración 6/5, pero falta cerrar la interpretación para el juicio.».",
+      "Entradas valoradas: Divergencia_Lecturas = 6 y Delimitacion_Contexto = 5. Pertenencias relevantes: Delimitacion_Contexto Fuerte 0.021; Delimitacion_Contexto Parcial 1.000; Delimitacion_Contexto Débil 0.031; Divergencia_Lecturas Alta 0.109; Divergencia_Lecturas Media 0.801.",
+      "Activación de las reglas difusas: AMB-RB3 0.801 (antecedente min(xm, max(yb, ym)), salida media); AMB-RB2 0.109 (antecedente min(xa, ym), salida media); AMB-RB1 0.031 (antecedente min(xa, yb), salida alta); AMB-RB4 0.021 (antecedente max(xb, ya), salida baja). La regla dominante es AMB-RB3.",
+      "Resultado: grado 0.501, banda media, calculado con MD-AMB-1.0 (Mamdani min/max, centroide discreto), modelo en estado candidata, fuente Costa_Juan_Pablo_PI3_U1.pdf. El grado mide intensidad y no cambia el estado del juicio.",
+      "Las reglas difusas citan como antecedente crisp a EVI-HC02, EVI-HC02/HC03, EVI-HC03/HC09; esa referencia documenta su origen y no es la regla que decidió el estado del juicio (GL02).",
+      "La banda media marca un caso de frontera: revision_senior_requerida = true.",
+      "Regla EVI-HC02 (estado candidata, PG1 §6.4): SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+      "Regla GL02 (estado candidata, PG1 §6.3): SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+      "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+      "La respuesta debe mencionar estos IDs: J-EV-HAB-ambiguedad.",
+      "Estados que figuran en el paquete: pendiente. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «cumple», «incumple», «observado», «sin hallazgo», «no evaluable», «resuelto», «por consultar» en la respuesta."
+    ],
+    "cobertura_requerida": {
+      "ids": [
+        "J-EV-HAB-ambiguedad"
+      ],
+      "estados": [
+        "pendiente"
+      ]
+    },
+    "resultado_verificacion": "aprobada"
+  },
+  "respuesta_final": "El requerimiento \"El sistema debe notificar a los clientes habituales\" es considerado pendiente [J-EV-HAB-ambiguedad]. Esto se debe a que el glosario define \"cliente habitual\" sin fijar una frecuencia de compras, lo que genera incertidumbre [E-HAB-GLOSARIO]. La evaluación difusa AMB-RB3, con un grado de 0.501, indica una ambigüedad media [AMB-RB3]. Las reglas GL02 y EVI-HC02, en estado candidata, no determinaron un estado definitivo. Este resultado es provisional, del prototipo académico, sin validación experta [GL02, EVI-HC02].",
+  "tipo_salida": "explicacion",
+  "segundos_totales": 242.45
+}

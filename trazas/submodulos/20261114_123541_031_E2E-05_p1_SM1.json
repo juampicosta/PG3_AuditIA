@@ -1,0 +1,224 @@
+{
+  "prototipo": "PI4-SM1-1.0",
+  "fecha": "2026-11-14T12:30:18",
+  "modelo": "qwen2.5:7b",
+  "huella_prompts": "88da390d63e7",
+  "caso": "E2E-05_p1_SM1",
+  "consulta_usuario": "¿En qué estado quedó la observación H-PRIO-EXCEPCION según su evaluación de calidad?",
+  "extraccion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "salida_cruda": "{\"intencion\": \"seguimiento_observacion\", \"entidades\": {\"requerimiento_id\": null, \"requerimiento_texto\": null, \"observacion_id\": \"H-PRIO-EXCEPCION\", \"evaluacion_id\": null}, \"conceptos\": {\"criterio\": null}, \"filtros\": {\"estado_juicio\": null, \"banda_ambiguedad\": null}, \"condiciones\": {\"version\": null, \"alcance\": \"vigente\"}, \"faltantes\": []}",
+        "modelo": "qwen2.5:7b",
+        "segundos": 92.38,
+        "tokens_entrada": 1940,
+        "tokens_salida": 116,
+        "errores_esquema": []
+      }
+    ],
+    "notas": [],
+    "json_validado": {
+      "intencion": "seguimiento_observacion",
+      "entidades": {
+        "requerimiento_id": null,
+        "requerimiento_texto": null,
+        "observacion_id": "H-PRIO-EXCEPCION",
+        "evaluacion_id": null
+      },
+      "conceptos": {
+        "criterio": null
+      },
+      "filtros": {
+        "estado_juicio": null,
+        "banda_ambiguedad": null
+      },
+      "condiciones": {
+        "version": null,
+        "alcance": "vigente"
+      },
+      "faltantes": []
+    }
+  },
+  "intencion": "seguimiento_observacion",
+  "consultas_cypher": [
+    {
+      "consulta": "Q4_seguimiento_pg2",
+      "parametros": {
+        "observacion_id": "H-PRIO-EXCEPCION"
+      },
+      "filas": 1,
+      "milisegundos": 1014.2
+    },
+    {
+      "consulta": "Q6_reglas",
+      "parametros": {
+        "ids": [
+          "EVI-HC02",
+          "GL07",
+          "PRC-HC02"
+        ]
+      },
+      "filas": 3,
+      "milisegundos": 119.9
+    }
+  ],
+  "paquete_evidencia": {
+    "intencion": "seguimiento_observacion",
+    "consulta_usuario": "¿En qué estado quedó la observación H-PRIO-EXCEPCION según su evaluación de calidad?",
+    "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+    "seguimiento": [
+      {
+        "grado_ambiguedad_origen": null,
+        "descripcion": "Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una; análisis construido para probar el tratamiento de SM3.",
+        "estado": "por_consultar",
+        "motivo": "sustantivo",
+        "modelo_difuso": "MD-URG-1.0",
+        "grado_urgencia": 7.380912227007634,
+        "observacion_id": "H-PRIO-EXCEPCION",
+        "prioridad": "bloqueante",
+        "version_origen": "1",
+        "reglas_decision": [
+          "PRC-HC02"
+        ],
+        "decision_id": "D-H-PRIO-EXCEPCION",
+        "modulo_origen": "evaluacion_individual",
+        "provisional": true,
+        "estado_evaluacion_vigente": "observado",
+        "dato_faltante": null,
+        "evaluacion_origen_id": "EV-PRIO-EXCEPCION",
+        "reglas_origen": [
+          "GL07",
+          "EVI-HC02"
+        ],
+        "modelo_ambiguedad": null,
+        "version": "1",
+        "evidencia_origen": [
+          {
+            "contenido": "El sistema debe exportar el informe en un formato estándar.",
+            "tipo": "fragmento",
+            "fuente": "S-CASOS",
+            "id": "E-RQ-PRIO-v1",
+            "localizador": "RQ-PRIO-v1"
+          }
+        ],
+        "grado_contradiccion": null,
+        "tratamiento_activo": true,
+        "descripcion_corresponde_a": "observacion_historica",
+        "modelo_diagnostico": null,
+        "documento_origen_id": "DOC-PRIO-v1",
+        "evidencia_decision": [
+          {
+            "contenido": "Hito/diferimiento del caso construido EXCEPCION",
+            "tipo": "acuerdo",
+            "fuente": "S-CASOS",
+            "id": "E-X-EXCEPCION",
+            "localizador": "X-EXCEPCION"
+          }
+        ],
+        "evaluacion_id": "EV-PRIO-EXCEPCION",
+        "documento_id": "DOC-PRIO-v1",
+        "emitible": false,
+        "evidencia_evaluacion_vigente": [
+          {
+            "contenido": "Premisas registradas por el grupo para EV-PRIO-EXCEPCION",
+            "tipo": "analisis",
+            "fuente": "S-CASOS",
+            "id": "E-EV-PRIO-EXCEPCION",
+            "localizador": "EV-PRIO-EXCEPCION"
+          }
+        ],
+        "grado_ambiguedad": null
+      }
+    ],
+    "reglas": [
+      {
+        "id": "EVI-HC02",
+        "modulo": "evaluacion_individual",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+        "fuente": "PG1 §6.4"
+      },
+      {
+        "id": "GL07",
+        "modulo": "global",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+        "fuente": "PG1 §6.3"
+      },
+      {
+        "id": "PRC-HC02",
+        "modulo": "priorizacion_clarificacion",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI severidad = baja y criticidad = alta (mapeo candidato activo) ENTONCES bloqueante sustantiva provisional, sin cambiar la severidad.",
+        "fuente": "PG1 §6.6"
+      }
+    ]
+  },
+  "explicacion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "respuesta": "La observación H-PRIO-EXCEPCION se encuentra en estado observado. Se analizó la descripción de la regla EVI-HC02, que indica que si quedan dos o más lecturas relevantes y el contexto no las delimita, se incumple la ambigüedad. Sin embargo, en este caso, solo hay una lectura relevante, por lo que no se cumple la regla. Además, la regla GL07 no se aplica ya que no se deriva un Hallazgo o Pendiente. La regla PRC-HC02, que determina que la prioridad es bloqueante, es provisional y del prototipo académico sin validación experta. La falta de información sobre el grado de ambigüedad y la severidad no permite un cálculo definitivo, por lo que el estado es observado. [H-PRIO-EXCEPCION, EV-PRIO-EXCEPCION]",
+        "violaciones": [
+          "Usa el estado «cumple», que no figura en el paquete (alteraría una conclusión)",
+          "No menciona el estado «por_consultar»"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 125.86,
+        "tokens_entrada": 2517,
+        "tokens_salida": 214
+      },
+      {
+        "intento": 2,
+        "respuesta": "La observación H-PRIO-EXCEPCION está en estado observado [EV-PRIO-EXCEPCION]. Según la regla EVI-HC02 [EVI-HC02], ya que no quedan dos o más lecturas relevantes, no se cumple la condición para generar un hallazgo de ambigüedad. Además, la regla GL07 [GL07] no se aplica ya que no se deriva un hallazgo o pendiente. La decisión D-H-PRIO-EXCEPCION [D-H-PRIO-EXCEPCION] es provisional y sustantiva, con prioridad bloqueante [D-H-PRIO-EXCEPCION]. La observación se encuentra en estado por consultar [H-PRIO-EXCEPCION].",
+        "violaciones": [
+          "Usa el estado «cumple», que no figura en el paquete (alteraría una conclusión)"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 41.42,
+        "tokens_entrada": 2595,
+        "tokens_salida": 178
+      },
+      {
+        "intento": 3,
+        "respuesta": "La observación H-PRIO-EXCEPCION se encuentra en estado observado [EV-PRIO-EXCEPCION]. Según la regla EVI-HC02 [EVI-HC02], ya que no quedan dos o más lecturas relevantes, no se cumple la condición para generar un hallazgo de ambigüedad. Además, la regla GL07 [GL07] no se aplica ya que no se deriva un hallazgo o pendiente. La regla PRC-HC02 [PRC-HC02] es provisional y no cambia el estado de la observación.",
+        "violaciones": [
+          "Usa el estado «cumple», que no figura en el paquete (alteraría una conclusión)",
+          "No menciona el estado «por_consultar»"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 34.93,
+        "tokens_entrada": 2584,
+        "tokens_salida": 141
+      }
+    ],
+    "hechos_verificables": [
+      "Observación H-PRIO-EXCEPCION emitida por evaluacion_individual en EV-PRIO-EXCEPCION sobre DOC-PRIO-v1 (reglas GL07, EVI-HC02). Descripción histórica: «Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una; análisis construido para probar el tratamiento de SM3.».",
+      "Decisión vigente D-H-PRIO-EXCEPCION: prioridad bloqueante, motivo sustantivo, seguimiento por_consultar (regla PRC-HC02); provisional = true, emitible = false, tratamiento activo = true.",
+      "Evaluación vigente EV-PRIO-EXCEPCION sobre DOC-PRIO-v1: observado. Grado de ambigüedad de origen null y vigente null.",
+      "Regla EVI-HC02 (estado candidata, PG1 §6.4): SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+      "Regla GL07 (estado candidata, PG1 §6.3): SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+      "Regla PRC-HC02 (estado candidata, PG1 §6.6): SI severidad = baja y criticidad = alta (mapeo candidato activo) ENTONCES bloqueante sustantiva provisional, sin cambiar la severidad.",
+      "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+      "La respuesta debe mencionar estos IDs: H-PRIO-EXCEPCION, EV-PRIO-EXCEPCION.",
+      "Estados que figuran en el paquete: observado, por consultar. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «cumple», «incumple», «pendiente», «sin hallazgo», «no evaluable», «resuelto» en la respuesta."
+    ],
+    "cobertura_requerida": {
+      "ids": [
+        "H-PRIO-EXCEPCION",
+        "EV-PRIO-EXCEPCION"
+      ],
+      "estados": [
+        "por_consultar"
+      ]
+    },
+    "resultado_verificacion": "rechazada; se emite la respuesta de respaldo"
+  },
+  "respuesta_final": "No pude generar una explicación verificable; resumo los datos recuperados de la base sin interpretarlos. Son resultados provisionales del prototipo, sin validación experta.\nObservación H-PRIO-EXCEPCION: seguimiento por_consultar en la decisión D-H-PRIO-EXCEPCION.",
+  "tipo_salida": "respaldo",
+  "segundos_totales": 295.74
+}

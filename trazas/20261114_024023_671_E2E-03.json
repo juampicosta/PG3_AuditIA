@@ -1,0 +1,909 @@
+{
+  "version": "PG3-AuditIA-1.0",
+  "fecha": "2026-11-14T02:24:54",
+  "modelo": "qwen2.5:7b",
+  "huella_prompts": "45af5da3ce6b",
+  "caso": "E2E-03",
+  "consulta_usuario": "¿De qué depende el cálculo del interés, se resolvió esa dependencia y qué prioridad tiene el pendiente que generó?",
+  "pasos": [
+    {
+      "paso": 1,
+      "submodulo": "SM2",
+      "subconsulta": "¿De qué depende el cálculo del interés, se resolvió esa dependencia?",
+      "enlace": null,
+      "traza": {
+        "prototipo": "PI4-SM2-1.0",
+        "fecha": "2026-11-14T02:25:57",
+        "modelo": "qwen2.5:7b",
+        "hilos": null,
+        "huella_prompts": "8d97773b8e67",
+        "caso": "E2E-03_p1_SM2",
+        "consulta_usuario": "¿De qué depende el cálculo del interés, se resolvió esa dependencia?",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"dependencia_requerimiento\", \"entidades\": {\"requerimiento_ids\": [], \"requerimiento_texto\": \"cálculo del interés\", \"documento_id\": null, \"evaluacion_id\": null, \"observacion_id\": null}, \"conceptos\": {\"categoria\": null}, \"filtros\": {\"tipo_analisis\": null, \"estado\": null}, \"condiciones\": {\"alcance\": \"vigente\"}, \"faltantes\": []}",
+              "modelo": "qwen2.5:7b",
+              "segundos": 22.39,
+              "tokens_entrada": 2795,
+              "tokens_salida": 103,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [],
+          "json_validado": {
+            "intencion": "dependencia_requerimiento",
+            "entidades": {
+              "requerimiento_ids": [],
+              "requerimiento_texto": "cálculo del interés",
+              "documento_id": null,
+              "evaluacion_id": null,
+              "observacion_id": null
+            },
+            "conceptos": {
+              "categoria": null
+            },
+            "filtros": {
+              "tipo_analisis": null,
+              "estado": null
+            },
+            "condiciones": {
+              "alcance": "vigente"
+            },
+            "faltantes": []
+          }
+        },
+        "intencion": "dependencia_requerimiento",
+        "consultas_cypher": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 12,
+            "milisegundos": 34.1
+          },
+          {
+            "consulta": "Q3_dependencia",
+            "parametros": {
+              "id_logico": "RQ-TASA"
+            },
+            "filas": 2,
+            "milisegundos": 974.8
+          },
+          {
+            "consulta": "Q8_reglas",
+            "parametros": {
+              "ids": [
+                "ACC-RD08",
+                "GL02",
+                "GL03"
+              ]
+            },
+            "filas": 3,
+            "milisegundos": 28.5
+          }
+        ],
+        "resolucion_entidad": {
+          "estado": "ok",
+          "puntaje": 1.0,
+          "evaluaciones": [
+            "EV-TASA-1",
+            "EV-TASA-2"
+          ],
+          "requerimientos": [
+            "RQ-TASA-v1",
+            "RQ-TASA-v2"
+          ],
+          "id_logico": "RQ-TASA",
+          "documentos": null,
+          "categoria": null,
+          "observacion": null,
+          "alternativas": []
+        },
+        "paquete_evidencia": {
+          "intencion": "dependencia_requerimiento",
+          "consulta_usuario": "¿De qué depende el cálculo del interés, se resolvió esa dependencia?",
+          "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "requerimiento_logico": "RQ-TASA",
+          "dependencias": [
+            {
+              "busqueda_completa": false,
+              "reglas": [
+                "GL02"
+              ],
+              "cotejo_definicion": "no_disponible",
+              "resultado": {
+                "descripcion": "El Anexo B citado no fue recibido",
+                "motivo_pendiente": "referencia_no_disponible",
+                "dato_faltante": "Anexo B",
+                "id": "P-TASA",
+                "seguimiento_sm3": [
+                  {
+                    "estado": "por_consultar",
+                    "decision_id": "D-P-TASA"
+                  }
+                ],
+                "clase": "Pendiente"
+              },
+              "reevalua_a": [],
+              "evidencias": [
+                {
+                  "tipo": "analisis",
+                  "contenido": "Premisas registradas por el grupo para EV-TASA-1",
+                  "id": "E-EV-TASA-1"
+                }
+              ],
+              "vigente": false,
+              "version": 1,
+              "dependencia_id": "DEP-TASA-v1",
+              "estado_dependencia": "pendiente",
+              "requerimiento_id": "RQ-TASA-v1",
+              "elemento_necesario": {
+                "concepto": "tasa aplicable",
+                "id": "EN-TASA-v1",
+                "referencia": "Anexo B"
+              },
+              "texto": "El sistema calcula el interés con la tasa del Anexo B.",
+              "resuelta_por": [],
+              "evaluacion_id": "EV-TASA-1",
+              "referencia_necesaria_disponible": false,
+              "documento_id": "DOC-TASA-v1",
+              "reevaluada_por": [
+                "EV-TASA-2"
+              ],
+              "referencias_no_disponibles": [
+                "Anexo B"
+              ],
+              "estado_evaluacion": "pendiente"
+            },
+            {
+              "busqueda_completa": true,
+              "reglas": [
+                "GL03",
+                "ACC-RD08"
+              ],
+              "cotejo_definicion": "pertinente",
+              "resultado": null,
+              "reevalua_a": [
+                "EV-TASA-1"
+              ],
+              "evidencias": [
+                {
+                  "tipo": "analisis",
+                  "contenido": "Premisas registradas por el grupo para EV-TASA-2",
+                  "id": "E-EV-TASA-2"
+                }
+              ],
+              "vigente": true,
+              "version": 2,
+              "dependencia_id": "DEP-TASA-v2",
+              "estado_dependencia": "resuelta",
+              "requerimiento_id": "RQ-TASA-v2",
+              "elemento_necesario": {
+                "concepto": "tasa aplicable",
+                "id": "EN-TASA-v2",
+                "referencia": "Anexo B"
+              },
+              "texto": "El sistema calcula el interés con la tasa del Anexo B.",
+              "resuelta_por": [
+                {
+                  "texto": "La tasa mensual aplicable es del 2 % en el escenario acordado del caso.",
+                  "id": "RQ-DEF-TASA-v2"
+                }
+              ],
+              "evaluacion_id": "EV-TASA-2",
+              "referencia_necesaria_disponible": true,
+              "documento_id": "DOC-TASA-v2",
+              "reevaluada_por": [],
+              "referencias_no_disponibles": [],
+              "estado_evaluacion": "sin_hallazgo"
+            }
+          ],
+          "reglas": [
+            {
+              "id": "ACC-RD08",
+              "modulo": "analisis_cruzado",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI la necesidad está confirmada y una definición disponible y pertinente la resuelve ENTONCES dependencia resuelta, sin hallazgo.",
+              "fuente": "PG1 §6.5"
+            },
+            {
+              "id": "GL02",
+              "modulo": "global",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+              "fuente": "PG1 §6.3"
+            },
+            {
+              "id": "GL03",
+              "modulo": "global",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI llega una respuesta validada o una versión corregida vinculada a una evaluación publicada ENTONCES se crea una evaluación nueva que REEVALUA la anterior; los resultados históricos no se modifican.",
+              "fuente": "PG1 §6.3"
+            }
+          ]
+        },
+        "explicacion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "respuesta": "El cálculo del interés depende de la tasa aplicable, que se define en el Anexo B. Se resolvió la dependencia en la versión 2 del requerimiento, pero la versión 1 aún registra una dependencia pendiente.\n\nEV-TASA-1 rastreó la dependencia DEP-TASA-v1, encontrando que la referencia al Anexo B no estaba disponible, lo que generó un Pendiente P-TASA [P-TASA]. EV-TASA-2 reevaluó a EV-TASA-1, encontrando que la dependencia DEP-TASA-v2 estaba resuelta por RQ-DEF-TASA-v2, que define la tasa mensual aplicable como 2% [DEP-TASA-v2, EV-TASA-2, RQ-DEF-TASA-v2]. El seguimiento de P-TASA en SM3 (D-P-TASA) sigue por_consultar, aunque la dependencia quedó resuelta en EV-TASA-2 [D-P-TASA].\n\nEs un resultado provisional del prototipo académico, sin validación experta.",
+              "violaciones": [
+                "No menciona GL02",
+                "No menciona GL03",
+                "No menciona ACC-RD08",
+                "No menciona el estado «sin_hallazgo»"
+              ],
+              "modelo": "qwen2.5:7b",
+              "segundos": 179.17,
+              "tokens_entrada": 3618,
+              "tokens_salida": 242
+            },
+            {
+              "intento": 2,
+              "respuesta": "El cálculo del interés depende de la tasa aplicable, que se define en el Anexo B. Se resolvió la dependencia en la versión 2 del requerimiento.\n\nEV-TASA-1 rastreó la dependencia DEP-TASA-v1, encontrando que la referencia al Anexo B no estaba disponible, lo que generó un Pendiente P-TASA [P-TASA] [GL02] [GL03] [ACC-RD08]. EV-TASA-2 reevaluó a EV-TASA-1, encontrando que la dependencia DEP-TASA-v2 estaba resuelta por RQ-DEF-TASA-v2, que define la tasa mensual aplicable como 2% [DEP-TASA-v2, EV-TASA-2, RQ-DEF-TASA-v2] [GL03] [ACC-RD08]. El seguimiento de P-TASA en SM3 (D-P-TASA) sigue por_consultar, aunque la dependencia quedó resuelta en EV-TASA-2 [D-P-TASA].\n\nEs un resultado provisional del prototipo académico, sin validación experta.",
+              "violaciones": [
+                "No menciona el estado «sin_hallazgo»"
+              ],
+              "modelo": "qwen2.5:7b",
+              "segundos": 74.32,
+              "tokens_entrada": 3964,
+              "tokens_salida": 257
+            },
+            {
+              "intento": 3,
+              "respuesta": "El cálculo del interés depende de la tasa aplicable, que se define en el Anexo B. Se resolvió la dependencia en la versión 2 del requerimiento.\n\nEV-TASA-1 rastreó la dependencia DEP-TASA-v1, encontrando que la referencia al Anexo B no estaba disponible, lo que generó un Pendiente P-TASA [P-TASA] [GL02] [GL03] [ACC-RD08]. EV-TASA-2 reevaluó a EV-TASA-1, encontrando que la dependencia DEP-TASA-v2 estaba resuelta por RQ-DEF-TASA-v2, que define la tasa mensual aplicable como 2% [DEP-TASA-v2, EV-TASA-2, RQ-DEF-TASA-v2] [GL03] [ACC-RD08]. El seguimiento de P-TASA en SM3 (D-P-TASA) sigue por_consultar, aunque la dependencia quedó resuelta en EV-TASA-2 [D-P-TASA].\n\nEs un resultado provisional del prototipo académico, sin validación experta.",
+              "violaciones": [
+                "No menciona el estado «sin_hallazgo»"
+              ],
+              "modelo": "qwen2.5:7b",
+              "segundos": 71.53,
+              "tokens_entrada": 3956,
+              "tokens_salida": 257
+            }
+          ],
+          "hechos_verificables": [
+            "Conclusiones registradas, para escribirlas en el texto corrido de la respuesta (ID con su estado exacto entre paréntesis; esto va en el texto y no entre corchetes): EV-TASA-1 (pendiente, regla GL02, genera Pendiente P-TASA); DEP-TASA-v1 (pendiente); P-TASA con seguimiento D-P-TASA (por_consultar); EV-TASA-2 (sin_hallazgo, regla GL03, ACC-RD08, sin hallazgo ni pendiente); DEP-TASA-v2 (resuelta, resuelta por RQ-DEF-TASA-v2).",
+            "Versión 1 (DOC-TASA-v1): RQ-TASA-v1 («El sistema calcula el interés con la tasa del Anexo B.») depende del elemento necesario EN-TASA-v1 (concepto «tasa aplicable», referencia «Anexo B»). Referencias no disponibles en el documento: Anexo B.",
+            "La evaluación EV-TASA-1 rastreó la dependencia DEP-TASA-v1: estado de la dependencia pendiente; referencia_necesaria_disponible = false; cotejo de la definición «no_disponible»; busqueda_completa = false. La evaluación quedó pendiente por la regla GL02.",
+            "EV-TASA-1 fue reevaluada por EV-TASA-2: su resultado se conserva como historia de la versión 1 y no se modifica.",
+            "EV-TASA-1 genera el Pendiente P-TASA (motivo referencia_no_disponible; dato faltante: «Anexo B»): «El Anexo B citado no fue recibido». Un anexo no recibido no prueba que la información no exista: no es un hallazgo.",
+            "El seguimiento de P-TASA en SM3 es la decisión D-P-TASA con estado por_consultar: la base no registra que ese seguimiento se haya cerrado, aunque otra versión haya resuelto la dependencia.",
+            "La evidencia E-EV-TASA-1 solo registra «Premisas registradas por el grupo para EV-TASA-1»: no aporta un argumento propio; el fundamento está en las propiedades anteriores.",
+            "Versión 2 (DOC-TASA-v2): RQ-TASA-v2 («El sistema calcula el interés con la tasa del Anexo B.») depende del elemento necesario EN-TASA-v2 (concepto «tasa aplicable», referencia «Anexo B»). Referencias no disponibles en el documento: ninguna.",
+            "La evaluación EV-TASA-2 rastreó la dependencia DEP-TASA-v2: estado de la dependencia resuelta; referencia_necesaria_disponible = true; cotejo de la definición «pertinente»; busqueda_completa = true. La evaluación quedó sin_hallazgo por la regla GL03, ACC-RD08.",
+            "La dependencia DEP-TASA-v2 figura resuelta por RQ-DEF-TASA-v2 («La tasa mensual aplicable es del 2 % en el escenario acordado del caso.»). La definición está en RQ-DEF-TASA-v2, no en RQ-TASA-v2, que es el requerimiento que depende.",
+            "EV-TASA-2 REEVALUA a EV-TASA-1.",
+            "EV-TASA-2 no genera hallazgo ni pendiente.",
+            "La evidencia E-EV-TASA-2 solo registra «Premisas registradas por el grupo para EV-TASA-2»: no aporta un argumento propio; el fundamento está en las propiedades anteriores.",
+            "Regla ACC-RD08 (implementada, estado candidata, PG1 §6.5): SI la necesidad está confirmada y una definición disponible y pertinente la resuelve ENTONCES dependencia resuelta, sin hallazgo.",
+            "Regla GL02 (implementada, estado candidata, PG1 §6.3): SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+            "Regla GL03 (implementada, estado candidata, PG1 §6.3): SI llega una respuesta validada o una versión corregida vinculada a una evaluación publicada ENTONCES se crea una evaluación nueva que REEVALUA la anterior; los resultados históricos no se modifican.",
+            "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+            "Antes de la oración final de provisionalidad, escribí esta oración exacta: «El seguimiento de P-TASA en SM3 (D-P-TASA) sigue por_consultar, aunque la dependencia quedó resuelta en EV-TASA-2.»",
+            "La respuesta debe mencionar estos IDs: P-TASA, EV-TASA-1, DEP-TASA-v1, EV-TASA-2, DEP-TASA-v2, GL02, GL03, ACC-RD08.",
+            "La respuesta debe escribir textualmente estos estados, tal como figuran: pendiente, por_consultar, resuelta, sin_hallazgo. Un verbo parecido (por ejemplo «se observó») no alcanza.",
+            "Estados que figuran en el paquete: pendiente, por consultar, resuelta, sin hallazgo. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «observado», «no evaluable», «resuelto», «no aplicable» en la respuesta."
+          ],
+          "cobertura_requerida": {
+            "ids": [
+              "P-TASA",
+              "EV-TASA-1",
+              "DEP-TASA-v1",
+              "EV-TASA-2",
+              "DEP-TASA-v2",
+              "GL02",
+              "GL03",
+              "ACC-RD08"
+            ],
+            "estados": [
+              "pendiente",
+              "por_consultar",
+              "resuelta",
+              "sin_hallazgo"
+            ]
+          },
+          "resultado_verificacion": "rechazada; se emite la respuesta de respaldo"
+        },
+        "respuesta_final": "No pude generar una explicación verificable; resumo los datos recuperados de la base sin interpretarlos. Son resultados provisionales del prototipo, sin validación experta.\nVersión 1: evaluación EV-TASA-1 pendiente; dependencia DEP-TASA-v1 pendiente.\nVersión 2: evaluación EV-TASA-2 sin_hallazgo; dependencia DEP-TASA-v2 resuelta.",
+        "tipo_salida": "respaldo",
+        "segundos_totales": 348.46,
+        "archivo_traza": "submodulos/20261114_023225_912_E2E-03_p1_SM2.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM2",
+        "intencion": "dependencia_requerimiento",
+        "fuentes": [
+          "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)"
+        ],
+        "consultas": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 12,
+            "milisegundos": 34.1,
+            "cypher": "// Q0. Catálogo de lo que analizó SM2: una fila por evaluación cruzada y requerimiento vinculado, con su rol\n// (comparado, origen_dependencia, definicion o alcance_cobertura), la categoría evaluada y el resultado.\n// Alimenta la resolución determinística de entidades. Solo lectura. Sin parámetros.\nMATCH (ev:AuditIA_PG2:EvaluacionCruzada)-[:REVISA_DOCUMENTO]->(doc:AuditIA_PG2:DocumentoVersion)\nWITH ev, doc,\n     [(ev)-[:COMPARA]->(r:Requerimiento) | {r: r, rol: 'comparado'}] +\n     [(ev)-[:RASTREA]->(:Dependencia)-[:TIENE_ORIGEN]->(r:Requerimiento) | {r: r, rol: 'origen_dependencia'}] +\n     [(ev)-[:RASTREA]->(:Dependencia)-[:RESUELTA_POR]->(r:Requerimiento) | {r: r, rol: 'definicion'}] +\n     CASE WHEN ev.tipo_analisis = 'cobertura'\n          THEN [(doc)-[:CONTIENE]->(r:Requerimiento) | {r: r, rol: 'alcance_cobertura'}] ELSE [] END AS vinculos\nUNWIND vinculos AS v\nWITH DISTINCT ev, doc, v.r AS rq, v.rol AS rol\nRETURN ev.id AS evaluacion_id, ev.tipo_analisis AS tipo_analisis, ev.estado AS estado,\n       doc.id AS documento_id, toInteger(doc.version) AS version,\n       rq.id AS requerimiento_id, rq.id_logico AS id_logico, rq.texto_original AS texto, rol,\n       head([(ev)-[:EVALUA_CATEGORIA]->(c:CategoriaNFR) | c.nombre]) AS categoria,\n       head([(ev)-[:GENERA]->(o:ResultadoAnalisis) | o.id]) AS resultado_id,\n       NOT EXISTS { MATCH (:Evaluacion)-[:REEVALUA]->(ev) } AS vigente\nORDER BY tipo_analisis, evaluacion_id, requerimiento_id"
+          },
+          {
+            "consulta": "Q3_dependencia",
+            "parametros": {
+              "id_logico": "RQ-TASA"
+            },
+            "filas": 2,
+            "milisegundos": 974.8,
+            "cypher": "// Q3. Dependencia de un requerimiento lógico en cada versión: elemento necesario, referencias no disponibles,\n// evaluación que la rastreó, estado de la dependencia, definición que la resuelve, regla, resultado, reevaluación\n// (REEVALUA) y estado del seguimiento que SM3 registró para el resultado.\n// Parámetros: $id_logico (String).\nMATCH (rq:AuditIA_PG2:Requerimiento {id_logico: $id_logico})-[dd:DEPENDE_DE]->(en:ElementoNecesario)\nMATCH (ev:EvaluacionCruzada {id: dd.evaluacion_id})-[:RASTREA]->(dep:Dependencia)-[:TIENE_ORIGEN]->(rq)\nMATCH (ev)-[:REVISA_DOCUMENTO]->(doc:DocumentoVersion)\nOPTIONAL MATCH (ev)-[:GENERA]->(o:ResultadoAnalisis)\nRETURN {\n  version: toInteger(doc.version),\n  documento_id: doc.id,\n  requerimiento_id: rq.id,\n  texto: rq.texto_original,\n  referencias_no_disponibles: doc.referencias_no_disponibles,\n  elemento_necesario: {id: en.id, concepto: en.concepto, referencia: en.referencia},\n  evaluacion_id: ev.id,\n  estado_evaluacion: ev.estado,\n  dependencia_id: dep.id,\n  estado_dependencia: dep.estado,\n  referencia_necesaria_disponible: ev.referencia_necesaria_disponible,\n  cotejo_definicion: ev.cotejo_definicion,\n  busqueda_completa: ev.busqueda_completa,\n  resuelta_por: [(dep)-[:RESUELTA_POR]->(d:Requerimiento) | {id: d.id, texto: d.texto_original}],\n  reglas: [(ev)-[:APLICA_REGLA]->(r:Regla) | r.id],\n  evidencias: [(ev)-[:SE_SUSTENTA_EN]->(e:Evidencia) | {id: e.id, tipo: e.tipo, contenido: e.contenido}],\n  resultado: CASE WHEN o IS NULL THEN null ELSE\n    {id: o.id, clase: CASE WHEN o:Hallazgo THEN 'Hallazgo' ELSE 'Pendiente' END,\n     motivo_pendiente: o.motivo_pendiente, dato_faltante: o.dato_faltante, descripcion: o.descripcion,\n     seguimiento_sm3: [(d:DecisionPrioridad)-[:PRIORIZA]->(o) WHERE NOT EXISTS { MATCH (:DecisionPrioridad)-[:SUSTITUYE_A]->(d) } |\n       {decision_id: d.id, estado: head([(d)-[:TIENE_ESTADO]->(er:EstadoResolucion) | er.valor])}]} END,\n  reevalua_a: [(ev)-[:REEVALUA]->(a:Evaluacion) | a.id],\n  reevaluada_por: [(n:Evaluacion)-[:REEVALUA]->(ev) | n.id],\n  vigente: NOT EXISTS { MATCH (:Evaluacion)-[:REEVALUA]->(ev) }\n} AS dependencia\nORDER BY dependencia.version"
+          },
+          {
+            "consulta": "Q8_reglas",
+            "parametros": {
+              "ids": [
+                "ACC-RD08",
+                "GL02",
+                "GL03"
+              ]
+            },
+            "filas": 3,
+            "milisegundos": 28.5,
+            "cypher": "// Q8. Consulta complementaria: texto, estado, ejecución y fuente de las reglas citadas en un paquete.\n// Parámetros: $ids (List<String>).\nMATCH (r:AuditIA_PG2:Regla)\nWHERE r.id IN $ids\nRETURN r.id AS id, r.modulo AS modulo, r.estado_validacion AS estado_validacion,\n       r.ejecucion AS ejecucion, r.descripcion AS descripcion, r.descripcion_fuente AS fuente\nORDER BY id"
+          }
+        ],
+        "reglas": [
+          {
+            "id": "ACC-RD08",
+            "descripcion": "SI la necesidad está confirmada y una definición disponible y pertinente la resuelve ENTONCES dependencia resuelta, sin hallazgo.",
+            "fuente": "PG1 §6.5",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "GL02",
+            "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+            "fuente": "PG1 §6.3",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "GL03",
+            "descripcion": "SI llega una respuesta validada o una versión corregida vinculada a una evaluación publicada ENTONCES se crea una evaluación nueva que REEVALUA la anterior; los resultados históricos no se modifican.",
+            "fuente": "PG1 §6.3",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          }
+        ],
+        "evidencias": [
+          {
+            "id": "E-EV-TASA-1",
+            "contenido": "Premisas registradas por el grupo para EV-TASA-1",
+            "tipo": "analisis",
+            "localizador": null,
+            "fuente": null
+          },
+          {
+            "id": "E-EV-TASA-2",
+            "contenido": "Premisas registradas por el grupo para EV-TASA-2",
+            "tipo": "analisis",
+            "localizador": null,
+            "fuente": null
+          }
+        ],
+        "observaciones": [
+          {
+            "id": "P-TASA",
+            "clase": "Pendiente"
+          }
+        ],
+        "verificacion": "rechazada; se emite la respuesta de respaldo",
+        "intentos_explicacion": 3,
+        "tipo_salida": "respaldo"
+      }
+    },
+    {
+      "paso": 2,
+      "submodulo": "SM3",
+      "subconsulta": "¿Qué prioridad tiene el pendiente que generó el análisis de dependencia del cálculo del interés? (observación P-TASA)",
+      "enlace": {
+        "estado": "enlazado",
+        "elegidas": [
+          "P-TASA"
+        ],
+        "candidatas": [
+          "P-TASA"
+        ],
+        "criterio": "primer Hallazgo del paquete de evidencia; si no hay, primer Pendiente"
+      },
+      "traza": {
+        "prototipo": "PI4-SM3-1.0",
+        "fecha": "2026-11-14T02:32:25",
+        "modelo": "qwen2.5:7b",
+        "hilos": null,
+        "huella_prompts": "837a200f0dfe",
+        "caso": "E2E-03_p2_SM3",
+        "consulta_usuario": "¿Qué prioridad tiene el pendiente que generó el análisis de dependencia del cálculo del interés? (observación P-TASA)",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"listar_prioridades\", \"entidades\": {\"observacion_id\": \"P-TASA\", \"observacion_texto\": null, \"documento_id\": null}, \"filtros\": {\"prioridad\": null, \"motivo\": null, \"estado_seguimiento\": \"abiertas\"}, \"matriz\": {\"severidad\": null, \"criticidad\": null}, \"faltantes\": []}",
+              "modelo": "qwen2.5:7b",
+              "segundos": 21.58,
+              "tokens_entrada": 2798,
+              "tokens_salida": 91,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [
+            "Se consulta el fundamento de P-TASA: una observación puntual no se lista."
+          ],
+          "json_validado": {
+            "intencion": "fundamento_prioridad",
+            "entidades": {
+              "observacion_id": "P-TASA",
+              "observacion_texto": null,
+              "documento_id": null
+            },
+            "filtros": {
+              "prioridad": null,
+              "motivo": null,
+              "estado_seguimiento": "abiertas"
+            },
+            "matriz": {
+              "severidad": null,
+              "criticidad": null
+            },
+            "faltantes": []
+          }
+        },
+        "intencion": "fundamento_prioridad",
+        "consultas_cypher": [
+          {
+            "consulta": "Q0_observaciones",
+            "parametros": {},
+            "filas": 33,
+            "milisegundos": 39.9
+          },
+          {
+            "consulta": "Q2_fundamento_decision",
+            "parametros": {
+              "observacion_id": "P-TASA"
+            },
+            "filas": 1,
+            "milisegundos": 29.8
+          },
+          {
+            "consulta": "Q4_seguimiento_pg2",
+            "parametros": {
+              "observacion_id": "P-TASA"
+            },
+            "filas": 1,
+            "milisegundos": 25.9
+          },
+          {
+            "consulta": "Q9_reglas",
+            "parametros": {
+              "ids": [
+                "GL02",
+                "GL07",
+                "PRC-RD02"
+              ]
+            },
+            "filas": 3,
+            "milisegundos": 72.7
+          }
+        ],
+        "resolucion_entidad": {
+          "estado": "ok",
+          "puntaje": 1.0,
+          "observaciones": [
+            "P-TASA"
+          ]
+        },
+        "paquete_evidencia": {
+          "intencion": "fundamento_prioridad",
+          "consulta_usuario": "¿Qué prioridad tiene el pendiente que generó el análisis de dependencia del cálculo del interés? (observación P-TASA)",
+          "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "fundamento": {
+            "provisional": true,
+            "revisada_humanamente": false,
+            "estado": "por_consultar",
+            "tipo": "pendiente",
+            "motivo": "preventivo",
+            "reevaluaciones_del_origen": [
+              {
+                "estado": "sin_hallazgo",
+                "documento_id": "DOC-TASA-v2",
+                "resultado_reevaluacion": "resuelta",
+                "decision_se_basa_en_ella": false,
+                "id": "EV-TASA-2"
+              }
+            ],
+            "dato_faltante_origen": "Anexo B",
+            "evaluacion_origen_id": "EV-TASA-1",
+            "severidad": {
+              "grado_severidad": null,
+              "valor": null,
+              "propuesta_por": "analisis_cruzado",
+              "id": "SV-P-TASA"
+            },
+            "observacion_id": "P-TASA",
+            "criticidad": {
+              "grado_criticidad": null,
+              "declarante_rol": "referente_negocio",
+              "valor": null,
+              "fundamento": "Declaración construida",
+              "ambito": "Operación del caso TASA",
+              "id": "CR-TASA"
+            },
+            "prioridad": "bloqueante",
+            "contexto": {
+              "mapeo_alta_bloqueante": "candidato_activo",
+              "diferimiento_aceptado": false,
+              "obligacion_esencial_indefinida": false,
+              "bloqueo_sustantivo_confirmado": false,
+              "id": "X-TASA",
+              "dato_para_priorizar_disponible": false,
+              "info_para_priorizar_suficiente": false,
+              "impacto_acotado": false,
+              "necesidad_dato_confirmada": true,
+              "hito_acordado": false
+            },
+            "celda_mpr01": null,
+            "revision_senior_requerida": false,
+            "decision_id": "D-P-TASA",
+            "evidencia_decision": [
+              {
+                "contenido": "Contexto de prioridad construido de TASA",
+                "fuente": "S-CASOS",
+                "id": "E-X-TASA"
+              }
+            ],
+            "descripcion_origen": "El Anexo B citado no fue recibido",
+            "modulo_origen": "analisis_cruzado",
+            "emitible": false,
+            "regla": "PRC-RD02",
+            "decision_anterior": null
+          },
+          "seguimiento_pg2": {
+            "grado_ambiguedad_origen": null,
+            "descripcion": "El Anexo B citado no fue recibido",
+            "estado": "por_consultar",
+            "motivo": "preventivo",
+            "modelo_difuso": null,
+            "grado_urgencia": null,
+            "observacion_id": "P-TASA",
+            "prioridad": "bloqueante",
+            "version_origen": "1",
+            "reglas_decision": [
+              "PRC-RD02"
+            ],
+            "decision_id": "D-P-TASA",
+            "modulo_origen": "analisis_cruzado",
+            "provisional": true,
+            "estado_evaluacion_vigente": "pendiente",
+            "dato_faltante": "Anexo B",
+            "evaluacion_origen_id": "EV-TASA-1",
+            "reglas_origen": [
+              "GL07",
+              "GL02"
+            ],
+            "modelo_ambiguedad": null,
+            "version": "1",
+            "evidencia_origen": [
+              {
+                "contenido": "Premisas registradas por el grupo para EV-TASA-1",
+                "tipo": "analisis",
+                "fuente": "S-CASOS",
+                "id": "E-EV-TASA-1",
+                "localizador": "EV-TASA-1"
+              }
+            ],
+            "grado_contradiccion": null,
+            "tratamiento_activo": true,
+            "descripcion_corresponde_a": "observacion_historica",
+            "modelo_diagnostico": null,
+            "documento_origen_id": "DOC-TASA-v1",
+            "evidencia_decision": [
+              {
+                "contenido": "Contexto de prioridad construido de TASA",
+                "tipo": "declaracion",
+                "fuente": "S-CASOS",
+                "id": "E-X-TASA",
+                "localizador": "X-TASA"
+              }
+            ],
+            "evaluacion_id": "EV-TASA-1",
+            "documento_id": "DOC-TASA-v1",
+            "emitible": false,
+            "evidencia_evaluacion_vigente": [
+              {
+                "contenido": "Premisas registradas por el grupo para EV-TASA-1",
+                "tipo": "analisis",
+                "fuente": "S-CASOS",
+                "id": "E-EV-TASA-1",
+                "localizador": "EV-TASA-1"
+              }
+            ],
+            "grado_ambiguedad": null
+          },
+          "reglas": [
+            {
+              "id": "GL02",
+              "modulo": "global",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+              "fuente": "PG1 §6.3"
+            },
+            {
+              "id": "GL07",
+              "modulo": "global",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+              "fuente": "PG1 §6.3"
+            },
+            {
+              "id": "PRC-RD02",
+              "modulo": "priorizacion_clarificacion",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI falta un dato confirmado como necesario para elegir el tratamiento ENTONCES prioridad bloqueante, motivo preventivo, provisional.",
+              "fuente": "PG1 §6.6"
+            }
+          ]
+        },
+        "explicacion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "respuesta": "La decisión D-P-TASA tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible.\n\nLa observación P-TASA indica que el Anexo B citado no fue recibido, lo que genera un dato faltante. La regla PRC-RD02, en su estado candidato, determina que si falta un dato confirmado como necesario para elegir el tratamiento, la prioridad será bloqueante y el motivo preventivo. La decisión D-P-TASA, con ID [P-TASA, D-P-TASA, PRC-RD02], tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible.",
+              "violaciones": [
+                "No dice que la severidad es desconocida (null); un desconocido no se completa (GL07)"
+              ],
+              "modelo": "qwen2.5:7b",
+              "segundos": 241.96,
+              "tokens_entrada": 3980,
+              "tokens_salida": 154
+            },
+            {
+              "intento": 2,
+              "respuesta": "La decisión D-P-TASA tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible. [P-TASA, D-P-TASA, PRC-RD02]\n\nLa observación P-TASA indica que el Anexo B citado no fue recibido, con evidencia de la descripción «El Anexo B citado no fue recibido» [E-EV-TASA-1]. La regla PRC-RD02, en su estado candidata, determina que si falta un dato confirmado como necesario para elegir el tratamiento, la prioridad es bloqueante y el motivo preventivo; esto es provisional y no emitible. [PRC-RD02]",
+              "violaciones": [
+                "No dice que la severidad es desconocida (null); un desconocido no se completa (GL07)"
+              ],
+              "modelo": "qwen2.5:7b",
+              "segundos": 42.41,
+              "tokens_entrada": 4103,
+              "tokens_salida": 156
+            },
+            {
+              "intento": 3,
+              "respuesta": "La decisión D-P-TASA tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible. [P-TASA, D-P-TASA, PRC-RD02] La observación P-TASA indica que el Anexo B citado no fue recibido, lo que genera un dato faltante. La regla PRC-RD02, en su estado candidato, determina que, dado que falta un dato confirmado, la prioridad es bloqueante y el motivo preventivo. La severidad y criticidad son desconocidas (null), conforme a la regla GL07. La decisión D-P-TASA es provisional y no emitible.",
+              "violaciones": [],
+              "modelo": "qwen2.5:7b",
+              "segundos": 33.06,
+              "tokens_entrada": 4103,
+              "tokens_salida": 151
+            }
+          ],
+          "hechos_verificables": [
+            "Observación P-TASA (pendiente) emitida por analisis_cruzado en la evaluación EV-TASA-1. Descripción registrada: «El Anexo B citado no fue recibido». Dato faltante del origen: Anexo B.",
+            "Severidad SV-P-TASA: valor null (desconocida), propuesta por analisis_cruzado. SM3 no la completa ni la modifica.",
+            "Criticidad CR-TASA: valor null (desconocida), ámbito «Operación del caso TASA».",
+            "celda_mpr01 = null: con severidad o criticidad null la consulta no encuentra una celda de la matriz.",
+            "Premisas del contexto X-TASA: mapeo_alta_bloqueante = candidato_activo; diferimiento_aceptado = false; obligacion_esencial_indefinida = false; bloqueo_sustantivo_confirmado = false; dato_para_priorizar_disponible = false; info_para_priorizar_suficiente = false; impacto_acotado = false; necesidad_dato_confirmada = true; hito_acordado = false.",
+            "Decisión vigente D-P-TASA, prioridad bloqueante, motivo preventivo, regla PRC-RD02, seguimiento por_consultar; provisional = true, emitible = false. revisada_humanamente = false.",
+            "La evaluación EV-TASA-2 sobre DOC-TASA-v2 REEVALUA a EV-TASA-1 (estado sin_hallazgo, resultado_reevaluacion resuelta), pero la decisión vigente D-P-TASA no se basa en ella: su seguimiento sigue por_consultar. No digas que la observación quedó resuelta ni cerrada.",
+            "Evidencia de la decisión: E-X-TASA, «Contexto de prioridad construido de TASA» (fuente S-CASOS).",
+            "Seguimiento (Q4 de PG2): evaluación vigente EV-TASA-1 sobre DOC-TASA-v1 con estado pendiente; tratamiento_activo = true; reglas del origen GL07, GL02.",
+            "Evidencia del origen: E-EV-TASA-1, «Premisas registradas por el grupo para EV-TASA-1».",
+            "Regla GL02 (estado candidata, ejecución en PG2: implementada, PG1 §6.3): SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+            "Regla GL07 (estado candidata, ejecución en PG2: implementada, PG1 §6.3): SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+            "Regla PRC-RD02 (estado candidata, ejecución en PG2: implementada, PG1 §6.6): SI falta un dato confirmado como necesario para elegir el tratamiento ENTONCES prioridad bloqueante, motivo preventivo, provisional.",
+            "Las decisiones, reglas, celdas y modelos citados son provisionales o candidatos: resultado del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+            "emitible = false: la respuesta debe decir que la recomendación todavía no es emitible.",
+            "La respuesta debe mencionar estos IDs: P-TASA, D-P-TASA, PRC-RD02. Entre corchetes van solo IDs, por ejemplo [P-TASA, D-P-TASA]; los valores se escriben con palabras, fuera de los corchetes.",
+            "La respuesta debe nombrar con palabras estos valores: bloqueante, por consultar, preventivo.",
+            "La respuesta debe explicar primero el fundamento de cada decisión (premisas, evidencia y regla con su significado) y cerrar cada una con una oración como: «La decisión D-P-TASA tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible.»",
+            "Valores de prioridad, motivo y estado que figuran en el paquete: bloqueante, por_consultar, preventivo, sin_hallazgo. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas «sustantivo», «en hito», «diferimiento», «resuelto», «pendiente complemento», «observado», «no evaluable» como conclusión."
+          ],
+          "cobertura_requerida": {
+            "ids": [
+              "P-TASA",
+              "D-P-TASA",
+              "PRC-RD02"
+            ],
+            "valores": [
+              "bloqueante",
+              "por_consultar",
+              "preventivo"
+            ]
+          },
+          "resultado_verificacion": "aprobada"
+        },
+        "respuesta_final": "La decisión D-P-TASA tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible. [P-TASA, D-P-TASA, PRC-RD02] La observación P-TASA indica que el Anexo B citado no fue recibido, lo que genera un dato faltante. La regla PRC-RD02, en su estado candidato, determina que, dado que falta un dato confirmado, la prioridad es bloqueante y el motivo preventivo. La severidad y criticidad son desconocidas (null), conforme a la regla GL07. La decisión D-P-TASA es provisional y no emitible.",
+        "tipo_salida": "explicacion",
+        "segundos_totales": 339.2,
+        "archivo_traza": "submodulos/20261114_023841_842_E2E-03_p2_SM3.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM3",
+        "intencion": "fundamento_prioridad",
+        "fuentes": [
+          "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "S-CASOS"
+        ],
+        "consultas": [
+          {
+            "consulta": "Q0_observaciones",
+            "parametros": {},
+            "filas": 33,
+            "milisegundos": 39.9,
+            "cypher": "// Q0. Observaciones recibidas por SM3 con su decisión vigente, si la tienen. Alimenta la resolución\n// determinística de entidades: el LLM nunca elige un ID del grafo. Solo lectura. Sin parámetros.\nMATCH (ev:AuditIA_PG2:Evaluacion)-[:GENERA]->(o:ResultadoAnalisis), (ev)-[:REVISA_DOCUMENTO]->(doc:DocumentoVersion)\nOPTIONAL MATCH (d:DecisionPrioridad)-[:PRIORIZA]->(o)\nWHERE NOT EXISTS { MATCH (:DecisionPrioridad)-[:SUSTITUYE_A]->(d) }\nRETURN o.id AS observacion_id,\n       CASE WHEN o:Hallazgo THEN 'hallazgo' WHEN o:Pendiente THEN 'pendiente'\n            WHEN o:IncidenciaEntrada THEN 'incidencia_entrada' ELSE 'resultado' END AS tipo,\n       o.modulo_origen AS modulo_origen, o.descripcion AS descripcion, o.tipo_defecto AS tipo_defecto,\n       o.dato_faltante AS dato_faltante, doc.id AS documento_id,\n       [(o)-[:AFECTA_REQUERIMIENTO]->(rq:Requerimiento) | rq.texto_original] AS textos_requerimiento,\n       d.id AS decision_id\nORDER BY observacion_id"
+          },
+          {
+            "consulta": "Q2_fundamento_decision",
+            "parametros": {
+              "observacion_id": "P-TASA"
+            },
+            "filas": 1,
+            "milisegundos": 29.8,
+            "cypher": "// Q2. ¿Por qué una observación recibió su prioridad? Decisión vigente con sus premisas (ContextoPrioridad),\n// regla aplicada, severidad del emisor, criticidad declarada, celda de MPR-01, decisión anterior (SUSTITUYE_A),\n// evidencia y reevaluaciones de la evaluación de origen, indicando si la decisión se basa en cada una.\n// Parámetro: $observacion_id (String).\nMATCH (o:AuditIA_PG2:ResultadoAnalisis {id: $observacion_id})<-[:PRIORIZA]-(d:DecisionPrioridad)\nWHERE NOT EXISTS { MATCH (:DecisionPrioridad)-[:SUSTITUYE_A]->(d) }\nMATCH (d)-[:USA_CONTEXTO]->(x:ContextoPrioridad), (d)-[:APLICA_REGLA]->(r:Regla),\n      (d)-[:TIENE_ESTADO]->(er:EstadoResolucion), (o)-[:TIENE_SEVERIDAD]->(sv:Severidad),\n      (origen:Evaluacion)-[:GENERA]->(o)\nOPTIONAL MATCH (cr:AuditIA_PG2:Criticidad {id: d.criticidad_id})\nOPTIONAL MATCH (celda:AuditIA_PG2:CeldaMatriz {severidad: sv.valor, criticidad: cr.valor})\nOPTIONAL MATCH (d)-[:SUSTITUYE_A]->(prev:DecisionPrioridad)\nRETURN {\n  observacion_id: o.id,\n  tipo: CASE WHEN o:Hallazgo THEN 'hallazgo' ELSE 'pendiente' END,\n  modulo_origen: o.modulo_origen,\n  evaluacion_origen_id: origen.id,\n  descripcion_origen: o.descripcion,\n  dato_faltante_origen: o.dato_faltante,\n  severidad: {id: sv.id, valor: sv.valor, grado_severidad: sv.grado_severidad, propuesta_por: sv.propuesta_por},\n  criticidad: CASE WHEN cr IS NULL THEN null ELSE\n    {id: cr.id, valor: cr.valor, grado_criticidad: cr.grado_criticidad, ambito: cr.ambito,\n     fundamento: cr.fundamento, declarante_rol: cr.declarante_rol} END,\n  celda_mpr01: CASE WHEN celda IS NULL THEN null ELSE\n    {id: celda.id, categoria: celda.categoria, version: celda.version, estado_validacion: celda.estado_validacion} END,\n  contexto: x {.id, .info_para_priorizar_suficiente, .necesidad_dato_confirmada, .dato_para_priorizar_disponible,\n               .obligacion_esencial_indefinida, .bloqueo_sustantivo_confirmado, .hito_acordado,\n               .diferimiento_aceptado, .impacto_acotado, .mapeo_alta_bloqueante},\n  decision_id: d.id, prioridad: d.prioridad, motivo: d.motivo, regla: r.id,\n  estado: er.valor, provisional: d.provisional, emitible: d.emitible,\n  revisada_humanamente: d.revisada_humanamente,\n  revision_senior_requerida: coalesce(d.revision_senior_requerida, false),\n  decision_anterior: CASE WHEN prev IS NULL THEN null ELSE\n    {id: prev.id, prioridad: prev.prioridad, motivo: prev.motivo,\n     regla: head([(prev)-[:APLICA_REGLA]->(rp:Regla) | rp.id]),\n     estado: head([(prev)-[:TIENE_ESTADO]->(ep:EstadoResolucion) | ep.valor])} END,\n  evidencia_decision: [(d)-[:SE_SUSTENTA_EN]->(e:Evidencia) |\n    {id: e.id, contenido: e.contenido, fuente: head([(e)-[:CITA_FUENTE]->(f:Fuente) | f.id])}],\n  reevaluaciones_del_origen: [(posterior:Evaluacion)-[:REEVALUA]->(origen) |\n    {id: posterior.id, estado: posterior.estado, resultado_reevaluacion: posterior.resultado_reevaluacion,\n     documento_id: head([(posterior)-[:REVISA_DOCUMENTO]->(dp:DocumentoVersion) | dp.id]),\n     decision_se_basa_en_ella: EXISTS { MATCH (d)-[:SE_BASA_EN_REEVALUACION]->(posterior) }}]\n} AS fundamento"
+          },
+          {
+            "consulta": "Q4_seguimiento_pg2",
+            "parametros": {
+              "observacion_id": "P-TASA"
+            },
+            "filas": 1,
+            "milisegundos": 25.9,
+            "cypher": "// Q4. Consulta Q4_paquete_llm.cypher de PG2, reutilizada sin cambios: es el contrato de PI4 (PG2 §4.1).\n// En SM3 se lee el seguimiento del tratamiento: prioridad, motivo, estado, tratamiento_activo, provisional y emitible.\n// Parámetro: $observacion_id (String).\nMATCH (o:AuditIA_PG2:ResultadoAnalisis {id:$observacion_id})<-[:GENERA]-(origen)-[:REVISA_DOCUMENTO]->(doc_origen),\n      (d:DecisionPrioridad)-[:PRIORIZA]->(o),(d)-[:TIENE_ESTADO]->(er)\nWHERE NOT EXISTS {MATCH (:DecisionPrioridad)-[:SUSTITUYE_A]->(d)}\nOPTIONAL MATCH (d)-[:SE_BASA_EN_REEVALUACION]->(reevaluacion:Evaluacion)\nWITH o,origen,doc_origen,d,er,coalesce(reevaluacion,origen) AS actual\nMATCH (actual)-[:REVISA_DOCUMENTO]->(doc)\nOPTIONAL MATCH (o)-[:DERIVA_DE_JUICIO]->(jo)-[:APLICA_CRITERIO]->(criterio)\nOPTIONAL MATCH (actual)-[:CONTIENE_JUICIO]->(ja)-[:APLICA_CRITERIO]->(criterio)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja\nOPTIONAL MATCH (o)-[:SE_SUSTENTA_EN]->(eo)-[:CITA_FUENTE]->(fo)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,\n collect(DISTINCT CASE WHEN eo IS NOT NULL THEN {id:eo.id,tipo:eo.tipo,contenido:eo.contenido,localizador:eo.localizador,fuente:fo.id} END) AS evidencia_origen\nOPTIONAL MATCH (d)-[:SE_SUSTENTA_EN]->(ed)-[:CITA_FUENTE]->(fd)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,\n collect(DISTINCT CASE WHEN ed IS NOT NULL THEN {id:ed.id,tipo:ed.tipo,contenido:ed.contenido,localizador:ed.localizador,fuente:fd.id} END) AS evidencia_decision\nOPTIONAL MATCH (actual)-[:SE_SUSTENTA_EN]->(ea)-[:CITA_FUENTE]->(fa)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,evidencia_decision,\n collect(DISTINCT CASE WHEN ea IS NOT NULL THEN {id:ea.id,tipo:ea.tipo,contenido:ea.contenido,localizador:ea.localizador,fuente:fa.id} END) AS evidencia_evaluacion_vigente\nOPTIONAL MATCH (o)-[:APLICA_REGLA]->(r1)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,evidencia_decision,evidencia_evaluacion_vigente,collect(DISTINCT r1.id) AS reglas_origen\nOPTIONAL MATCH (d)-[:APLICA_REGLA]->(r2)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,evidencia_decision,evidencia_evaluacion_vigente,reglas_origen,collect(DISTINCT r2.id) AS reglas_decision\nRETURN {observacion_id:o.id,documento_id:doc.id,version:doc.version,\n documento_origen_id:doc_origen.id,version_origen:doc_origen.version,\n modulo_origen:o.modulo_origen,evaluacion_id:actual.id,evaluacion_origen_id:origen.id,\n estado_evaluacion_vigente:actual.estado,descripcion:o.descripcion,descripcion_corresponde_a:'observacion_historica',\n grado_ambiguedad:ja.grado_ambiguedad,grado_ambiguedad_origen:jo.grado_ambiguedad,\n modelo_ambiguedad:ja.modelo_difuso_version,\n grado_contradiccion:actual.grado_contradiccion,modelo_diagnostico:actual.modelo_difuso_version,\n decision_id:d.id,prioridad:d.prioridad,motivo:d.motivo,estado:er.valor,\n provisional:d.provisional,emitible:d.emitible,tratamiento_activo:er.valor<>'resuelto',dato_faltante:o.dato_faltante,\n grado_urgencia:d.grado_urgencia,modelo_difuso:d.modelo_difuso_version,\n reglas_origen:reglas_origen,reglas_decision:reglas_decision,\n evidencia_origen:evidencia_origen,evidencia_decision:evidencia_decision,\n evidencia_evaluacion_vigente:evidencia_evaluacion_vigente} AS paquete"
+          },
+          {
+            "consulta": "Q9_reglas",
+            "parametros": {
+              "ids": [
+                "GL02",
+                "GL07",
+                "PRC-RD02"
+              ]
+            },
+            "filas": 3,
+            "milisegundos": 72.7,
+            "cypher": "// Q9. Consulta complementaria: texto, estado de validación, ejecución en PG2 y fuente de las reglas citadas.\n// Parámetros: $ids (List<String>).\nMATCH (r:AuditIA_PG2:Regla)\nWHERE r.id IN $ids\nRETURN r.id AS id, r.modulo AS modulo, r.estado_validacion AS estado_validacion,\n       r.ejecucion AS ejecucion, r.descripcion AS descripcion, r.descripcion_fuente AS fuente\nORDER BY id"
+          }
+        ],
+        "reglas": [
+          {
+            "id": "GL02",
+            "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+            "fuente": "PG1 §6.3",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "GL07",
+            "descripcion": "SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+            "fuente": "PG1 §6.3",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "PRC-RD02",
+            "descripcion": "SI falta un dato confirmado como necesario para elegir el tratamiento ENTONCES prioridad bloqueante, motivo preventivo, provisional.",
+            "fuente": "PG1 §6.6",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          }
+        ],
+        "evidencias": [
+          {
+            "id": "E-X-TASA",
+            "contenido": "Contexto de prioridad construido de TASA",
+            "tipo": "declaracion",
+            "localizador": "X-TASA",
+            "fuente": "S-CASOS"
+          },
+          {
+            "id": "E-EV-TASA-1",
+            "contenido": "Premisas registradas por el grupo para EV-TASA-1",
+            "tipo": "analisis",
+            "localizador": "EV-TASA-1",
+            "fuente": "S-CASOS"
+          }
+        ],
+        "observaciones": [
+          {
+            "id": "P-TASA",
+            "clase": "pendiente"
+          }
+        ],
+        "verificacion": "aprobada",
+        "intentos_explicacion": 3,
+        "tipo_salida": "explicacion"
+      }
+    }
+  ],
+  "enrutamiento": {
+    "intentos": [
+      {
+        "salida": "{\"tipo\": \"consulta\", \"pasos\": [{\"submodulo\": \"SM2\", \"subconsulta\": \"¿De qué depende el cálculo del interés?\", \"depende_de\": null}, {\"submodulo\": \"SM3\", \"subconsulta\": \"¿Se resolvió esa dependencia del cálculo del interés?\", \"depende_de\": 1}, {\"submodulo\": \"SM3\", \"subconsulta\": \"¿Qué prioridad tiene el pendiente generado por la dependencia del cálculo del interés?\", \"depende_de\": 2}], \"motivo\": \"El análisis de dependencias es de SM2, la resolución de dependencias la evalúa SM3 y la prioridad del pendiente resultante también es calculada por SM3.\"}",
+        "errores": [
+          "paso 3: el submódulo SM3 se repite"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 31.46,
+        "tokens_entrada": 1804,
+        "tokens_salida": 165
+      },
+      {
+        "salida": "{\"tipo\": \"consulta\", \"pasos\": [{\"submodulo\": \"SM2\", \"subconsulta\": \"¿De qué depende el cálculo del interés, se resolvió esa dependencia?\", \"depende_de\": null}, {\"submodulo\": \"SM3\", \"subconsulta\": \"¿Qué prioridad tiene el pendiente que generó el análisis de dependencia del cálculo del interés?\", \"depende_de\": 1}], \"motivo\": \"El análisis de dependencia es de SM2 y la prioridad del pendiente resultante es de SM3.\"}",
+        "errores": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 24.99,
+        "tokens_entrada": 1843,
+        "tokens_salida": 125
+      }
+    ],
+    "huella_prompt": "45af5da3ce6b",
+    "fuente": "llm",
+    "plan": {
+      "tipo": "consulta",
+      "pasos": [
+        {
+          "submodulo": "SM2",
+          "subconsulta": "¿De qué depende el cálculo del interés, se resolvió esa dependencia?",
+          "depende_de": null
+        },
+        {
+          "submodulo": "SM3",
+          "subconsulta": "¿Qué prioridad tiene el pendiente que generó el análisis de dependencia del cálculo del interés?",
+          "depende_de": 1
+        }
+      ],
+      "motivo": "El análisis de dependencia es de SM2 y la prioridad del pendiente resultante es de SM3."
+    }
+  },
+  "sintesis": {
+    "intentos": [
+      {
+        "texto": "No se pudo generar una explicación verificable sobre la dependencia del cálculo del interés, ya que los datos provisionales del prototipo no lo permiten. Versión 1 de la evaluación EV-TASA-1 y la dependencia DEP-TASA-v1 están pendientes, mientras que la versión 2 de la evaluación EV-TASA-2 no presentó hallazgos y la dependencia DEP-TASA-v2 ya fue resuelta. La observación P-TASA indica que falta un dato confirmado, lo que genera una prioridad bloqueante y un motivo preventivo según la regla PRC-RD02, en estado candidato. Las severidad y criticidad son desconocidas. Las conclusiones son provisionales y provienen de reglas y parámetros de un prototipo académico, sin validación experta.",
+        "violaciones": [
+          "no indica el origen [SM2]",
+          "no indica el origen [SM3]",
+          "afirma un cierre que ninguna respuesta de submódulo afirma"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 51.8,
+        "tokens_entrada": 812,
+        "tokens_salida": 186
+      },
+      {
+        "texto": "No se pudo generar una explicación verificable sobre la dependencia del cálculo del interés, resumiendo los datos recuperados de la base sin interpretarlos. Según la versión 1, la evaluación EV-TASA-1 está pendiente y la dependencia DEP-TASA-v1 también lo está. En la versión 2, la evaluación EV-TASA-2 no encontró hallazgos y la dependencia DEP-TASA-v2 ya está resuelta. La prioridad del pendiente que generó el análisis de dependencia del cálculo del interés es bloqueante, con motivo preventivo, según la observación P-TASA y la regla PRC-RD02, que indica que falta un dato confirmado. Las severidad y criticidad son desconocidas (null), conforme a la regla GL07. Las conclusiones son provisionales y provienen de reglas y parámetros candidatos de un prototipo académico, sin validación experta. [SM2, SM3]",
+        "violaciones": [
+          "no indica el origen [SM2]",
+          "no indica el origen [SM3]",
+          "afirma un cierre que ninguna respuesta de submódulo afirma"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 39.94,
+        "tokens_entrada": 869,
+        "tokens_salida": 222
+      }
+    ],
+    "modo": "composicion_determinista"
+  },
+  "respuesta_final": "Análisis cruzado y cobertura [SM2]: No pude generar una explicación verificable; resumo los datos recuperados de la base sin interpretarlos. Son resultados provisionales del prototipo, sin validación experta.\nVersión 1: evaluación EV-TASA-1 pendiente; dependencia DEP-TASA-v1 pendiente.\nVersión 2: evaluación EV-TASA-2 sin_hallazgo; dependencia DEP-TASA-v2 resuelta.\n\nPriorización y clarificación [SM3]: La decisión D-P-TASA tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible. [P-TASA, D-P-TASA, PRC-RD02] La observación P-TASA indica que el Anexo B citado no fue recibido, lo que genera un dato faltante. La regla PRC-RD02, en su estado candidato, determina que, dado que falta un dato confirmado, la prioridad es bloqueante y el motivo preventivo. La severidad y criticidad son desconocidas (null), conforme a la regla GL07. La decisión D-P-TASA es provisional y no emitible.\n\nLas conclusiones son provisionales: provienen de reglas y parámetros candidatos de un prototipo académico, sin validación experta.",
+  "tipo_salida": "integrada",
+  "submodulos_consultados": [
+    "SM2",
+    "SM3"
+  ],
+  "tipos_salida_pasos": [
+    "explicacion",
+    "respaldo"
+  ],
+  "segundos_totales": 836.04
+}

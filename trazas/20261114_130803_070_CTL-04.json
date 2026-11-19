@@ -1,0 +1,526 @@
+{
+  "version": "PG3-AuditIA-1.0",
+  "fecha": "2026-11-14T13:01:51",
+  "modelo": "qwen2.5:7b",
+  "huella_prompts": "45af5da3ce6b",
+  "caso": "CTL-04",
+  "consulta_usuario": "¿Qué tan ambiguo es el requerimiento de notificar a los clientes habituales y cómo se calculó?",
+  "pasos": [
+    {
+      "paso": 1,
+      "submodulo": "SM1",
+      "subconsulta": "¿Qué tan ambiguo es el requerimiento de notificar a los clientes habituales y cómo se calculó?",
+      "enlace": null,
+      "traza": {
+        "prototipo": "PI4-SM1-1.0",
+        "fecha": "2026-11-14T13:03:04",
+        "modelo": "qwen2.5:7b",
+        "huella_prompts": "88da390d63e7",
+        "caso": "CTL-04_p1_SM1",
+        "consulta_usuario": "¿Qué tan ambiguo es el requerimiento de notificar a los clientes habituales y cómo se calculó?",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"grado_ambiguedad\", \"entidades\": {\"requerimiento_id\": null, \"requerimiento_texto\": \"notificar a los clientes habituales\", \"observacion_id\": null, \"evaluacion_id\": null}, \"conceptos\": {\"criterio\": \"ambiguedad\"}, \"filtros\": {\"estado_juicio\": null, \"banda_ambiguedad\": null}, \"condiciones\": {\"version\": null, \"alcance\": \"vigente\"}, \"faltantes\": [\"requerimiento a consultar\"]}",
+              "modelo": "qwen2.5:7b",
+              "segundos": 60.48,
+              "tokens_entrada": 1939,
+              "tokens_salida": 124,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [],
+          "json_validado": {
+            "intencion": "grado_ambiguedad",
+            "entidades": {
+              "requerimiento_id": null,
+              "requerimiento_texto": "notificar a los clientes habituales",
+              "observacion_id": null,
+              "evaluacion_id": null
+            },
+            "conceptos": {
+              "criterio": "ambiguedad"
+            },
+            "filtros": {
+              "estado_juicio": null,
+              "banda_ambiguedad": null
+            },
+            "condiciones": {
+              "version": null,
+              "alcance": "vigente"
+            },
+            "faltantes": [
+              "requerimiento a consultar"
+            ]
+          }
+        },
+        "intencion": "grado_ambiguedad",
+        "consultas_cypher": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 6,
+            "milisegundos": 1733.0
+          },
+          {
+            "consulta": "Q2_grado_ambiguedad",
+            "parametros": {
+              "requerimiento_id": "RQ-HAB-v1"
+            },
+            "filas": 1,
+            "milisegundos": 496.5
+          },
+          {
+            "consulta": "Q6_reglas",
+            "parametros": {
+              "ids": [
+                "EVI-HC02",
+                "GL02"
+              ]
+            },
+            "filas": 2,
+            "milisegundos": 14.5
+          }
+        ],
+        "resolucion_entidad": {
+          "estado": "ok",
+          "puntaje": 1.0,
+          "requerimiento": {
+            "requerimiento_id": "RQ-HAB-v1",
+            "id_logico": "RQ-HAB",
+            "texto": "El sistema debe notificar a los clientes habituales.",
+            "documento_id": "DOC-HAB-v1",
+            "version": 1
+          }
+        },
+        "paquete_evidencia": {
+          "intencion": "grado_ambiguedad",
+          "consulta_usuario": "¿Qué tan ambiguo es el requerimiento de notificar a los clientes habituales y cómo se calculó?",
+          "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "requerimiento_consultado": {
+            "requerimiento_id": "RQ-HAB-v1",
+            "id_logico": "RQ-HAB",
+            "texto": "El sistema debe notificar a los clientes habituales.",
+            "documento_id": "DOC-HAB-v1",
+            "version": 1
+          },
+          "juicios_de_ambiguedad": [
+            {
+              "modelo_metodo": "Mamdani min/max, centroide discreto",
+              "estado_juicio": "pendiente",
+              "texto_requerimiento": "El sistema debe notificar a los clientes habituales.",
+              "justificacion": "El glosario define compras frecuentes sin fijar frecuencia; valoración 6/5, pero falta cerrar la interpretación para el juicio.",
+              "resultado_difuso_provisional": true,
+              "vigente": true,
+              "requerimiento_id": "RQ-HAB-v1",
+              "revision_senior_requerida": true,
+              "juicio_id": "J-EV-HAB-ambiguedad",
+              "reglas_difusas_activadas": [
+                "AMB-RB1",
+                "AMB-RB2",
+                "AMB-RB3",
+                "AMB-RB4"
+              ],
+              "reglas_juicio": [
+                "GL02"
+              ],
+              "estado_calculo_difuso": "calculado",
+              "estado_evaluacion": "pendiente",
+              "modelo_id": "MD-AMB-1.0",
+              "banda_difusa": "media",
+              "reglas_difusas": [
+                {
+                  "id": "AMB-RB4",
+                  "regla_crisp": "EVI-HC03/HC09",
+                  "orden": 4,
+                  "antecedente": "max(xb, ya)",
+                  "salida": "baja"
+                },
+                {
+                  "id": "AMB-RB3",
+                  "regla_crisp": "EVI-HC02",
+                  "orden": 3,
+                  "antecedente": "min(xm, max(yb, ym))",
+                  "salida": "media"
+                },
+                {
+                  "id": "AMB-RB2",
+                  "regla_crisp": "EVI-HC02/HC03",
+                  "orden": 2,
+                  "antecedente": "min(xa, ym)",
+                  "salida": "media"
+                },
+                {
+                  "id": "AMB-RB1",
+                  "regla_crisp": "EVI-HC02",
+                  "orden": 1,
+                  "antecedente": "min(xa, yb)",
+                  "salida": "alta"
+                }
+              ],
+              "evidencias": [
+                {
+                  "tipo": "documento",
+                  "contenido": "Cliente habitual: cliente con compras frecuentes. No fija una frecuencia.",
+                  "id": "E-HAB-GLOSARIO",
+                  "localizador": "Glosario construido de DOC-HAB-v1"
+                },
+                {
+                  "tipo": "fragmento",
+                  "contenido": "El sistema debe notificar a los clientes habituales.",
+                  "id": "E-RQ-HAB-v1",
+                  "localizador": "RQ-HAB-v1"
+                }
+              ],
+              "version": 1,
+              "delimitacion_contexto": 5,
+              "valoracion_confirmada": true,
+              "divergencia_lecturas": 6,
+              "modelo_estado_validacion": "candidata",
+              "etiquetas": [
+                {
+                  "sigma": 0.18,
+                  "etiqueta": "Alta",
+                  "pertenencia_entrada": null,
+                  "centro": 1.0,
+                  "variable": "Ambiguedad_Residual",
+                  "rol": "salida"
+                },
+                {
+                  "sigma": 0.15,
+                  "etiqueta": "Media",
+                  "pertenencia_entrada": null,
+                  "centro": 0.5,
+                  "variable": "Ambiguedad_Residual",
+                  "rol": "salida"
+                },
+                {
+                  "sigma": 0.18,
+                  "etiqueta": "Baja",
+                  "pertenencia_entrada": null,
+                  "centro": 0.0,
+                  "variable": "Ambiguedad_Residual",
+                  "rol": "salida"
+                },
+                {
+                  "sigma": 1.8,
+                  "etiqueta": "Fuerte",
+                  "pertenencia_entrada": 0.021,
+                  "centro": 10.0,
+                  "variable": "Delimitacion_Contexto",
+                  "rol": "entrada"
+                },
+                {
+                  "sigma": 1.5,
+                  "etiqueta": "Parcial",
+                  "pertenencia_entrada": 1.0,
+                  "centro": 5.0,
+                  "variable": "Delimitacion_Contexto",
+                  "rol": "entrada"
+                },
+                {
+                  "sigma": 1.9,
+                  "etiqueta": "Débil",
+                  "pertenencia_entrada": 0.031,
+                  "centro": 0.0,
+                  "variable": "Delimitacion_Contexto",
+                  "rol": "entrada"
+                },
+                {
+                  "sigma": 1.9,
+                  "etiqueta": "Alta",
+                  "pertenencia_entrada": 0.109,
+                  "centro": 10.0,
+                  "variable": "Divergencia_Lecturas",
+                  "rol": "entrada"
+                },
+                {
+                  "sigma": 1.5,
+                  "etiqueta": "Media",
+                  "pertenencia_entrada": 0.801,
+                  "centro": 5.0,
+                  "variable": "Divergencia_Lecturas",
+                  "rol": "entrada"
+                },
+                {
+                  "sigma": 1.8,
+                  "etiqueta": "Baja",
+                  "pertenencia_entrada": 0.004,
+                  "centro": 0.0,
+                  "variable": "Divergencia_Lecturas",
+                  "rol": "entrada"
+                }
+              ],
+              "evaluacion_id": "EV-HAB",
+              "activaciones": [
+                0.031,
+                0.109,
+                0.801,
+                0.021
+              ],
+              "documento_id": "DOC-HAB-v1",
+              "fuente_modelo": "Costa_Juan_Pablo_PI3_U1.pdf",
+              "grado_ambiguedad": 0.501254
+            }
+          ],
+          "reglas": [
+            {
+              "id": "EVI-HC02",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+              "fuente": "PG1 §6.4"
+            },
+            {
+              "id": "GL02",
+              "modulo": "global",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+              "fuente": "PG1 §6.3"
+            }
+          ]
+        },
+        "explicacion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "respuesta": "El requerimiento \"El sistema debe notificar a los clientes habituales\" es considerado pendiente [J-EV-HAB-ambiguedad]. Esto se debe a que el glosario define \"cliente habitual\" sin fijar una frecuencia de compras, lo que genera incertidumbre [E-HAB-GLOSARIO]. La evaluación difusa AMB-RB3, con un grado de 0.501, indica una ambigüedad media [AMB-RB3]. Las reglas GL02 y EVI-HC02, en estado candidata, no determinaron un estado definitivo. Este resultado es provisional, del prototipo académico, sin validación experta [GL02, EVI-HC02].",
+              "violaciones": [],
+              "modelo": "qwen2.5:7b",
+              "segundos": 179.72,
+              "tokens_entrada": 3448,
+              "tokens_salida": 166
+            }
+          ],
+          "hechos_verificables": [
+            "Juicio J-EV-HAB-ambiguedad del requerimiento RQ-HAB-v1 («El sistema debe notificar a los clientes habituales.»): estado pendiente por la regla GL02. Justificación registrada: «El glosario define compras frecuentes sin fijar frecuencia; valoración 6/5, pero falta cerrar la interpretación para el juicio.».",
+            "Entradas valoradas: Divergencia_Lecturas = 6 y Delimitacion_Contexto = 5. Pertenencias relevantes: Delimitacion_Contexto Fuerte 0.021; Delimitacion_Contexto Parcial 1.000; Delimitacion_Contexto Débil 0.031; Divergencia_Lecturas Alta 0.109; Divergencia_Lecturas Media 0.801.",
+            "Activación de las reglas difusas: AMB-RB3 0.801 (antecedente min(xm, max(yb, ym)), salida media); AMB-RB2 0.109 (antecedente min(xa, ym), salida media); AMB-RB1 0.031 (antecedente min(xa, yb), salida alta); AMB-RB4 0.021 (antecedente max(xb, ya), salida baja). La regla dominante es AMB-RB3.",
+            "Resultado: grado 0.501, banda media, calculado con MD-AMB-1.0 (Mamdani min/max, centroide discreto), modelo en estado candidata, fuente Costa_Juan_Pablo_PI3_U1.pdf. El grado mide intensidad y no cambia el estado del juicio.",
+            "Las reglas difusas citan como antecedente crisp a EVI-HC02, EVI-HC02/HC03, EVI-HC03/HC09; esa referencia documenta su origen y no es la regla que decidió el estado del juicio (GL02).",
+            "La banda media marca un caso de frontera: revision_senior_requerida = true.",
+            "Regla EVI-HC02 (estado candidata, PG1 §6.4): SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+            "Regla GL02 (estado candidata, PG1 §6.3): SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+            "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+            "La respuesta debe mencionar estos IDs: J-EV-HAB-ambiguedad.",
+            "Estados que figuran en el paquete: pendiente. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «cumple», «incumple», «observado», «sin hallazgo», «no evaluable», «resuelto», «por consultar» en la respuesta."
+          ],
+          "cobertura_requerida": {
+            "ids": [
+              "J-EV-HAB-ambiguedad"
+            ],
+            "estados": [
+              "pendiente"
+            ]
+          },
+          "resultado_verificacion": "aprobada"
+        },
+        "respuesta_final": "El requerimiento \"El sistema debe notificar a los clientes habituales\" es considerado pendiente [J-EV-HAB-ambiguedad]. Esto se debe a que el glosario define \"cliente habitual\" sin fijar una frecuencia de compras, lo que genera incertidumbre [E-HAB-GLOSARIO]. La evaluación difusa AMB-RB3, con un grado de 0.501, indica una ambigüedad media [AMB-RB3]. Las reglas GL02 y EVI-HC02, en estado candidata, no determinaron un estado definitivo. Este resultado es provisional, del prototipo académico, sin validación experta [GL02, EVI-HC02].",
+        "tipo_salida": "explicacion",
+        "segundos_totales": 242.45,
+        "archivo_traza": "submodulos/20261114_130728_284_CTL-04_p1_SM1.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM1",
+        "intencion": "grado_ambiguedad",
+        "fuentes": [
+          "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)"
+        ],
+        "consultas": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 6,
+            "milisegundos": 1733.0,
+            "cypher": "// Q0. Requerimientos evaluados por SM1. Alimenta la resolución determinística de entidades.\n// Solo lectura. Sin parámetros.\nMATCH (ev:AuditIA_PG2:EvaluacionIndividual)-[:EVALUA]->(rq:AuditIA_PG2:Requerimiento),\n      (ev)-[:REVISA_DOCUMENTO]->(doc:AuditIA_PG2:DocumentoVersion)\nWITH rq, doc, collect(DISTINCT ev.id) AS evaluaciones\nRETURN rq.id AS requerimiento_id, rq.id_logico AS id_logico, rq.texto_original AS texto,\n       doc.id AS documento_id, toInteger(doc.version) AS version, evaluaciones\nORDER BY id_logico, version"
+          },
+          {
+            "consulta": "Q2_grado_ambiguedad",
+            "parametros": {
+              "requerimiento_id": "RQ-HAB-v1"
+            },
+            "filas": 1,
+            "milisegundos": 496.5,
+            "cypher": "// Q2. Grado difuso de ambigüedad residual (MD-AMB-1.0) con entradas, pertenencias,\n// reglas activadas, parámetros del modelo y fuente PI3. La pertenencia de cada entrada\n// se calcula con los parámetros almacenados en el grafo; no se recalcula el centroide.\n// Parámetros: $requerimiento_id (String).\nMATCH (ev:AuditIA_PG2:EvaluacionIndividual)-[:EVALUA]->(rq:AuditIA_PG2:Requerimiento {id: $requerimiento_id}),\n      (ev)-[:REVISA_DOCUMENTO]->(doc:AuditIA_PG2:DocumentoVersion),\n      (ev)-[:CONTIENE_JUICIO]->(j:JuicioCriterio)-[:APLICA_CRITERIO]->(:CriterioCalidad {nombre: 'ambiguedad'})\nOPTIONAL MATCH (j)-[:APLICA_MODELO]->(md:ModeloDifuso)\nOPTIONAL MATCH (md)-[:CITA_FUENTE]->(f:Fuente)\nWITH ev, rq, doc, j, md, f,\n     CASE WHEN md IS NULL THEN [] ELSE\n       [(md)-[:DEFINE_VARIABLE]->(v:VariableDifusa)-[:TIENE_ETIQUETA]->(et:EtiquetaDifusa) |\n        {variable: v.nombre, rol: v.rol, etiqueta: et.nombre, centro: et.centro, sigma: et.sigma,\n         pertenencia_entrada: CASE\n           WHEN v.slot = 'premisa_x' AND j.divergencia_lecturas IS NOT NULL\n             THEN round(exp(-0.5 * ((j.divergencia_lecturas - et.centro) / et.sigma) ^ 2), 3)\n           WHEN v.slot = 'premisa_y' AND j.delimitacion_contexto IS NOT NULL\n             THEN round(exp(-0.5 * ((j.delimitacion_contexto - et.centro) / et.sigma) ^ 2), 3)\n           ELSE null END}]\n     END AS etiquetas,\n     CASE WHEN md IS NULL THEN [] ELSE\n       [(md)-[:DEFINE_REGLA]->(rd:ReglaDifusa) |\n        {id: rd.id, antecedente: rd.antecedente, salida: rd.salida, regla_crisp: rd.regla_crisp, orden: rd.orden}]\n     END AS reglas_difusas\nRETURN {\n  evaluacion_id: ev.id,\n  estado_evaluacion: ev.estado,\n  documento_id: doc.id,\n  version: toInteger(doc.version),\n  requerimiento_id: rq.id,\n  texto_requerimiento: rq.texto_original,\n  vigente: NOT EXISTS { MATCH (:Evaluacion)-[:REEVALUA]->(ev) },\n  juicio_id: j.id,\n  estado_juicio: j.estado,\n  justificacion: j.justificacion,\n  reglas_juicio: [(j)-[:APLICA_REGLA]->(r:Regla) | r.id],\n  evidencias: [(j)-[:SE_SUSTENTA_EN]->(e:Evidencia) |\n               {id: e.id, tipo: e.tipo, contenido: e.contenido, localizador: e.localizador}],\n  divergencia_lecturas: j.divergencia_lecturas,\n  delimitacion_contexto: j.delimitacion_contexto,\n  valoracion_confirmada: j.valoracion_confirmada,\n  estado_calculo_difuso: j.estado_calculo_difuso,\n  grado_ambiguedad: CASE WHEN j.grado_ambiguedad IS NULL THEN null ELSE round(j.grado_ambiguedad, 6) END,\n  banda_difusa: j.banda_difusa,\n  reglas_difusas_activadas: j.reglas_difusas_ids,\n  activaciones: CASE WHEN j.activaciones IS NULL THEN null ELSE [a IN j.activaciones | round(a, 3)] END,\n  revision_senior_requerida: coalesce(j.revision_senior_requerida, false),\n  resultado_difuso_provisional: j.resultado_difuso_provisional,\n  modelo_id: md.id,\n  modelo_estado_validacion: md.estado_validacion,\n  modelo_metodo: CASE WHEN md IS NULL THEN null\n                 ELSE md.tipo + ' ' + md.operador_and + '/' + md.agregacion + ', ' + md.desdifusificacion END,\n  fuente_modelo: f.nombre,\n  etiquetas: etiquetas,\n  reglas_difusas: reglas_difusas\n} AS grado\nORDER BY ev.fecha, ev.id"
+          },
+          {
+            "consulta": "Q6_reglas",
+            "parametros": {
+              "ids": [
+                "EVI-HC02",
+                "GL02"
+              ]
+            },
+            "filas": 2,
+            "milisegundos": 14.5,
+            "cypher": "// Q6. Consulta complementaria: texto, estado y fuente de las reglas citadas en un paquete.\n// Parámetros: $ids (List<String>).\nMATCH (r:AuditIA_PG2:Regla)\nWHERE r.id IN $ids\nRETURN r.id AS id, r.modulo AS modulo, r.estado_validacion AS estado_validacion,\n       r.ejecucion AS ejecucion, r.descripcion AS descripcion, r.descripcion_fuente AS fuente\nORDER BY id"
+          }
+        ],
+        "reglas": [
+          {
+            "id": "EVI-HC02",
+            "descripcion": "SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "GL02",
+            "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+            "fuente": "PG1 §6.3",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          }
+        ],
+        "evidencias": [
+          {
+            "id": "E-HAB-GLOSARIO",
+            "contenido": "Cliente habitual: cliente con compras frecuentes. No fija una frecuencia.",
+            "tipo": "documento",
+            "localizador": "Glosario construido de DOC-HAB-v1",
+            "fuente": null
+          },
+          {
+            "id": "E-RQ-HAB-v1",
+            "contenido": "El sistema debe notificar a los clientes habituales.",
+            "tipo": "fragmento",
+            "localizador": "RQ-HAB-v1",
+            "fuente": null
+          }
+        ],
+        "observaciones": [],
+        "verificacion": "aprobada",
+        "intentos_explicacion": 1,
+        "tipo_salida": "explicacion"
+      }
+    },
+    {
+      "paso": 2,
+      "submodulo": "SM3",
+      "subconsulta": "¿Qué tan ambiguo es el requerimiento de notificar a los clientes habituales y cómo se calculó?",
+      "enlace": {
+        "estado": "sin_observaciones",
+        "candidatas": []
+      },
+      "traza": {
+        "prototipo": "PI4-SM3-1.0",
+        "fecha": "2026-11-14T13:07:28",
+        "modelo": "qwen2.5:7b",
+        "hilos": null,
+        "huella_prompts": "837a200f0dfe",
+        "caso": "CTL-04_p2_SM3",
+        "consulta_usuario": "¿Qué tan ambiguo es el requerimiento de notificar a los clientes habituales y cómo se calculó?",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"otro_submodulo\", \"entidades\": {\"observacion_id\": null, \"observacion_texto\": \"notificar a los clientes habituales\", \"documento_id\": null}, \"filtros\": {\"prioridad\": null, \"motivo\": null, \"estado_seguimiento\": \"abiertas\"}, \"matriz\": {\"severidad\": null, \"criticidad\": null}, \"faltantes\": []}",
+              "modelo": "qwen2.5:7b",
+              "segundos": 31.95,
+              "tokens_entrada": 2792,
+              "tokens_salida": 95,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [],
+          "json_validado": {
+            "intencion": "otro_submodulo",
+            "entidades": {
+              "observacion_id": null,
+              "observacion_texto": "notificar a los clientes habituales",
+              "documento_id": null
+            },
+            "filtros": {
+              "prioridad": null,
+              "motivo": null,
+              "estado_seguimiento": "abiertas"
+            },
+            "matriz": {
+              "severidad": null,
+              "criticidad": null
+            },
+            "faltantes": []
+          }
+        },
+        "intencion": "otro_submodulo",
+        "tipo_salida": "aclaracion",
+        "motivo_cierre": "otro_submodulo",
+        "respuesta_final": "Esa consulta corresponde a otro submódulo de AuditIA: los juicios de calidad de cada requerimiento (atomicidad, ambigüedad, verificabilidad y completitud) los emite SM1, y las contradicciones, dependencias y coberturas las analiza SM2. Desde SM3 puedo explicarte qué prioridad recibió una observación ya emitida, por qué y en qué estado está su seguimiento.",
+        "segundos_totales": 31.95,
+        "archivo_traza": "submodulos/20261114_130803_064_CTL-04_p2_SM3.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM3",
+        "intencion": "otro_submodulo",
+        "fuentes": [],
+        "consultas": [],
+        "reglas": [],
+        "evidencias": [],
+        "observaciones": [],
+        "verificacion": null,
+        "intentos_explicacion": 0,
+        "tipo_salida": "aclaracion"
+      }
+    }
+  ],
+  "enrutamiento": {
+    "intentos": [
+      {
+        "salida": "{\n  \"tipo\": \"consulta\",\n  \"pasos\": [\n    {\n      \"submodulo\": \"SM1\",\n      \"subconsulta\": \"¿Qué tan ambiguo es el requerimiento de notificar a los clientes habituales?\",\n      \"depende_de\": null\n    },\n    {\n      \"submodulo\": \"SM1\",\n      \"subconsulta\": \"Cómo se calculó la ambigüedad del requerimiento de notificar a los clientes habituales?\",\n      \"depende_de\": 1\n    }\n  ],\n  \"motivo\": \"La consulta pide el grado de ambigüedad y el cálculo de un requerimiento, que ambos calcula SM1.\"\n}",
+        "errores": [
+          "paso 2: el submódulo SM1 se repite"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 25.29,
+        "tokens_entrada": 1796,
+        "tokens_salida": 147
+      },
+      {
+        "salida": "{\"tipo\": \"consulta\", \"pasos\": [{\"submodulo\": \"SM1\", \"subconsulta\": \"¿Qué tan ambiguo es el requerimiento de notificar a los clientes habituales?\", \"depende_de\": null}, {\"submodulo\": \"SM1\", \"subconsulta\": \"¿Cómo se calculó la ambigüedad del requerimiento de notificar a los clientes habituales?\", \"depende_de\": null}], \"motivo\": \"El diagnóstico de ambigüedad se realiza en SM1 en dos partes: la gravedad y el cálculo.\"}",
+        "errores": [
+          "paso 2: el submódulo SM1 se repite"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 41.68,
+        "tokens_entrada": 1835,
+        "tokens_salida": 126
+      }
+    ],
+    "huella_prompt": "45af5da3ce6b",
+    "fuente": "respaldo_palabras_clave",
+    "plan": {
+      "tipo": "consulta",
+      "pasos": [
+        {
+          "submodulo": "SM1",
+          "subconsulta": "¿Qué tan ambiguo es el requerimiento de notificar a los clientes habituales y cómo se calculó?",
+          "depende_de": null
+        },
+        {
+          "submodulo": "SM3",
+          "subconsulta": "¿Qué tan ambiguo es el requerimiento de notificar a los clientes habituales y cómo se calculó?",
+          "depende_de": 1
+        }
+      ],
+      "motivo": "Respaldo por palabras clave: {'SM1': 1, 'SM2': 0, 'SM3': 1}."
+    }
+  },
+  "sintesis": {
+    "intentos": [],
+    "modo": "composicion_determinista"
+  },
+  "respuesta_final": "Evaluación de calidad individual [SM1]: El requerimiento \"El sistema debe notificar a los clientes habituales\" es considerado pendiente [J-EV-HAB-ambiguedad]. Esto se debe a que el glosario define \"cliente habitual\" sin fijar una frecuencia de compras, lo que genera incertidumbre [E-HAB-GLOSARIO]. La evaluación difusa AMB-RB3, con un grado de 0.501, indica una ambigüedad media [AMB-RB3]. Las reglas GL02 y EVI-HC02, en estado candidata, no determinaron un estado definitivo. Este resultado es provisional, del prototipo académico, sin validación experta [GL02, EVI-HC02].\n\nPriorización y clarificación [SM3]: Esa consulta corresponde a otro submódulo de AuditIA: los juicios de calidad de cada requerimiento (atomicidad, ambigüedad, verificabilidad y completitud) los emite SM1, y las contradicciones, dependencias y coberturas las analiza SM2. Desde SM3 puedo explicarte qué prioridad recibió una observación ya emitida, por qué y en qué estado está su seguimiento.\n\nLas conclusiones son provisionales: provienen de reglas y parámetros candidatos de un prototipo académico, sin validación experta.",
+  "tipo_salida": "integrada",
+  "submodulos_consultados": [
+    "SM1",
+    "SM3"
+  ],
+  "tipos_salida_pasos": [
+    "aclaracion",
+    "explicacion"
+  ],
+  "segundos_totales": 341.41
+}

@@ -1,0 +1,16 @@
+Especificación de requerimientos · Tienda online
+Versión 1 · Documento de ejemplo para AuditIA (Grupo 10, PG3).
+
+1. Introducción
+Este documento describe las funciones de una tienda online de productos de almacén.
+
+2. Requerimientos
+RF-01. El sistema debe permitir que el cliente se registre con su correo electrónico y una contraseña.
+RF-02. El sistema debe cargar rápidamente el catálogo de productos.
+RF-03. El sistema debe registrar el pedido y notificar al cliente por correo electrónico.
+RF-04. El sistema debe admitir los medios de pago tarjeta de crédito, transferencia, etc.
+RF-05. Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.
+RF-06. Cuando el pedido está confirmado, el cliente no puede cancelarlo.
+RF-07. El sistema debe exportar el reporte mensual de ventas en formato PDF.
+RNF-01. La búsqueda de productos debe responder en menos de 2 segundos.
+RNF-02. La aplicación debe ser fácil de usar para cualquier cliente.

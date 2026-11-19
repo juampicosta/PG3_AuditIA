@@ -1,0 +1,3044 @@
+[
+  {
+    "a": "F10",
+    "type": "ES_UN",
+    "b": "F09",
+    "props": {}
+  },
+  {
+    "a": "F15",
+    "type": "ES_UN",
+    "b": "F09",
+    "props": {}
+  },
+  {
+    "a": "F23",
+    "type": "ES_UN",
+    "b": "F22",
+    "props": {}
+  },
+  {
+    "a": "F24",
+    "type": "ES_UN",
+    "b": "F22",
+    "props": {}
+  },
+  {
+    "a": "F25",
+    "type": "ES_UN",
+    "b": "F22",
+    "props": {}
+  },
+  {
+    "a": "GL01",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "GL02",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "GL03",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "GL04",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "GL05",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "GL06",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "GL07",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "GL08",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "GL09",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-RD03",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-RD04",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-RD05",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-RD06",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-HC01",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-HC02",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-HC03",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-HC04",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-HC05",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-HC06",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-HC07",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-HC08",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-HC09",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-HC10",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "EVI-HC11",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD03",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD04",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD05",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD06",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD07",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD08",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD09",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD10",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD11",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD12",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD13",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD14",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD15",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD16",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD18",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-RD19",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-HC01",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-HC02",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-HC03",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "ACC-HC04",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "CAT-EX-SEG",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "CAT-EX-PARC",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-RD01",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-RD02",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-RD03",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-RD04",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-RD06",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-RD07",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-RD08",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-RD09",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-RD10",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-RD11",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-RD12",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-RD13",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-HC01",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-HC02",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-HC03",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-HC04",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-HC05",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-HC06",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-HC07",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "PRC-HC08",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "CQ-atomicidad",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "CQ-ambiguedad",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "CQ-verificabilidad",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "CQ-completitud",
+    "type": "SE_FUNDAMENTA_EN",
+    "b": "S-PG1",
+    "props": {}
+  },
+  {
+    "a": "DOC-CAT-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DOC-CAT-v1",
+    "type": "CONTIENE",
+    "b": "RQ-CAT-v1",
+    "props": {}
+  },
+  {
+    "a": "RQ-CAT-v1",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-CAT-v1",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-CAT-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-CAT-01",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-CAT-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-CAT-01",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-CAT-01",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-CAT-01",
+    "props": {}
+  },
+  {
+    "a": "EV-CAT-01",
+    "type": "EVALUA",
+    "b": "RQ-CAT-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-CAT-01",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-CAT-01-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-01-atomicidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-01-atomicidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-CAT-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-CAT-01",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-CAT-01-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-01-ambiguedad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-01-ambiguedad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-CAT-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-CAT-01",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-CAT-01-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-01-verificabilidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-01-verificabilidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-CAT-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-CAT-01",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-CAT-01-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-01-completitud",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-01-completitud",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-CAT-v1",
+    "props": {}
+  },
+  {
+    "a": "DOC-CAT-v2",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DOC-CAT-v2",
+    "type": "ACTUALIZA",
+    "b": "DOC-CAT-v1",
+    "props": {}
+  },
+  {
+    "a": "DOC-CAT-v2",
+    "type": "CONTIENE",
+    "b": "RQ-CAT-v2",
+    "props": {}
+  },
+  {
+    "a": "RQ-CAT-v2",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-CAT-v2",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-CAT-v2",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-CAT-02",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-CAT-v2",
+    "props": {}
+  },
+  {
+    "a": "E-EV-CAT-02",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-CAT-02",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-CAT-02",
+    "props": {}
+  },
+  {
+    "a": "EV-CAT-02",
+    "type": "EVALUA",
+    "b": "RQ-CAT-v2",
+    "props": {}
+  },
+  {
+    "a": "EV-CAT-02",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-CAT-02-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-02-atomicidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-02-atomicidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-CAT-v2",
+    "props": {}
+  },
+  {
+    "a": "EV-CAT-02",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-CAT-02-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-02-ambiguedad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-02-ambiguedad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-CAT-v2",
+    "props": {}
+  },
+  {
+    "a": "EV-CAT-02",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-CAT-02-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-02-verificabilidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-02-verificabilidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-CAT-v2",
+    "props": {}
+  },
+  {
+    "a": "EV-CAT-02",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-CAT-02-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-02-completitud",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-CAT-02-completitud",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-CAT-v2",
+    "props": {}
+  },
+  {
+    "a": "CTX-RQ-CAT-v2",
+    "type": "DECLARA",
+    "b": "CA-CAT-02",
+    "props": {}
+  },
+  {
+    "a": "CA-CAT-02",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-CAT-v2",
+    "props": {}
+  },
+  {
+    "a": "DOC-DESC-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DOC-DESC-v1",
+    "type": "CONTIENE",
+    "b": "RQ-DESC-A-v1",
+    "props": {}
+  },
+  {
+    "a": "RQ-DESC-A-v1",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-DESC-A-v1",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-DESC-A-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "RQ-DESC-A-v1",
+    "type": "EXPRESA",
+    "b": "O-RQ-DESC-A-v1",
+    "props": {}
+  },
+  {
+    "a": "O-RQ-DESC-A-v1",
+    "type": "APLICA_EN",
+    "b": "ESC-RQ-DESC-A-v1",
+    "props": {}
+  },
+  {
+    "a": "O-RQ-DESC-A-v1",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-DESC-A-v1",
+    "props": {}
+  },
+  {
+    "a": "ESC-RQ-DESC-A-v1",
+    "type": "DELIMITADO_POR",
+    "b": "COND-RQ-DESC-A-v1",
+    "props": {}
+  },
+  {
+    "a": "COND-RQ-DESC-A-v1",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-DESC-A-v1",
+    "props": {}
+  },
+  {
+    "a": "DOC-DESC-v1",
+    "type": "CONTIENE",
+    "b": "RQ-DESC-B-v1",
+    "props": {}
+  },
+  {
+    "a": "RQ-DESC-B-v1",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-DESC-B-v1",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-DESC-B-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "RQ-DESC-B-v1",
+    "type": "EXPRESA",
+    "b": "O-RQ-DESC-B-v1",
+    "props": {}
+  },
+  {
+    "a": "O-RQ-DESC-B-v1",
+    "type": "APLICA_EN",
+    "b": "ESC-RQ-DESC-B-v1",
+    "props": {}
+  },
+  {
+    "a": "O-RQ-DESC-B-v1",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-DESC-B-v1",
+    "props": {}
+  },
+  {
+    "a": "ESC-RQ-DESC-B-v1",
+    "type": "DELIMITADO_POR",
+    "b": "COND-RQ-DESC-B-v1",
+    "props": {}
+  },
+  {
+    "a": "COND-RQ-DESC-B-v1",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-DESC-B-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-DESC",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-DESC-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-DESC",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-DESC",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-DESC",
+    "props": {}
+  },
+  {
+    "a": "EV-DESC",
+    "type": "COMPARA",
+    "b": "RQ-DESC-A-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-DESC",
+    "type": "COMPARA",
+    "b": "RQ-DESC-B-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-DESC-CONTROL",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-DESC-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-DESC-CONTROL",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-DESC-CONTROL",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-DESC-CONTROL",
+    "props": {}
+  },
+  {
+    "a": "EV-DESC-CONTROL",
+    "type": "COMPARA",
+    "b": "RQ-DESC-A-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-DESC-CONTROL",
+    "type": "COMPARA",
+    "b": "RQ-DESC-B-v1",
+    "props": {}
+  },
+  {
+    "a": "DOC-TASA-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DOC-TASA-v1",
+    "type": "CONTIENE",
+    "b": "RQ-TASA-v1",
+    "props": {}
+  },
+  {
+    "a": "RQ-TASA-v1",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-TASA-v1",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-TASA-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EN-TASA-v1",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-TASA-v1",
+    "props": {}
+  },
+  {
+    "a": "DEP-TASA-v1",
+    "type": "TIENE_ORIGEN",
+    "b": "RQ-TASA-v1",
+    "props": {}
+  },
+  {
+    "a": "DEP-TASA-v1",
+    "type": "REQUIERE",
+    "b": "EN-TASA-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-TASA-1",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-TASA-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-TASA-1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-TASA-1",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-TASA-1",
+    "props": {}
+  },
+  {
+    "a": "EV-TASA-1",
+    "type": "RASTREA",
+    "b": "DEP-TASA-v1",
+    "props": {}
+  },
+  {
+    "a": "DOC-TASA-v2",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DOC-TASA-v2",
+    "type": "CONTIENE",
+    "b": "RQ-TASA-v2",
+    "props": {}
+  },
+  {
+    "a": "RQ-TASA-v2",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-TASA-v2",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-TASA-v2",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EN-TASA-v2",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-TASA-v2",
+    "props": {}
+  },
+  {
+    "a": "DEP-TASA-v2",
+    "type": "TIENE_ORIGEN",
+    "b": "RQ-TASA-v2",
+    "props": {}
+  },
+  {
+    "a": "DEP-TASA-v2",
+    "type": "REQUIERE",
+    "b": "EN-TASA-v2",
+    "props": {}
+  },
+  {
+    "a": "EV-TASA-2",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-TASA-v2",
+    "props": {}
+  },
+  {
+    "a": "E-EV-TASA-2",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-TASA-2",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-TASA-2",
+    "props": {}
+  },
+  {
+    "a": "EV-TASA-2",
+    "type": "RASTREA",
+    "b": "DEP-TASA-v2",
+    "props": {}
+  },
+  {
+    "a": "DOC-TASA-v2",
+    "type": "ACTUALIZA",
+    "b": "DOC-TASA-v1",
+    "props": {}
+  },
+  {
+    "a": "DOC-TASA-v2",
+    "type": "CONTIENE",
+    "b": "RQ-DEF-TASA-v2",
+    "props": {}
+  },
+  {
+    "a": "RQ-DEF-TASA-v2",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-DEF-TASA-v2",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-DEF-TASA-v2",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DEP-TASA-v2",
+    "type": "RESUELTA_POR",
+    "b": "RQ-DEF-TASA-v2",
+    "props": {}
+  },
+  {
+    "a": "DOC-SEG-BRECHA-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DOC-SEG-BRECHA-v1",
+    "type": "CONTIENE",
+    "b": "RQ-SEG-BRECHA-v1",
+    "props": {}
+  },
+  {
+    "a": "RQ-SEG-BRECHA-v1",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-SEG-BRECHA-v1",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-SEG-BRECHA-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "E-PERFIL-BRECHA",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "PERFIL-BRECHA",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-PERFIL-BRECHA",
+    "props": {}
+  },
+  {
+    "a": "EV-SEG-BRECHA",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-SEG-BRECHA-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-SEG-BRECHA",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-SEG-BRECHA",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-SEG-BRECHA",
+    "props": {}
+  },
+  {
+    "a": "EV-SEG-BRECHA",
+    "type": "USA_PERFIL",
+    "b": "PERFIL-BRECHA",
+    "props": {}
+  },
+  {
+    "a": "EV-SEG-BRECHA",
+    "type": "EVALUA_CATEGORIA",
+    "b": "NFR-SEG",
+    "props": {}
+  },
+  {
+    "a": "DOC-SEG-OK-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DOC-SEG-OK-v1",
+    "type": "CONTIENE",
+    "b": "RQ-SEG-OK-v1",
+    "props": {}
+  },
+  {
+    "a": "RQ-SEG-OK-v1",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-SEG-OK-v1",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-SEG-OK-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "E-PERFIL-OK",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "PERFIL-OK",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-PERFIL-OK",
+    "props": {}
+  },
+  {
+    "a": "EV-SEG-OK",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-SEG-OK-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-SEG-OK",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-SEG-OK",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-SEG-OK",
+    "props": {}
+  },
+  {
+    "a": "EV-SEG-OK",
+    "type": "USA_PERFIL",
+    "b": "PERFIL-OK",
+    "props": {}
+  },
+  {
+    "a": "EV-SEG-OK",
+    "type": "EVALUA_CATEGORIA",
+    "b": "NFR-SEG",
+    "props": {}
+  },
+  {
+    "a": "EV-SEG-OK",
+    "type": "VINCULA_COBERTURA",
+    "b": "RQ-SEG-OK-v1",
+    "props": {}
+  },
+  {
+    "a": "DOC-SEG-DESCONOCIDO-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DOC-SEG-DESCONOCIDO-v1",
+    "type": "CONTIENE",
+    "b": "RQ-SEG-DESCONOCIDO-v1",
+    "props": {}
+  },
+  {
+    "a": "RQ-SEG-DESCONOCIDO-v1",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-SEG-DESCONOCIDO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-SEG-DESCONOCIDO-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "E-PERFIL-DESCONOCIDO",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "PERFIL-DESCONOCIDO",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-PERFIL-DESCONOCIDO",
+    "props": {}
+  },
+  {
+    "a": "EV-SEG-DESCONOCIDO",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-SEG-DESCONOCIDO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-SEG-DESCONOCIDO",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-SEG-DESCONOCIDO",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-SEG-DESCONOCIDO",
+    "props": {}
+  },
+  {
+    "a": "EV-SEG-DESCONOCIDO",
+    "type": "USA_PERFIL",
+    "b": "PERFIL-DESCONOCIDO",
+    "props": {}
+  },
+  {
+    "a": "EV-SEG-DESCONOCIDO",
+    "type": "EVALUA_CATEGORIA",
+    "b": "NFR-SEG",
+    "props": {}
+  },
+  {
+    "a": "DOC-ERROR-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DOC-ERROR-v1",
+    "type": "CONTIENE",
+    "b": "RQ-ERROR-v1",
+    "props": {}
+  },
+  {
+    "a": "RQ-ERROR-v1",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-ERROR-v1",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-ERROR-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-ERROR",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-ERROR-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-ERROR",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-ERROR",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-ERROR",
+    "props": {}
+  },
+  {
+    "a": "EV-ERROR",
+    "type": "EVALUA",
+    "b": "RQ-ERROR-v1",
+    "props": {}
+  },
+  {
+    "a": "E-X-CAT",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "X-CAT",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-CAT",
+    "props": {}
+  },
+  {
+    "a": "CR-CAT",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-CAT",
+    "props": {}
+  },
+  {
+    "a": "E-X-CAT-PV",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "X-CAT-PV",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-CAT-PV",
+    "props": {}
+  },
+  {
+    "a": "CR-CAT-PV",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-CAT-PV",
+    "props": {}
+  },
+  {
+    "a": "E-X-CAT-PC",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "X-CAT-PC",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-CAT-PC",
+    "props": {}
+  },
+  {
+    "a": "CR-CAT-PC",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-CAT-PC",
+    "props": {}
+  },
+  {
+    "a": "E-X-DESC",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "X-DESC",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-DESC",
+    "props": {}
+  },
+  {
+    "a": "CR-DESC",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-DESC",
+    "props": {}
+  },
+  {
+    "a": "E-X-TASA",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "X-TASA",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-TASA",
+    "props": {}
+  },
+  {
+    "a": "CR-TASA",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-TASA",
+    "props": {}
+  },
+  {
+    "a": "E-X-SEG",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "X-SEG",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-SEG",
+    "props": {}
+  },
+  {
+    "a": "CR-SEG",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-SEG",
+    "props": {}
+  },
+  {
+    "a": "E-X-SEG-P",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "X-SEG-P",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-SEG-P",
+    "props": {}
+  },
+  {
+    "a": "CR-SEG-P",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-SEG-P",
+    "props": {}
+  },
+  {
+    "a": "DOC-PRIO-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DOC-PRIO-v1",
+    "type": "CONTIENE",
+    "b": "RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "RQ-PRIO-v1",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-PRIO-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-MAYOR",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-PRIO-MAYOR",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-MAYOR",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-PRIO-MAYOR",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-MAYOR",
+    "type": "EVALUA",
+    "b": "RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-MAYOR",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-MAYOR-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MAYOR-atomicidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MAYOR-atomicidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-MAYOR",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-MAYOR-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MAYOR-ambiguedad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MAYOR-ambiguedad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-MAYOR",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-MAYOR-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MAYOR-verificabilidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MAYOR-verificabilidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-MAYOR",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-MAYOR-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MAYOR-completitud",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MAYOR-completitud",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-X-MAYOR",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "X-MAYOR",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-MAYOR",
+    "props": {}
+  },
+  {
+    "a": "CR-MAYOR",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-MAYOR",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-MENOR",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-PRIO-MENOR",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-MENOR",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-PRIO-MENOR",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-MENOR",
+    "type": "EVALUA",
+    "b": "RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-MENOR",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-MENOR-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MENOR-atomicidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MENOR-atomicidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-MENOR",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-MENOR-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MENOR-ambiguedad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MENOR-ambiguedad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-MENOR",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-MENOR-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MENOR-verificabilidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MENOR-verificabilidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-MENOR",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-MENOR-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MENOR-completitud",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-MENOR-completitud",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-X-MENOR",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "X-MENOR",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-MENOR",
+    "props": {}
+  },
+  {
+    "a": "CR-MENOR",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-MENOR",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-EXCEPCION",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-PRIO-EXCEPCION",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-EXCEPCION",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-PRIO-EXCEPCION",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-EXCEPCION",
+    "type": "EVALUA",
+    "b": "RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-EXCEPCION",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-EXCEPCION-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-EXCEPCION-atomicidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-EXCEPCION-atomicidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-EXCEPCION",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-EXCEPCION-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-EXCEPCION-ambiguedad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-EXCEPCION-ambiguedad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-EXCEPCION",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-EXCEPCION-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-EXCEPCION-verificabilidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-EXCEPCION-verificabilidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-EXCEPCION",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-EXCEPCION-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-EXCEPCION-completitud",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-EXCEPCION-completitud",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-X-EXCEPCION",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "X-EXCEPCION",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-EXCEPCION",
+    "props": {}
+  },
+  {
+    "a": "CR-EXCEPCION",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-EXCEPCION",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-FRONTERA",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-PRIO-FRONTERA",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-FRONTERA",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-PRIO-FRONTERA",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-FRONTERA",
+    "type": "EVALUA",
+    "b": "RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-FRONTERA",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-FRONTERA-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FRONTERA-atomicidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FRONTERA-atomicidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-FRONTERA",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-FRONTERA-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FRONTERA-ambiguedad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FRONTERA-ambiguedad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-FRONTERA",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-FRONTERA-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FRONTERA-verificabilidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FRONTERA-verificabilidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-FRONTERA",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-FRONTERA-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FRONTERA-completitud",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FRONTERA-completitud",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-X-FRONTERA",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "X-FRONTERA",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-FRONTERA",
+    "props": {}
+  },
+  {
+    "a": "CR-FRONTERA",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-FRONTERA",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-SIN-HITO",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-PRIO-SIN-HITO",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-SIN-HITO",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-PRIO-SIN-HITO",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-SIN-HITO",
+    "type": "EVALUA",
+    "b": "RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-SIN-HITO",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-SIN-HITO-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-SIN-HITO-atomicidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-SIN-HITO-atomicidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-SIN-HITO",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-SIN-HITO-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-SIN-HITO-ambiguedad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-SIN-HITO-ambiguedad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-SIN-HITO",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-SIN-HITO-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-SIN-HITO-verificabilidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-SIN-HITO-verificabilidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-SIN-HITO",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-SIN-HITO-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-SIN-HITO-completitud",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-SIN-HITO-completitud",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-X-SIN-HITO",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "X-SIN-HITO",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-SIN-HITO",
+    "props": {}
+  },
+  {
+    "a": "CR-SIN-HITO",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-SIN-HITO",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-FUERA-RANGO",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-PRIO-FUERA-RANGO",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-FUERA-RANGO",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-PRIO-FUERA-RANGO",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-FUERA-RANGO",
+    "type": "EVALUA",
+    "b": "RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-FUERA-RANGO",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-FUERA-RANGO-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FUERA-RANGO-atomicidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FUERA-RANGO-atomicidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-FUERA-RANGO",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-FUERA-RANGO-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FUERA-RANGO-ambiguedad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FUERA-RANGO-ambiguedad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-FUERA-RANGO",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-FUERA-RANGO-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FUERA-RANGO-verificabilidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FUERA-RANGO-verificabilidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PRIO-FUERA-RANGO",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-PRIO-FUERA-RANGO-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FUERA-RANGO-completitud",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-PRIO-FUERA-RANGO-completitud",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-PRIO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-X-FUERA-RANGO",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "X-FUERA-RANGO",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-FUERA-RANGO",
+    "props": {}
+  },
+  {
+    "a": "CR-FUERA-RANGO",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-X-FUERA-RANGO",
+    "props": {}
+  },
+  {
+    "a": "DOC-HAB-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DOC-HAB-v1",
+    "type": "CONTIENE",
+    "b": "RQ-HAB-v1",
+    "props": {}
+  },
+  {
+    "a": "RQ-HAB-v1",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-HAB-v1",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-HAB-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-HAB",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-HAB-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-HAB",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-HAB",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-HAB",
+    "props": {}
+  },
+  {
+    "a": "EV-HAB",
+    "type": "EVALUA",
+    "b": "RQ-HAB-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-HAB",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-HAB-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-HAB-atomicidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-HAB-atomicidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-HAB-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-HAB",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-HAB-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-HAB-ambiguedad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-HAB-ambiguedad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-HAB-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-HAB",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-HAB-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-HAB-verificabilidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-HAB-verificabilidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-HAB-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-HAB",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-HAB-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-HAB-completitud",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-HAB-completitud",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-HAB-v1",
+    "props": {}
+  },
+  {
+    "a": "E-HAB-GLOSARIO",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "J-EV-HAB-ambiguedad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-HAB-GLOSARIO",
+    "props": {}
+  },
+  {
+    "a": "DOC-AMB-SIN-DATO-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DOC-AMB-SIN-DATO-v1",
+    "type": "CONTIENE",
+    "b": "RQ-AMB-SIN-DATO-v1",
+    "props": {}
+  },
+  {
+    "a": "RQ-AMB-SIN-DATO-v1",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-AMB-SIN-DATO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-AMB-SIN-DATO-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-AMB-SIN-DATO",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-AMB-SIN-DATO-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-AMB-SIN-DATO",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-AMB-SIN-DATO",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-AMB-SIN-DATO",
+    "props": {}
+  },
+  {
+    "a": "EV-AMB-SIN-DATO",
+    "type": "EVALUA",
+    "b": "RQ-AMB-SIN-DATO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-AMB-SIN-DATO",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-AMB-SIN-DATO-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-AMB-SIN-DATO-atomicidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-atomicidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-AMB-SIN-DATO-atomicidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-AMB-SIN-DATO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-AMB-SIN-DATO",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-AMB-SIN-DATO-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-AMB-SIN-DATO-ambiguedad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-ambiguedad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-AMB-SIN-DATO-ambiguedad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-AMB-SIN-DATO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-AMB-SIN-DATO",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-AMB-SIN-DATO-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-AMB-SIN-DATO-verificabilidad",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-verificabilidad",
+    "props": {}
+  },
+  {
+    "a": "J-EV-AMB-SIN-DATO-verificabilidad",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-AMB-SIN-DATO-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-AMB-SIN-DATO",
+    "type": "CONTIENE_JUICIO",
+    "b": "J-EV-AMB-SIN-DATO-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-AMB-SIN-DATO-completitud",
+    "type": "APLICA_CRITERIO",
+    "b": "CQ-completitud",
+    "props": {}
+  },
+  {
+    "a": "J-EV-AMB-SIN-DATO-completitud",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-RQ-AMB-SIN-DATO-v1",
+    "props": {}
+  },
+  {
+    "a": "DOC-PED-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DOC-PED-v1",
+    "type": "CONTIENE",
+    "b": "RQ-PED-A-v1",
+    "props": {}
+  },
+  {
+    "a": "RQ-PED-A-v1",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-PED-A-v1",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-PED-A-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "DOC-PED-v1",
+    "type": "CONTIENE",
+    "b": "RQ-PED-B-v1",
+    "props": {}
+  },
+  {
+    "a": "RQ-PED-B-v1",
+    "type": "SE_INTERPRETA_CON",
+    "b": "CTX-RQ-PED-B-v1",
+    "props": {}
+  },
+  {
+    "a": "E-RQ-PED-B-v1",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-PED-FRONTERA",
+    "type": "REVISA_DOCUMENTO",
+    "b": "DOC-PED-v1",
+    "props": {}
+  },
+  {
+    "a": "E-EV-PED-FRONTERA",
+    "type": "CITA_FUENTE",
+    "b": "S-CASOS",
+    "props": {}
+  },
+  {
+    "a": "EV-PED-FRONTERA",
+    "type": "SE_SUSTENTA_EN",
+    "b": "E-EV-PED-FRONTERA",
+    "props": {}
+  },
+  {
+    "a": "EV-PED-FRONTERA",
+    "type": "COMPARA",
+    "b": "RQ-PED-A-v1",
+    "props": {}
+  },
+  {
+    "a": "EV-PED-FRONTERA",
+    "type": "COMPARA",
+    "b": "RQ-PED-B-v1",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0",
+    "type": "CITA_FUENTE",
+    "b": "S-PI3-AMB",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0",
+    "type": "DEFINE_VARIABLE",
+    "b": "MD-AMB-1.0-x",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0-x",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-AMB-1.0-x-baja",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0-x",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-AMB-1.0-x-media",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0-x",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-AMB-1.0-x-alta",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0",
+    "type": "DEFINE_VARIABLE",
+    "b": "MD-AMB-1.0-y",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0-y",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-AMB-1.0-y-baja",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0-y",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-AMB-1.0-y-media",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0-y",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-AMB-1.0-y-alta",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0",
+    "type": "DEFINE_VARIABLE",
+    "b": "MD-AMB-1.0-z",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0-z",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-AMB-1.0-z-baja",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0-z",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-AMB-1.0-z-media",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0-z",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-AMB-1.0-z-alta",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0",
+    "type": "DEFINE_REGLA",
+    "b": "AMB-RB1",
+    "props": {}
+  },
+  {
+    "a": "AMB-RB1",
+    "type": "CONSECUENTE",
+    "b": "MD-AMB-1.0-z-alta",
+    "props": {}
+  },
+  {
+    "a": "AMB-RB1",
+    "type": "ANTECEDENTE",
+    "b": "MD-AMB-1.0-x-alta",
+    "props": {}
+  },
+  {
+    "a": "AMB-RB1",
+    "type": "ANTECEDENTE",
+    "b": "MD-AMB-1.0-y-baja",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0",
+    "type": "DEFINE_REGLA",
+    "b": "AMB-RB2",
+    "props": {}
+  },
+  {
+    "a": "AMB-RB2",
+    "type": "CONSECUENTE",
+    "b": "MD-AMB-1.0-z-media",
+    "props": {}
+  },
+  {
+    "a": "AMB-RB2",
+    "type": "ANTECEDENTE",
+    "b": "MD-AMB-1.0-x-alta",
+    "props": {}
+  },
+  {
+    "a": "AMB-RB2",
+    "type": "ANTECEDENTE",
+    "b": "MD-AMB-1.0-y-media",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0",
+    "type": "DEFINE_REGLA",
+    "b": "AMB-RB3",
+    "props": {}
+  },
+  {
+    "a": "AMB-RB3",
+    "type": "CONSECUENTE",
+    "b": "MD-AMB-1.0-z-media",
+    "props": {}
+  },
+  {
+    "a": "AMB-RB3",
+    "type": "ANTECEDENTE",
+    "b": "MD-AMB-1.0-x-media",
+    "props": {}
+  },
+  {
+    "a": "AMB-RB3",
+    "type": "ANTECEDENTE",
+    "b": "MD-AMB-1.0-y-baja",
+    "props": {}
+  },
+  {
+    "a": "AMB-RB3",
+    "type": "ANTECEDENTE",
+    "b": "MD-AMB-1.0-y-media",
+    "props": {}
+  },
+  {
+    "a": "MD-AMB-1.0",
+    "type": "DEFINE_REGLA",
+    "b": "AMB-RB4",
+    "props": {}
+  },
+  {
+    "a": "AMB-RB4",
+    "type": "CONSECUENTE",
+    "b": "MD-AMB-1.0-z-baja",
+    "props": {}
+  },
+  {
+    "a": "AMB-RB4",
+    "type": "ANTECEDENTE",
+    "b": "MD-AMB-1.0-x-baja",
+    "props": {}
+  },
+  {
+    "a": "AMB-RB4",
+    "type": "ANTECEDENTE",
+    "b": "MD-AMB-1.0-y-alta",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0",
+    "type": "CITA_FUENTE",
+    "b": "S-PI3-CONTR",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0",
+    "type": "DEFINE_VARIABLE",
+    "b": "MD-CONTR-1.0-x",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0-x",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-CONTR-1.0-x-baja",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0-x",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-CONTR-1.0-x-media",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0-x",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-CONTR-1.0-x-alta",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0",
+    "type": "DEFINE_VARIABLE",
+    "b": "MD-CONTR-1.0-y",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0-y",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-CONTR-1.0-y-baja",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0-y",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-CONTR-1.0-y-media",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0-y",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-CONTR-1.0-y-alta",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0",
+    "type": "DEFINE_VARIABLE",
+    "b": "MD-CONTR-1.0-z",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0-z",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-CONTR-1.0-z-baja",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0-z",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-CONTR-1.0-z-media",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0-z",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-CONTR-1.0-z-alta",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0",
+    "type": "DEFINE_REGLA",
+    "b": "CONTR-RB1",
+    "props": {}
+  },
+  {
+    "a": "CONTR-RB1",
+    "type": "CONSECUENTE",
+    "b": "MD-CONTR-1.0-z-alta",
+    "props": {}
+  },
+  {
+    "a": "CONTR-RB1",
+    "type": "ANTECEDENTE",
+    "b": "MD-CONTR-1.0-x-alta",
+    "props": {}
+  },
+  {
+    "a": "CONTR-RB1",
+    "type": "ANTECEDENTE",
+    "b": "MD-CONTR-1.0-y-alta",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0",
+    "type": "DEFINE_REGLA",
+    "b": "CONTR-RB2",
+    "props": {}
+  },
+  {
+    "a": "CONTR-RB2",
+    "type": "CONSECUENTE",
+    "b": "MD-CONTR-1.0-z-media",
+    "props": {}
+  },
+  {
+    "a": "CONTR-RB2",
+    "type": "ANTECEDENTE",
+    "b": "MD-CONTR-1.0-x-media",
+    "props": {}
+  },
+  {
+    "a": "CONTR-RB2",
+    "type": "ANTECEDENTE",
+    "b": "MD-CONTR-1.0-y-alta",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0",
+    "type": "DEFINE_REGLA",
+    "b": "CONTR-RB3",
+    "props": {}
+  },
+  {
+    "a": "CONTR-RB3",
+    "type": "CONSECUENTE",
+    "b": "MD-CONTR-1.0-z-media",
+    "props": {}
+  },
+  {
+    "a": "CONTR-RB3",
+    "type": "ANTECEDENTE",
+    "b": "MD-CONTR-1.0-x-alta",
+    "props": {}
+  },
+  {
+    "a": "CONTR-RB3",
+    "type": "ANTECEDENTE",
+    "b": "MD-CONTR-1.0-y-media",
+    "props": {}
+  },
+  {
+    "a": "MD-CONTR-1.0",
+    "type": "DEFINE_REGLA",
+    "b": "CONTR-RB4",
+    "props": {}
+  },
+  {
+    "a": "CONTR-RB4",
+    "type": "CONSECUENTE",
+    "b": "MD-CONTR-1.0-z-baja",
+    "props": {}
+  },
+  {
+    "a": "CONTR-RB4",
+    "type": "ANTECEDENTE",
+    "b": "MD-CONTR-1.0-x-baja",
+    "props": {}
+  },
+  {
+    "a": "CONTR-RB4",
+    "type": "ANTECEDENTE",
+    "b": "MD-CONTR-1.0-y-baja",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0",
+    "type": "CITA_FUENTE",
+    "b": "S-PI3-URG",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0",
+    "type": "DEFINE_VARIABLE",
+    "b": "MD-URG-1.0-x",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0-x",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-URG-1.0-x-baja",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0-x",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-URG-1.0-x-media",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0-x",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-URG-1.0-x-alta",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0",
+    "type": "DEFINE_VARIABLE",
+    "b": "MD-URG-1.0-y",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0-y",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-URG-1.0-y-baja",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0-y",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-URG-1.0-y-media",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0-y",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-URG-1.0-y-alta",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0",
+    "type": "DEFINE_VARIABLE",
+    "b": "MD-URG-1.0-z",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0-z",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-URG-1.0-z-baja",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0-z",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-URG-1.0-z-media",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0-z",
+    "type": "TIENE_ETIQUETA",
+    "b": "MD-URG-1.0-z-alta",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0",
+    "type": "DEFINE_REGLA",
+    "b": "URG-RB1",
+    "props": {}
+  },
+  {
+    "a": "URG-RB1",
+    "type": "CONSECUENTE",
+    "b": "MD-URG-1.0-z-alta",
+    "props": {}
+  },
+  {
+    "a": "URG-RB1",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-x-media",
+    "props": {}
+  },
+  {
+    "a": "URG-RB1",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-x-alta",
+    "props": {}
+  },
+  {
+    "a": "URG-RB1",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-y-alta",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0",
+    "type": "DEFINE_REGLA",
+    "b": "URG-RB2",
+    "props": {}
+  },
+  {
+    "a": "URG-RB2",
+    "type": "CONSECUENTE",
+    "b": "MD-URG-1.0-z-alta",
+    "props": {}
+  },
+  {
+    "a": "URG-RB2",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-x-alta",
+    "props": {}
+  },
+  {
+    "a": "URG-RB2",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-y-media",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0",
+    "type": "DEFINE_REGLA",
+    "b": "URG-RB3",
+    "props": {}
+  },
+  {
+    "a": "URG-RB3",
+    "type": "CONSECUENTE",
+    "b": "MD-URG-1.0-z-alta",
+    "props": {}
+  },
+  {
+    "a": "URG-RB3",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-x-baja",
+    "props": {}
+  },
+  {
+    "a": "URG-RB3",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-y-alta",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0",
+    "type": "DEFINE_REGLA",
+    "b": "URG-RB4",
+    "props": {}
+  },
+  {
+    "a": "URG-RB4",
+    "type": "CONSECUENTE",
+    "b": "MD-URG-1.0-z-media",
+    "props": {}
+  },
+  {
+    "a": "URG-RB4",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-x-media",
+    "props": {}
+  },
+  {
+    "a": "URG-RB4",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-y-baja",
+    "props": {}
+  },
+  {
+    "a": "URG-RB4",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-y-media",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0",
+    "type": "DEFINE_REGLA",
+    "b": "URG-RB5",
+    "props": {}
+  },
+  {
+    "a": "URG-RB5",
+    "type": "CONSECUENTE",
+    "b": "MD-URG-1.0-z-media",
+    "props": {}
+  },
+  {
+    "a": "URG-RB5",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-x-baja",
+    "props": {}
+  },
+  {
+    "a": "URG-RB5",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-x-alta",
+    "props": {}
+  },
+  {
+    "a": "URG-RB5",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-y-baja",
+    "props": {}
+  },
+  {
+    "a": "URG-RB5",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-y-media",
+    "props": {}
+  },
+  {
+    "a": "MD-URG-1.0",
+    "type": "DEFINE_REGLA",
+    "b": "URG-RB6",
+    "props": {}
+  },
+  {
+    "a": "URG-RB6",
+    "type": "CONSECUENTE",
+    "b": "MD-URG-1.0-z-baja",
+    "props": {}
+  },
+  {
+    "a": "URG-RB6",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-x-baja",
+    "props": {}
+  },
+  {
+    "a": "URG-RB6",
+    "type": "ANTECEDENTE",
+    "b": "MD-URG-1.0-y-baja",
+    "props": {}
+  }
+]

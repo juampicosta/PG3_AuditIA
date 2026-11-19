@@ -1,0 +1,55 @@
+# AuditIA · PG3 · Grupo 10
+# Levanta Neo4j 5.26 (base de conocimiento), Ollama (modelo local) y la API con la miniapp.
+#   docker compose up -d --build
+#   docker compose exec ollama ollama pull qwen2.5:7b        (solo si el modelo no está descargado)
+#   docker compose exec app python preparar_base.py          (una sola vez)
+#   miniapp: http://localhost:8010    ·    Neo4j Browser: http://localhost:7476
+name: auditia-pg3
+services:
+  neo4j:
+    image: neo4j:5.26
+    restart: unless-stopped
+    environment:
+      NEO4J_AUTH: neo4j/${NEO4J_PASSWORD}
+      NEO4J_server_memory_heap_max__size: 1G
+    ports:
+      - "127.0.0.1:7476:7474"
+      - "127.0.0.1:7689:7687"
+    volumes:
+      - neo4j_data:/data
+      - ./base_conocimiento/exportacion:/exportacion
+
+  ollama:
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:11436:11434"
+    volumes:
+      - modelos_ollama:/root/.ollama
+
+  app:
+    build: .
+    restart: unless-stopped
+    environment:
+      NEO4J_URI: bolt://neo4j:7687
+      NEO4J_HTTP_URL: http://neo4j:7474
+      NEO4J_USER: neo4j
+      NEO4J_PASSWORD: ${NEO4J_PASSWORD}
+      OLLAMA_URL: http://ollama:11434
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-qwen2.5:7b}
+      OLLAMA_NUM_THREAD: ${OLLAMA_NUM_THREAD:-}
+      PYTHONUNBUFFERED: "1"
+    ports:
+      - "127.0.0.1:8010:8000"
+    volumes:
+      - ./:/app
+    depends_on: [neo4j, ollama]
+    command: ["uvicorn", "auditia.api:app", "--host", "0.0.0.0", "--port", "8000"]
+
+volumes:
+  neo4j_data:
+  # Por defecto se crea un volumen propio (hay que bajar qwen2.5:7b una vez, ~4,7 GB).
+  # Para reutilizar un volumen que ya tiene el modelo, definir OLLAMA_VOLUME en .env
+  # (Bruno: OLLAMA_VOLUME=a12-tutorias-2026_a12_ollama_models). Docker avisa que el volumen ya existe: es normal.
+  modelos_ollama:
+    name: ${OLLAMA_VOLUME:-auditia_pg3_modelos_ollama}

@@ -1,0 +1,163 @@
+{
+  "type": "object",
+  "properties": {
+    "intencion": {
+      "type": "string",
+      "enum": [
+        "comparacion_requerimientos",
+        "grado_contradiccion",
+        "dependencia_requerimiento",
+        "cobertura_categoria",
+        "listar_analisis",
+        "derivacion_observacion",
+        "otro_submodulo",
+        "fuera_de_dominio",
+        "requiere_aclaracion"
+      ]
+    },
+    "entidades": {
+      "type": "object",
+      "properties": {
+        "requerimiento_ids": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "requerimiento_texto": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "documento_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evaluacion_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observacion_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "requerimiento_ids",
+        "requerimiento_texto",
+        "documento_id",
+        "evaluacion_id",
+        "observacion_id"
+      ]
+    },
+    "conceptos": {
+      "type": "object",
+      "properties": {
+        "categoria": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "categoria"
+      ]
+    },
+    "filtros": {
+      "type": "object",
+      "properties": {
+        "tipo_analisis": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "comparacion",
+                "dependencia",
+                "cobertura"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "estado": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "observado",
+                "pendiente",
+                "sin_hallazgo"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "tipo_analisis",
+        "estado"
+      ]
+    },
+    "condiciones": {
+      "type": "object",
+      "properties": {
+        "alcance": {
+          "type": "string",
+          "enum": [
+            "vigente",
+            "todas"
+          ]
+        }
+      },
+      "required": [
+        "alcance"
+      ]
+    },
+    "faltantes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "intencion",
+    "entidades",
+    "conceptos",
+    "filtros",
+    "condiciones",
+    "faltantes"
+  ]
+}

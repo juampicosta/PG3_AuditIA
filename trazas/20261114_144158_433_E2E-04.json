@@ -1,0 +1,614 @@
+{
+  "version": "PG3-AuditIA-1.1",
+  "fecha": "2026-11-14T14:23:08",
+  "modelo": "qwen2.5:7b",
+  "huella_prompts": "732cd87a253a",
+  "caso": "E2E-04",
+  "consulta_usuario": "¿Por qué no se pudo decidir si Seguridad es exigible en el documento DOC-SEG-DESCONOCIDO-v1 y qué hay que preguntarle al cliente para resolverlo?",
+  "pasos": [
+    {
+      "paso": 1,
+      "submodulo": "SM2",
+      "subconsulta": "¿Por qué no se pudo decidir si Seguridad es exigible en el documento DOC-SEG-DESCONOCIDO-v1?",
+      "enlace": null,
+      "traza": {
+        "prototipo": "PI4-SM2-1.0",
+        "fecha": "2026-11-14T14:25:41",
+        "modelo": "qwen2.5:7b",
+        "hilos": null,
+        "huella_prompts": "8d97773b8e67",
+        "caso": "E2E-04_p1_SM2",
+        "consulta_usuario": "¿Por qué no se pudo decidir si Seguridad es exigible en el documento DOC-SEG-DESCONOCIDO-v1?",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"cobertura_categoria\", \"entidades\": {\"requerimiento_ids\": [], \"requerimiento_texto\": null, \"documento_id\": \"DOC-SEG-DESCONOCIDO-v1\", \"evaluacion_id\": null, \"observacion_id\": null}, \"conceptos\": {\"categoria\": \"Seguridad\"}, \"filtros\": {\"tipo_analisis\": null, \"estado\": null}, \"condiciones\": {\"alcance\": \"vigente\"}, \"faltantes\": []}",
+              "modelo": "qwen2.5:7b",
+              "segundos": 159.58,
+              "tokens_entrada": 2802,
+              "tokens_salida": 108,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [],
+          "json_validado": {
+            "intencion": "cobertura_categoria",
+            "entidades": {
+              "requerimiento_ids": [],
+              "requerimiento_texto": null,
+              "documento_id": "DOC-SEG-DESCONOCIDO-v1",
+              "evaluacion_id": null,
+              "observacion_id": null
+            },
+            "conceptos": {
+              "categoria": "Seguridad"
+            },
+            "filtros": {
+              "tipo_analisis": null,
+              "estado": null
+            },
+            "condiciones": {
+              "alcance": "vigente"
+            },
+            "faltantes": []
+          }
+        },
+        "intencion": "cobertura_categoria",
+        "consultas_cypher": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 12,
+            "milisegundos": 54.5
+          },
+          {
+            "consulta": "Q0a_ids_mencionados",
+            "parametros": {
+              "ids": [
+                "DOC-SEG-DESCONOCIDO-v1"
+              ]
+            },
+            "filas": 1,
+            "milisegundos": 37.1
+          },
+          {
+            "consulta": "Q4_cobertura_categoria",
+            "parametros": {
+              "categoria": "Seguridad",
+              "documento_ids": [
+                "DOC-SEG-DESCONOCIDO-v1"
+              ]
+            },
+            "filas": 1,
+            "milisegundos": 39.3
+          },
+          {
+            "consulta": "Q8_reglas",
+            "parametros": {
+              "ids": [
+                "ACC-RD12"
+              ]
+            },
+            "filas": 1,
+            "milisegundos": 21.6
+          }
+        ],
+        "resolucion_entidad": {
+          "estado": "ok",
+          "puntaje": null,
+          "evaluaciones": [
+            "EV-SEG-DESCONOCIDO"
+          ],
+          "requerimientos": [],
+          "id_logico": null,
+          "documentos": [
+            "DOC-SEG-DESCONOCIDO-v1"
+          ],
+          "categoria": "Seguridad",
+          "observacion": null,
+          "alternativas": []
+        },
+        "paquete_evidencia": {
+          "intencion": "cobertura_categoria",
+          "consulta_usuario": "¿Por qué no se pudo decidir si Seguridad es exigible en el documento DOC-SEG-DESCONOCIDO-v1?",
+          "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "categoria_consultada": "Seguridad",
+          "documentos_consultados": [
+            "DOC-SEG-DESCONOCIDO-v1"
+          ],
+          "coberturas": [
+            {
+              "cobertura": "indeterminada",
+              "busqueda_completa": true,
+              "estado": "pendiente",
+              "reglas": [
+                "ACC-RD12"
+              ],
+              "resultado": {
+                "motivo_pendiente": "perfil_insuficiente",
+                "dato_faltante": "Confirmar existencia de datos sensibles",
+                "severidad": {
+                  "valor": null,
+                  "id": "SV-P-SEG"
+                },
+                "id": "P-SEG",
+                "tipo_defecto": null,
+                "clase": "Pendiente"
+              },
+              "categoria": {
+                "id": "NFR-SEG",
+                "nombre": "Seguridad"
+              },
+              "evidencias": [
+                {
+                  "tipo": "analisis",
+                  "contenido": "Premisas registradas por el grupo para EV-SEG-DESCONOCIDO",
+                  "id": "E-EV-SEG-DESCONOCIDO"
+                }
+              ],
+              "cubre": [],
+              "version": 1,
+              "perfil": {
+                "datos_sensibles": null,
+                "operaciones_esenciales": [
+                  "acceso a datos"
+                ],
+                "confirmado": false,
+                "id": "PERFIL-DESCONOCIDO"
+              },
+              "necesidades": [
+                "protección de datos sensibles"
+              ],
+              "requerimientos_del_documento": [
+                {
+                  "texto": "El sistema debe listar los productos.",
+                  "id": "RQ-SEG-DESCONOCIDO-v1"
+                }
+              ],
+              "exige": [],
+              "condicion_catalogo": null,
+              "evaluacion_id": "EV-SEG-DESCONOCIDO",
+              "documento_id": "DOC-SEG-DESCONOCIDO-v1",
+              "partes_cubiertas": []
+            }
+          ],
+          "reglas": [
+            {
+              "id": "ACC-RD12",
+              "modulo": "analisis_cruzado",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI se desconoce la condición del catálogo ENTONCES Pendiente(perfil_insuficiente).",
+              "fuente": "PG1 §6.5"
+            }
+          ]
+        },
+        "explicacion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "respuesta": "EV-SEG-DESCONOCIDO (pendiente) revisó la categoría Seguridad (NFR-SEG) en el documento DOC-SEG-DESCONOCIDO-v1 con el perfil PERFIL-DESCONOCIDO (datos_sensibles = null, confirmado = false). La evidencia E-EV-SEG-DESCONOCIDO solo registra \"Premisas registradas por el grupo para EV-SEG-DESCONOCIDO\". La regla ACC-RD12 (implementada, estado candidata) determina que si se desconoce la condición del catálogo, se genera un Pendiente(perfil_insuficiente). Como condicion_catalogo = null, se generó el Pendiente P-SEG (motivo perfil_insuficiente; dato faltante: \"Confirmar existencia de datos sensibles\"). Este resultado es provisional del prototipo académico, sin validación experta.",
+              "violaciones": [],
+              "modelo": "qwen2.5:7b",
+              "segundos": 168.79,
+              "tokens_entrada": 2440,
+              "tokens_salida": 195
+            }
+          ],
+          "hechos_verificables": [
+            "Conclusiones registradas, para escribirlas en el texto corrido de la respuesta (ID con su estado exacto entre paréntesis; esto va en el texto y no entre corchetes): EV-SEG-DESCONOCIDO (pendiente, regla ACC-RD12, genera Pendiente P-SEG).",
+            "Documento DOC-SEG-DESCONOCIDO-v1: la evaluación EV-SEG-DESCONOCIDO revisó la categoría Seguridad (NFR-SEG) con el perfil PERFIL-DESCONOCIDO (datos_sensibles = null, confirmado = false). Necesidades: protección de datos sensibles. Partes cubiertas: ninguna. condicion_catalogo = null; busqueda_completa = true; cobertura «indeterminada». Quedó pendiente por la regla ACC-RD12.",
+            "No se derivó EXIGE para el perfil PERFIL-DESCONOCIDO: la condición del catálogo no está confirmada (condicion_catalogo = null). No es una brecha demostrada.",
+            "La cobertura de DOC-SEG-DESCONOCIDO-v1 quedó «indeterminada»: no se afirma que falte cobertura; antes hay que decidir si la categoría es exigible.",
+            "EV-SEG-DESCONOCIDO genera el Pendiente P-SEG (motivo perfil_insuficiente; dato faltante: «Confirmar existencia de datos sensibles»). Un pendiente es falta de información, no un defecto demostrado.",
+            "La evidencia E-EV-SEG-DESCONOCIDO solo registra «Premisas registradas por el grupo para EV-SEG-DESCONOCIDO»: no aporta un argumento propio; el fundamento está en las propiedades anteriores.",
+            "Regla ACC-RD12 (implementada, estado candidata, PG1 §6.5): SI se desconoce la condición del catálogo ENTONCES Pendiente(perfil_insuficiente).",
+            "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+            "La respuesta debe mencionar estos IDs: P-SEG, EV-SEG-DESCONOCIDO, ACC-RD12.",
+            "La respuesta debe escribir textualmente estos estados, tal como figuran: pendiente. Un verbo parecido (por ejemplo «se observó») no alcanza.",
+            "Estados que figuran en el paquete: pendiente. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «observado», «sin hallazgo», «no evaluable», «resuelta», «resuelto», «por consultar», «no aplicable» en la respuesta."
+          ],
+          "cobertura_requerida": {
+            "ids": [
+              "P-SEG",
+              "EV-SEG-DESCONOCIDO",
+              "ACC-RD12"
+            ],
+            "estados": [
+              "pendiente"
+            ]
+          },
+          "resultado_verificacion": "aprobada"
+        },
+        "respuesta_final": "EV-SEG-DESCONOCIDO (pendiente) revisó la categoría Seguridad (NFR-SEG) en el documento DOC-SEG-DESCONOCIDO-v1 con el perfil PERFIL-DESCONOCIDO (datos_sensibles = null, confirmado = false). La evidencia E-EV-SEG-DESCONOCIDO solo registra \"Premisas registradas por el grupo para EV-SEG-DESCONOCIDO\". La regla ACC-RD12 (implementada, estado candidata) determina que si se desconoce la condición del catálogo, se genera un Pendiente(perfil_insuficiente). Como condicion_catalogo = null, se generó el Pendiente P-SEG (motivo perfil_insuficiente; dato faltante: \"Confirmar existencia de datos sensibles\"). Este resultado es provisional del prototipo académico, sin validación experta.",
+        "tipo_salida": "explicacion",
+        "segundos_totales": 328.53,
+        "archivo_traza": "submodulos/20261114_143138_941_E2E-04_p1_SM2.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM2",
+        "intencion": "cobertura_categoria",
+        "fuentes": [
+          "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)"
+        ],
+        "consultas": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 12,
+            "milisegundos": 54.5,
+            "cypher": "// Q0. Catálogo de lo que analizó SM2: una fila por evaluación cruzada y requerimiento vinculado, con su rol\n// (comparado, origen_dependencia, definicion o alcance_cobertura), la categoría evaluada y el resultado.\n// Alimenta la resolución determinística de entidades. Solo lectura. Sin parámetros.\nMATCH (ev:AuditIA_PG2:EvaluacionCruzada)-[:REVISA_DOCUMENTO]->(doc:AuditIA_PG2:DocumentoVersion)\nWITH ev, doc,\n     [(ev)-[:COMPARA]->(r:Requerimiento) | {r: r, rol: 'comparado'}] +\n     [(ev)-[:RASTREA]->(:Dependencia)-[:TIENE_ORIGEN]->(r:Requerimiento) | {r: r, rol: 'origen_dependencia'}] +\n     [(ev)-[:RASTREA]->(:Dependencia)-[:RESUELTA_POR]->(r:Requerimiento) | {r: r, rol: 'definicion'}] +\n     CASE WHEN ev.tipo_analisis = 'cobertura'\n          THEN [(doc)-[:CONTIENE]->(r:Requerimiento) | {r: r, rol: 'alcance_cobertura'}] ELSE [] END AS vinculos\nUNWIND vinculos AS v\nWITH DISTINCT ev, doc, v.r AS rq, v.rol AS rol\nRETURN ev.id AS evaluacion_id, ev.tipo_analisis AS tipo_analisis, ev.estado AS estado,\n       doc.id AS documento_id, toInteger(doc.version) AS version,\n       rq.id AS requerimiento_id, rq.id_logico AS id_logico, rq.texto_original AS texto, rol,\n       head([(ev)-[:EVALUA_CATEGORIA]->(c:CategoriaNFR) | c.nombre]) AS categoria,\n       head([(ev)-[:GENERA]->(o:ResultadoAnalisis) | o.id]) AS resultado_id,\n       NOT EXISTS { MATCH (:Evaluacion)-[:REEVALUA]->(ev) } AS vigente\nORDER BY tipo_analisis, evaluacion_id, requerimiento_id"
+          },
+          {
+            "consulta": "Q0a_ids_mencionados",
+            "parametros": {
+              "ids": [
+                "DOC-SEG-DESCONOCIDO-v1"
+              ]
+            },
+            "filas": 1,
+            "milisegundos": 37.1,
+            "cypher": "// Q0a. Comprueba si los IDs que el usuario escribió literalmente existen en la base y a qué módulo pertenecen.\n// Evita responder sobre un requerimiento, documento u observación que el grafo no registra.\n// Parámetros: $ids (List<String>).\nMATCH (n:AuditIA_PG2)\nWHERE n.id IN $ids\nRETURN n.id AS id, [l IN labels(n) WHERE l <> 'AuditIA_PG2'] AS etiquetas,\n       n.modulo_origen AS modulo_origen, n.modulo AS modulo\nORDER BY id"
+          },
+          {
+            "consulta": "Q4_cobertura_categoria",
+            "parametros": {
+              "categoria": "Seguridad",
+              "documento_ids": [
+                "DOC-SEG-DESCONOCIDO-v1"
+              ]
+            },
+            "filas": 1,
+            "milisegundos": 39.3,
+            "cypher": "// Q4. Exigibilidad y cobertura de una categoría no funcional en cada documento revisado: perfil usado, condición\n// del catálogo, necesidades, partes cubiertas, relaciones EXIGE y CUBRE derivadas, regla, resultado y severidad.\n// Parámetros: $categoria (String) y $documento_ids (List<String> o null para todos los documentos).\nMATCH (ev:AuditIA_PG2:EvaluacionCruzada {tipo_analisis: 'cobertura'})-[:EVALUA_CATEGORIA]->(cat:CategoriaNFR {nombre: $categoria}),\n      (ev)-[:USA_PERFIL]->(pf:PerfilSistema),\n      (ev)-[:REVISA_DOCUMENTO]->(doc:DocumentoVersion)\nWHERE $documento_ids IS NULL OR doc.id IN $documento_ids\nOPTIONAL MATCH (ev)-[:GENERA]->(o:ResultadoAnalisis)\nRETURN {\n  documento_id: doc.id,\n  version: toInteger(doc.version),\n  evaluacion_id: ev.id,\n  estado: ev.estado,\n  categoria: {id: cat.id, nombre: cat.nombre},\n  perfil: {id: pf.id, datos_sensibles: pf.datos_sensibles, confirmado: pf.confirmado,\n           operaciones_esenciales: pf.operaciones_esenciales},\n  condicion_catalogo: ev.condicion_catalogo,\n  necesidades: ev.necesidades,\n  partes_cubiertas: ev.partes_cubiertas,\n  busqueda_completa: ev.busqueda_completa,\n  cobertura: ev.cobertura,\n  requerimientos_del_documento: [(doc)-[:CONTIENE]->(r:Requerimiento) | {id: r.id, texto: r.texto_original}],\n  exige: [(pf)-[x:EXIGE {evaluacion_id: ev.id}]->(cat) | {regla: x.regla_id, necesidad: x.necesidad}],\n  cubre: [(r:Requerimiento)-[c:CUBRE {evaluacion_id: ev.id}]->(cat) |\n          {requerimiento_id: r.id, texto: r.texto_original, regla: c.regla_id, necesidad: c.necesidad}],\n  reglas: [(ev)-[:APLICA_REGLA]->(r:Regla) | r.id],\n  evidencias: [(ev)-[:SE_SUSTENTA_EN]->(e:Evidencia) | {id: e.id, tipo: e.tipo, contenido: e.contenido}],\n  resultado: CASE WHEN o IS NULL THEN null ELSE\n    {id: o.id, clase: CASE WHEN o:Hallazgo THEN 'Hallazgo' ELSE 'Pendiente' END,\n     tipo_defecto: o.tipo_defecto, motivo_pendiente: o.motivo_pendiente, dato_faltante: o.dato_faltante,\n     severidad: head([(o)-[:TIENE_SEVERIDAD]->(s:Severidad) | {id: s.id, valor: s.valor}])} END\n} AS cobertura\nORDER BY cobertura.documento_id"
+          },
+          {
+            "consulta": "Q8_reglas",
+            "parametros": {
+              "ids": [
+                "ACC-RD12"
+              ]
+            },
+            "filas": 1,
+            "milisegundos": 21.6,
+            "cypher": "// Q8. Consulta complementaria: texto, estado, ejecución y fuente de las reglas citadas en un paquete.\n// Parámetros: $ids (List<String>).\nMATCH (r:AuditIA_PG2:Regla)\nWHERE r.id IN $ids\nRETURN r.id AS id, r.modulo AS modulo, r.estado_validacion AS estado_validacion,\n       r.ejecucion AS ejecucion, r.descripcion AS descripcion, r.descripcion_fuente AS fuente\nORDER BY id"
+          }
+        ],
+        "reglas": [
+          {
+            "id": "ACC-RD12",
+            "descripcion": "SI se desconoce la condición del catálogo ENTONCES Pendiente(perfil_insuficiente).",
+            "fuente": "PG1 §6.5",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          }
+        ],
+        "evidencias": [
+          {
+            "id": "E-EV-SEG-DESCONOCIDO",
+            "contenido": "Premisas registradas por el grupo para EV-SEG-DESCONOCIDO",
+            "tipo": "analisis",
+            "localizador": null,
+            "fuente": null
+          }
+        ],
+        "observaciones": [
+          {
+            "id": "P-SEG",
+            "clase": "Pendiente"
+          }
+        ],
+        "verificacion": "aprobada",
+        "intentos_explicacion": 1,
+        "tipo_salida": "explicacion"
+      }
+    },
+    {
+      "paso": 2,
+      "submodulo": "SM3",
+      "subconsulta": "¿Qué hay que preguntarle al cliente para resolver el pendiente de exigibilidad de Seguridad en el documento DOC-SEG-DESCONOCIDO-v1? (observación P-SEG)",
+      "enlace": {
+        "estado": "enlazado",
+        "elegidas": [
+          "P-SEG"
+        ],
+        "candidatas": [
+          "P-SEG"
+        ],
+        "criterio": "primer Hallazgo del paquete de evidencia; si no hay, primer Pendiente"
+      },
+      "traza": {
+        "prototipo": "PI4-SM3-1.0",
+        "fecha": "2026-11-14T14:31:39",
+        "modelo": "qwen2.5:7b",
+        "hilos": null,
+        "huella_prompts": "837a200f0dfe",
+        "caso": "E2E-04_p2_SM3",
+        "consulta_usuario": "¿Qué hay que preguntarle al cliente para resolver el pendiente de exigibilidad de Seguridad en el documento DOC-SEG-DESCONOCIDO-v1? (observación P-SEG)",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"clarificacion\", \"entidades\": {\"observacion_id\": \"P-SEG\", \"observacion_texto\": null, \"documento_id\": \"DOC-SEG-DESCONOCIDO-v1\"}, \"filtros\": {\"prioridad\": null, \"motivo\": null, \"estado_seguimiento\": \"abiertas\"}, \"matriz\": {\"severidad\": null, \"criticidad\": null}, \"faltantes\": [\"observación a consultar\"]}",
+              "modelo": "qwen2.5:7b",
+              "segundos": 193.23,
+              "tokens_entrada": 2810,
+              "tokens_salida": 103,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [],
+          "json_validado": {
+            "intencion": "clarificacion",
+            "entidades": {
+              "observacion_id": "P-SEG",
+              "observacion_texto": null,
+              "documento_id": "DOC-SEG-DESCONOCIDO-v1"
+            },
+            "filtros": {
+              "prioridad": null,
+              "motivo": null,
+              "estado_seguimiento": "abiertas"
+            },
+            "matriz": {
+              "severidad": null,
+              "criticidad": null
+            },
+            "faltantes": [
+              "observación a consultar"
+            ]
+          }
+        },
+        "intencion": "clarificacion",
+        "consultas_cypher": [
+          {
+            "consulta": "Q0_observaciones",
+            "parametros": {},
+            "filas": 33,
+            "milisegundos": 53.2
+          },
+          {
+            "consulta": "Q5_clarificacion",
+            "parametros": {
+              "observaciones": [
+                "P-SEG"
+              ]
+            },
+            "filas": 1,
+            "milisegundos": 1621.2
+          },
+          {
+            "consulta": "Q9_reglas",
+            "parametros": {
+              "ids": [
+                "PRC-HC06",
+                "PRC-RD02"
+              ]
+            },
+            "filas": 2,
+            "milisegundos": 15.5
+          }
+        ],
+        "resolucion_entidad": {
+          "estado": "ok",
+          "puntaje": 1.0,
+          "observaciones": [
+            "P-SEG"
+          ]
+        },
+        "paquete_evidencia": {
+          "intencion": "clarificacion",
+          "consulta_usuario": "¿Qué hay que preguntarle al cliente para resolver el pendiente de exigibilidad de Seguridad en el documento DOC-SEG-DESCONOCIDO-v1? (observación P-SEG)",
+          "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "pregunta": null,
+          "decisiones_aclaradas": [
+            {
+              "provisional": true,
+              "estado": "por_consultar",
+              "tipo": "pendiente",
+              "motivo": "preventivo",
+              "dato_para_resolver": "Confirmar condición y alcance de SEG-P",
+              "dato_faltante_origen": "Confirmar existencia de datos sensibles",
+              "observacion_id": "P-SEG",
+              "prioridad": "bloqueante",
+              "revision_humana": null,
+              "decision_id": "D-P-SEG",
+              "reevaluacion": null,
+              "emitible": false,
+              "regla": "PRC-RD02",
+              "decision_anterior": null
+            }
+          ],
+          "reglas": [
+            {
+              "id": "PRC-HC06",
+              "modulo": "priorizacion_clarificacion",
+              "estado_validacion": "candidata",
+              "ejecucion": "catalogada",
+              "descripcion": "SI se identificó el dato o decisión que resolvería la observación ENTONCES formular una pregunta concreta y neutral al referente competente.",
+              "fuente": "PG1 §6.6"
+            },
+            {
+              "id": "PRC-RD02",
+              "modulo": "priorizacion_clarificacion",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI falta un dato confirmado como necesario para elegir el tratamiento ENTONCES prioridad bloqueante, motivo preventivo, provisional.",
+              "fuente": "PG1 §6.6"
+            }
+          ]
+        },
+        "explicacion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "respuesta": "La decisión D-P-SEG tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible. Según la regla PRC-RD02, se identificó que falta un dato confirmado como necesario para elegir el tratamiento, lo que justifica la prioridad bloqueante y el motivo preventivo. La premisa es que se necesita confirmar la condición y alcance de SEG-P, como indicado en el dato_para_resolver. La decisión D-P-SEG tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible.\n\nPara resolver el pendiente de exigibilidad de Seguridad en el documento DOC-SEG-DESCONOCIDO-v1, se debe preguntar al cliente: \"¿Confirmar condición y alcance de SEG-P?\". La decisión D-P-SEG tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible.",
+              "violaciones": [],
+              "modelo": "qwen2.5:7b",
+              "segundos": 208.39,
+              "tokens_entrada": 2415,
+              "tokens_salida": 210
+            }
+          ],
+          "hechos_verificables": [
+            "Decisión vigente: P-SEG (pendiente) con la decisión D-P-SEG. Tiene prioridad bloqueante, motivo preventivo, regla PRC-RD02, seguimiento por_consultar; provisional = true, emitible = false.",
+            "La base no registra ninguna Pregunta que aclare P-SEG. El contexto registra dato_para_resolver = «Confirmar condición y alcance de SEG-P». El asistente no redacta preguntas.",
+            "Regla PRC-HC06 (estado candidata, ejecución en PG2: catalogada, PG1 §6.6): SI se identificó el dato o decisión que resolvería la observación ENTONCES formular una pregunta concreta y neutral al referente competente.",
+            "Regla PRC-RD02 (estado candidata, ejecución en PG2: implementada, PG1 §6.6): SI falta un dato confirmado como necesario para elegir el tratamiento ENTONCES prioridad bloqueante, motivo preventivo, provisional.",
+            "Las decisiones, reglas, celdas y modelos citados son provisionales o candidatos: resultado del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+            "emitible = false: la respuesta debe decir que la recomendación todavía no es emitible.",
+            "La respuesta debe mencionar estos IDs: P-SEG, D-P-SEG. Entre corchetes van solo IDs, por ejemplo [P-SEG, D-P-SEG]; los valores se escriben con palabras, fuera de los corchetes.",
+            "La respuesta debe nombrar con palabras estos valores: por consultar.",
+            "La respuesta debe explicar primero el fundamento de cada decisión (premisas, evidencia y regla con su significado) y cerrar cada una con una oración como: «La decisión D-P-SEG tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible.»",
+            "Valores de prioridad, motivo y estado que figuran en el paquete: bloqueante, por_consultar, preventivo. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas «sustantivo», «en hito», «diferimiento», «resuelto», «pendiente complemento», «observado», «sin hallazgo», «no evaluable» como conclusión."
+          ],
+          "cobertura_requerida": {
+            "ids": [
+              "P-SEG",
+              "D-P-SEG"
+            ],
+            "valores": [
+              "por_consultar"
+            ]
+          },
+          "resultado_verificacion": "aprobada"
+        },
+        "respuesta_final": "La decisión D-P-SEG tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible. Según la regla PRC-RD02, se identificó que falta un dato confirmado como necesario para elegir el tratamiento, lo que justifica la prioridad bloqueante y el motivo preventivo. La premisa es que se necesita confirmar la condición y alcance de SEG-P, como indicado en el dato_para_resolver. La decisión D-P-SEG tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible.\n\nPara resolver el pendiente de exigibilidad de Seguridad en el documento DOC-SEG-DESCONOCIDO-v1, se debe preguntar al cliente: \"¿Confirmar condición y alcance de SEG-P?\". La decisión D-P-SEG tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible.",
+        "tipo_salida": "explicacion",
+        "segundos_totales": 403.35,
+        "archivo_traza": "submodulos/20261114_143856_900_E2E-04_p2_SM3.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM3",
+        "intencion": "clarificacion",
+        "fuentes": [
+          "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)"
+        ],
+        "consultas": [
+          {
+            "consulta": "Q0_observaciones",
+            "parametros": {},
+            "filas": 33,
+            "milisegundos": 53.2,
+            "cypher": "// Q0. Observaciones recibidas por SM3 con su decisión vigente, si la tienen. Alimenta la resolución\n// determinística de entidades: el LLM nunca elige un ID del grafo. Solo lectura. Sin parámetros.\nMATCH (ev:AuditIA_PG2:Evaluacion)-[:GENERA]->(o:ResultadoAnalisis), (ev)-[:REVISA_DOCUMENTO]->(doc:DocumentoVersion)\nOPTIONAL MATCH (d:DecisionPrioridad)-[:PRIORIZA]->(o)\nWHERE NOT EXISTS { MATCH (:DecisionPrioridad)-[:SUSTITUYE_A]->(d) }\nRETURN o.id AS observacion_id,\n       CASE WHEN o:Hallazgo THEN 'hallazgo' WHEN o:Pendiente THEN 'pendiente'\n            WHEN o:IncidenciaEntrada THEN 'incidencia_entrada' ELSE 'resultado' END AS tipo,\n       o.modulo_origen AS modulo_origen, o.descripcion AS descripcion, o.tipo_defecto AS tipo_defecto,\n       o.dato_faltante AS dato_faltante, doc.id AS documento_id,\n       [(o)-[:AFECTA_REQUERIMIENTO]->(rq:Requerimiento) | rq.texto_original] AS textos_requerimiento,\n       d.id AS decision_id\nORDER BY observacion_id"
+          },
+          {
+            "consulta": "Q5_clarificacion",
+            "parametros": {
+              "observaciones": [
+                "P-SEG"
+              ]
+            },
+            "filas": 1,
+            "milisegundos": 1621.2,
+            "cypher": "// Q5. ¿Qué se preguntó para aclarar una observación, a quién y qué se respondió? Pregunta registrada (ACLARA),\n// responsable (SE_DIRIGE_A), decisiones que la originan, respuestas (RESPONDE_A) con su validación, evaluación\n// que las consideró y revisión del cierre. Una fila por observación; pregunta null si la base no registra ninguna.\n// Parámetro: $observaciones (List<String>).\nMATCH (o:AuditIA_PG2:ResultadoAnalisis)<-[:PRIORIZA]-(d:DecisionPrioridad)\nWHERE o.id IN $observaciones AND NOT EXISTS { MATCH (:DecisionPrioridad)-[:SUSTITUYE_A]->(d) }\nMATCH (d)-[:USA_CONTEXTO]->(x:ContextoPrioridad), (d)-[:TIENE_ESTADO]->(er:EstadoResolucion), (d)-[:APLICA_REGLA]->(r:Regla)\nOPTIONAL MATCH (q:AuditIA_PG2:Pregunta)-[:ACLARA]->(o)\nOPTIONAL MATCH (q)-[:SE_DIRIGE_A]->(resp:Responsable)\nOPTIONAL MATCH (rev:RevisionHumana)-[:REVISA]->(d)\nRETURN {\n  observacion_id: o.id, tipo: CASE WHEN o:Hallazgo THEN 'hallazgo' ELSE 'pendiente' END,\n  dato_faltante_origen: o.dato_faltante,\n  decision_id: d.id, prioridad: d.prioridad, motivo: d.motivo, regla: r.id, estado: er.valor,\n  provisional: d.provisional, emitible: d.emitible,\n  decision_anterior: head([(d)-[:SUSTITUYE_A]->(p:DecisionPrioridad) |\n    {id: p.id, regla: head([(p)-[:APLICA_REGLA]->(rp:Regla) | rp.id]),\n     estado: head([(p)-[:TIENE_ESTADO]->(ep:EstadoResolucion) | ep.valor])}]),\n  reevaluacion: head([(d)-[:SE_BASA_EN_REEVALUACION]->(re:Evaluacion) |\n    {id: re.id, estado: re.estado, resultado_reevaluacion: re.resultado_reevaluacion}]),\n  revision_humana: CASE WHEN rev IS NULL THEN null ELSE\n    {id: rev.id, resultado: rev.resultado, naturaleza: rev.naturaleza, alcance: rev.alcance,\n     rol: head([(rev)-[:REALIZADA_POR]->(ra:Responsable) | ra.rol])} END,\n  // El dato a resolver del contexto se informa solo si no hay una pregunta registrada que ya lo pida.\n  dato_para_resolver: CASE WHEN q IS NULL THEN x.dato_para_resolver ELSE null END,\n  pregunta: CASE WHEN q IS NULL THEN null ELSE {\n    id: q.id, texto: q.texto, dato_clave: q.dato_clave, asignacion: q.asignacion,\n    revision_neutralidad: q.revision_neutralidad, propuesta_aceptada: q.propuesta_aceptada,\n    responsable: CASE WHEN resp IS NULL THEN null ELSE resp {.id, .rol, .confirmado} END,\n    observaciones_que_aclara: COLLECT { MATCH (q)-[:ACLARA]->(otra) RETURN otra.id ORDER BY otra.id },\n    decisiones_de_origen: COLLECT { MATCH (q)-[:SE_ORIGINA_EN]->(dq:DecisionPrioridad)\n                                    RETURN dq.id + ' (' + dq.prioridad + ')' ORDER BY dq.id },\n    respuestas: COLLECT { MATCH (a:Respuesta)-[:RESPONDE_A]->(q)\n                          OPTIONAL MATCH (evc:Evaluacion)-[:CONSIDERA_RESPUESTA]->(a)\n                          RETURN {id: a.id, fecha: toString(a.fecha), contenido: a.contenido,\n                                  estado_validacion: a.estado_validacion, datos_suficientes: a.datos_suficientes,\n                                  discordancia_confirmada: a.discordancia_confirmada,\n                                  aportada_por: head([(a)-[:APORTADA_POR]->(ra:Responsable) | ra.rol]),\n                                  considerada_por: evc.id}\n                          ORDER BY a.fecha } } END\n} AS clarificacion\nORDER BY o.id"
+          },
+          {
+            "consulta": "Q9_reglas",
+            "parametros": {
+              "ids": [
+                "PRC-HC06",
+                "PRC-RD02"
+              ]
+            },
+            "filas": 2,
+            "milisegundos": 15.5,
+            "cypher": "// Q9. Consulta complementaria: texto, estado de validación, ejecución en PG2 y fuente de las reglas citadas.\n// Parámetros: $ids (List<String>).\nMATCH (r:AuditIA_PG2:Regla)\nWHERE r.id IN $ids\nRETURN r.id AS id, r.modulo AS modulo, r.estado_validacion AS estado_validacion,\n       r.ejecucion AS ejecucion, r.descripcion AS descripcion, r.descripcion_fuente AS fuente\nORDER BY id"
+          }
+        ],
+        "reglas": [
+          {
+            "id": "PRC-HC06",
+            "descripcion": "SI se identificó el dato o decisión que resolvería la observación ENTONCES formular una pregunta concreta y neutral al referente competente.",
+            "fuente": "PG1 §6.6",
+            "estado_validacion": "candidata",
+            "ejecucion": "catalogada"
+          },
+          {
+            "id": "PRC-RD02",
+            "descripcion": "SI falta un dato confirmado como necesario para elegir el tratamiento ENTONCES prioridad bloqueante, motivo preventivo, provisional.",
+            "fuente": "PG1 §6.6",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          }
+        ],
+        "evidencias": [],
+        "observaciones": [
+          {
+            "id": "P-SEG",
+            "clase": "pendiente"
+          }
+        ],
+        "verificacion": "aprobada",
+        "intentos_explicacion": 1,
+        "tipo_salida": "explicacion"
+      }
+    }
+  ],
+  "enrutamiento": {
+    "intentos": [
+      {
+        "salida": "{\"tipo\": \"consulta\", \"pasos\": [{\"submodulo\": \"SM2\", \"subconsulta\": \"¿Por qué no se pudo decidir si Seguridad es exigible en el documento DOC-SEG-DESCONOCIDO-v1?\", \"depende_de\": null}, {\"submodulo\": \"SM3\", \"subconsulta\": \"¿Qué hay que preguntarle al cliente para resolver el pendiente de exigibilidad de Seguridad en el documento DOC-SEG-DESCONOCIDO-v1?\", \"depende_de\": 1}], \"motivo\": \"La no decidibilidad de la exigibilidad se analiza con SM2 y la pregunta al cliente para resolverlo es de SM3.\"}",
+        "errores": [],
+        "normalizacion": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 137.98,
+        "tokens_entrada": 2049,
+        "tokens_salida": 148
+      }
+    ],
+    "huella_prompt": "732cd87a253a",
+    "fuente": "llm",
+    "plan": {
+      "tipo": "consulta",
+      "pasos": [
+        {
+          "submodulo": "SM2",
+          "subconsulta": "¿Por qué no se pudo decidir si Seguridad es exigible en el documento DOC-SEG-DESCONOCIDO-v1?",
+          "depende_de": null
+        },
+        {
+          "submodulo": "SM3",
+          "subconsulta": "¿Qué hay que preguntarle al cliente para resolver el pendiente de exigibilidad de Seguridad en el documento DOC-SEG-DESCONOCIDO-v1?",
+          "depende_de": 1
+        }
+      ],
+      "motivo": "La no decidibilidad de la exigibilidad se analiza con SM2 y la pregunta al cliente para resolverlo es de SM3."
+    }
+  },
+  "sintesis": {
+    "intentos": [
+      {
+        "texto": "EV-SEG-DESCONOCIDO revisó la categoría Seguridad (NFR-SEG) en el documento DOC-SEG-DESCONOCIDO-v1 con el perfil PERFIL-DESCONOCIDO, pero no se confirmó la existencia de datos sensibles, lo que generó un Pendiente P-SEG con motivo perfil_insuficiente. Para resolver este pendiente, se debe preguntar al cliente: \"¿Confirmar condición y alcance de SEG-P?\". Estas conclusiones son provisionales y provienen de reglas y parámetros candidatos de un prototipo académico, sin validación experta.",
+        "violaciones": [
+          "no indica el origen [SM2]",
+          "no indica el origen [SM3]"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 88.82,
+        "tokens_entrada": 997,
+        "tokens_salida": 137
+      },
+      {
+        "texto": "EV-SEG-DESCONOCIDO (pendiente) revisó la categoría Seguridad (NFR-SEG) en el documento DOC-SEG-DESCONOCIDO-v1 con el perfil PERFIL-DESCONOCIDO (datos_sensibles = null, confirmado = false). La evidencia E-EV-SEG-DESCONOCIDO solo registra \"Premisas registradas por el grupo para EV-SEG-DESCONOCIDO\". La regla ACC-RD12 (implementada, estado candidata) determina que si se desconoce la condición del catálogo, se genera un Pendiente(perfil_insuficiente). Como condicion_catalogo = null, se generó el Pendiente P-SEG (motivo perfil_insuficiente; dato faltante: \"Confirmar existencia de datos sensibles\"). Este resultado es provisional del prototipo académico, sin validación experta.\n\nPara resolver el pendiente de exigibilidad de Seguridad en el documento DOC-SEG-DESCONOCIDO-v1, se debe preguntar al cliente: \"¿Confirmar condición y alcance de SEG-P?\". La decisión D-P-SEG tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible.\n\n[SM2], [SM3]",
+        "violaciones": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 76.75,
+        "tokens_entrada": 1038,
+        "tokens_salida": 280
+      }
+    ],
+    "modo": "sintesis_llm_verificada"
+  },
+  "respuesta_final": "EV-SEG-DESCONOCIDO (pendiente) revisó la categoría Seguridad (NFR-SEG) en el documento DOC-SEG-DESCONOCIDO-v1 con el perfil PERFIL-DESCONOCIDO (datos_sensibles = null, confirmado = false). La evidencia E-EV-SEG-DESCONOCIDO solo registra \"Premisas registradas por el grupo para EV-SEG-DESCONOCIDO\". La regla ACC-RD12 (implementada, estado candidata) determina que si se desconoce la condición del catálogo, se genera un Pendiente(perfil_insuficiente). Como condicion_catalogo = null, se generó el Pendiente P-SEG (motivo perfil_insuficiente; dato faltante: \"Confirmar existencia de datos sensibles\"). Este resultado es provisional del prototipo académico, sin validación experta.\n\nPara resolver el pendiente de exigibilidad de Seguridad en el documento DOC-SEG-DESCONOCIDO-v1, se debe preguntar al cliente: \"¿Confirmar condición y alcance de SEG-P?\". La decisión D-P-SEG tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible.\n\n[SM2], [SM3]",
+  "tipo_salida": "integrada",
+  "submodulos_consultados": [
+    "SM2",
+    "SM3"
+  ],
+  "tipos_salida_pasos": [
+    "explicacion"
+  ],
+  "segundos_totales": 1037.91
+}

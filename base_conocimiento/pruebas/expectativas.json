@@ -1,0 +1,565 @@
+[
+  {
+    "id": "PT01",
+    "situacion": "Juicios separados del catálogo",
+    "query": "MATCH (e:AuditIA_PG2 {id:'EV-CAT-01'})-[:CONTIENE_JUICIO]->(j)-[:APLICA_CRITERIO]->(c) RETURN c.nombre,j.estado ORDER BY c.nombre",
+    "expected": [
+      [
+        "ambiguedad",
+        "incumple"
+      ],
+      [
+        "atomicidad",
+        "cumple"
+      ],
+      [
+        "completitud",
+        "pendiente"
+      ],
+      [
+        "verificabilidad",
+        "pendiente"
+      ]
+    ]
+  },
+  {
+    "id": "PT02",
+    "situacion": "Contradicción y control excluyente",
+    "query": "MATCH (e:AuditIA_PG2:Evaluacion) WHERE e.id IN ['EV-DESC','EV-DESC-CONTROL'] OPTIONAL MATCH (e)-[:GENERA]->(h:Hallazgo) RETURN e.id,e.estado,count(h) ORDER BY e.id",
+    "expected": [
+      [
+        "EV-DESC",
+        "observado",
+        1
+      ],
+      [
+        "EV-DESC-CONTROL",
+        "sin_hallazgo",
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT03",
+    "situacion": "Anexo faltante y nueva evaluación",
+    "query": "MATCH (e:AuditIA_PG2:Evaluacion) WHERE e.id IN ['EV-TASA-1','EV-TASA-2'] RETURN e.id,e.estado ORDER BY e.id",
+    "expected": [
+      [
+        "EV-TASA-1",
+        "pendiente"
+      ],
+      [
+        "EV-TASA-2",
+        "sin_hallazgo"
+      ]
+    ]
+  },
+  {
+    "id": "PT04",
+    "situacion": "Perfil desconocido no crea brecha",
+    "query": "MATCH (e:AuditIA_PG2:Evaluacion) WHERE e.id STARTS WITH 'EV-SEG-' RETURN e.id,e.estado ORDER BY e.id",
+    "expected": [
+      [
+        "EV-SEG-BRECHA",
+        "observado"
+      ],
+      [
+        "EV-SEG-DESCONOCIDO",
+        "pendiente"
+      ],
+      [
+        "EV-SEG-OK",
+        "sin_hallazgo"
+      ]
+    ]
+  },
+  {
+    "id": "PT05",
+    "situacion": "Entrada no fiel sin prioridad",
+    "query": "MATCH (e:AuditIA_PG2 {id:'EV-ERROR'})-[:GENERA]->(i:IncidenciaEntrada) OPTIONAL MATCH (d:DecisionPrioridad)-[:PRIORIZA]->(i) RETURN e.estado,count(d)",
+    "expected": [
+      [
+        "no_evaluable",
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT06",
+    "situacion": "Severidad y motivo de bloqueo diferentes",
+    "query": "MATCH (d:AuditIA_PG2:DecisionPrioridad)-[:PRIORIZA]->(o)-[:TIENE_SEVERIDAD]->(sv) WHERE d.id IN ['D-H-CAT-B','D-H-DESC'] RETURN o.id,sv.valor,d.prioridad,d.motivo,d.provisional ORDER BY o.id",
+    "expected": [
+      [
+        "H-CAT-B",
+        "media",
+        "bloqueante",
+        "preventivo",
+        true
+      ],
+      [
+        "H-DESC",
+        "alta",
+        "bloqueante",
+        "sustantivo",
+        true
+      ]
+    ]
+  },
+  {
+    "id": "PT07",
+    "situacion": "Todas las candidatas son provisionales",
+    "query": "MATCH (d:AuditIA_PG2:DecisionPrioridad) WHERE d.provisional<>true OR d.provisional IS NULL RETURN count(d)",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT08",
+    "situacion": "Falta de hito conserva bloqueo preventivo",
+    "query": "MATCH (d:AuditIA_PG2 {id:'D-H-PRIO-SIN-HITO'}) RETURN d.prioridad,d.motivo",
+    "expected": [
+      [
+        "bloqueante",
+        "preventivo"
+      ]
+    ]
+  },
+  {
+    "id": "PT09",
+    "situacion": "Excepción no modifica severidad baja",
+    "query": "MATCH (d:AuditIA_PG2 {id:'D-H-PRIO-EXCEPCION'})-[:PRIORIZA]->()-[:TIENE_SEVERIDAD]->(sv) RETURN sv.valor,d.prioridad,d.motivo",
+    "expected": [
+      [
+        "baja",
+        "bloqueante",
+        "sustantivo"
+      ]
+    ]
+  },
+  {
+    "id": "PT10",
+    "situacion": "No hay difusión de valores desconocidos",
+    "query": "MATCH (d:AuditIA_PG2 {id:'D-P-TASA'}) RETURN d.grado_urgencia",
+    "expected": [
+      [
+        null
+      ]
+    ]
+  },
+  {
+    "id": "PT11",
+    "situacion": "Valor fuera de rango no se calcula",
+    "query": "MATCH (d:AuditIA_PG2 {id:'D-H-PRIO-FUERA-RANGO'}) RETURN d.grado_urgencia",
+    "expected": [
+      [
+        null
+      ]
+    ]
+  },
+  {
+    "id": "PT12",
+    "situacion": "Parámetros sigma válidos",
+    "query": "MATCH (e:AuditIA_PG2:EtiquetaDifusa) WHERE e.sigma<=0 OR e.sigma IS NULL RETURN count(e)",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT13",
+    "situacion": "Gaussianas en centro y a una sigma",
+    "query": "WITH 0.5 AS c,0.22 AS s RETURN round(exp(-0.5*((c-c)/s)^2),6),round(exp(-0.5*(((c+s)-c)/s)^2),6)",
+    "expected": [
+      [
+        1,
+        0.606531
+      ]
+    ]
+  },
+  {
+    "id": "PT14",
+    "situacion": "Urgencia en rango",
+    "query": "MATCH (d:AuditIA_PG2:DecisionPrioridad) WHERE d.grado_urgencia<0 OR d.grado_urgencia>10 RETURN count(d)",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT15",
+    "situacion": "Respuesta parcial nunca se usa para cerrar",
+    "query": "MATCH (e:AuditIA_PG2:Evaluacion)-[:CONSIDERA_RESPUESTA]->(a:Respuesta) WHERE a.estado_validacion<>'validada' RETURN count(e)",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT16",
+    "situacion": "La historia conserva su diagnóstico",
+    "query": "MATCH (n:AuditIA_PG2 {id:'EV-CAT-02'})-[:REEVALUA]->(a) RETURN a.estado,n.estado,n.resultado_reevaluacion",
+    "expected": [
+      [
+        "observado",
+        "sin_hallazgo",
+        "resuelta"
+      ]
+    ]
+  },
+  {
+    "id": "PT17",
+    "situacion": "Cierre con antecedente y reevaluación",
+    "query": "MATCH (d:AuditIA_PG2:DecisionPrioridad)-[:TIENE_ESTADO]->(:EstadoResolucion {valor:'resuelto'}) WHERE NOT (d)-[:SUSTITUYE_A]->() OR NOT (d)-[:SE_BASA_EN_REEVALUACION]->(:Evaluacion {autorizada_por_origen:true,correspondencia_version:true}) RETURN count(d)",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT18",
+    "situacion": "Todo resultado tiene regla y evidencia",
+    "query": "MATCH (r:AuditIA_PG2:ResultadoAnalisis) WHERE NOT (r)-[:APLICA_REGLA]->(:Regla) OR NOT (r)-[:SE_SUSTENTA_EN]->(:Evidencia) RETURN count(r)",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT19",
+    "situacion": "Pendiente contextual no baja calidad observada",
+    "query": "MATCH (c:AuditIA_PG2:CasoMetrica) RETURN c.id,c.calidad_observada,1.0*c.juicios_cerrados/c.juicios_aplicables ORDER BY c.id",
+    "expected": [
+      [
+        "CONTROL-ANEXO-RECIBIDO",
+        "sin_defectos_demostrados",
+        1
+      ],
+      [
+        "CONTROL-CON-DEFECTO",
+        "con_defectos_demostrados",
+        1
+      ],
+      [
+        "CONTROL-SIN-ANEXO",
+        "sin_defectos_demostrados",
+        0.75
+      ]
+    ]
+  },
+  {
+    "id": "PT20",
+    "situacion": "33 frames 51 relaciones 66 reglas catalogadas",
+    "query": "MATCH (f:AuditIA_PG2:Frame) WITH count(f) AS frames MATCH (l:AuditIA_PG2:TipoRelacion) WITH frames,count(l) AS relaciones MATCH (r:AuditIA_PG2:Regla) RETURN frames,relaciones,count(r)",
+    "expected": [
+      [
+        33,
+        51,
+        66
+      ]
+    ]
+  },
+  {
+    "id": "PT30",
+    "situacion": "Ambigüedad alta del catálogo",
+    "query": "MATCH (j:AuditIA_PG2 {id:'J-EV-CAT-01-ambiguedad'}) RETURN round(j.grado_ambiguedad,6),j.banda_difusa,j.estado",
+    "expected": [
+      [
+        0.781016,
+        "alta",
+        "incumple"
+      ]
+    ]
+  },
+  {
+    "id": "PT31",
+    "situacion": "Aceptación accesible reduce la ambigüedad",
+    "query": "MATCH (j:AuditIA_PG2 {id:'J-EV-CAT-02-ambiguedad'}) RETURN round(j.grado_ambiguedad,6),j.banda_difusa,j.estado",
+    "expected": [
+      [
+        0.156025,
+        "baja",
+        "cumple"
+      ]
+    ]
+  },
+  {
+    "id": "PT32",
+    "situacion": "Glosario parcial conserva frontera",
+    "query": "MATCH (j:AuditIA_PG2 {id:'J-EV-HAB-ambiguedad'}) RETURN round(j.grado_ambiguedad,6),j.estado,j.revision_senior_requerida",
+    "expected": [
+      [
+        0.501254,
+        "pendiente",
+        true
+      ]
+    ]
+  },
+  {
+    "id": "PT33",
+    "situacion": "Sin valoración no se imputa ambigüedad",
+    "query": "MATCH (j:AuditIA_PG2 {id:'J-EV-AMB-SIN-DATO-ambiguedad'}) RETURN j.grado_ambiguedad",
+    "expected": [
+      [
+        null
+      ]
+    ]
+  },
+  {
+    "id": "PT34",
+    "situacion": "Contradicción confirmada con intensidad",
+    "query": "MATCH (e:AuditIA_PG2 {id:'EV-DESC'}) RETURN round(e.grado_contradiccion,6),e.estado",
+    "expected": [
+      [
+        0.843975,
+        "observado"
+      ]
+    ]
+  },
+  {
+    "id": "PT35",
+    "situacion": "Frontera transversal sigue pendiente",
+    "query": "MATCH (e:AuditIA_PG2 {id:'EV-PED-FRONTERA'}) RETURN round(e.grado_contradiccion,6),e.estado,e.revision_senior_requerida",
+    "expected": [
+      [
+        0.5,
+        "pendiente",
+        true
+      ]
+    ]
+  },
+  {
+    "id": "PT36",
+    "situacion": "Escenarios excluyentes inhiben el grado",
+    "query": "MATCH (e:AuditIA_PG2 {id:'EV-DESC-CONTROL'}) RETURN e.grado_contradiccion,e.estado",
+    "expected": [
+      [
+        null,
+        "sin_hallazgo"
+      ]
+    ]
+  },
+  {
+    "id": "PT37",
+    "situacion": "Parámetros y reglas de los tres PI3",
+    "query": "MATCH (m:AuditIA_PG2:ModeloDifuso) WITH count(m) AS m MATCH (r:AuditIA_PG2:ReglaDifusa) WITH m,count(r) AS r MATCH (v:AuditIA_PG2:VariableDifusa) WITH m,r,count(v) AS v MATCH (e:AuditIA_PG2:EtiquetaDifusa) RETURN m,r,v,count(e)",
+    "expected": [
+      [
+        3,
+        14,
+        9,
+        27
+      ]
+    ]
+  },
+  {
+    "id": "PT38",
+    "situacion": "Fuente y versión del modelo consultables",
+    "query": "MATCH (n:AuditIA_PG2) WHERE n.estado_calculo_difuso='calculado' AND NOT (n)-[:APLICA_MODELO]->(:ModeloDifuso)-[:CITA_FUENTE]->(:Fuente) RETURN count(n)",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT39",
+    "situacion": "Todas las observaciones tienen decisión",
+    "query": "MATCH (o:AuditIA_PG2:ResultadoAnalisis) WHERE (o:Hallazgo OR o:Pendiente) AND NOT (:DecisionPrioridad)-[:PRIORIZA]->(o) RETURN count(o)",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT40",
+    "situacion": "Consolidación conserva decisiones por versión",
+    "query": "MATCH (i:AuditIA_PG2:InformeAuditoria)-[:INCLUYE]->(d)-[:TIENE_ESTADO]->(er) WHERE i.id IN ['INF-DOC-CAT-v1','INF-DOC-CAT-v2'] RETURN i.id,d.id,er.valor ORDER BY i.id,d.id",
+    "expected": [
+      [
+        "INF-DOC-CAT-v1",
+        "D-H-CAT-B",
+        "por_consultar"
+      ],
+      [
+        "INF-DOC-CAT-v1",
+        "D-P-CAT-C",
+        "por_consultar"
+      ],
+      [
+        "INF-DOC-CAT-v1",
+        "D-P-CAT-V",
+        "por_consultar"
+      ],
+      [
+        "INF-DOC-CAT-v2",
+        "D-H-CAT-B-R2",
+        "resuelto"
+      ],
+      [
+        "INF-DOC-CAT-v2",
+        "D-P-CAT-C-R2",
+        "resuelto"
+      ],
+      [
+        "INF-DOC-CAT-v2",
+        "D-P-CAT-V-R2",
+        "resuelto"
+      ]
+    ]
+  },
+  {
+    "id": "PT41",
+    "situacion": "Paquete LLM separa origen y reevaluación",
+    "query": "// Lectura parametrizada para PI4. Ejecutar con 'H-CAT-B'.\nMATCH (o:AuditIA_PG2:ResultadoAnalisis {id:'H-CAT-B'})<-[:GENERA]-(origen)-[:REVISA_DOCUMENTO]->(doc_origen),\n      (d:DecisionPrioridad)-[:PRIORIZA]->(o),(d)-[:TIENE_ESTADO]->(er)\nWHERE NOT EXISTS {MATCH (:DecisionPrioridad)-[:SUSTITUYE_A]->(d)}\nOPTIONAL MATCH (d)-[:SE_BASA_EN_REEVALUACION]->(reevaluacion:Evaluacion)\nWITH o,origen,doc_origen,d,er,coalesce(reevaluacion,origen) AS actual\nMATCH (actual)-[:REVISA_DOCUMENTO]->(doc)\nOPTIONAL MATCH (o)-[:DERIVA_DE_JUICIO]->(jo)-[:APLICA_CRITERIO]->(criterio)\nOPTIONAL MATCH (actual)-[:CONTIENE_JUICIO]->(ja)-[:APLICA_CRITERIO]->(criterio)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja\nOPTIONAL MATCH (o)-[:SE_SUSTENTA_EN]->(eo)-[:CITA_FUENTE]->(fo)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,\n collect(DISTINCT CASE WHEN eo IS NOT NULL THEN {id:eo.id,tipo:eo.tipo,contenido:eo.contenido,localizador:eo.localizador,fuente:fo.id} END) AS evidencia_origen\nOPTIONAL MATCH (d)-[:SE_SUSTENTA_EN]->(ed)-[:CITA_FUENTE]->(fd)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,\n collect(DISTINCT CASE WHEN ed IS NOT NULL THEN {id:ed.id,tipo:ed.tipo,contenido:ed.contenido,localizador:ed.localizador,fuente:fd.id} END) AS evidencia_decision\nOPTIONAL MATCH (actual)-[:SE_SUSTENTA_EN]->(ea)-[:CITA_FUENTE]->(fa)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,evidencia_decision,\n collect(DISTINCT CASE WHEN ea IS NOT NULL THEN {id:ea.id,tipo:ea.tipo,contenido:ea.contenido,localizador:ea.localizador,fuente:fa.id} END) AS evidencia_evaluacion_vigente\nOPTIONAL MATCH (o)-[:APLICA_REGLA]->(r1)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,evidencia_decision,evidencia_evaluacion_vigente,collect(DISTINCT r1.id) AS reglas_origen\nOPTIONAL MATCH (d)-[:APLICA_REGLA]->(r2)\nWITH o,origen,doc_origen,d,er,actual,doc,jo,ja,evidencia_origen,evidencia_decision,evidencia_evaluacion_vigente,reglas_origen,collect(DISTINCT r2.id) AS reglas_decision\nWITH {observacion_id:o.id,documento_id:doc.id,version:doc.version,\n documento_origen_id:doc_origen.id,version_origen:doc_origen.version,\n modulo_origen:o.modulo_origen,evaluacion_id:actual.id,evaluacion_origen_id:origen.id,\n estado_evaluacion_vigente:actual.estado,descripcion:o.descripcion,descripcion_corresponde_a:'observacion_historica',\n grado_ambiguedad:ja.grado_ambiguedad,grado_ambiguedad_origen:jo.grado_ambiguedad,\n modelo_ambiguedad:ja.modelo_difuso_version,\n grado_contradiccion:actual.grado_contradiccion,modelo_diagnostico:actual.modelo_difuso_version,\n decision_id:d.id,prioridad:d.prioridad,motivo:d.motivo,estado:er.valor,\n provisional:d.provisional,emitible:d.emitible,tratamiento_activo:er.valor<>'resuelto',dato_faltante:o.dato_faltante,\n grado_urgencia:d.grado_urgencia,modelo_difuso:d.modelo_difuso_version,\n reglas_origen:reglas_origen,reglas_decision:reglas_decision,\n evidencia_origen:evidencia_origen,evidencia_decision:evidencia_decision,\n evidencia_evaluacion_vigente:evidencia_evaluacion_vigente} AS paquete RETURN paquete.documento_id,paquete.evaluacion_id,paquete.documento_origen_id,paquete.evaluacion_origen_id,paquete.estado,round(paquete.grado_ambiguedad,6),round(paquete.grado_ambiguedad_origen,6),paquete.tratamiento_activo",
+    "expected": [
+      [
+        "DOC-CAT-v2",
+        "EV-CAT-02",
+        "DOC-CAT-v1",
+        "EV-CAT-01",
+        "resuelto",
+        0.156025,
+        0.781016,
+        false
+      ]
+    ]
+  },
+  {
+    "id": "PT42",
+    "situacion": "Cada respuesta conserva su evidencia literal",
+    "query": "MATCH (a:AuditIA_PG2:Respuesta)-[:SE_SUSTENTA_EN]->(e:Evidencia)-[:CITA_FUENTE]->(f:Fuente) WHERE a.id IN ['A-CAT-P','A-CAT-C'] RETURN a.id,a.contenido=e.contenido,e.localizador=a.id,f.id ORDER BY a.id",
+    "expected": [
+      [
+        "A-CAT-C",
+        true,
+        true,
+        "S-CASOS"
+      ],
+      [
+        "A-CAT-P",
+        true,
+        true,
+        "S-CASOS"
+      ]
+    ]
+  },
+  {
+    "id": "PT43",
+    "situacion": "Severidad desconocida sin valores por defecto",
+    "query": "MATCH (h:AuditIA_PG2 {id:'H-SEG'})-[:TIENE_SEVERIDAD]->(sv) WITH sv MATCH (x:AuditIA_PG2:ContextoPrioridad) RETURN sv.valor,sv.grado_severidad,count(x.severidad_valor)+count(x.severidad_grado)",
+    "expected": [
+      [
+        null,
+        null,
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT44",
+    "situacion": "El cierre respeta la secuencia temporal",
+    "query": "MATCH (ev:AuditIA_PG2:Evaluacion)-[:CONSIDERA_RESPUESTA]->(a:Respuesta), (rev:RevisionHumana)-[:REVISA]->(ev) WHERE ev.fecha<a.fecha OR rev.fecha<ev.fecha RETURN count(ev)",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT21",
+    "situacion": "Repetición sin duplicados",
+    "query": null,
+    "expected": [
+      617,
+      1191
+    ]
+  },
+  {
+    "id": "PT22",
+    "situacion": "Control de integridad 1",
+    "query": "MATCH (r:AuditIA_PG2:ResultadoAnalisis)\nWHERE NOT (r)-[:SE_SUSTENTA_EN]->(:Evidencia) OR NOT (r)-[:APLICA_REGLA]->(:Regla)\nRETURN count(r) AS resultados_sin_trazabilidad",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT23",
+    "situacion": "Control de integridad 2",
+    "query": "MATCH (d:AuditIA_PG2:DecisionPrioridad) WHERE d.provisional<>true OR d.provisional IS NULL\nRETURN count(d) AS decisiones_candidatas_no_provisionales",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT24",
+    "situacion": "Control de integridad 3",
+    "query": "MATCH (i:AuditIA_PG2:IncidenciaEntrada)<-[:PRIORIZA]-(d)\nRETURN count(d) AS incidencias_priorizadas",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT25",
+    "situacion": "Control de integridad 4",
+    "query": "MATCH (e:AuditIA_PG2:EvaluacionIndividual {publicado:true,entrada_valida:true})\nOPTIONAL MATCH (e)-[:CONTIENE_JUICIO]->(j)-[:APLICA_CRITERIO]->(c)\nWITH e,count(j) AS juicios,count(DISTINCT c) AS criterios\nWHERE juicios<>4 OR criterios<>4 RETURN count(e) AS cardinalidades_incorrectas",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT26",
+    "situacion": "Control de integridad 5",
+    "query": "MATCH (d:AuditIA_PG2:DecisionPrioridad)-[:TIENE_ESTADO]->(:EstadoResolucion {valor:'resuelto'})\nWHERE NOT (d)-[:SUSTITUYE_A]->() OR NOT (d)-[:SE_BASA_EN_REEVALUACION]->(:Evaluacion {autorizada_por_origen:true,correspondencia_version:true})\nRETURN count(d) AS cierres_sin_reevaluacion",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT27",
+    "situacion": "Control de integridad 6",
+    "query": "MATCH (e:AuditIA_PG2:EtiquetaDifusa) WHERE e.sigma<=0 OR e.sigma IS NULL\nRETURN count(e) AS sigmas_invalidos",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT28",
+    "situacion": "Control de integridad 7",
+    "query": "MATCH (d:AuditIA_PG2:DecisionPrioridad) WHERE d.grado_urgencia<0 OR d.grado_urgencia>10\nRETURN count(d) AS grados_fuera_de_rango",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  },
+  {
+    "id": "PT29",
+    "situacion": "Control de integridad 8",
+    "query": "MATCH p=(e:AuditIA_PG2:Evaluacion)-[:REEVALUA*1..20]->(e)\nRETURN count(p) AS ciclos_de_reevaluacion",
+    "expected": [
+      [
+        0
+      ]
+    ]
+  }
+]

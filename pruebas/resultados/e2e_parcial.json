@@ -1,0 +1,113 @@
+[
+  {
+    "id": "E2E-04",
+    "titulo": "Cobertura de Seguridad indeterminada y clarificación (SM2 → SM3)",
+    "consulta": "¿Por qué no se pudo decidir si Seguridad es exigible en el documento DOC-SEG-DESCONOCIDO-v1 y qué hay que preguntarle al cliente para resolverlo?",
+    "situacion": "El perfil del sistema no confirma si maneja datos sensibles; la cobertura queda indeterminada y requiere aclaración.",
+    "esperado": {
+      "tipo_esperado": "integrada",
+      "motivo_esperado": null,
+      "submodulos_esperados": [
+        "SM2",
+        "SM3"
+      ],
+      "ids_en_respuesta": [
+        "P-SEG"
+      ],
+      "ids_en_trazabilidad": {
+        "SM2": [
+          "DOC-SEG-DESCONOCIDO-v1",
+          "P-SEG"
+        ],
+        "SM3": [
+          "P-SEG"
+        ]
+      },
+      "enlace_esperado": "P-SEG"
+    },
+    "obtenido": {
+      "tipo_salida": "integrada",
+      "motivo_cierre": null,
+      "submodulos": [
+        "SM2",
+        "SM3"
+      ],
+      "fuente_enrutamiento": "llm",
+      "modo_sintesis": "sintesis_llm_verificada",
+      "respuesta": "EV-SEG-DESCONOCIDO (pendiente) revisó la categoría Seguridad (NFR-SEG) en el documento DOC-SEG-DESCONOCIDO-v1 con el perfil PERFIL-DESCONOCIDO (datos_sensibles = null, confirmado = false). La evidencia E-EV-SEG-DESCONOCIDO solo registra \"Premisas registradas por el grupo para EV-SEG-DESCONOCIDO\". La regla ACC-RD12 (implementada, estado candidata) determina que si se desconoce la condición del catálogo, se genera un Pendiente(perfil_insuficiente). Como condicion_catalogo = null, se generó el Pendiente P-SEG (motivo perfil_insuficiente; dato faltante: \"Confirmar existencia de datos sensibles\"). Este resultado es provisional del prototipo académico, sin validación experta.\n\nPara resolver el pendiente de exigibilidad de Seguridad en el documento DOC-SEG-DESCONOCIDO-v1, se debe preguntar al cliente: \"¿Confirmar condición y alcance de SEG-P?\". La decisión D-P-SEG tiene prioridad bloqueante, motivo preventivo y seguimiento por consultar; es provisional y todavía no es emitible.\n\n[SM2], [SM3]"
+    },
+    "controles": {
+      "tipo_salida": true,
+      "submodulos": true,
+      "orden_diagnostico_antes_de_tratamiento": true,
+      "respuesta_cita_P-SEG": true,
+      "SM2_recupera_DOC-SEG-DESCONOCIDO-v1": true,
+      "SM2_recupera_P-SEG": true,
+      "SM3_recupera_P-SEG": true,
+      "encadenamiento": true,
+      "SM2_respuesta_fiel": true,
+      "SM3_respuesta_fiel": true
+    },
+    "aprobado": true,
+    "redaccion_llm": {
+      "SM2": {
+        "verificacion": "aprobada",
+        "tipo_salida": "explicacion",
+        "intentos": 1
+      },
+      "SM3": {
+        "verificacion": "aprobada",
+        "tipo_salida": "explicacion",
+        "intentos": 1
+      }
+    },
+    "segundos": 1037.91,
+    "traza": "trazas/20261114_144158_433_E2E-04.json"
+  },
+  {
+    "id": "CTL-04",
+    "titulo": "Consulta simple a un solo submódulo",
+    "consulta": "¿Qué tan ambiguo es el requerimiento de notificar a los clientes habituales y cómo se calculó?",
+    "situacion": "El prompt maestro no debe agregar submódulos innecesarios.",
+    "esperado": {
+      "tipo_esperado": "explicacion",
+      "motivo_esperado": null,
+      "submodulos_esperados": [
+        "SM1"
+      ],
+      "ids_en_respuesta": [],
+      "ids_en_trazabilidad": {
+        "SM1": [
+          "RQ-HAB-v1"
+        ]
+      },
+      "enlace_esperado": null
+    },
+    "obtenido": {
+      "tipo_salida": "explicacion",
+      "motivo_cierre": null,
+      "submodulos": [
+        "SM1"
+      ],
+      "fuente_enrutamiento": "llm",
+      "modo_sintesis": "respuesta_del_submodulo",
+      "respuesta": "El requerimiento RQ-HAB-v1 («El sistema debe notificar a los clientes habituales.») tiene un grado de ambigüedad de 0.501, en la banda media. Este grado se calculó con la regla AMB-RB3 (EVI-HC02), que activó el modelo MD-AMB-1.0 en estado candidata. El juicio J-EV-HAB-ambiguedad está pendiente debido a la regla GL02, que indica que falta cerrar la interpretación del glosario."
+    },
+    "controles": {
+      "tipo_salida": true,
+      "submodulos": true,
+      "SM1_recupera_RQ-HAB-v1": true,
+      "SM1_respuesta_fiel": true
+    },
+    "aprobado": true,
+    "redaccion_llm": {
+      "SM1": {
+        "verificacion": "aprobada",
+        "tipo_salida": "explicacion",
+        "intentos": 3
+      }
+    },
+    "segundos": 542.64,
+    "traza": "trazas/20261114_145148_470_CTL-04.json"
+  }
+]

@@ -1,0 +1,784 @@
+{
+  "version": "PG3-AuditIA-1.0",
+  "fecha": "2026-11-14T12:43:01",
+  "modelo": "qwen2.5:7b",
+  "huella_prompts": "45af5da3ce6b",
+  "caso": "E2E-06",
+  "consulta_usuario": "Necesito un panorama de la auditoría: ¿qué juicios de ambigüedad siguen pendientes, qué análisis cruzados siguen pendientes y qué observaciones bloquean la firma por un problema de fondo?",
+  "pasos": [
+    {
+      "paso": 1,
+      "submodulo": "SM1",
+      "subconsulta": "¿Qué juicios de ambigüedad siguen pendientes?",
+      "enlace": null,
+      "traza": {
+        "prototipo": "PI4-SM1-1.0",
+        "fecha": "2026-11-14T12:43:49",
+        "modelo": "qwen2.5:7b",
+        "huella_prompts": "88da390d63e7",
+        "caso": "E2E-06_p1_SM1",
+        "consulta_usuario": "¿Qué juicios de ambigüedad siguen pendientes?",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"listar_juicios\", \"entidades\": {\"requerimiento_id\": null, \"requerimiento_texto\": null, \"observacion_id\": null, \"evaluacion_id\": null}, \"conceptos\": {\"criterio\": \"ambiguedad\"}, \"filtros\": {\"estado_juicio\": \"pendiente\", \"banda_ambiguedad\": null}, \"condiciones\": {\"version\": null, \"alcance\": \"vigente\"}, \"faltantes\": []}",
+              "modelo": "qwen2.5:7b",
+              "segundos": 34.08,
+              "tokens_entrada": 1929,
+              "tokens_salida": 112,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [],
+          "json_validado": {
+            "intencion": "listar_juicios",
+            "entidades": {
+              "requerimiento_id": null,
+              "requerimiento_texto": null,
+              "observacion_id": null,
+              "evaluacion_id": null
+            },
+            "conceptos": {
+              "criterio": "ambiguedad"
+            },
+            "filtros": {
+              "estado_juicio": "pendiente",
+              "banda_ambiguedad": null
+            },
+            "condiciones": {
+              "version": null,
+              "alcance": "vigente"
+            },
+            "faltantes": []
+          }
+        },
+        "intencion": "listar_juicios",
+        "consultas_cypher": [
+          {
+            "consulta": "Q3_listado_juicios",
+            "parametros": {
+              "criterio": "ambiguedad",
+              "estado": "pendiente",
+              "banda": null,
+              "solo_vigentes": true
+            },
+            "filas": 2,
+            "milisegundos": 969.2
+          },
+          {
+            "consulta": "Q6_reglas",
+            "parametros": {
+              "ids": [
+                "GL02"
+              ]
+            },
+            "filas": 1,
+            "milisegundos": 29.1
+          }
+        ],
+        "paquete_evidencia": {
+          "intencion": "listar_juicios",
+          "consulta_usuario": "¿Qué juicios de ambigüedad siguen pendientes?",
+          "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "filtros_aplicados": {
+            "criterio": "ambiguedad",
+            "estado": "pendiente",
+            "banda": null,
+            "solo_vigentes": true
+          },
+          "total_juicios": 2,
+          "juicios": [
+            {
+              "estado": "pendiente",
+              "reglas": [
+                "GL02"
+              ],
+              "texto_requerimiento": "El sistema debe responder de forma adecuada.",
+              "banda_difusa": null,
+              "version": 1,
+              "requerimiento_id": "RQ-AMB-SIN-DATO-v1",
+              "resultados": [
+                "R-J-EV-AMB-SIN-DATO-ambiguedad"
+              ],
+              "criterio": "ambiguedad",
+              "juicio_id": "J-EV-AMB-SIN-DATO-ambiguedad",
+              "evaluacion_id": "EV-AMB-SIN-DATO",
+              "documento_id": "DOC-AMB-SIN-DATO-v1",
+              "estado_evaluacion": "pendiente",
+              "grado_ambiguedad": null
+            },
+            {
+              "estado": "pendiente",
+              "reglas": [
+                "GL02"
+              ],
+              "texto_requerimiento": "El sistema debe notificar a los clientes habituales.",
+              "banda_difusa": "media",
+              "version": 1,
+              "requerimiento_id": "RQ-HAB-v1",
+              "resultados": [
+                "R-J-EV-HAB-ambiguedad"
+              ],
+              "criterio": "ambiguedad",
+              "juicio_id": "J-EV-HAB-ambiguedad",
+              "evaluacion_id": "EV-HAB",
+              "documento_id": "DOC-HAB-v1",
+              "estado_evaluacion": "pendiente",
+              "grado_ambiguedad": 0.501254
+            }
+          ],
+          "reglas": [
+            {
+              "id": "GL02",
+              "modulo": "global",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+              "fuente": "PG1 §6.3"
+            }
+          ]
+        },
+        "explicacion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "respuesta": "Los juicios de ambigüedad que siguen pendientes son [J-EV-AMB-SIN-DATO-ambiguedad] y [J-EV-HAB-ambiguedad]. Según la regla GL02, estado candidata, estos análisis quedan pendientes debido a la falta de datos necesarios para concluir. [J-EV-AMB-SIN-DATO-ambiguedad] para el requerimiento RQ-AMB-SIN-DATO-v1, y [J-EV-HAB-ambiguedad] para RQ-HAB-v1, con un grado de ambigüedad calculado de 0.501 y banda media.",
+              "violaciones": [],
+              "modelo": "qwen2.5:7b",
+              "segundos": 87.72,
+              "tokens_entrada": 1892,
+              "tokens_salida": 147
+            }
+          ],
+          "hechos_verificables": [
+            "J-EV-AMB-SIN-DATO-ambiguedad: requerimiento RQ-AMB-SIN-DATO-v1 («El sistema debe responder de forma adecuada.»), criterio ambiguedad, estado pendiente por GL02; sin grado calculado.",
+            "J-EV-HAB-ambiguedad: requerimiento RQ-HAB-v1 («El sistema debe notificar a los clientes habituales.»), criterio ambiguedad, estado pendiente por GL02; grado 0.501, banda media.",
+            "Regla GL02 (estado candidata, PG1 §6.3): SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+            "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+            "La respuesta debe mencionar estos IDs: J-EV-AMB-SIN-DATO-ambiguedad, J-EV-HAB-ambiguedad.",
+            "Estados que figuran en el paquete: pendiente. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «cumple», «incumple», «observado», «sin hallazgo», «no evaluable», «resuelto», «por consultar» en la respuesta."
+          ],
+          "cobertura_requerida": {
+            "ids": [
+              "J-EV-AMB-SIN-DATO-ambiguedad",
+              "J-EV-HAB-ambiguedad"
+            ],
+            "estados": []
+          },
+          "resultado_verificacion": "aprobada"
+        },
+        "respuesta_final": "Los juicios de ambigüedad que siguen pendientes son [J-EV-AMB-SIN-DATO-ambiguedad] y [J-EV-HAB-ambiguedad]. Según la regla GL02, estado candidata, estos análisis quedan pendientes debido a la falta de datos necesarios para concluir. [J-EV-AMB-SIN-DATO-ambiguedad] para el requerimiento RQ-AMB-SIN-DATO-v1, y [J-EV-HAB-ambiguedad] para RQ-HAB-v1, con un grado de ambigüedad calculado de 0.501 y banda media.",
+        "tipo_salida": "explicacion",
+        "segundos_totales": 122.81,
+        "archivo_traza": "submodulos/20261114_124603_289_E2E-06_p1_SM1.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM1",
+        "intencion": "listar_juicios",
+        "fuentes": [
+          "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)"
+        ],
+        "consultas": [
+          {
+            "consulta": "Q3_listado_juicios",
+            "parametros": {
+              "criterio": "ambiguedad",
+              "estado": "pendiente",
+              "banda": null,
+              "solo_vigentes": true
+            },
+            "filas": 2,
+            "milisegundos": 969.2,
+            "cypher": "// Q3. Listado filtrado de juicios de SM1.\n// Parámetros: $criterio, $estado, $banda (String o null) y $solo_vigentes (Boolean).\nMATCH (ev:AuditIA_PG2:EvaluacionIndividual)-[:CONTIENE_JUICIO]->(j:JuicioCriterio)-[:APLICA_CRITERIO]->(c:CriterioCalidad),\n      (ev)-[:EVALUA]->(rq:Requerimiento),\n      (ev)-[:REVISA_DOCUMENTO]->(doc:DocumentoVersion)\nWHERE ($criterio IS NULL OR c.nombre = $criterio)\n  AND ($estado IS NULL OR j.estado = $estado)\n  AND ($banda IS NULL OR j.banda_difusa = $banda)\n  AND ($solo_vigentes = false OR NOT EXISTS { MATCH (:Evaluacion)-[:REEVALUA]->(ev) })\nRETURN {\n  requerimiento_id: rq.id,\n  texto_requerimiento: rq.texto_original,\n  documento_id: doc.id,\n  version: toInteger(doc.version),\n  evaluacion_id: ev.id,\n  estado_evaluacion: ev.estado,\n  criterio: c.nombre,\n  juicio_id: j.id,\n  estado: j.estado,\n  reglas: [(j)-[:APLICA_REGLA]->(r:Regla) | r.id],\n  grado_ambiguedad: CASE WHEN j.grado_ambiguedad IS NULL THEN null ELSE round(j.grado_ambiguedad, 6) END,\n  banda_difusa: j.banda_difusa,\n  resultados: [(o:ResultadoAnalisis)-[:DERIVA_DE_JUICIO]->(j) | o.id]\n} AS juicio\nORDER BY rq.id_logico, toInteger(doc.version), ev.id, c.nombre\nLIMIT 40"
+          },
+          {
+            "consulta": "Q6_reglas",
+            "parametros": {
+              "ids": [
+                "GL02"
+              ]
+            },
+            "filas": 1,
+            "milisegundos": 29.1,
+            "cypher": "// Q6. Consulta complementaria: texto, estado y fuente de las reglas citadas en un paquete.\n// Parámetros: $ids (List<String>).\nMATCH (r:AuditIA_PG2:Regla)\nWHERE r.id IN $ids\nRETURN r.id AS id, r.modulo AS modulo, r.estado_validacion AS estado_validacion,\n       r.ejecucion AS ejecucion, r.descripcion AS descripcion, r.descripcion_fuente AS fuente\nORDER BY id"
+          }
+        ],
+        "reglas": [
+          {
+            "id": "GL02",
+            "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+            "fuente": "PG1 §6.3",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          }
+        ],
+        "evidencias": [],
+        "observaciones": [],
+        "verificacion": "aprobada",
+        "intentos_explicacion": 1,
+        "tipo_salida": "explicacion"
+      }
+    },
+    {
+      "paso": 2,
+      "submodulo": "SM2",
+      "subconsulta": "¿Qué análisis cruzados siguen pendientes?",
+      "enlace": null,
+      "traza": {
+        "prototipo": "PI4-SM2-1.0",
+        "fecha": "2026-11-14T12:46:03",
+        "modelo": "qwen2.5:7b",
+        "hilos": null,
+        "huella_prompts": "8d97773b8e67",
+        "caso": "E2E-06_p2_SM2",
+        "consulta_usuario": "¿Qué análisis cruzados siguen pendientes?",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"listar_analisis\", \"entidades\": {\"requerimiento_ids\": [], \"requerimiento_texto\": null, \"documento_id\": null, \"evaluacion_id\": null, \"observacion_id\": null}, \"conceptos\": {\"categoria\": null}, \"filtros\": {\"tipo_analisis\": null, \"estado\": \"pendiente\"}, \"condiciones\": {\"alcance\": \"vigente\"}, \"faltantes\": []}",
+              "modelo": "qwen2.5:7b",
+              "segundos": 185.84,
+              "tokens_entrada": 2784,
+              "tokens_salida": 100,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [],
+          "json_validado": {
+            "intencion": "listar_analisis",
+            "entidades": {
+              "requerimiento_ids": [],
+              "requerimiento_texto": null,
+              "documento_id": null,
+              "evaluacion_id": null,
+              "observacion_id": null
+            },
+            "conceptos": {
+              "categoria": null
+            },
+            "filtros": {
+              "tipo_analisis": null,
+              "estado": "pendiente"
+            },
+            "condiciones": {
+              "alcance": "vigente"
+            },
+            "faltantes": []
+          }
+        },
+        "intencion": "listar_analisis",
+        "consultas_cypher": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 12,
+            "milisegundos": 4073.6
+          },
+          {
+            "consulta": "Q5_listado_analisis",
+            "parametros": {
+              "tipo_analisis": null,
+              "estado": "pendiente",
+              "solo_vigentes": true
+            },
+            "filas": 2,
+            "milisegundos": 5748.0
+          },
+          {
+            "consulta": "Q8_reglas",
+            "parametros": {
+              "ids": [
+                "ACC-RD07",
+                "ACC-RD12"
+              ]
+            },
+            "filas": 2,
+            "milisegundos": 344.3
+          }
+        ],
+        "paquete_evidencia": {
+          "intencion": "listar_analisis",
+          "consulta_usuario": "¿Qué análisis cruzados siguen pendientes?",
+          "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "filtros_aplicados": {
+            "tipo_analisis": null,
+            "estado": "pendiente",
+            "solo_vigentes": true
+          },
+          "total_analisis": 2,
+          "analisis": [
+            {
+              "grado_contradiccion": null,
+              "estado": "pendiente",
+              "reglas": [
+                "ACC-RD12"
+              ],
+              "banda_difusa": null,
+              "dato_faltante": "Confirmar existencia de datos sensibles",
+              "motivo_o_defecto": "perfil_insuficiente",
+              "tipo_analisis": "cobertura",
+              "evaluacion_id": "EV-SEG-DESCONOCIDO",
+              "vigente": true,
+              "documento_id": "DOC-SEG-DESCONOCIDO-v1",
+              "resultado_id": "P-SEG",
+              "clase": "Pendiente"
+            },
+            {
+              "grado_contradiccion": 0.5,
+              "estado": "pendiente",
+              "reglas": [
+                "ACC-RD07"
+              ],
+              "banda_difusa": "intermedia",
+              "dato_faltante": "Precisar el intervalo entre preparación y despacho",
+              "motivo_o_defecto": "frontera_semantica",
+              "tipo_analisis": "comparacion",
+              "evaluacion_id": "EV-PED-FRONTERA",
+              "vigente": true,
+              "documento_id": "DOC-PED-v1",
+              "resultado_id": "P-PED-FRONTERA",
+              "clase": "Pendiente"
+            }
+          ],
+          "reglas": [
+            {
+              "id": "ACC-RD07",
+              "modulo": "analisis_cruzado",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI no puede cerrarse la interpretación del escenario ENTONCES Pendiente(frontera_semantica).",
+              "fuente": "PG1 §6.5"
+            },
+            {
+              "id": "ACC-RD12",
+              "modulo": "analisis_cruzado",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI se desconoce la condición del catálogo ENTONCES Pendiente(perfil_insuficiente).",
+              "fuente": "PG1 §6.5"
+            }
+          ]
+        },
+        "explicacion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "respuesta": "Las evaluaciones pendientes son EV-SEG-DESCONOCIDO (pendiente, regla ACC-RD12, genera Pendiente P-SEG) y EV-PED-FRONTERA (pendiente, regla ACC-RD07, genera Pendiente P-PED-FRONTERA).\n\nSe comparó la cobertura del documento DOC-SEG-DESCONOCIDO-v1 con la regla ACC-RD12, encontrando que se desconoce la condición del catálogo, lo que genera un Pendiente P-SEG con el dato faltante \"Confirmar existencia de datos sensibles\". \n\nPara EV-PED-FRONTERA, se revisó la comparación del documento DOC-PED-v1 con ACC-RD07, identificando que no puede cerrarse la interpretación del escenario, lo que genera un Pendiente P-PED-FRONTERA con el dato faltante \"Precisar el intervalo entre preparación y despacho\" y un grado de contradicción intermedio de 0,500.\n\nEstos resultados son provisionales del prototipo académico, sin validación experta.",
+              "violaciones": [],
+              "modelo": "qwen2.5:7b",
+              "segundos": 193.08,
+              "tokens_entrada": 2419,
+              "tokens_salida": 248
+            }
+          ],
+          "hechos_verificables": [
+            "Conclusiones registradas, para escribirlas en el texto corrido de la respuesta (ID con su estado exacto entre paréntesis; esto va en el texto y no entre corchetes): EV-SEG-DESCONOCIDO (pendiente, regla ACC-RD12, genera Pendiente P-SEG); EV-PED-FRONTERA (pendiente, regla ACC-RD07, genera Pendiente P-PED-FRONTERA).",
+            "Filtros aplicados: tipo_analisis = null, estado = pendiente, solo vigentes = true. Total de evaluaciones recuperadas: 2.",
+            "EV-SEG-DESCONOCIDO (cobertura, DOC-SEG-DESCONOCIDO-v1): pendiente por ACC-RD12; genera Pendiente P-SEG (perfil_insuficiente) con dato faltante «Confirmar existencia de datos sensibles».",
+            "EV-PED-FRONTERA (comparacion, DOC-PED-v1): pendiente por ACC-RD07; genera Pendiente P-PED-FRONTERA (frontera_semantica) con dato faltante «Precisar el intervalo entre preparación y despacho»; grado de contradicción 0,500, banda intermedia.",
+            "Solo se listan evaluaciones vigentes: las que otra evaluación REEVALUA quedan como historia y no aparecen en este listado.",
+            "Regla ACC-RD07 (implementada, estado candidata, PG1 §6.5): SI no puede cerrarse la interpretación del escenario ENTONCES Pendiente(frontera_semantica).",
+            "Regla ACC-RD12 (implementada, estado candidata, PG1 §6.5): SI se desconoce la condición del catálogo ENTONCES Pendiente(perfil_insuficiente).",
+            "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+            "La respuesta debe mencionar estos IDs: EV-SEG-DESCONOCIDO, P-SEG, EV-PED-FRONTERA, P-PED-FRONTERA, ACC-RD12, ACC-RD07.",
+            "La respuesta debe escribir textualmente estos estados, tal como figuran: pendiente. Un verbo parecido (por ejemplo «se observó») no alcanza.",
+            "Estados que figuran en el paquete: pendiente. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «observado», «sin hallazgo», «no evaluable», «resuelta», «resuelto», «por consultar», «no aplicable» en la respuesta."
+          ],
+          "cobertura_requerida": {
+            "ids": [
+              "EV-SEG-DESCONOCIDO",
+              "P-SEG",
+              "EV-PED-FRONTERA",
+              "P-PED-FRONTERA",
+              "ACC-RD12",
+              "ACC-RD07"
+            ],
+            "estados": [
+              "pendiente"
+            ]
+          },
+          "resultado_verificacion": "aprobada"
+        },
+        "respuesta_final": "Las evaluaciones pendientes son EV-SEG-DESCONOCIDO (pendiente, regla ACC-RD12, genera Pendiente P-SEG) y EV-PED-FRONTERA (pendiente, regla ACC-RD07, genera Pendiente P-PED-FRONTERA).\n\nSe comparó la cobertura del documento DOC-SEG-DESCONOCIDO-v1 con la regla ACC-RD12, encontrando que se desconoce la condición del catálogo, lo que genera un Pendiente P-SEG con el dato faltante \"Confirmar existencia de datos sensibles\". \n\nPara EV-PED-FRONTERA, se revisó la comparación del documento DOC-PED-v1 con ACC-RD07, identificando que no puede cerrarse la interpretación del escenario, lo que genera un Pendiente P-PED-FRONTERA con el dato faltante \"Precisar el intervalo entre preparación y despacho\" y un grado de contradicción intermedio de 0,500.\n\nEstos resultados son provisionales del prototipo académico, sin validación experta.",
+        "tipo_salida": "explicacion",
+        "segundos_totales": 389.1,
+        "archivo_traza": "submodulos/20261114_125308_108_E2E-06_p2_SM2.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM2",
+        "intencion": "listar_analisis",
+        "fuentes": [
+          "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)"
+        ],
+        "consultas": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 12,
+            "milisegundos": 4073.6,
+            "cypher": "// Q0. Catálogo de lo que analizó SM2: una fila por evaluación cruzada y requerimiento vinculado, con su rol\n// (comparado, origen_dependencia, definicion o alcance_cobertura), la categoría evaluada y el resultado.\n// Alimenta la resolución determinística de entidades. Solo lectura. Sin parámetros.\nMATCH (ev:AuditIA_PG2:EvaluacionCruzada)-[:REVISA_DOCUMENTO]->(doc:AuditIA_PG2:DocumentoVersion)\nWITH ev, doc,\n     [(ev)-[:COMPARA]->(r:Requerimiento) | {r: r, rol: 'comparado'}] +\n     [(ev)-[:RASTREA]->(:Dependencia)-[:TIENE_ORIGEN]->(r:Requerimiento) | {r: r, rol: 'origen_dependencia'}] +\n     [(ev)-[:RASTREA]->(:Dependencia)-[:RESUELTA_POR]->(r:Requerimiento) | {r: r, rol: 'definicion'}] +\n     CASE WHEN ev.tipo_analisis = 'cobertura'\n          THEN [(doc)-[:CONTIENE]->(r:Requerimiento) | {r: r, rol: 'alcance_cobertura'}] ELSE [] END AS vinculos\nUNWIND vinculos AS v\nWITH DISTINCT ev, doc, v.r AS rq, v.rol AS rol\nRETURN ev.id AS evaluacion_id, ev.tipo_analisis AS tipo_analisis, ev.estado AS estado,\n       doc.id AS documento_id, toInteger(doc.version) AS version,\n       rq.id AS requerimiento_id, rq.id_logico AS id_logico, rq.texto_original AS texto, rol,\n       head([(ev)-[:EVALUA_CATEGORIA]->(c:CategoriaNFR) | c.nombre]) AS categoria,\n       head([(ev)-[:GENERA]->(o:ResultadoAnalisis) | o.id]) AS resultado_id,\n       NOT EXISTS { MATCH (:Evaluacion)-[:REEVALUA]->(ev) } AS vigente\nORDER BY tipo_analisis, evaluacion_id, requerimiento_id"
+          },
+          {
+            "consulta": "Q5_listado_analisis",
+            "parametros": {
+              "tipo_analisis": null,
+              "estado": "pendiente",
+              "solo_vigentes": true
+            },
+            "filas": 2,
+            "milisegundos": 5748.0,
+            "cypher": "// Q5. Listado filtrado de evaluaciones cruzadas de SM2 con su regla, resultado y grado.\n// Parámetros: $tipo_analisis, $estado (String o null) y $solo_vigentes (Boolean).\nMATCH (ev:AuditIA_PG2:EvaluacionCruzada)-[:REVISA_DOCUMENTO]->(doc:DocumentoVersion)\nWHERE ($tipo_analisis IS NULL OR ev.tipo_analisis = $tipo_analisis)\n  AND ($estado IS NULL OR ev.estado = $estado)\n  AND ($solo_vigentes = false OR NOT EXISTS { MATCH (:Evaluacion)-[:REEVALUA]->(ev) })\nOPTIONAL MATCH (ev)-[:GENERA]->(o:ResultadoAnalisis)\nRETURN {\n  evaluacion_id: ev.id,\n  tipo_analisis: ev.tipo_analisis,\n  estado: ev.estado,\n  documento_id: doc.id,\n  reglas: [(ev)-[:APLICA_REGLA]->(r:Regla) | r.id],\n  resultado_id: o.id,\n  clase: CASE WHEN o:Hallazgo THEN 'Hallazgo' WHEN o:Pendiente THEN 'Pendiente' ELSE null END,\n  motivo_o_defecto: coalesce(o.tipo_defecto, o.motivo_pendiente),\n  dato_faltante: o.dato_faltante,\n  grado_contradiccion: CASE WHEN ev.grado_contradiccion IS NULL THEN null ELSE round(ev.grado_contradiccion, 6) END,\n  banda_difusa: ev.banda_difusa,\n  vigente: NOT EXISTS { MATCH (:Evaluacion)-[:REEVALUA]->(ev) }\n} AS analisis\nORDER BY analisis.tipo_analisis, analisis.evaluacion_id"
+          },
+          {
+            "consulta": "Q8_reglas",
+            "parametros": {
+              "ids": [
+                "ACC-RD07",
+                "ACC-RD12"
+              ]
+            },
+            "filas": 2,
+            "milisegundos": 344.3,
+            "cypher": "// Q8. Consulta complementaria: texto, estado, ejecución y fuente de las reglas citadas en un paquete.\n// Parámetros: $ids (List<String>).\nMATCH (r:AuditIA_PG2:Regla)\nWHERE r.id IN $ids\nRETURN r.id AS id, r.modulo AS modulo, r.estado_validacion AS estado_validacion,\n       r.ejecucion AS ejecucion, r.descripcion AS descripcion, r.descripcion_fuente AS fuente\nORDER BY id"
+          }
+        ],
+        "reglas": [
+          {
+            "id": "ACC-RD07",
+            "descripcion": "SI no puede cerrarse la interpretación del escenario ENTONCES Pendiente(frontera_semantica).",
+            "fuente": "PG1 §6.5",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "ACC-RD12",
+            "descripcion": "SI se desconoce la condición del catálogo ENTONCES Pendiente(perfil_insuficiente).",
+            "fuente": "PG1 §6.5",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          }
+        ],
+        "evidencias": [],
+        "observaciones": [],
+        "verificacion": "aprobada",
+        "intentos_explicacion": 1,
+        "tipo_salida": "explicacion"
+      }
+    },
+    {
+      "paso": 3,
+      "submodulo": "SM3",
+      "subconsulta": "¿Qué observaciones bloquean la firma por un problema de fondo?",
+      "enlace": null,
+      "traza": {
+        "prototipo": "PI4-SM3-1.0",
+        "fecha": "2026-11-14T12:53:08",
+        "modelo": "qwen2.5:7b",
+        "hilos": null,
+        "huella_prompts": "837a200f0dfe",
+        "caso": "E2E-06_p3_SM3",
+        "consulta_usuario": "¿Qué observaciones bloquean la firma por un problema de fondo?",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"listar_prioridades\", \"entidades\": {\"observacion_id\": null, \"observacion_texto\": null, \"documento_id\": null}, \"filtros\": {\"prioridad\": \"bloqueante\", \"motivo\": \"sustantivo\", \"estado_seguimiento\": \"abiertas\"}, \"matriz\": {\"severidad\": null, \"criticidad\": null}, \"faltantes\": []}",
+              "modelo": "qwen2.5:7b",
+              "segundos": 29.82,
+              "tokens_entrada": 2782,
+              "tokens_salida": 95,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [],
+          "json_validado": {
+            "intencion": "listar_prioridades",
+            "entidades": {
+              "observacion_id": null,
+              "observacion_texto": null,
+              "documento_id": null
+            },
+            "filtros": {
+              "prioridad": "bloqueante",
+              "motivo": "sustantivo",
+              "estado_seguimiento": "abiertas"
+            },
+            "matriz": {
+              "severidad": null,
+              "criticidad": null
+            },
+            "faltantes": []
+          }
+        },
+        "intencion": "listar_prioridades",
+        "consultas_cypher": [
+          {
+            "consulta": "Q1_listado_prioridades",
+            "parametros": {
+              "prioridad": "bloqueante",
+              "motivo": "sustantivo",
+              "documento_id": null,
+              "estado": "abiertas"
+            },
+            "filas": 2,
+            "milisegundos": 760.8
+          },
+          {
+            "consulta": "Q9_reglas",
+            "parametros": {
+              "ids": [
+                "PRC-HC01",
+                "PRC-HC02"
+              ]
+            },
+            "filas": 2,
+            "milisegundos": 26.8
+          }
+        ],
+        "paquete_evidencia": {
+          "intencion": "listar_prioridades",
+          "consulta_usuario": "¿Qué observaciones bloquean la firma por un problema de fondo?",
+          "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "filtros_aplicados": {
+            "prioridad": "bloqueante",
+            "motivo": "sustantivo",
+            "documento_id": null,
+            "estado": "abiertas"
+          },
+          "total_decisiones": 2,
+          "decisiones": [
+            {
+              "observacion": "H-DESC",
+              "tipo": "hallazgo",
+              "modulo_origen": "analisis_cruzado",
+              "descripcion": "La misma venta exige precio con y sin descuento",
+              "documento": "DOC-DESC-v1",
+              "decision": "D-H-DESC",
+              "prioridad": "bloqueante",
+              "motivo": "sustantivo",
+              "regla": "PRC-HC01",
+              "severidad": "alta",
+              "criticidad": "alta",
+              "grado_urgencia": 8.083,
+              "banda_urgencia": "alta",
+              "estado": "por_consultar",
+              "provisional": true,
+              "emitible": false
+            },
+            {
+              "observacion": "H-PRIO-EXCEPCION",
+              "tipo": "hallazgo",
+              "modulo_origen": "evaluacion_individual",
+              "descripcion": "Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una; análisis construido para probar el tratamiento de SM3.",
+              "documento": "DOC-PRIO-v1",
+              "decision": "D-H-PRIO-EXCEPCION",
+              "prioridad": "bloqueante",
+              "motivo": "sustantivo",
+              "regla": "PRC-HC02",
+              "severidad": "baja",
+              "criticidad": "alta",
+              "grado_urgencia": 7.381,
+              "banda_urgencia": "alta",
+              "estado": "por_consultar",
+              "provisional": true,
+              "emitible": false
+            }
+          ],
+          "reglas": [
+            {
+              "id": "PRC-HC01",
+              "modulo": "priorizacion_clarificacion",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI un hallazgo deja indefinida una obligación esencial ENTONCES prioridad bloqueante, motivo sustantivo.",
+              "fuente": "PG1 §6.6"
+            },
+            {
+              "id": "PRC-HC02",
+              "modulo": "priorizacion_clarificacion",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI severidad = baja y criticidad = alta (mapeo candidato activo) ENTONCES bloqueante sustantiva provisional, sin cambiar la severidad.",
+              "fuente": "PG1 §6.6"
+            }
+          ]
+        },
+        "explicacion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "respuesta": "La decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible [H-DESC, D-H-DESC, PRC-HC01]. La decisión D-H-PRIO-EXCEPCION también tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible [H-PRIO-EXCEPCION, D-H-PRIO-EXCEPCION, PRC-HC02].\n\nLa regla PRC-HC01 establece que si un hallazgo deja indefinida una obligación esencial, la prioridad es bloqueante y el motivo es sustantivo. En este caso, el hallazgo H-DESC (ID: H-DESC) indica que la misma venta exige precio con y sin descuento, dejando indefinida una obligación esencial, lo que justifica la prioridad bloqueante y el motivo sustantivo.\n\nLa regla PRC-HC02, en tanto, indica que si la severidad es baja y la criticidad es alta, la prioridad es bloqueante y sustantiva provisional, sin cambiar la severidad. El hallazgo H-PRIO-EXCEPCION (ID: H-PRIO-EXCEPCION) muestra lecturas CSV y PDF para formato estándar, sin una definición que seleccione una, con severidad baja y criticidad alta, lo que también justifica la prioridad bloqueante y el motivo sustantivo.",
+              "violaciones": [],
+              "modelo": "qwen2.5:7b",
+              "segundos": 221.98,
+              "tokens_entrada": 2925,
+              "tokens_salida": 333
+            }
+          ],
+          "hechos_verificables": [
+            "Filtros aplicados: prioridad bloqueante, motivo sustantivo, documento null, estado abiertas. Decisiones vigentes recuperadas: 2. El orden es el de la consulta: prioridad y, dentro de ella, grado de urgencia descendente.",
+            "H-DESC (hallazgo, emitida por analisis_cruzado, documento DOC-DESC-v1; descripción «La misma venta exige precio con y sin descuento»): decisión D-H-DESC, prioridad bloqueante, motivo sustantivo, regla PRC-HC01, severidad alta, criticidad alta, grado_urgencia 8.083, banda alta, seguimiento por_consultar; provisional = true, emitible = false.",
+            "H-PRIO-EXCEPCION (hallazgo, emitida por evaluacion_individual, documento DOC-PRIO-v1; descripción «Lecturas CSV y PDF para formato estándar, sin una definición que seleccione una; análisis construido para probar el tratamiento de SM3.»): decisión D-H-PRIO-EXCEPCION, prioridad bloqueante, motivo sustantivo, regla PRC-HC02, severidad baja, criticidad alta, grado_urgencia 7.381, banda alta, seguimiento por_consultar; provisional = true, emitible = false.",
+            "Regla PRC-HC01 (estado candidata, ejecución en PG2: implementada, PG1 §6.6): SI un hallazgo deja indefinida una obligación esencial ENTONCES prioridad bloqueante, motivo sustantivo.",
+            "Regla PRC-HC02 (estado candidata, ejecución en PG2: implementada, PG1 §6.6): SI severidad = baja y criticidad = alta (mapeo candidato activo) ENTONCES bloqueante sustantiva provisional, sin cambiar la severidad.",
+            "Las decisiones, reglas, celdas y modelos citados son provisionales o candidatos: resultado del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+            "emitible = false: la respuesta debe decir que la recomendación todavía no es emitible.",
+            "La respuesta debe mencionar estos IDs: H-DESC, D-H-DESC, PRC-HC01, H-PRIO-EXCEPCION, D-H-PRIO-EXCEPCION, PRC-HC02. Entre corchetes van solo IDs, por ejemplo [H-DESC, D-H-DESC]; los valores se escriben con palabras, fuera de los corchetes.",
+            "La respuesta debe nombrar con palabras estos valores: bloqueante, por consultar, sustantivo.",
+            "La respuesta debe explicar primero el fundamento de cada decisión (premisas, evidencia y regla con su significado) y cerrar cada una con una oración como: «La decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible.»",
+            "Valores de prioridad, motivo y estado que figuran en el paquete: bloqueante, por_consultar, sustantivo. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas «preventivo», «en hito», «diferimiento», «resuelto», «pendiente complemento», «observado», «sin hallazgo», «no evaluable» como conclusión."
+          ],
+          "cobertura_requerida": {
+            "ids": [
+              "H-DESC",
+              "D-H-DESC",
+              "PRC-HC01",
+              "H-PRIO-EXCEPCION",
+              "D-H-PRIO-EXCEPCION",
+              "PRC-HC02"
+            ],
+            "valores": [
+              "bloqueante",
+              "por_consultar",
+              "sustantivo"
+            ]
+          },
+          "resultado_verificacion": "aprobada"
+        },
+        "respuesta_final": "La decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible [H-DESC, D-H-DESC, PRC-HC01]. La decisión D-H-PRIO-EXCEPCION también tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible [H-PRIO-EXCEPCION, D-H-PRIO-EXCEPCION, PRC-HC02].\n\nLa regla PRC-HC01 establece que si un hallazgo deja indefinida una obligación esencial, la prioridad es bloqueante y el motivo es sustantivo. En este caso, el hallazgo H-DESC (ID: H-DESC) indica que la misma venta exige precio con y sin descuento, dejando indefinida una obligación esencial, lo que justifica la prioridad bloqueante y el motivo sustantivo.\n\nLa regla PRC-HC02, en tanto, indica que si la severidad es baja y la criticidad es alta, la prioridad es bloqueante y sustantiva provisional, sin cambiar la severidad. El hallazgo H-PRIO-EXCEPCION (ID: H-PRIO-EXCEPCION) muestra lecturas CSV y PDF para formato estándar, sin una definición que seleccione una, con severidad baja y criticidad alta, lo que también justifica la prioridad bloqueante y el motivo sustantivo.",
+        "tipo_salida": "explicacion",
+        "segundos_totales": 252.59,
+        "archivo_traza": "submodulos/20261114_125742_372_E2E-06_p3_SM3.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM3",
+        "intencion": "listar_prioridades",
+        "fuentes": [
+          "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)"
+        ],
+        "consultas": [
+          {
+            "consulta": "Q1_listado_prioridades",
+            "parametros": {
+              "prioridad": "bloqueante",
+              "motivo": "sustantivo",
+              "documento_id": null,
+              "estado": "abiertas"
+            },
+            "filas": 2,
+            "milisegundos": 760.8,
+            "cypher": "// Q1. ¿Qué observaciones hay que atender y con qué prioridad? Lista las decisiones vigentes de SM3\n// (las que no tienen sucesora por SUSTITUYE_A), ordenadas por prioridad y grado de urgencia.\n// Parámetros: $prioridad, $motivo, $documento_id (String o null) y $estado ('abiertas', 'resueltas' o 'todas').\nMATCH (d:AuditIA_PG2:DecisionPrioridad)-[:PRIORIZA]->(o:ResultadoAnalisis),\n      (d)-[:TIENE_ESTADO]->(er:EstadoResolucion), (d)-[:APLICA_REGLA]->(r:Regla),\n      (ev:Evaluacion)-[:GENERA]->(o), (ev)-[:REVISA_DOCUMENTO]->(doc:DocumentoVersion)\nWHERE NOT EXISTS { MATCH (:DecisionPrioridad)-[:SUSTITUYE_A]->(d) }\n  AND ($prioridad IS NULL OR d.prioridad = $prioridad)\n  AND ($motivo IS NULL OR d.motivo = $motivo)\n  AND ($documento_id IS NULL OR doc.id = $documento_id)\n  AND ($estado = 'todas' OR ($estado = 'abiertas' AND er.valor <> 'resuelto')\n       OR ($estado = 'resueltas' AND er.valor = 'resuelto'))\nOPTIONAL MATCH (o)-[:TIENE_SEVERIDAD]->(sv:Severidad)\nOPTIONAL MATCH (cr:AuditIA_PG2:Criticidad {id: d.criticidad_id})\nRETURN o.id AS observacion,\n       CASE WHEN o:Hallazgo THEN 'hallazgo' ELSE 'pendiente' END AS tipo,\n       o.modulo_origen AS modulo_origen, o.descripcion AS descripcion, doc.id AS documento,\n       d.id AS decision, d.prioridad AS prioridad, d.motivo AS motivo, r.id AS regla,\n       sv.valor AS severidad, cr.valor AS criticidad,\n       CASE WHEN d.grado_urgencia IS NULL THEN null ELSE round(d.grado_urgencia, 3) END AS grado_urgencia,\n       d.banda_difusa AS banda_urgencia, er.valor AS estado,\n       d.provisional AS provisional, d.emitible AS emitible\nORDER BY CASE d.prioridad WHEN 'bloqueante' THEN 0 WHEN 'mayor' THEN 1 ELSE 2 END,\n         coalesce(d.grado_urgencia, -1) DESC, observacion"
+          },
+          {
+            "consulta": "Q9_reglas",
+            "parametros": {
+              "ids": [
+                "PRC-HC01",
+                "PRC-HC02"
+              ]
+            },
+            "filas": 2,
+            "milisegundos": 26.8,
+            "cypher": "// Q9. Consulta complementaria: texto, estado de validación, ejecución en PG2 y fuente de las reglas citadas.\n// Parámetros: $ids (List<String>).\nMATCH (r:AuditIA_PG2:Regla)\nWHERE r.id IN $ids\nRETURN r.id AS id, r.modulo AS modulo, r.estado_validacion AS estado_validacion,\n       r.ejecucion AS ejecucion, r.descripcion AS descripcion, r.descripcion_fuente AS fuente\nORDER BY id"
+          }
+        ],
+        "reglas": [
+          {
+            "id": "PRC-HC01",
+            "descripcion": "SI un hallazgo deja indefinida una obligación esencial ENTONCES prioridad bloqueante, motivo sustantivo.",
+            "fuente": "PG1 §6.6",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "PRC-HC02",
+            "descripcion": "SI severidad = baja y criticidad = alta (mapeo candidato activo) ENTONCES bloqueante sustantiva provisional, sin cambiar la severidad.",
+            "fuente": "PG1 §6.6",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          }
+        ],
+        "evidencias": [],
+        "observaciones": [],
+        "verificacion": "aprobada",
+        "intentos_explicacion": 1,
+        "tipo_salida": "explicacion"
+      }
+    }
+  ],
+  "enrutamiento": {
+    "intentos": [
+      {
+        "salida": "{\n  \"tipo\": \"consulta\",\n  \"pasos\": [\n    {\n      \"submodulo\": \"SM1\",\n      \"subconsulta\": \"¿Qué juicios de ambigüedad siguen pendientes?\",\n      \"depende_de\": null\n    },\n    {\n      \"submodulo\": \"SM2\",\n      \"subconsulta\": \"¿Qué análisis cruzados siguen pendientes?\",\n      \"depende_de\": null\n    },\n    {\n      \"submodulo\": \"SM3\",\n      \"subconsulta\": \"¿Qué observaciones bloquean la firma por un problema de fondo?\",\n      \"depende_de\": null\n    }\n  ],\n  \"motivo\": \"La consulta requiere información de tres submódulos diferentes: SM1 para juicios de ambigüedad, SM2 para análisis cruzados y SM3 para observaciones que bloquean la firma.\"\n}",
+        "errores": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 43.17,
+        "tokens_entrada": 1819,
+        "tokens_salida": 185
+      }
+    ],
+    "huella_prompt": "45af5da3ce6b",
+    "fuente": "llm",
+    "plan": {
+      "tipo": "consulta",
+      "pasos": [
+        {
+          "submodulo": "SM1",
+          "subconsulta": "¿Qué juicios de ambigüedad siguen pendientes?",
+          "depende_de": null
+        },
+        {
+          "submodulo": "SM2",
+          "subconsulta": "¿Qué análisis cruzados siguen pendientes?",
+          "depende_de": null
+        },
+        {
+          "submodulo": "SM3",
+          "subconsulta": "¿Qué observaciones bloquean la firma por un problema de fondo?",
+          "depende_de": null
+        }
+      ],
+      "motivo": "La consulta requiere información de tres submódulos diferentes: SM1 para juicios de ambigüedad, SM2 para análisis cruzados y SM3 para observaciones que bloquean la firma."
+    }
+  },
+  "sintesis": {
+    "intentos": [
+      {
+        "texto": "Los juicios de ambigüedad [J-EV-AMB-SIN-DATO-ambiguedad] y [J-EV-HAB-ambiguedad] siguen pendientes, según la regla GL02, debido a la falta de datos necesarios para concluir. Por otro lado, las evaluaciones cruzadas EV-SEG-DESCONOCIDO y EV-PED-FRONTERA también están pendientes, con datos faltantes que necesitan ser confirmados. Finalmente, la firma está bloqueada por las decisiones D-H-DESC y D-H-PRIO-EXCEPCION, que tienen prioridad bloqueante y motivo sustantivo, derivados de hallazgos H-DESC y H-PRIO-EXCEPCION, respectivamente. Estas conclusiones provienen de reglas y parámetros candidatos de un prototipo académico, sin validación experta.",
+        "violaciones": [
+          "no indica el origen [SM1]",
+          "no indica el origen [SM2]",
+          "omite las observaciones de SM2: ['P-PED-FRONTERA', 'P-SEG']",
+          "no indica el origen [SM3]",
+          "no aclara que las conclusiones son provisionales"
+        ],
+        "modelo": "qwen2.5:7b",
+        "segundos": 102.59,
+        "tokens_entrada": 1317,
+        "tokens_salida": 198
+      },
+      {
+        "texto": "Los juicios de ambigüedad que siguen pendientes son [J-EV-AMB-SIN-DATO-ambiguedad] y [J-EV-HAB-ambiguedad], según la regla GL02, estado candidata, debido a la falta de datos necesarios para concluir [SM1]. Además, las evaluaciones cruzadas pendientes son EV-SEG-DESCONOCIDO (pendiente, regla ACC-RD12, genera Pendiente P-SEG) y EV-PED-FRONTERA (pendiente, regla ACC-RD07, genera Pendiente P-PED-FRONTERA) [SM2]. Estas observaciones bloquean la firma por un problema de fondo: la decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible [H-DESC, D-H-DESC, PRC-HC01] [SM3]. Asimismo, la decisión D-H-PRIO-EXCEPCION también tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible [H-PRIO-EXCEPCION, D-H-PRIO-EXCEPCION, PRC-HC02] [SM3]. Estas conclusiones son provisionales del prototipo académico, sin validación experta.",
+        "violaciones": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 73.52,
+        "tokens_entrada": 1400,
+        "tokens_salida": 303
+      }
+    ],
+    "modo": "sintesis_llm_verificada"
+  },
+  "respuesta_final": "Los juicios de ambigüedad que siguen pendientes son [J-EV-AMB-SIN-DATO-ambiguedad] y [J-EV-HAB-ambiguedad], según la regla GL02, estado candidata, debido a la falta de datos necesarios para concluir [SM1]. Además, las evaluaciones cruzadas pendientes son EV-SEG-DESCONOCIDO (pendiente, regla ACC-RD12, genera Pendiente P-SEG) y EV-PED-FRONTERA (pendiente, regla ACC-RD07, genera Pendiente P-PED-FRONTERA) [SM2]. Estas observaciones bloquean la firma por un problema de fondo: la decisión D-H-DESC tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible [H-DESC, D-H-DESC, PRC-HC01] [SM3]. Asimismo, la decisión D-H-PRIO-EXCEPCION también tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible [H-PRIO-EXCEPCION, D-H-PRIO-EXCEPCION, PRC-HC02] [SM3]. Estas conclusiones son provisionales del prototipo académico, sin validación experta.",
+  "tipo_salida": "integrada",
+  "submodulos_consultados": [
+    "SM1",
+    "SM2",
+    "SM3"
+  ],
+  "tipos_salida_pasos": [
+    "explicacion"
+  ],
+  "segundos_totales": 984.19
+}

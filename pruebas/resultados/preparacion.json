@@ -1,0 +1,23 @@
+{
+  "fecha": "2026-11-19T02:48:23",
+  "neo4j_uri": "bolt://neo4j:7687",
+  "pg2": {
+    "segundos": 48.3,
+    "pruebas_pasadas": 44,
+    "conteo_nodos_relaciones": [
+      617,
+      1191
+    ]
+  },
+  "p0": {
+    "SM1": 19,
+    "SM2": 22,
+    "SM3": 18
+  },
+  "final": {
+    "reglas": 66,
+    "reglas_con_texto": 59,
+    "nodos": 617,
+    "relaciones": 1191
+  }
+}

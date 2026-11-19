@@ -1,0 +1,162 @@
+{
+  "type": "object",
+  "properties": {
+    "intencion": {
+      "type": "string",
+      "enum": [
+        "listar_prioridades",
+        "fundamento_prioridad",
+        "urgencia_difusa",
+        "clarificacion",
+        "consulta_matriz",
+        "revision_senior",
+        "informe_documento",
+        "otro_submodulo",
+        "accion_no_permitida",
+        "fuera_de_dominio",
+        "requiere_aclaracion"
+      ]
+    },
+    "entidades": {
+      "type": "object",
+      "properties": {
+        "observacion_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observacion_texto": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "documento_id": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "observacion_id",
+        "observacion_texto",
+        "documento_id"
+      ]
+    },
+    "filtros": {
+      "type": "object",
+      "properties": {
+        "prioridad": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "bloqueante",
+                "mayor",
+                "menor"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "motivo": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "preventivo",
+                "sustantivo",
+                "en_hito",
+                "diferimiento"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "estado_seguimiento": {
+          "type": "string",
+          "enum": [
+            "abiertas",
+            "resueltas",
+            "todas"
+          ]
+        }
+      },
+      "required": [
+        "prioridad",
+        "motivo",
+        "estado_seguimiento"
+      ]
+    },
+    "matriz": {
+      "type": "object",
+      "properties": {
+        "severidad": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "baja",
+                "media",
+                "alta"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "criticidad": {
+          "anyOf": [
+            {
+              "type": "string",
+              "enum": [
+                "baja",
+                "media",
+                "alta"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "severidad",
+        "criticidad"
+      ]
+    },
+    "faltantes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "required": [
+    "intencion",
+    "entidades",
+    "filtros",
+    "matriz",
+    "faltantes"
+  ]
+}

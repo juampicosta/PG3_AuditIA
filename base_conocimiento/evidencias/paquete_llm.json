@@ -1,0 +1,76 @@
+{
+  "grado_ambiguedad_origen": null,
+  "descripcion": "La misma venta exige precio con y sin descuento",
+  "motivo": "sustantivo",
+  "estado": "por_consultar",
+  "modelo_difuso": "MD-URG-1.0",
+  "grado_urgencia": 8.082999080276148,
+  "observacion_id": "H-DESC",
+  "prioridad": "bloqueante",
+  "version_origen": "1",
+  "reglas_decision": [
+    "PRC-HC01"
+  ],
+  "decision_id": "D-H-DESC",
+  "modulo_origen": "analisis_cruzado",
+  "provisional": true,
+  "estado_evaluacion_vigente": "observado",
+  "dato_faltante": null,
+  "evaluacion_origen_id": "EV-DESC",
+  "reglas_origen": [
+    "GL07",
+    "ACC-RD05"
+  ],
+  "modelo_ambiguedad": null,
+  "version": "1",
+  "evidencia_origen": [
+    {
+      "contenido": "En la misma venta de categoría A no se debe aplicar ningún descuento.",
+      "tipo": "fragmento",
+      "fuente": "S-CASOS",
+      "id": "E-RQ-DESC-B-v1",
+      "localizador": "RQ-DESC-B-v1"
+    },
+    {
+      "contenido": "En una venta de categoría A se debe aplicar el descuento del 10 %.",
+      "tipo": "fragmento",
+      "fuente": "S-CASOS",
+      "id": "E-RQ-DESC-A-v1",
+      "localizador": "RQ-DESC-A-v1"
+    },
+    {
+      "contenido": "RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.",
+      "tipo": "analisis",
+      "fuente": "S-CASOS",
+      "id": "E-EV-DESC",
+      "localizador": "EV-DESC"
+    }
+  ],
+  "grado_contradiccion": 0.8439745371591536,
+  "tratamiento_activo": true,
+  "descripcion_corresponde_a": "observacion_historica",
+  "modelo_diagnostico": "MD-CONTR-1.0",
+  "documento_origen_id": "DOC-DESC-v1",
+  "evidencia_decision": [
+    {
+      "contenido": "Contexto de prioridad construido de DESC",
+      "tipo": "declaracion",
+      "fuente": "S-CASOS",
+      "id": "E-X-DESC",
+      "localizador": "X-DESC"
+    }
+  ],
+  "evaluacion_id": "EV-DESC",
+  "documento_id": "DOC-DESC-v1",
+  "emitible": false,
+  "evidencia_evaluacion_vigente": [
+    {
+      "contenido": "RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.",
+      "tipo": "analisis",
+      "fuente": "S-CASOS",
+      "id": "E-EV-DESC",
+      "localizador": "EV-DESC"
+    }
+  ],
+  "grado_ambiguedad": null
+}

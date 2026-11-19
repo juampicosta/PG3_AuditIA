@@ -1,0 +1,207 @@
+{
+  "AMB": {
+    "nombre": "Ambigüedad residual",
+    "source": "Costa PI3 §§2-3",
+    "xmin": 0,
+    "xmax": 10,
+    "ymin": 0,
+    "ymax": 10,
+    "zmin": 0,
+    "zmax": 1,
+    "xname": "Divergencia_Lecturas",
+    "yname": "Delimitacion_Contexto",
+    "zname": "Ambiguedad_Residual",
+    "xs": [
+      1.8,
+      1.5,
+      1.9
+    ],
+    "ys": [
+      1.9,
+      1.5,
+      1.8
+    ],
+    "zs": [
+      0.18,
+      0.15,
+      0.18
+    ],
+    "xlabels": [
+      "Baja",
+      "Media",
+      "Alta"
+    ],
+    "ylabels": [
+      "Débil",
+      "Parcial",
+      "Fuerte"
+    ],
+    "zlabels": [
+      "Baja",
+      "Media",
+      "Alta"
+    ],
+    "rules": [
+      [
+        "min(xa, yb)",
+        "alta",
+        "EVI-HC02"
+      ],
+      [
+        "min(xa, ym)",
+        "media",
+        "EVI-HC02/HC03"
+      ],
+      [
+        "min(xm, max(yb, ym))",
+        "media",
+        "EVI-HC02"
+      ],
+      [
+        "max(xb, ya)",
+        "baja",
+        "EVI-HC03/HC09"
+      ]
+    ]
+  },
+  "CONTR": {
+    "nombre": "Pertenencia a contradicción",
+    "source": "Isgró PI3 §§2-3",
+    "xmin": 0,
+    "xmax": 10,
+    "ymin": 0,
+    "ymax": 10,
+    "zmin": 0,
+    "zmax": 1,
+    "xname": "Solapamiento_Escenario",
+    "yname": "Incompatibilidad_Resultados",
+    "zname": "Pertenencia_Contradiccion",
+    "xs": [
+      1.8,
+      1.5,
+      1.8
+    ],
+    "ys": [
+      2,
+      1.5,
+      1.8
+    ],
+    "zs": [
+      0.18,
+      0.15,
+      0.18
+    ],
+    "xlabels": [
+      "Bajo",
+      "Medio",
+      "Alto"
+    ],
+    "ylabels": [
+      "Baja",
+      "Media",
+      "Alta"
+    ],
+    "zlabels": [
+      "Baja",
+      "Intermedia",
+      "Alta"
+    ],
+    "rules": [
+      [
+        "min(xa, ya)",
+        "alta",
+        "ACC-RD05"
+      ],
+      [
+        "min(xm, ya)",
+        "media",
+        "ACC-RD06/RD07"
+      ],
+      [
+        "min(xa, ym)",
+        "media",
+        "ACC-RD05"
+      ],
+      [
+        "max(xb, yb)",
+        "baja",
+        "ACC-RD03/RD18/RD19"
+      ]
+    ]
+  },
+  "URG": {
+    "nombre": "Urgencia de atención",
+    "source": "Lucero PI3 §§2-3",
+    "xmin": 0,
+    "xmax": 10,
+    "ymin": 0,
+    "ymax": 10,
+    "zmin": 0,
+    "zmax": 10,
+    "xname": "Severidad_Base",
+    "yname": "Criticidad_Requerimiento",
+    "zname": "Urgencia_Atencion",
+    "xs": [
+      1.8,
+      1.6,
+      1.8
+    ],
+    "ys": [
+      1.8,
+      1.6,
+      1.8
+    ],
+    "zs": [
+      1.8,
+      1.5,
+      1.8
+    ],
+    "xlabels": [
+      "Baja",
+      "Media",
+      "Alta"
+    ],
+    "ylabels": [
+      "Baja",
+      "Media",
+      "Alta"
+    ],
+    "zlabels": [
+      "Baja",
+      "Media",
+      "Alta"
+    ],
+    "rules": [
+      [
+        "min(ya, max(xm, xa))",
+        "alta",
+        "PRC-HC03"
+      ],
+      [
+        "min(xa, ym)",
+        "alta",
+        "PRC-HC03"
+      ],
+      [
+        "min(xb, ya)",
+        "alta",
+        "PRC-HC02"
+      ],
+      [
+        "min(xm, max(ym, yb))",
+        "media",
+        "PRC-HC04"
+      ],
+      [
+        "max(min(xa, yb), min(xb, ym))",
+        "media",
+        "MPR-01"
+      ],
+      [
+        "min(xb, yb)",
+        "baja",
+        "PRC-HC05"
+      ]
+    ]
+  }
+}

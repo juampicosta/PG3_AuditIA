@@ -1,0 +1,56 @@
+{
+  "verificador": "PG3-AuditIA-1.2",
+  "sintesis_revisadas": 7,
+  "aprobadas": 7,
+  "detalle": [
+    {
+      "traza": "20261114_020706_196_E2E-01.json",
+      "caso": "E2E-01",
+      "modo_sintesis": "sintesis_llm_verificada",
+      "violaciones_semanticas": [],
+      "aprobada_v1_2": true
+    },
+    {
+      "traza": "20261114_022454_297_E2E-02.json",
+      "caso": "E2E-02",
+      "modo_sintesis": "composicion_determinista",
+      "violaciones_semanticas": [],
+      "aprobada_v1_2": true
+    },
+    {
+      "traza": "20261114_024023_671_E2E-03.json",
+      "caso": "E2E-03",
+      "modo_sintesis": "composicion_determinista",
+      "violaciones_semanticas": [],
+      "aprobada_v1_2": true
+    },
+    {
+      "traza": "20261114_124300_831_E2E-05.json",
+      "caso": "E2E-05",
+      "modo_sintesis": "sintesis_llm_verificada",
+      "violaciones_semanticas": [],
+      "aprobada_v1_2": true
+    },
+    {
+      "traza": "20261114_130054_957_E2E-06.json",
+      "caso": "E2E-06",
+      "modo_sintesis": "sintesis_llm_verificada",
+      "violaciones_semanticas": [],
+      "aprobada_v1_2": true
+    },
+    {
+      "traza": "20261114_130803_070_CTL-04.json",
+      "caso": "CTL-04",
+      "modo_sintesis": "composicion_determinista",
+      "violaciones_semanticas": [],
+      "aprobada_v1_2": true
+    },
+    {
+      "traza": "20261114_144158_433_E2E-04.json",
+      "caso": "E2E-04",
+      "modo_sintesis": "sintesis_llm_verificada",
+      "violaciones_semanticas": [],
+      "aprobada_v1_2": true
+    }
+  ]
+}

@@ -1,0 +1,805 @@
+{
+  "motor": "Neo4j 5.26.0",
+  "consultas": [
+    {
+      "archivo": "Q1_tratamiento.cypher",
+      "columnas": [
+        "evaluacion",
+        "observacion",
+        "origen",
+        "severidad",
+        "prioridad",
+        "motivo",
+        "mu_severidad_alta",
+        "provisional",
+        "regla",
+        "evidencias",
+        "fuentes"
+      ],
+      "filas": [
+        [
+          "EV-CAT-01",
+          "H-CAT-B",
+          "evaluacion_individual",
+          "media",
+          "bloqueante",
+          "preventivo",
+          0.02111,
+          true,
+          "PRC-RD02",
+          [
+            "E-X-CAT"
+          ],
+          [
+            "S-CASOS"
+          ]
+        ],
+        [
+          "EV-DESC",
+          "H-DESC",
+          "analisis_cruzado",
+          "alta",
+          "bloqueante",
+          "sustantivo",
+          0.856997,
+          true,
+          "PRC-HC01",
+          [
+            "E-X-DESC"
+          ],
+          [
+            "S-CASOS"
+          ]
+        ],
+        [
+          "EV-SEG-BRECHA",
+          "H-SEG",
+          "analisis_cruzado",
+          null,
+          "bloqueante",
+          "preventivo",
+          null,
+          true,
+          "PRC-RD02",
+          [
+            "E-X-SEG"
+          ],
+          [
+            "S-CASOS"
+          ]
+        ],
+        [
+          "EV-TASA-1",
+          "P-TASA",
+          "analisis_cruzado",
+          null,
+          "bloqueante",
+          "preventivo",
+          null,
+          true,
+          "PRC-RD02",
+          [
+            "E-X-TASA"
+          ],
+          [
+            "S-CASOS"
+          ]
+        ]
+      ]
+    },
+    {
+      "archivo": "Q2_urgencia.cypher",
+      "columnas": [
+        "observacion",
+        "severidad_gradual",
+        "criticidad_gradual",
+        "mu_criticidad_alta",
+        "urgencia",
+        "prioridad",
+        "motivo",
+        "provisional",
+        "modelo"
+      ],
+      "filas": [
+        [
+          "H-PRIO-EXCEPCION",
+          2,
+          8.5,
+          0.706648,
+          7.380912,
+          "bloqueante",
+          "sustantivo",
+          true,
+          "MD-URG-1.0"
+        ],
+        [
+          "H-PRIO-FRONTERA",
+          6.5,
+          6.5,
+          0.151007,
+          5.274903,
+          "mayor",
+          "en_hito",
+          true,
+          "MD-URG-1.0"
+        ],
+        [
+          "H-PRIO-MAYOR",
+          5,
+          2,
+          5.1e-05,
+          5.0,
+          "mayor",
+          "en_hito",
+          true,
+          "MD-URG-1.0"
+        ],
+        [
+          "H-PRIO-MENOR",
+          1,
+          1,
+          4e-06,
+          1.917001,
+          "menor",
+          "diferimiento",
+          true,
+          "MD-URG-1.0"
+        ]
+      ]
+    },
+    {
+      "archivo": "Q3_retorno.cypher",
+      "columnas": [
+        "observacion",
+        "anterior",
+        "estado_anterior",
+        "respuesta",
+        "nueva",
+        "estado_nuevo",
+        "seguimiento_anterior",
+        "seguimiento_actual",
+        "mu_alta_historica",
+        "provisional"
+      ],
+      "filas": [
+        [
+          "H-CAT-B",
+          "EV-CAT-01",
+          "observado",
+          "A-CAT-C",
+          "EV-CAT-02",
+          "sin_hallazgo",
+          "por_consultar",
+          "resuelto",
+          0.02111,
+          true
+        ],
+        [
+          "P-CAT-C",
+          "EV-CAT-01",
+          "observado",
+          "A-CAT-C",
+          "EV-CAT-02",
+          "sin_hallazgo",
+          "por_consultar",
+          "resuelto",
+          null,
+          true
+        ],
+        [
+          "P-CAT-V",
+          "EV-CAT-01",
+          "observado",
+          "A-CAT-C",
+          "EV-CAT-02",
+          "sin_hallazgo",
+          "por_consultar",
+          "resuelto",
+          null,
+          true
+        ]
+      ]
+    }
+  ],
+  "pruebas": [
+    {
+      "id": "PT01",
+      "obtenido": [
+        [
+          "ambiguedad",
+          "incumple"
+        ],
+        [
+          "atomicidad",
+          "cumple"
+        ],
+        [
+          "completitud",
+          "pendiente"
+        ],
+        [
+          "verificabilidad",
+          "pendiente"
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT02",
+      "obtenido": [
+        [
+          "EV-DESC",
+          "observado",
+          1
+        ],
+        [
+          "EV-DESC-CONTROL",
+          "sin_hallazgo",
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT03",
+      "obtenido": [
+        [
+          "EV-TASA-1",
+          "pendiente"
+        ],
+        [
+          "EV-TASA-2",
+          "sin_hallazgo"
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT04",
+      "obtenido": [
+        [
+          "EV-SEG-BRECHA",
+          "observado"
+        ],
+        [
+          "EV-SEG-DESCONOCIDO",
+          "pendiente"
+        ],
+        [
+          "EV-SEG-OK",
+          "sin_hallazgo"
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT05",
+      "obtenido": [
+        [
+          "no_evaluable",
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT06",
+      "obtenido": [
+        [
+          "H-CAT-B",
+          "media",
+          "bloqueante",
+          "preventivo",
+          true
+        ],
+        [
+          "H-DESC",
+          "alta",
+          "bloqueante",
+          "sustantivo",
+          true
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT07",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT08",
+      "obtenido": [
+        [
+          "bloqueante",
+          "preventivo"
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT09",
+      "obtenido": [
+        [
+          "baja",
+          "bloqueante",
+          "sustantivo"
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT10",
+      "obtenido": [
+        [
+          null
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT11",
+      "obtenido": [
+        [
+          null
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT12",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT13",
+      "obtenido": [
+        [
+          1.0,
+          0.606531
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT14",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT15",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT16",
+      "obtenido": [
+        [
+          "observado",
+          "sin_hallazgo",
+          "resuelta"
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT17",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT18",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT19",
+      "obtenido": [
+        [
+          "CONTROL-ANEXO-RECIBIDO",
+          "sin_defectos_demostrados",
+          1.0
+        ],
+        [
+          "CONTROL-CON-DEFECTO",
+          "con_defectos_demostrados",
+          1.0
+        ],
+        [
+          "CONTROL-SIN-ANEXO",
+          "sin_defectos_demostrados",
+          0.75
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT20",
+      "obtenido": [
+        [
+          33,
+          51,
+          66
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT30",
+      "obtenido": [
+        [
+          0.781016,
+          "alta",
+          "incumple"
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT31",
+      "obtenido": [
+        [
+          0.156025,
+          "baja",
+          "cumple"
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT32",
+      "obtenido": [
+        [
+          0.501254,
+          "pendiente",
+          true
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT33",
+      "obtenido": [
+        [
+          null
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT34",
+      "obtenido": [
+        [
+          0.843975,
+          "observado"
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT35",
+      "obtenido": [
+        [
+          0.5,
+          "pendiente",
+          true
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT36",
+      "obtenido": [
+        [
+          null,
+          "sin_hallazgo"
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT37",
+      "obtenido": [
+        [
+          3,
+          14,
+          9,
+          27
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT38",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT39",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT40",
+      "obtenido": [
+        [
+          "INF-DOC-CAT-v1",
+          "D-H-CAT-B",
+          "por_consultar"
+        ],
+        [
+          "INF-DOC-CAT-v1",
+          "D-P-CAT-C",
+          "por_consultar"
+        ],
+        [
+          "INF-DOC-CAT-v1",
+          "D-P-CAT-V",
+          "por_consultar"
+        ],
+        [
+          "INF-DOC-CAT-v2",
+          "D-H-CAT-B-R2",
+          "resuelto"
+        ],
+        [
+          "INF-DOC-CAT-v2",
+          "D-P-CAT-C-R2",
+          "resuelto"
+        ],
+        [
+          "INF-DOC-CAT-v2",
+          "D-P-CAT-V-R2",
+          "resuelto"
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT41",
+      "obtenido": [
+        [
+          "DOC-CAT-v2",
+          "EV-CAT-02",
+          "DOC-CAT-v1",
+          "EV-CAT-01",
+          "resuelto",
+          0.156025,
+          0.781016,
+          false
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT42",
+      "obtenido": [
+        [
+          "A-CAT-C",
+          true,
+          true,
+          "S-CASOS"
+        ],
+        [
+          "A-CAT-P",
+          true,
+          true,
+          "S-CASOS"
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT43",
+      "obtenido": [
+        [
+          null,
+          null,
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT44",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT22",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT23",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT24",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT25",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT26",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT27",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT28",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT29",
+      "obtenido": [
+        [
+          0
+        ]
+      ],
+      "estado": "pasado"
+    },
+    {
+      "id": "PT21",
+      "antes": [
+        617,
+        1191
+      ],
+      "despues": [
+        617,
+        1191
+      ],
+      "estado": "pasado"
+    }
+  ],
+  "paquete_llm": {
+    "grado_ambiguedad_origen": null,
+    "descripcion": "La misma venta exige precio con y sin descuento",
+    "estado": "por_consultar",
+    "motivo": "sustantivo",
+    "modelo_difuso": "MD-URG-1.0",
+    "grado_urgencia": 8.082999080276148,
+    "observacion_id": "H-DESC",
+    "prioridad": "bloqueante",
+    "version_origen": "1",
+    "reglas_decision": [
+      "PRC-HC01"
+    ],
+    "decision_id": "D-H-DESC",
+    "modulo_origen": "analisis_cruzado",
+    "provisional": true,
+    "estado_evaluacion_vigente": "observado",
+    "dato_faltante": null,
+    "evaluacion_origen_id": "EV-DESC",
+    "reglas_origen": [
+      "GL07",
+      "ACC-RD05"
+    ],
+    "modelo_ambiguedad": null,
+    "version": "1",
+    "evidencia_origen": [
+      {
+        "contenido": "En la misma venta de categoría A no se debe aplicar ningún descuento.",
+        "tipo": "fragmento",
+        "fuente": "S-CASOS",
+        "id": "E-RQ-DESC-B-v1",
+        "localizador": "RQ-DESC-B-v1"
+      },
+      {
+        "contenido": "En una venta de categoría A se debe aplicar el descuento del 10 %.",
+        "tipo": "fragmento",
+        "fuente": "S-CASOS",
+        "id": "E-RQ-DESC-A-v1",
+        "localizador": "RQ-DESC-A-v1"
+      },
+      {
+        "contenido": "RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.",
+        "tipo": "analisis",
+        "fuente": "S-CASOS",
+        "id": "E-EV-DESC",
+        "localizador": "EV-DESC"
+      }
+    ],
+    "grado_contradiccion": 0.8439745371591536,
+    "tratamiento_activo": true,
+    "descripcion_corresponde_a": "observacion_historica",
+    "modelo_diagnostico": "MD-CONTR-1.0",
+    "documento_origen_id": "DOC-DESC-v1",
+    "evidencia_decision": [
+      {
+        "contenido": "Contexto de prioridad construido de DESC",
+        "tipo": "declaracion",
+        "fuente": "S-CASOS",
+        "id": "E-X-DESC",
+        "localizador": "X-DESC"
+      }
+    ],
+    "evaluacion_id": "EV-DESC",
+    "documento_id": "DOC-DESC-v1",
+    "emitible": false,
+    "evidencia_evaluacion_vigente": [
+      {
+        "contenido": "RQ-DESC-A-v1 exige 10 % de descuento y RQ-DESC-B-v1 exige ningún descuento en la misma venta A. Se cotejaron sujeto, objeto y momento de confirmación. Los precios finales son incompatibles y no se declaró una excepción conciliadora. Interpretación cerrada para el caso construido.",
+        "tipo": "analisis",
+        "fuente": "S-CASOS",
+        "id": "E-EV-DESC",
+        "localizador": "EV-DESC"
+      }
+    ],
+    "grado_ambiguedad": null
+  }
+}

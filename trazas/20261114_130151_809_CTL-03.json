@@ -1,0 +1,32 @@
+{
+  "version": "PG3-AuditIA-1.0",
+  "fecha": "2026-11-14T13:01:46",
+  "modelo": "qwen2.5:7b",
+  "huella_prompts": "45af5da3ce6b",
+  "caso": "CTL-03",
+  "consulta_usuario": "¿Y qué prioridad tiene eso?",
+  "pasos": [],
+  "enrutamiento": {
+    "intentos": [
+      {
+        "salida": "{\"tipo\": \"requiere_aclaracion\", \"pasos\": [], \"motivo\": \"No indica qué observación consultar.\"}",
+        "errores": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 5.14,
+        "tokens_entrada": 1780,
+        "tokens_salida": 29
+      }
+    ],
+    "huella_prompt": "45af5da3ce6b",
+    "fuente": "llm",
+    "plan": {
+      "tipo": "requiere_aclaracion",
+      "pasos": [],
+      "motivo": "No indica qué observación consultar."
+    }
+  },
+  "tipo_salida": "aclaracion",
+  "motivo_cierre": "requiere_aclaracion",
+  "respuesta_final": "Necesito un poco más de información para consultar la base de conocimiento. Indicá qué requerimiento, observación o documento querés revisar (por ID, por ejemplo H-DESC o RQ-CAT-v1, o con palabras de su descripción) y qué querés saber: su diagnóstico de calidad, una contradicción, dependencia o cobertura, o su prioridad, urgencia o clarificación.",
+  "segundos_totales": 5.14
+}

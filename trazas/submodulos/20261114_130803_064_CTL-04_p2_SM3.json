@@ -1,0 +1,46 @@
+{
+  "prototipo": "PI4-SM3-1.0",
+  "fecha": "2026-11-14T13:07:28",
+  "modelo": "qwen2.5:7b",
+  "hilos": null,
+  "huella_prompts": "837a200f0dfe",
+  "caso": "CTL-04_p2_SM3",
+  "consulta_usuario": "¿Qué tan ambiguo es el requerimiento de notificar a los clientes habituales y cómo se calculó?",
+  "extraccion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "salida_cruda": "{\"intencion\": \"otro_submodulo\", \"entidades\": {\"observacion_id\": null, \"observacion_texto\": \"notificar a los clientes habituales\", \"documento_id\": null}, \"filtros\": {\"prioridad\": null, \"motivo\": null, \"estado_seguimiento\": \"abiertas\"}, \"matriz\": {\"severidad\": null, \"criticidad\": null}, \"faltantes\": []}",
+        "modelo": "qwen2.5:7b",
+        "segundos": 31.95,
+        "tokens_entrada": 2792,
+        "tokens_salida": 95,
+        "errores_esquema": []
+      }
+    ],
+    "notas": [],
+    "json_validado": {
+      "intencion": "otro_submodulo",
+      "entidades": {
+        "observacion_id": null,
+        "observacion_texto": "notificar a los clientes habituales",
+        "documento_id": null
+      },
+      "filtros": {
+        "prioridad": null,
+        "motivo": null,
+        "estado_seguimiento": "abiertas"
+      },
+      "matriz": {
+        "severidad": null,
+        "criticidad": null
+      },
+      "faltantes": []
+    }
+  },
+  "intencion": "otro_submodulo",
+  "tipo_salida": "aclaracion",
+  "motivo_cierre": "otro_submodulo",
+  "respuesta_final": "Esa consulta corresponde a otro submódulo de AuditIA: los juicios de calidad de cada requerimiento (atomicidad, ambigüedad, verificabilidad y completitud) los emite SM1, y las contradicciones, dependencias y coberturas las analiza SM2. Desde SM3 puedo explicarte qué prioridad recibió una observación ya emitida, por qué y en qué estado está su seguimiento.",
+  "segundos_totales": 31.95
+}
