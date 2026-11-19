@@ -18,6 +18,16 @@ docker compose exec app python -m auditia --verificar
 
 Miniapp: http://localhost:8010 · API: http://localhost:8010/docs · Neo4j Browser: http://localhost:7476 (bolt://localhost:7689, usuario neo4j, contraseña en .env)
 
+## Usar Gemini en lugar de Ollama (opcional, gratis y sin tarjeta)
+
+1. Sacar una clave en https://aistudio.google.com/apikey.
+2. En `.env`: `LLM_PROVEEDOR=gemini` y `GEMINI_API_KEY=<tu clave>` (opcional: `GEMINI_MODEL`, por defecto `gemini-flash-latest`).
+3. `docker compose up -d app` para que la app tome la configuración. No hace falta bajar `qwen2.5:7b`.
+
+Solo cambia quién redacta y extrae: los diagnósticos, reglas y grados los sigue calculando Neo4j. Para volver a Ollama: `LLM_PROVEEDOR=ollama`.
+El texto de las consultas y documentos se envía a Google (en el plan gratuito puede usarse para mejorar sus modelos): no cargar documentos confidenciales.
+Las trazas y evidencias del informe se generaron con `qwen2.5:7b` local; con Gemini las respuestas no son idénticas.
+
 Si ya tenés el modelo en otro volumen de Docker, poné su nombre en `OLLAMA_VOLUME` dentro de `.env`.
 
 ## Dos modos en la miniapp

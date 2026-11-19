@@ -216,6 +216,18 @@ class ClienteOllama:
         return resp.get("message", {}).get("content", ""), meta
 
 
+def crear_cliente_llm(cfg: Config):
+    """LLM_PROVEEDOR=gemini usa la API de Gemini (auditia/llm_gemini.py); si no, Ollama local (por defecto)."""
+    if (os.environ.get("LLM_PROVEEDOR") or "ollama").strip().lower() == "gemini":
+        try:
+            from auditia.llm_gemini import ClienteGemini
+        except ImportError:  # ejecución suelta del script PI4, fuera del paquete
+            sys.path.insert(0, str(BASE.parents[2]))
+            from auditia.llm_gemini import ClienteGemini
+        return ClienteGemini(cfg, ErrorLLM)
+    return ClienteOllama(cfg)
+
+
 # --------------------------------------------------------------------------------------------
 # Base de conocimiento (Neo4j, transacciones de lectura)
 # --------------------------------------------------------------------------------------------
@@ -1557,7 +1569,7 @@ class Asistente:
     def __init__(self, cfg: Config):
         self.cfg = cfg
         self.prompts = cargar_prompts()
-        self.llm = ClienteOllama(cfg)
+        self.llm = crear_cliente_llm(cfg)
         self.kb = BaseConocimiento(cfg)
         DIR_EJECUCIONES.mkdir(exist_ok=True)
 
@@ -1675,7 +1687,7 @@ def modo_verificar(cfg: Config) -> int:
         print(T.c(T.ROJO, f"  [error] archivos del prototipo: {e}"))
         ok = False
     try:
-        llm = ClienteOllama(cfg)
+        llm = crear_cliente_llm(cfg)
         modelos = llm.modelos_disponibles()
         if cfg.modelo in modelos or f"{cfg.modelo}:latest" in modelos:
             print(T.c(T.VERDE, f"  [ok] Ollama responde y el modelo {cfg.modelo} está descargado"))

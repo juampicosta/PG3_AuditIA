@@ -5,6 +5,8 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 
+from .llm_gemini import modelo_gemini, proveedor as proveedor_llm
+
 RAIZ = Path(__file__).resolve().parent.parent
 DIR_TRAZAS = RAIZ / "trazas"
 
@@ -32,7 +34,9 @@ class ConfigGeneral:
     neo4j_password: str | None = os.environ.get("NEO4J_PASSWORD")
     neo4j_database: str = os.environ.get("NEO4J_DATABASE", "neo4j")
     ollama_url: str = os.environ.get("OLLAMA_URL", "http://localhost:11434")
-    modelo: str = os.environ.get("OLLAMA_MODEL", "qwen2.5:7b")
+    # LLM_PROVEEDOR=gemini usa la API de Gemini (auditia/llm_gemini.py); por defecto, Ollama local.
+    proveedor: str = proveedor_llm()
+    modelo: str = modelo_gemini() if proveedor_llm() == "gemini" else os.environ.get("OLLAMA_MODEL", "qwen2.5:7b")
     hilos: int | None = int(os.environ["OLLAMA_NUM_THREAD"]) if os.environ.get("OLLAMA_NUM_THREAD") else None
     max_observaciones_encadenadas: int = int(os.environ.get("AUDITIA_MAX_ENLACES", "1"))
     sintesis_llm: bool = os.environ.get("AUDITIA_SINTESIS_LLM", "1") != "0"

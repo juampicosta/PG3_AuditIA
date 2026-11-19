@@ -112,26 +112,26 @@
   details.como[open] > summary::before{content:"－"}
   details.como > summary{padding:8px 14px;border-radius:999px;background:var(--papel);box-shadow:var(--sombra);transition:color .15s}
   details.como > summary:hover{color:var(--tinta)}
-  .como-cuerpo{margin-top:16px;background:var(--papel);border-radius:var(--radio);padding:24px;box-shadow:var(--sombra)}
-  .como-intro{margin:0 0 20px;font-size:15px;color:var(--tinta2)}
-  .como-intro b{color:var(--tinta);font-weight:600}
-  .como-flujo{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;counter-reset:none}
-  .como-flujo li{--c:var(--gris);position:relative;background:var(--campo);border-radius:14px;padding:16px;border-top:3px solid var(--c)}
+  .como-cuerpo{margin-top:16px;background:var(--papel);border-radius:var(--radio);padding:32px 24px 30px;box-shadow:var(--sombra)}
+  /* cuatro pasos en línea: ícono en círculo, conector y texto corto */
+  .como-flujo{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .como-flujo li{--c:var(--gris2);position:relative;text-align:center;padding:0 8px}
   .como-flujo li.llm{--c:var(--llm)} .como-flujo li.neo{--c:var(--neo)}
-  .como-flujo li:not(:last-child)::after{content:"→";position:absolute;right:-11px;top:50%;transform:translateY(-50%);color:var(--gris2);font-size:14px;z-index:1}
-  .cf-n{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:color-mix(in srgb,var(--c) 18%,transparent);color:var(--c);font-size:12px;font-weight:700;margin-bottom:10px}
-  .como-flujo b{display:block;font-size:14.5px;font-weight:600;margin-bottom:4px}
-  .como-flujo p{margin:0;font-size:13px;color:var(--gris);line-height:1.45}
-  .como-tres{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid var(--linea)}
-  .como-tres div{display:grid;grid-template-columns:auto 1fr;column-gap:10px}
-  .ct-ic{grid-row:span 2;font-size:18px;line-height:1.2}
-  .como-tres b{font-size:14px;font-weight:600}
-  .como-tres p{margin:2px 0 0;font-size:13px;color:var(--gris);line-height:1.45}
+  .como-flujo li:not(:last-child)::after{content:"";position:absolute;top:26px;left:calc(50% + 38px);width:calc(100% + 8px - 76px);height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--linea),color-mix(in srgb,var(--linea) 40%,transparent))}
+  .cf-ic{width:52px;height:52px;border-radius:50%;display:grid;place-items:center;margin:0 auto 16px;color:var(--c);
+    background:color-mix(in srgb,var(--c) 13%,transparent);border:1px solid color-mix(in srgb,var(--c) 32%,transparent)}
+  .cf-ic svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .como-flujo b{display:block;font-size:15px;font-weight:600;color:var(--tinta);margin-bottom:6px}
+  .como-flujo p{margin:0 auto;max-width:190px;font-size:13px;color:var(--gris);line-height:1.5}
   @media (max-width:720px){
-    .como-flujo{grid-template-columns:1fr 1fr}
-    .como-flujo li::after{display:none}
-    .como-tres{grid-template-columns:1fr}
-    .como-cuerpo{padding:18px}
+    .como-cuerpo{padding:22px 18px}
+    .como-flujo{grid-template-columns:1fr;gap:22px}
+    .como-flujo li{display:grid;grid-template-columns:52px 1fr;column-gap:16px;align-items:center;text-align:left;padding:0}
+    .como-flujo li .cf-ic{grid-row:span 2;margin:0}
+    .como-flujo li b{align-self:end;margin-bottom:2px}
+    .como-flujo li p{align-self:start;margin:0;max-width:none}
+    .como-flujo li:not(:last-child)::after{top:58px;left:25px;width:2px;height:calc(100% - 52px + 16px);background:var(--linea)}
   }
 
   /* ---------- contexto y revisor ---------- */
@@ -200,12 +200,20 @@
   .carga-nota{margin:18px auto 0;max-width:420px;font-size:12.5px;color:var(--gris2);line-height:1.55}
   /* documento cargado */
   .doc-cab{display:flex;align-items:center;gap:14px;padding:14px 16px;border-radius:14px;background:var(--acentof);border:1px solid rgba(167,139,250,.28);margin-bottom:14px}
-  .doc-cab .doc-ic{flex:none;width:40px;height:40px;border-radius:11px;display:grid;place-items:center;background:var(--boton);color:#fff;font-size:11px;font-weight:700;letter-spacing:.03em}
   .doc-cab div{flex:1;min-width:0}
   .doc-cab b{display:block;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .doc-cab small{color:var(--gris);font-size:12.5px}
-  .doc-cab button{font:inherit;font-size:13px;border:1px solid var(--linea);background:var(--papel);color:var(--tinta2);border-radius:999px;padding:7px 14px;cursor:pointer}
-  .doc-cab button:hover{border-color:var(--err);color:var(--err)}
+  .doc-cab .doc-quitar{flex:none;width:38px;height:38px;padding:0;border-radius:50%;display:grid;place-items:center;cursor:pointer;
+    border:1px solid rgba(248,113,113,.5);background:var(--errf);color:var(--err);transition:background .15s,color .15s,transform .15s}
+  .doc-cab .doc-quitar:hover{background:var(--err);color:#fff;transform:scale(1.06)}
+  .doc-cab .doc-quitar:focus-visible{outline:2px solid var(--err);outline-offset:2px}
+  /* ícono de archivo (hoja con esquina doblada y etiqueta del tipo) y chip con el nombre */
+  .archivo-ic{flex:none;display:block;filter:drop-shadow(0 2px 4px rgba(0,0,0,.25))}
+  .archivo-chip{display:inline-flex;align-items:center;gap:8px;max-width:100%;vertical-align:middle;font-size:13px;color:var(--tinta2);
+    padding:5px 14px 5px 9px;border-radius:999px;border:1px solid var(--linea);background:rgba(255,255,255,.03)}
+  .archivo-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .titular .ojo + .archivo-chip{margin-left:8px}
+  .rev-fuente .archivo-chip{margin-left:6px;font-size:12.5px;padding:3px 12px 3px 7px}
   .doc-filas{list-style:none;margin:0;padding:0;border:1px solid var(--linea);border-radius:14px;overflow:hidden}
   .doc-filas .todos{display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(255,255,255,.02);font-size:13px;color:var(--gris)}
   .doc-filas li label{display:flex;gap:12px;align-items:flex-start;padding:12px 16px;border-top:1px solid var(--linea2);cursor:pointer;transition:background .15s}
@@ -768,18 +776,16 @@
     <details class="como">
       <summary>¿Cómo decide AuditIA?</summary>
       <div class="como-cuerpo">
-        <p class="como-intro">En pocas palabras: <b>la IA lee, vos confirmás y las reglas deciden.</b> La IA nunca pone la nota final.</p>
         <ol class="como-flujo">
-          <li><span class="cf-n">1</span><b>Subís tu texto</b><p>Un documento o un requerimiento suelto.</p></li>
-          <li class="llm"><span class="cf-n">2</span><b>La IA lo lee</b><p>Marca lo que le parece importante y cita la frase exacta donde lo vio.</p></li>
-          <li><span class="cf-n">3</span><b>Vos confirmás</b><p>Revisás lo que marcó. Si algo está mal, lo corregís.</p></li>
-          <li class="neo"><span class="cf-n">4</span><b>Las reglas deciden</b><p>66 reglas fijas dan el diagnóstico, la gravedad y qué resolver primero.</p></li>
+          <li><span class="cf-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M12 17v-6M9.5 13.5 12 11l2.5 2.5"/></svg></span>
+            <b>Subís tu documento</b><p>O un requerimiento suelto.</p></li>
+          <li class="llm"><span class="cf-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11 3.5l1.7 4.3 4.3 1.7-4.3 1.7L11 15.5l-1.7-4.3L5 9.5l4.3-1.7z"/><path d="M18 14.5l.8 1.9 1.9.8-1.9.8-.8 1.9-.8-1.9-1.9-.8 1.9-.8z"/></svg></span>
+            <b>La IA lo lee</b><p>Marca lo importante y te muestra en qué frase lo vio.</p></li>
+          <li><span class="cf-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 12.5l2.5 2.5 4.5-5"/></svg></span>
+            <b>Vos confirmás</b><p>Revisás lo que marcó y corregís lo que haga falta.</p></li>
+          <li class="neo"><span class="cf-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 4v16M8 20h8M5 7h14"/><path d="M5 7l-2.5 6a2.5 2.5 0 0 0 5 0zM19 7l-2.5 6a2.5 2.5 0 0 0 5 0z"/></svg></span>
+            <b>Las reglas deciden</b><p>Dan el diagnóstico y te dicen qué resolver primero.</p></li>
         </ol>
-        <div class="como-tres">
-          <div><span class="ct-ic" aria-hidden="true">🔍</span><b>Tres miradas</b><p>Una revisa cada requerimiento, otra los compara entre sí y otra decide qué es más urgente.</p></div>
-          <div><span class="ct-ic" aria-hidden="true">🛡️</span><b>Nada inventado</b><p>Si la IA menciona un dato que no está en la evidencia, se rechaza y se vuelve a pedir.</p></div>
-          <div><span class="ct-ic" aria-hidden="true">📋</span><b>Todo a la vista</b><p>Cada resultado guarda qué reglas usó y en qué se basó, para que lo puedas revisar.</p></div>
-        </div>
       </div>
     </details>
   </div>
@@ -803,7 +809,7 @@
   <!-- ================= 4 · PREGUNTAR ================= -->
   <div class="vista" data-vista="preguntar" id="vista-consultar" hidden>
     <div class="titular">
-      <div class="ojo">Paso 4 de 4</div>
+      <div class="ojo">Paso 4 de 4</div><span id="archivo-preguntar"></span>
       <h2>Preguntale a <em>AuditIA</em>.</h2>
       <p>Preguntá lo que quieras sobre tu auditoría: por qué salió algo, qué conviene resolver primero o qué significa un resultado.</p>
     </div>
@@ -828,7 +834,6 @@
     <section class="hoja progreso" id="progreso" aria-live="polite">
       <h2>Procesando <small id="cronometro">0 s</small></h2>
       <ol class="linea-tiempo" id="etapas"></ol>
-      <p class="ayuda" style="margin:4px 0 0;font-size:13px">El modelo corre en esta computadora, sin GPU: cada submódulo puede tardar unos minutos.</p>
     </section>
 
     <div class="resultado" id="resultado"></div>
@@ -870,6 +875,19 @@
 <script>
 const $ = s => document.querySelector(s);
 const esc = t => String(t ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+// Ícono de archivo: hoja con la esquina doblada y una etiqueta con el tipo (PDF, DOCX, TXT, MD).
+const COLOR_ARCHIVO = {PDF:"#E5484D", DOCX:"#3B82F6", DOC:"#3B82F6", TXT:"#71717A", MD:"#71717A"};
+function iconoArchivo(nombre, alto=40){
+  const ext = (String(nombre||"").split(".").pop() || "doc").toUpperCase().slice(0,4);
+  const color = COLOR_ARCHIVO[ext] || "#8B5CF6";
+  return `<svg class="archivo-ic" viewBox="0 0 32 40" width="${Math.round(alto*0.8)}" height="${alto}" aria-hidden="true">
+    <path d="M6 1.5h14.5L29 10v26.5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-33a2 2 0 0 1 2-2z" fill="#F4F4F5"/>
+    <path d="M20.5 1.5V8a2 2 0 0 0 2 2H29z" fill="#C9C9D1"/>
+    <rect x="0" y="21" width="${ext.length>3?27:24}" height="11" rx="2.5" fill="${color}"/>
+    <text x="${ext.length>3?13.5:12}" y="28.9" text-anchor="middle" font-size="${ext.length>3?6.4:7.4}" font-weight="700"
+      font-family="system-ui,sans-serif" fill="#fff" letter-spacing=".2">${esc(ext)}</text></svg>`;
+}
+const chipArchivo = nombre => nombre ? `<span class="archivo-chip" title="${esc(nombre)}">${iconoArchivo(nombre, 20)}<span>${esc(nombre)}</span></span>` : "";
 const SM = {
   SM1:{nombre:"Calidad de cada requerimiento", color:"var(--sm1)", fondo:"var(--sm1f)"},
   SM2:{nombre:"Requerimientos entre sí", color:"var(--sm2)", fondo:"var(--sm2f)"},
@@ -933,6 +951,10 @@ function pintarCable(a,b,estado){ const c=$(`#c-${a}-${b}`); if(!c) return; c.cl
 function reiniciarMapa(){ Object.keys(NODOS).forEach(k=>pintarNodo(k,null)); CABLES.forEach(([a,b])=>pintarCable(a,b,null)); }
 
 /* ------------------------------ estado del sistema ------------------------------ */
+// Solo para estimar tiempos: con un LLM remoto (LLM_PROVEEDOR=gemini) cada llamada tarda segundos y no minutos.
+// La interfaz no muestra qué modelo se usa.
+let LLM_REMOTO = false;
+fetch("/api/salud").then(r => r.json()).then(s => { LLM_REMOTO = s.proveedor === "gemini"; }).catch(() => {});
 async function verificarEstado(){
   if(!$("#estado")) return;
   try{
@@ -940,7 +962,7 @@ async function verificarEstado(){
     const luz = (ok, txt) => `<span class="luz ${ok?"ok":"mal"}" title="${esc(txt)}"><i></i><span>${esc(txt)}</span></span>`;
     $("#estado").innerHTML =
       luz(s.neo4j==="ok", s.neo4j==="ok" ? `Neo4j: ${s.nodos} nodos` : "Neo4j sin conexión") +
-      luz(s.ollama==="ok" && s.modelo_disponible, s.ollama==="ok" ? (s.modelo_disponible ? `Modelo ${s.modelo}` : `Falta el modelo ${s.modelo}`) : "Ollama sin conexión") +
+      luz(s.ollama==="ok" && s.modelo_disponible, s.ollama==="ok" && s.modelo_disponible ? "IA lista" : "IA sin conexión") +
       luz((s.reglas_con_texto||0)>0, `${s.reglas ?? 0} reglas cargadas`);
   }catch(e){ $("#estado").innerHTML = `<span class="luz mal"><i></i>La API no responde</span>`; }
 }
@@ -1006,7 +1028,7 @@ function pintarProgreso(etapas, terminado){
 $("#enviar").onclick = async () => {
   const consulta = aInterno($("#consulta").value.trim());
   if(!consulta){ $("#consulta").focus(); return; }
-  $("#enviar").disabled = true; $("#enviar").textContent = "Auditando…"; $("#resultado").innerHTML = "";
+  $("#enviar").disabled = true; $("#enviar").textContent = "Pensando…"; $("#resultado").innerHTML = "";
   $("#progreso").classList.add("visible"); pintarProgreso([], false);
   const t0 = Date.now(); const reloj = setInterval(() => { const s=Math.round((Date.now()-t0)/1000); $("#cronometro").textContent = s>=60?`${Math.floor(s/60)} min ${s%60} s`:`${s} s`; }, 1000);
   try{
@@ -1020,10 +1042,10 @@ $("#enviar").onclick = async () => {
       const fin = t.estado==="terminado" || t.estado==="error";
       pintarProgreso(t.etapas, fin);
       if(t.estado==="terminado"){ pintarNodo("verif","hecho"); pintarNodo("respuesta","hecho"); pintarCable("verif","respuesta","hecho"); mostrar(t.resultado); break; }
-      if(t.estado==="error"){ $("#resultado").innerHTML = `<div class="hoja error">No se pudo completar la consulta: ${esc(t.error)}. Revisá que Neo4j y Ollama estén encendidos (indicadores de arriba) y volvé a intentar.</div>`; break; }
+      if(t.estado==="error"){ $("#resultado").innerHTML = `<div class="hoja error">No se pudo completar la consulta: ${esc(t.error)}. Esperá unos segundos y volvé a intentar.</div>`; break; }
     }
   }catch(e){ $("#resultado").innerHTML = `<div class="hoja error">No hay conexión con la API (${esc(e.message)}). Comprobá que el contenedor app esté corriendo.</div>`; }
-  clearInterval(reloj); $("#enviar").disabled = false; $("#enviar").textContent = "Auditar consulta";
+  clearInterval(reloj); $("#enviar").disabled = false; $("#enviar").textContent = "Preguntar";
   $("#progreso").classList.remove("visible");
   $("#resultado").scrollIntoView({block:"start"});
 };
@@ -1243,7 +1265,7 @@ const Carga = (() => {
   }
   function mostrar({titulo, fases: f = [], mensajes = [], estimado = 0, nota = ""}){
     const c = $("#carga"); c.hidden = false; requestAnimationFrame(() => c.classList.add("visible"));
-    $("#carga-tit").innerHTML = titulo; $("#carga-nota").textContent = nota; $("#carga-resta").textContent = "";
+    $("#carga-tit").innerHTML = titulo; $("#carga-nota").textContent = nota; $("#carga-nota").hidden = !nota; $("#carga-resta").textContent = "";
     fases = f; micro = mensajes; k = 0; fijo = false; real = 0; faseAct = -1; est = estimado; t0 = Date.now();
     $("#carga-detalle").textContent = micro[0] || ""; barra(0); pintarFases(0); faseAct = 0;
     clearInterval(reloj); reloj = setInterval(tick, 500); tick();
@@ -1273,7 +1295,9 @@ $("#rq-analista").addEventListener("input", e => {
   const ini = e.target.value.trim().split(/\s+/).filter(Boolean).slice(0,2).map(w => w[0]).join("") || "?";
   $("#rev-avatar").textContent = ini;
 });
-const estimarLLM = n => `unos ${Math.max(1,Math.round(n*0.6))} a ${Math.max(2,Math.round(n*1.2))} min`;
+const estimarLLM = n => LLM_REMOTO
+  ? `unos ${Math.round(n*4 + 15)} s`
+  : `unos ${Math.max(1,Math.round(n*0.6))} a ${Math.max(2,Math.round(n*1.2))} min`;
 const NOMBRE_CRIT = {atomicidad:"Atomicidad", ambiguedad:"Ambigüedad", verificabilidad:"Verificabilidad", completitud:"Completitud"};
 const CAMPOS = {
   atomicidad:[["obligaciones_independientes","num","¿Cuántas cosas distintas pide?",0,20,1],
@@ -1424,14 +1448,14 @@ function lecturaHTML(ext){
 }
 function renderRevision(){
   const p = PROP, n = p.requerimientos.length;
-  const fuente = p.fuente==="llm" ? `Leído por <b>${esc(p.llm?.modelo||"la IA")}</b> en ${esc(p.segundos)} s`
-    : p.fuente==="mixta" ? `Leído en parte por <b>${esc(p.llm?.modelo||"la IA")}</b> y en parte con el análisis rápido`
+  const fuente = p.fuente==="llm" ? `Leído por <b>la IA</b> en ${esc(p.segundos)} s`
+    : p.fuente==="mixta" ? `Leído en parte por <b>la IA</b> y en parte con el análisis rápido`
     : `Leído con el <b>análisis rápido</b>`;
   const OPC_IMP = [["","No sé"],["baja","Baja"],["media","Media"],["alta","Alta"]];
   let h = `<section class="revision">
     <div class="hoja rev-barra"><div class="rev-cuenta" id="rev-cuenta"></div>
       <div class="rev-filtro" role="group" aria-label="Filtrar">${[["todos","Todos"],["problemas","Con problemas"],["ok","Sin problemas"]].map(([v,t])=>`<button type="button" data-filtro="${v}" aria-pressed="${v===FILTRO_REV}">${t}</button>`).join("")}</div></div>
-    <p class="rev-fuente">${fuente}${p.documento?` · ${esc(p.documento)}`:""}</p>`;
+    <p class="rev-fuente">${fuente}${chipArchivo(p.documento)}</p>`;
   if(p.avisos?.length) h += `<details class="avisos-rev"><summary>${p.avisos.length} ${p.avisos.length===1?"aviso":"avisos"} de la lectura</summary>${p.avisos.map(a=>`<p>${esc(a)}</p>`).join("")}</details>`;
   p.requerimientos.forEach((rq,i) => {
     const pr = rq.premisas; const ruta = `requerimientos.${i}.premisas`; const ext = rq.extraccion || {};
@@ -1621,9 +1645,10 @@ $("#doc-archivo").addEventListener("change", async ev => {
 function renderDocumento(){
   const d = DOC;
   $("#zona-doc").hidden = false; $("#barra-subir").hidden = false;
-  const cab = `<div class="doc-cab"><span class="doc-ic">${esc((d.nombre.split(".").pop()||"DOC").toUpperCase().slice(0,4))}</span>
+  const cab = `<div class="doc-cab">${iconoArchivo(d.nombre, 44)}
     <div><b>${esc(d.nombre)}</b><small>${d.requerimientos.length} requerimientos encontrados en ${d.parrafos} párrafos${d.truncado?" · se muestran los primeros":""}</small></div>
-    <button type="button" id="doc-quitar">Quitar documento</button></div>`;
+    <button type="button" id="doc-quitar" class="doc-quitar" aria-label="Quitar documento" title="Quitar documento">
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg></button></div>`;
   if(!d.requerimientos.length){ $("#doc-lista").innerHTML = cab + `<p class="avisos">${esc(d.aviso)}</p>`; $("#doc-quitar").onclick = quitarDocumento; cuentaDoc(); return; }
   $("#doc-lista").innerHTML = cab + `<p class="ayuda">Revisá que el texto se haya leído bien y elegí cuáles analizar.</p>
     <ul class="doc-filas"><li class="todos"><input type="checkbox" id="doc-todos" checked aria-label="Seleccionar todos"><span>Seleccionar todos</span></li>` +
@@ -1652,8 +1677,8 @@ async function pedirPropuesta(usarLLM, items=null, documento=""){
   $("#aviso-subir").innerHTML = ""; $("#aviso-revisar").innerHTML = ""; ALCANZADO.revisar = false; ALCANZADO.resultados = false; ALCANZADO.preguntar = false; flujo("llm");
   Carga.mostrar({
     titulo: usarLLM ? "La IA está leyendo tus <em>requerimientos</em>" : "Analizando tus <em>requerimientos</em>",
-    fases: FASES_LECTURA, mensajes: PASOS_LECTURA, estimado: usarLLM ? Math.round(reqs.length*0.9*60 + 20) : 3,
-    nota: usarLLM ? `${reqs.length} ${reqs.length===1?"requerimiento":"requerimientos"} · la IA corre en esta computadora (${estimarLLM(reqs.length)}; la primera vez suma la carga del modelo). No cierres esta pestaña.` : ""});
+    fases: FASES_LECTURA, mensajes: PASOS_LECTURA,
+    estimado: usarLLM ? (LLM_REMOTO ? Math.round(reqs.length*4 + 15) : Math.round(reqs.length*0.9*60 + 20)) : 3, nota: ""});
   try{
     const r = await fetch("/api/analisis/propuestas", {method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({requerimientos:reqs, contexto:$("#rq-ctx").value, usar_llm:usarLLM, documento})});
@@ -1741,7 +1766,7 @@ function resumenLote(res){
   const titulo = obs.length ? `Encontramos <em>${obs.length}</em> ${obs.length===1?"cosa":"cosas"} para corregir en ${reqs.length - bien.length} de ${reqs.length} requerimientos.`
     : `Tus requerimientos están <em>bien escritos</em>.`;
   let h = `<div class="titular">
-      <div class="ojo">Paso 3 de 4 · Resultados${res.documento?` · ${esc(res.documento)}`:""}</div>
+      <div class="ojo">Paso 3 de 4</div>${chipArchivo(res.documento)}
       <h2>${titulo}</h2>
       <p>${obs.length ? "Empezá por los de arriba: son los más urgentes. Cada problema trae una sugerencia de cómo resolverlo." : "No encontramos nada que corregir en lo que revisamos."}</p>
     </div>
@@ -1808,6 +1833,7 @@ function prepararPreguntas(res){
   PREG_REAL = Object.fromEntries(lista);
   $("#preguntas-doc").innerHTML = lista.map(([t]) => `<button type="button" data-preg="${esc(t)}">${esc(t)}</button>`).join("");
   $("#sug-doc").hidden = !lista.length;
+  $("#archivo-preguntar").outerHTML = `<span id="archivo-preguntar">${chipArchivo(res.documento)}</span>`;
   document.querySelectorAll("#preguntas-doc [data-preg]").forEach(b => b.onclick = () => { $("#consulta").value = b.dataset.preg; contar(); $("#consulta").focus(); });
 }
 function mostrarLote(res){

@@ -26,6 +26,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from .config import RAIZ, ConfigGeneral
+from .llm_gemini import ClienteGemini, usa_gemini
 
 DIR_SCRIPTS = RAIZ / "base_conocimiento" / "scripts"
 DIR_PROMPTS = Path(__file__).resolve().parent / "prompts"
@@ -243,6 +244,8 @@ def modelo_ingesta(cfg: ConfigGeneral) -> str:
 
 def _llm_chat(cfg: ConfigGeneral, sistema: str, usuario: str, esquema: dict, max_tokens: int = 700,
               timeout: int = 900) -> tuple[str, dict]:
+    if usa_gemini():   # LLM_PROVEEDOR=gemini: misma llamada (temperatura 0, JSON con esquema) contra la API de Gemini
+        return ClienteGemini(None, ErrorIngesta, timeout_s=timeout).chat(sistema, usuario, 0.0, esquema, max_tokens)
     cuerpo: dict[str, Any] = {
         "model": modelo_ingesta(cfg), "stream": False, "keep_alive": "15m", "format": esquema,
         "messages": [{"role": "system", "content": sistema}, {"role": "user", "content": usuario}],
@@ -463,7 +466,7 @@ def proponer(textos: list[str] | list[dict], contexto: str = "", usar_llm: bool 
         nuevos = list(extracciones)
         for inicio in range(0, len(textos), LOTE_LLM):
             tramo = textos[inicio:inicio + LOTE_LLM]
-            avisar("llm", f"El LLM ({modelo_ingesta(cfg)}) está leyendo los requerimientos {inicio + 1} a {inicio + len(tramo)} "
+            avisar("llm", f"La IA está leyendo los requerimientos {inicio + 1} a {inicio + len(tramo)} "
                           f"de {len(textos)}…")
             try:
                 exts, m = extraer_llm(cfg, tramo, contexto)
@@ -480,7 +483,7 @@ def proponer(textos: list[str] | list[dict], contexto: str = "", usar_llm: bool 
             pares = ([(0, 1, comparar_heuristico(extracciones[0], extracciones[1], textos[0], textos[1]))]
                      if len(textos) == 2 else pares_candidatos(extracciones, textos))
             if pares:
-                avisar("llm", f"El LLM está comparando {len(pares)} par(es) de requerimientos…")
+                avisar("llm", f"La IA está comparando {len(pares)} par(es) de requerimientos…")
                 try:
                     cmps, m = comparar_llm(cfg, [(textos[i], textos[k]) for i, k, _ in pares])
                     pares = [(i, k, dict(c, solapamiento=h.get("solapamiento"))) for (i, k, h), c in zip(pares, cmps)]

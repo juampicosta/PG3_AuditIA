@@ -250,9 +250,9 @@ class Orquestador:
         self.esquema_ruteo = json.loads((DIR_PROMPTS / "esquema_ruteo.json").read_text(encoding="utf-8"))
         self.huella = hashlib.sha256((self.prompt_maestro + self.prompt_sintesis).encode()).hexdigest()[:12]
         sm3 = modulo("SM3")
-        self.llm = sm3.ClienteOllama(self.cfg.para_submodulo(sm3))
+        self.llm = sm3.crear_cliente_llm(self.cfg.para_submodulo(sm3))   # Ollama o Gemini según LLM_PROVEEDOR
         self._asistentes: dict[str, Any] = {}
-        self._candado = threading.Lock()   # el LLM local atiende una consulta por vez
+        self._candado = threading.Lock()   # una consulta por vez (LLM local o cupo gratuito de Gemini)
         (DIR_TRAZAS / "submodulos").mkdir(parents=True, exist_ok=True)
 
     # -- submódulos -----------------------------------------------------------------------------
@@ -269,7 +269,10 @@ class Orquestador:
 
     def verificar(self) -> dict:
         estado: dict[str, Any] = {"version": VERSION, "modelo": self.cfg.modelo, "neo4j_uri": self.cfg.neo4j_uri,
-                                  "ollama_url": self.cfg.ollama_url}
+                                  "proveedor": self.cfg.proveedor}
+        if self.cfg.proveedor != "gemini":
+            estado["ollama_url"] = self.cfg.ollama_url
+        # La clave "ollama" se mantiene como estado del LLM (cualquiera sea el proveedor) por compatibilidad con la miniapp.
         try:
             modelos = self.llm.modelos_disponibles()
             estado["ollama"] = "ok"
