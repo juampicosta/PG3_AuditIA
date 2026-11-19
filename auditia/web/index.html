@@ -82,7 +82,6 @@
   button.secundario:disabled{opacity:.5;cursor:progress}
   button.enlace{font:inherit;font-size:14.5px;background:none;border:0;color:var(--gris);cursor:pointer;padding:8px 0}
   button.enlace:hover{color:var(--tinta)}
-  .pie-pasos{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:12px;flex-wrap:wrap}
 
   /* ---------- subir ---------- */
   .drop{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;border:1.5px dashed rgba(167,139,250,.3);border-radius:16px;padding:34px 20px;background:var(--campo);cursor:pointer;transition:border .2s,background .2s}
@@ -196,6 +195,13 @@
   .doc-lista input[type=checkbox]{appearance:none;-webkit-appearance:none;flex:none;width:20px;height:20px;margin:1px 0 0;border-radius:6px;border:1.5px solid rgba(255,255,255,.22);background:var(--campo);display:grid;place-items:center;cursor:pointer;transition:all .15s}
   .doc-lista input[type=checkbox]:checked{background:var(--boton);border-color:var(--boton)}
   .doc-lista input[type=checkbox]:checked::after{content:"✓";color:#fff;font-size:12px;font-weight:700}
+  /* ---------- flechas de navegación ---------- */
+  .sig,.ant{display:inline-flex;align-items:center;gap:8px}
+  .sig::after,.ant::before{content:"";flex:none;width:17px;height:17px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m13 6 6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m13 6 6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;transition:transform .2s cubic-bezier(.3,1.4,.6,1)}
+  .ant::before{transform:scaleX(-1)}
+  .sig:hover:not(:disabled)::after{transform:translateX(3px)}
+  .ant:hover::before{transform:scaleX(-1) translateX(3px)}
+  .problemas3 .hacer::before{content:"";width:15px;height:15px;margin-top:3px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m13 6 6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m13 6 6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat}
   /* ---------- estado vacío / avisos ---------- */
   .vacio{text-align:center;padding:56px 24px;color:var(--gris)}
   .vacio b{display:block;color:var(--tinta);font-size:18px;font-weight:500;margin-bottom:6px}
@@ -366,10 +372,13 @@
   .cmp-card .criterio{margin-top:12px}
   .cmp-card details.criterio > summary{grid-template-columns:1fr 14px}
   /* barra de confirmación */
-  .rev-confirmar{position:sticky;bottom:16px;z-index:10;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:24px;padding:14px 16px 14px 22px;border-radius:18px;background:color-mix(in srgb,var(--papel) 88%,transparent);backdrop-filter:blur(14px);box-shadow:0 0 0 1px rgba(167,139,250,.25),0 20px 40px -20px rgba(0,0,0,.8)}
-  .rev-confirmar > div{flex:1;min-width:220px}
-  .rev-confirmar b{display:block;font-size:15px}
-  .rev-confirmar small{color:var(--gris);font-size:13px}
+  .barra-pasos{position:sticky;bottom:16px;z-index:10;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:24px;padding:14px 16px 14px 22px;border-radius:18px;background:color-mix(in srgb,var(--papel) 88%,transparent);backdrop-filter:blur(14px);box-shadow:0 0 0 1px rgba(167,139,250,.25),0 20px 40px -20px rgba(0,0,0,.8)}
+  .barra-pasos .bp-volver{flex:none;min-width:96px;text-align:left}
+  .barra-pasos .bp-info{flex:1;min-width:200px}
+  .barra-pasos .bp-info b{display:block;font-size:15px}
+  .barra-pasos .bp-info small{display:block;color:var(--gris);font-size:13px}
+  .barra-pasos .bp-acc{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-left:auto}
+  @media (max-width:700px){.barra-pasos{padding:12px}.barra-pasos .bp-volver{min-width:0}.barra-pasos .bp-info{order:-1;flex-basis:100%}}
   @media (max-width:900px){
     .rq-detalle{padding:0 16px 18px}
     details.rq > summary{grid-template-columns:36px 1fr 14px;gap:12px;padding:16px}
@@ -476,7 +485,6 @@
   .problemas3 li{padding:12px 14px;border-radius:12px;background:var(--campo);border:1px solid var(--linea2)}
   .problemas3 .que{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;color:var(--tinta)}
   .problemas3 .hacer{display:flex;gap:8px;margin-top:8px;font-size:13.5px;color:var(--acento2)}
-  .problemas3 .hacer::before{content:"→";flex:none}
   .bien3 summary{cursor:pointer;list-style:none;padding:16px 20px;font-weight:500;display:flex;gap:10px;align-items:center}
   .bien3 summary::-webkit-details-marker{display:none}
   .bien3 summary::after{content:"›";margin-left:auto;color:var(--gris2);font-size:20px;transition:transform .2s}
@@ -615,14 +623,13 @@
             <svg class="lapiz" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4zM14 6l4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </label>
         </div>
-        <div class="acciones">
-          <button class="principal" id="proponer-llm">Analizar con IA →</button>
-          <button class="secundario" id="proponer-rapido">Análisis rápido</button>
-          <span class="contador" id="estado-propuesta"></span>
-        </div>
       </div>
       <div class="aviso" id="aviso-subir"></div>
     </section>
+    <div class="barra-pasos" id="barra-subir" hidden>
+          <div class="bp-info"><b>¿Listo para analizar?</b><small id="estado-propuesta"></small></div>
+          <div class="bp-acc"><button class="secundario" id="proponer-rapido">Análisis rápido</button><button class="principal sig" id="proponer-llm">Analizar con IA</button></div>
+        </div>
 
     <details class="como">
       <summary>¿Cómo decide AuditIA?</summary>
@@ -643,7 +650,7 @@
       <h2>Revisá lo que <em>entendió</em> AuditIA.</h2>
       <p>Esto es lo que encontramos en cada requerimiento. Si estás de acuerdo, seguí adelante; si algo no es así, tocá «Corregir».</p>
     </div>
-    <div id="revision"><div class="hoja vacio"><b>Todavía no hay nada para revisar</b>Primero subí un documento o escribí un requerimiento.<br><button class="secundario" data-ir="subir">← Ir a Subir</button></div></div>
+    <div id="revision"><div class="hoja vacio"><b>Todavía no hay nada para revisar</b>Primero subí un documento o escribí un requerimiento.<br><button class="secundario ant" data-ir="subir">Ir a Subir</button></div></div>
     <div class="aviso" id="aviso-revisar"></div>
   </div>
 
@@ -687,6 +694,9 @@
     </section>
 
     <div class="resultado" id="resultado"></div>
+    <div class="barra-pasos"><button class="enlace bp-volver ant" id="volver-preguntar" data-ir="resultados">Volver</button>
+      <div class="bp-info"><b>¿Terminaste?</b><small>Podés empezar otra auditoría con un documento nuevo.</small></div>
+      <div class="bp-acc"><button class="principal sig" data-ir="subir" data-nueva>Nueva auditoría</button></div></div>
   </div>
 
   <!-- ================= HISTORIAL ================= -->
@@ -971,6 +981,7 @@ function irA(v){
     if(s===v) b.setAttribute("aria-current","step"); else b.removeAttribute("aria-current");
     b.querySelector("i").textContent = b.classList.contains("hecho") ? "✓" : String(i+1);
   });
+  const vp = $("#volver-preguntar"); if(vp) vp.dataset.ir = ALCANZADO.resultados ? "resultados" : "subir";
   const h = document.querySelector(".historial-btn");
   if(v==="historial"){ h.setAttribute("aria-current","page"); cargarLotes(); } else h.removeAttribute("aria-current");
   window.scrollTo({top:0, behavior:"smooth"});
@@ -1260,9 +1271,9 @@ function renderRevision(){
           <div class="prevision-prio" data-previa-prio="cmp-${k}"></div></div></div>`;
     });
   }
-  h += `<div class="rev-confirmar"><div><b id="rev-progreso">¿Está todo bien?</b><small>Al confirmar, AuditIA aplica sus reglas y te muestra qué resolver primero.</small></div>
-    <button class="enlace" data-ir="subir">← Volver</button>
-    <button class="principal" id="confirmar">Confirmar y ver resultados →</button></div></section>`;
+  h += `<div class="barra-pasos"><button class="enlace bp-volver ant" data-ir="subir">Volver</button>
+    <div class="bp-info"><b id="rev-progreso">¿Está todo bien?</b><small>Al confirmar, AuditIA aplica sus reglas y te muestra qué resolver primero.</small></div>
+    <div class="bp-acc"><button class="principal sig" id="confirmar">Confirmar y ver resultados</button></div></div></section>`;
   $("#revision").innerHTML = h;
   document.querySelectorAll("#revision [data-ruta]").forEach(el => el.addEventListener(el.type==="checkbox"||el.tagName==="SELECT"?"change":"input", () => { asignar(el); actualizarPrevias(); }));
   $("#confirmar").onclick = confirmar;
@@ -1392,7 +1403,7 @@ $("#doc-archivo").addEventListener("change", async ev => {
 });
 function renderDocumento(){
   const d = DOC;
-  $("#zona-doc").hidden = false;
+  $("#zona-doc").hidden = false; $("#barra-subir").hidden = false;
   const cab = `<div class="doc-cab"><span class="doc-ic">${esc((d.nombre.split(".").pop()||"DOC").toUpperCase().slice(0,4))}</span>
     <div><b>${esc(d.nombre)}</b><small>${d.requerimientos.length} requerimientos encontrados en ${d.parrafos} párrafos${d.truncado?" · se muestran los primeros":""}</small></div>
     <button type="button" id="doc-quitar">Quitar documento</button></div>`;
@@ -1413,7 +1424,7 @@ function cuentaDoc(){
   $("#proponer-llm").disabled = n<1; $("#proponer-rapido").disabled = n<1;
 }
 function quitarDocumento(){
-  DOC = null; $("#doc-lista").innerHTML = ""; $("#doc-archivo").value = ""; $("#zona-doc").hidden = true;
+  DOC = null; $("#doc-lista").innerHTML = ""; $("#doc-archivo").value = ""; $("#zona-doc").hidden = true; $("#barra-subir").hidden = true;
 }
 function seleccionados(){ return !DOC ? [] : [...document.querySelectorAll(".doc-sel:checked")].map(c => DOC.requerimientos[+c.dataset.i]); }
 
@@ -1523,7 +1534,7 @@ function resumenLote(res){
       <div class="hoja kpi3 falta"><span class="ic">?</span><div><b>${nFaltan}</b><small>datos que faltan</small></div></div>
       <div class="hoja kpi3 cmp"><span class="ic">⇄</span><div><b>${contra.length}</b><small>${contra.length===1?"contradicción":"contradicciones"}</small></div></div>
     </div>`;
-  if(preventivo) h += `<div class="aviso-prev"><span>⚠</span><span><b>Algunos figuran como urgentes porque no se indicó su importancia para el negocio.</b> AuditIA los trata como urgentes por precaución. Si la indicás en el paso 2, el orden se ajusta.</span>${PROP?`<button class="btn-chico" data-ir="revisar">Indicar importancia</button>`:""}</div>`;
+  if(preventivo) h += `<div class="aviso-prev"><span>⚠</span><span><b>Algunos figuran como urgentes porque no se indicó su importancia para el negocio.</b> AuditIA los trata como urgentes por precaución. Si la indicás en el paso 2, el orden se ajusta.</span>${PROP?`<button class="btn-chico ant" data-ir="revisar">Indicar importancia</button>`:""}</div>`;
 
   if(tareas.length || contra.length) h += `<div class="seccion3">Qué hacer, en orden <small>de lo más urgente a lo que puede esperar</small></div>`;
   let nro = 0;
@@ -1598,8 +1609,9 @@ function mostrarLote(res){
     h += `<section class="hoja tarjeta" style="margin-top:14px"><h3 class="rotulo">¿Tenés dudas? Preguntale a AuditIA</h3><p class="ayuda" style="margin:0">Por ejemplo:</p><div class="sugeridas">`
       + res.consultas_sugeridas.map(q=>`<button class="ejemplo" data-q="${esc(q)}">${esc(legible(q))}</button>`).join("") + `</div></section>`;
   }
-  h += `<div class="pie-pasos">${PROP ? `<button class="enlace" data-ir="revisar">← Revisar premisas</button>` : `<button class="enlace" data-ir="historial">← Historial</button>`}
-    <button class="principal" data-ir="preguntar">Preguntar a AuditIA →</button></div>`;
+  h += `<div class="barra-pasos"><button class="enlace bp-volver ant" data-ir="${PROP ? "revisar" : "historial"}">Volver</button>
+    <div class="bp-info"><b>¿Querés entender mejor algún resultado?</b><small>Preguntale a AuditIA por qué salió cada uno y qué hacer.</small></div>
+    <div class="bp-acc"><button class="principal sig" data-ir="preguntar">Preguntar a AuditIA</button></div></div>`;
   $("#res-lote").innerHTML = h;
   document.querySelectorAll("#res-lote [data-q]").forEach(b => b.onclick = () => { cambiarModo("consultar"); $("#consulta").value = b.dataset.q; contar(); $("#consulta").focus(); window.scrollTo({top:0}); });
 }
