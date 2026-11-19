@@ -1258,6 +1258,15 @@ def explicar(llm: ClienteOllama, prompts: dict, texto: str, paquete: dict) -> tu
         violaciones = (verificar_respuesta(respuesta, paquete) + controles_criterios_pg2(respuesta, paquete)
                        + _cobertura(respuesta, requisitos))
         traza["intentos"].append({"intento": intento, "respuesta": respuesta, "violaciones": violaciones, **meta})
+        if violaciones and all(v.startswith("No aclara que el resultado es provisional") for v in violaciones):
+            # PG3 v1.3: la única falta es la aclaración obligatoria. Se completa con una frase fija (no agrega datos)
+            # y se vuelve a verificar con el mismo criterio.
+            completada = respuesta.rstrip() + "\n\nEs un resultado provisional del prototipo, sin validación experta."
+            revision = (verificar_respuesta(completada, paquete) + controles_criterios_pg2(completada, paquete)
+                        + _cobertura(completada, requisitos))
+            traza["intentos"][-1]["completada_aviso_provisional"] = not revision
+            if not revision:
+                respuesta, violaciones = completada, []
         if not violaciones:
             traza["resultado_verificacion"] = "aprobada"
             return respuesta, traza
