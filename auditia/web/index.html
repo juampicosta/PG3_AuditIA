@@ -44,8 +44,10 @@
   .pasos-nav button[aria-current="step"] i{background:var(--boton);color:#fff}
   .pasos-nav button:disabled{cursor:not-allowed;opacity:.55}
   .der{display:flex;gap:10px;align-items:center}
-  .historial-btn{font:inherit;font-size:13.5px;border:1px solid var(--linea);background:var(--papel);padding:7px 14px;border-radius:999px;cursor:pointer;color:var(--tinta2)}
-  .historial-btn[aria-current="page"]{border-color:var(--tinta);color:var(--tinta)}
+  .historial-btn{font:inherit;font-size:13.5px;border:0;background:none;padding:7px 4px;cursor:pointer;color:var(--gris);display:flex;gap:7px;align-items:center;transition:color .2s}
+  .historial-btn svg{width:16px;height:16px;flex:none}
+  .historial-btn:hover{color:var(--tinta)}
+  .historial-btn[aria-current="page"]{color:var(--tinta);font-weight:500}
 
   main{max-width:1120px;margin:0 auto;padding:24px 24px 64px}
   .vista{animation:entra .35s ease}
@@ -108,10 +110,29 @@
   details.como > summary::-webkit-details-marker{display:none}
   details.como > summary::before{content:"＋";font-size:13px}
   details.como[open] > summary::before{content:"－"}
-  .reglas-oro{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:14px}
-  .reglas-oro div{background:var(--papel);border-radius:16px;padding:18px 20px;box-shadow:var(--sombra)}
-  .reglas-oro b{display:block;margin-bottom:6px;font-weight:600;font-size:14.5px}
-  .reglas-oro p{margin:0;font-size:13.5px;color:var(--gris)}
+  details.como > summary{padding:8px 14px;border-radius:999px;background:var(--papel);box-shadow:var(--sombra);transition:color .15s}
+  details.como > summary:hover{color:var(--tinta)}
+  .como-cuerpo{margin-top:16px;background:var(--papel);border-radius:var(--radio);padding:24px;box-shadow:var(--sombra)}
+  .como-intro{margin:0 0 20px;font-size:15px;color:var(--tinta2)}
+  .como-intro b{color:var(--tinta);font-weight:600}
+  .como-flujo{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;counter-reset:none}
+  .como-flujo li{--c:var(--gris);position:relative;background:var(--campo);border-radius:14px;padding:16px;border-top:3px solid var(--c)}
+  .como-flujo li.llm{--c:var(--llm)} .como-flujo li.neo{--c:var(--neo)}
+  .como-flujo li:not(:last-child)::after{content:"→";position:absolute;right:-11px;top:50%;transform:translateY(-50%);color:var(--gris2);font-size:14px;z-index:1}
+  .cf-n{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:color-mix(in srgb,var(--c) 18%,transparent);color:var(--c);font-size:12px;font-weight:700;margin-bottom:10px}
+  .como-flujo b{display:block;font-size:14.5px;font-weight:600;margin-bottom:4px}
+  .como-flujo p{margin:0;font-size:13px;color:var(--gris);line-height:1.45}
+  .como-tres{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid var(--linea)}
+  .como-tres div{display:grid;grid-template-columns:auto 1fr;column-gap:10px}
+  .ct-ic{grid-row:span 2;font-size:18px;line-height:1.2}
+  .como-tres b{font-size:14px;font-weight:600}
+  .como-tres p{margin:2px 0 0;font-size:13px;color:var(--gris);line-height:1.45}
+  @media (max-width:720px){
+    .como-flujo{grid-template-columns:1fr 1fr}
+    .como-flujo li::after{display:none}
+    .como-tres{grid-template-columns:1fr}
+    .como-cuerpo{padding:18px}
+  }
 
   /* ---------- contexto y revisor ---------- */
   .extras{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-top:16px}
@@ -644,7 +665,7 @@
       <button data-ir="preguntar"><i>4</i><span>Preguntar</span></button>
     </nav>
     <div class="der">
-      <button class="historial-btn" data-ir="historial">Historial</button>
+      <button class="historial-btn" data-ir="historial"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Historial</button>
     </div>
   </div>
 </header>
@@ -689,12 +710,19 @@
 
     <details class="como">
       <summary>¿Cómo decide AuditIA?</summary>
-      <div class="reglas-oro">
-        <div><b>El grafo tiene la última palabra</b><p>Diagnósticos, severidades, prioridades y estados salen de Neo4j: 66 reglas del catálogo y tres modelos difusos. El modelo de lenguaje no puede cambiarlos.</p></div>
-        <div><b>Requerimientos nuevos, mismas reglas</b><p>Para un texto nuevo, el modelo de lenguaje solo propone premisas citando el texto; el analista las confirma y las reglas del grafo concluyen.</p></div>
-        <div><b>Cada experto en lo suyo</b><p>SM1 juzga la calidad de cada requerimiento, SM2 los compara entre sí y SM3 decide qué tan urgente es cada observación.</p></div>
-        <div><b>Nada se inventa</b><p>Si el modelo escribe un ID, un número o un estado que no está en la evidencia, el verificador rechaza la respuesta y la vuelve a pedir.</p></div>
-        <div><b>Todo se puede auditar</b><p>Cada respuesta trae las consultas Cypher, las reglas, la evidencia y la verificación. La traza completa queda guardada.</p></div>
+      <div class="como-cuerpo">
+        <p class="como-intro">En pocas palabras: <b>la IA lee, vos confirmás y las reglas deciden.</b> La IA nunca pone la nota final.</p>
+        <ol class="como-flujo">
+          <li><span class="cf-n">1</span><b>Subís tu texto</b><p>Un documento o un requerimiento suelto.</p></li>
+          <li class="llm"><span class="cf-n">2</span><b>La IA lo lee</b><p>Marca lo que le parece importante y cita la frase exacta donde lo vio.</p></li>
+          <li><span class="cf-n">3</span><b>Vos confirmás</b><p>Revisás lo que marcó. Si algo está mal, lo corregís.</p></li>
+          <li class="neo"><span class="cf-n">4</span><b>Las reglas deciden</b><p>66 reglas fijas dan el diagnóstico, la gravedad y qué resolver primero.</p></li>
+        </ol>
+        <div class="como-tres">
+          <div><span class="ct-ic" aria-hidden="true">🔍</span><b>Tres miradas</b><p>Una revisa cada requerimiento, otra los compara entre sí y otra decide qué es más urgente.</p></div>
+          <div><span class="ct-ic" aria-hidden="true">🛡️</span><b>Nada inventado</b><p>Si la IA menciona un dato que no está en la evidencia, se rechaza y se vuelve a pedir.</p></div>
+          <div><span class="ct-ic" aria-hidden="true">📋</span><b>Todo a la vista</b><p>Cada resultado guarda qué reglas usó y en qué se basó, para que lo puedas revisar.</p></div>
+        </div>
       </div>
     </details>
   </div>
