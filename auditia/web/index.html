@@ -695,7 +695,7 @@ function lecturaHTML(ext){
 }
 function renderRevision(){
   const p = PROP; let h = `<section class="revision"><h2>Revisá lo que leyó AuditIA</h2>
-    <p class="ayuda">${p.fuente==="llm" ? `<b>${esc(p.llm?.modelo||"El LLM")}</b> leyó los requerimientos en ${esc(p.llm?.segundos ?? p.segundos)} s` : "<b>El borrador rápido</b> leyó los requerimientos"} y respondió unas preguntas sobre cada uno (las <i>premisas</i>). Con esas respuestas deciden las reglas del grafo. Normalmente solo tenés que mirar que tengan sentido; si alguna está mal, la corregís.</p>
+    <p class="ayuda">${p.fuente==="llm" ? `<b>${esc(p.llm?.modelo||"El LLM")}</b> leyó los requerimientos en ${esc(p.segundos)} s` : p.fuente==="mixta" ? `<b>${esc(p.llm?.modelo||"El LLM")}</b> leyó parte de los requerimientos y el borrador rápido el resto (ver avisos)` : "<b>El borrador rápido</b> leyó los requerimientos"} y respondió unas preguntas sobre cada uno (las <i>premisas</i>). Con esas respuestas deciden las reglas del grafo. Normalmente solo tenés que mirar que tengan sentido; si alguna está mal, la corregís.</p>
     <p class="ayuda">Los chips adelantan lo que van a concluir las reglas: <span class="previa cumple">cumple</span> está bien escrito, <span class="previa incumple">incumple</span> es un defecto (hallazgo) y <span class="previa pendiente">pendiente</span> significa que falta un dato para decidir. Tocá un requerimiento para ver sus preguntas.</p>`;
   if(p.avisos?.length) h += `<div class="avisos">${p.avisos.map(esc).join("<br>")}</div>`;
   const abierto = p.requerimientos.length <= 2 ? "open" : "";
@@ -796,9 +796,11 @@ function renderDocumento(){
     <table><thead><tr><th><input type="checkbox" id="doc-todos" checked aria-label="Seleccionar todos"></th><th>ID</th><th>Texto extraído</th><th>Ubicación</th></tr></thead><tbody>` +
     d.requerimientos.map((q,i)=>`<tr><td><input type="checkbox" class="doc-sel" data-i="${i}" checked aria-label="Analizar ${esc(q.id_documento||"requerimiento "+(i+1))}"></td>
       <td><code>${esc(q.id_documento||"—")}</code></td><td>${esc(q.texto)}</td><td style="color:var(--gris);white-space:nowrap">${esc(q.ubicacion)}</td></tr>`).join("") +
-    `</tbody></table><div class="acciones"><button class="principal" id="doc-llm">Proponer con el LLM (hasta 2 seleccionados)</button>
+    `</tbody></table><div class="acciones"><button class="principal" id="doc-llm">Proponer con el LLM</button>
       <button class="secundario" id="doc-rapido">Borrador rápido para los seleccionados</button><span class="contador" id="doc-cuenta" style="margin-left:0"></span></div>`;
-  const cuenta = () => { const n = seleccionados().length; $("#doc-cuenta").textContent = `${n} seleccionado(s)`; $("#doc-llm").disabled = n<1 || n>2; };
+  const cuenta = () => { const n = seleccionados().length;
+    $("#doc-cuenta").textContent = n ? `${n} seleccionado(s) · con el LLM, en esta computadora, unos ${Math.max(1,Math.round(n*0.6))} a ${Math.max(2,Math.round(n*1.2))} min (la primera consulta suma la carga del modelo)` : "ningún seleccionado";
+    $("#doc-llm").disabled = n<1; $("#doc-rapido").disabled = n<1; };
   document.querySelectorAll(".doc-sel").forEach(c => c.onchange = cuenta);
   $("#doc-todos").onchange = e => { document.querySelectorAll(".doc-sel").forEach(c => c.checked = e.target.checked); cuenta(); };
   $("#doc-llm").onclick = () => pedirPropuesta(true, seleccionados(), DOC.nombre);
@@ -813,8 +815,10 @@ async function pedirPropuesta(usarLLM, items=null, documento=""){
   if(!items && reqs[0].length < 8){ $("#rq-a").focus(); return; }
   const botones = [$("#proponer-llm"), $("#proponer-rapido"), $("#doc-llm"), $("#doc-rapido")].filter(Boolean); botones.forEach(b=>b.disabled=true);
   $("#revision").innerHTML = ""; $("#res-lote").innerHTML = ""; flujo("llm");
+  let detalle = usarLLM ? "Esperando turno para usar el LLM…" : "Analizando…";
   const t0 = Date.now(); const reloj = setInterval(() => { const s=Math.round((Date.now()-t0)/1000);
-    $("#estado-propuesta").textContent = usarLLM ? `El LLM está leyendo… ${s>=60?`${Math.floor(s/60)} min ${s%60} s`:`${s} s`} (sin GPU puede tardar varios minutos)` : "Analizando…"; }, 1000);
+    const txt = `${detalle} ${s>=60?`${Math.floor(s/60)} min ${s%60} s`:`${s} s`}`;
+    $("#estado-propuesta").textContent = txt; if($("#doc-cuenta") && items) $("#doc-cuenta").textContent = txt; }, 1000);
   try{
     const r = await fetch("/api/analisis/propuestas", {method:"POST", headers:{"Content-Type":"application/json"},
       body: JSON.stringify({requerimientos:reqs, contexto:$("#rq-ctx").value, usar_llm:usarLLM, documento})});
@@ -822,6 +826,7 @@ async function pedirPropuesta(usarLLM, items=null, documento=""){
     const {id} = await r.json();
     while(true){
       const t = await (await fetch(`/api/analisis/propuestas/${id}`)).json();
+      if(t.etapas?.length) detalle = t.etapas.at(-1).detalle;
       if(t.estado==="terminado"){ PROP = t.resultado; PROP.analista = $("#rq-analista").value; break; }
       if(t.estado==="error") throw new Error(t.error);
       await new Promise(res => setTimeout(res, 2000));

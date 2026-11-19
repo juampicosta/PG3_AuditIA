@@ -931,11 +931,22 @@ def explicar(llm: ClienteOllama, prompts: dict, texto: str, paquete: dict) -> tu
         violaciones = (verificar_respuesta(respuesta, paquete) + controles_criterios_pg2(respuesta, paquete)
                        + _cobertura(respuesta, requisitos))
         traza["intentos"].append({"intento": intento, "respuesta": respuesta, "violaciones": violaciones, **meta})
+        if violaciones and all(v.startswith("No aclara que el resultado es provisional") for v in violaciones):
+            # PG3 v1.3: la única falta es la aclaración obligatoria. Se completa con una frase fija (no agrega datos)
+            # y se vuelve a verificar con el mismo criterio.
+            completada = respuesta.rstrip() + "\n\nEs un resultado provisional del prototipo, sin validación experta."
+            revision = (verificar_respuesta(completada, paquete) + controles_criterios_pg2(completada, paquete)
+                        + _cobertura(completada, requisitos))
+            traza["intentos"][-1]["completada_aviso_provisional"] = not revision
+            if not revision:
+                respuesta, violaciones = completada, []
         if not violaciones:
             traza["resultado_verificacion"] = "aprobada"
             return respuesta, traza
         mensaje = (base + "\n\nTu respuesta anterior fue rechazada por el verificador de fidelidad (GL05) por: "
-                   + "; ".join(violaciones) + ". Reescribila usando solo IDs y números del paquete y cubriendo los hechos indicados.")
+                   + "; ".join(violaciones) + ". Reescribila usando solo IDs y números del paquete y cubriendo los hechos indicados."
+                   + "".join(f" Mencioná expresamente {v[len('No menciona '):]}." for v in violaciones if v.startswith("No menciona "))
+                   + " Conservá todo lo que ya estaba bien e incluí una frase que diga que es un resultado provisional, sin validación experta.")
     traza["resultado_verificacion"] = "rechazada; se emite la respuesta de respaldo"
     return respuesta_respaldo(paquete), traza
 

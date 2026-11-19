@@ -204,7 +204,7 @@ def _proponer(tid: str, pedido: PedidoPropuesta) -> None:
 
 @app.post("/api/analisis/propuestas")
 def encolar_propuesta(pedido: PedidoPropuesta):
-    usa_llm = pedido.usar_llm and len(pedido.requerimientos) <= ingesta.MAX_LLM
+    usa_llm = pedido.usar_llm
     for r in pedido.requerimientos:
         t = r if isinstance(r, str) else r.texto
         if not 8 <= len(t.strip()) <= 1000:
