@@ -446,6 +446,38 @@
   .sello{display:inline-flex;align-items:center;gap:6px;font-weight:500;color:var(--ok)}
   .sello.warn{color:var(--warn)}
 
+  /* ---------- paso 3: resultados en lenguaje común ---------- */
+  .kpis3{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}
+  .kpis3 .hoja + .hoja{margin-top:0}
+  .kpi3{display:flex;align-items:center;gap:14px;padding:16px 18px}
+  .kpi3 .ic{flex:none;width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:18px;font-weight:700}
+  .kpi3 b{display:block;font-size:26px;font-weight:600;letter-spacing:-.02em;line-height:1.1}
+  .kpi3 small{color:var(--gris);font-size:13px}
+  .kpi3.ok .ic{background:var(--okf);color:var(--ok)}.kpi3.mal .ic{background:var(--errf);color:var(--err)}.kpi3.falta .ic{background:var(--warnf);color:var(--warn)}.kpi3.cmp .ic{background:var(--sm2f);color:var(--sm2)}
+  .aviso-prev{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;margin-bottom:14px;border-radius:14px;background:var(--warnf);border:1px solid rgba(251,191,36,.25);font-size:13.5px;color:var(--tinta2)}
+  .aviso-prev b{color:var(--warn)}
+  .aviso-prev button{margin-left:auto;flex:none}
+  .seccion3{display:flex;align-items:baseline;gap:10px;margin:26px 0 10px;font-size:18px;font-weight:600}
+  .seccion3 small{font-size:13px;font-weight:400;color:var(--gris)}
+  .tarea{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:20px 22px;margin-top:10px}
+  .tarea .orden-n{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;font-size:18px;font-weight:600;background:var(--grad);color:#fff;box-shadow:0 6px 18px -8px rgba(192,132,252,.8)}
+  .tarea-cab{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}
+  .tarea-cab .rq-texto{flex:1;min-width:240px}
+  .urg{flex:none;font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px}
+  .urg.b{background:var(--errf);color:var(--err)}.urg.m{background:var(--warnf);color:var(--warn)}.urg.n{background:var(--okf);color:var(--ok)}
+  .problemas3{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
+  .problemas3 li{padding:12px 14px;border-radius:12px;background:var(--campo);border:1px solid var(--linea2)}
+  .problemas3 .que{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;color:var(--tinta)}
+  .problemas3 .hacer{display:flex;gap:8px;margin-top:8px;font-size:13.5px;color:var(--acento2)}
+  .problemas3 .hacer::before{content:"→";flex:none}
+  .bien3 summary{cursor:pointer;list-style:none;padding:16px 20px;font-weight:500;display:flex;gap:10px;align-items:center}
+  .bien3 summary::-webkit-details-marker{display:none}
+  .bien3 summary::after{content:"›";margin-left:auto;color:var(--gris2);font-size:20px;transition:transform .2s}
+  .bien3[open] summary::after{transform:rotate(90deg)}
+  .bien3 ul{list-style:none;margin:0;padding:0 20px 16px;display:flex;flex-direction:column;gap:8px}
+  .bien3 li{display:flex;gap:10px;font-size:14px;color:var(--tinta2)}
+  .bien3 li::before{content:"✓";color:var(--ok);font-weight:700}
+  @media (max-width:900px){.tarea{grid-template-columns:1fr}.tarea .orden-n{width:36px;height:36px;font-size:15px}}
   /* ---------- preguntar ---------- */
   .escritorio{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:16px;align-items:start}
   .escritorio .hoja + .hoja{margin-top:0}
@@ -1415,52 +1447,92 @@ const num = (x, d=3) => x==null ? "—" : (+x).toFixed(d);
 // Resumen visual del lote: anillo por prioridad, lo más urgente y el orden de tratamiento (SM3).
 function categoria(o){ const p = ((o.decision||{}).prioridad||"").toLowerCase(); return p.includes("bloque") ? "b" : p.includes("menor") ? "n" : "m"; }
 const NOMBRE_CAT = {b:"Bloqueante", m:"Mayor", n:"Menor"};
+const URGENCIA = {b:"Urgente", m:"Importante", n:"Puede esperar"};
+const TIPO_OBS = {ambiguedad:"Ambigüedad", atomicidad:"Atomicidad", completitud:"Completitud", verificabilidad:"Verificabilidad", contradiccion:"Contradicción"};
+const comillas = t => [...String(t||"").matchAll(/«([^»]+)»/g)].map(m => m[1]);
+// Qué pasa y qué hacer, en lenguaje común, para cada observación.
+function explicar(o){
+  const t = o.tipo_defecto, d = o.descripcion || "";
+  if(o.clase === "Pendiente"){
+    if(o.motivo_pendiente === "aceptacion_no_recibida") return {tipo:"Verificabilidad", cls:"falta", que:"No dice cómo se va a comprobar que está terminado.", hacer:"Pedile al cliente un criterio de aceptación: cómo se prueba que se cumple."};
+    return {tipo:"Falta información", cls:"falta", que: d || "Falta un dato para poder evaluarlo.", hacer: o.dato_faltante ? `Conseguí este dato: ${o.dato_faltante}.` : "Consultá al cliente el dato que falta."};
+  }
+  if(t === "ambiguedad"){ const w = comillas(d); return {tipo:"Ambigüedad", cls:"problema", que: w.length ? `Usa palabras que no se pueden medir: ${w.map(x=>`«${esc(x)}»`).join(", ")}.` : "Se puede entender de más de una forma.", hacer: w.length ? `Reemplazá ${w.map(x=>`«${esc(x)}»`).join(", ")} por algo concreto y medible: un número, un tiempo, un porcentaje o una condición que se pueda comprobar.` : "Reescribilo para que tenga una sola interpretación."}; }
+  if(t === "atomicidad"){ const partes = d.includes(":") ? d.split(":").slice(1).join(":").split(";").map(x=>x.trim().replace(/\.+$/,"")).filter(Boolean) : []; return {tipo:"Atomicidad", cls:"problema", que: partes.length ? `Pide ${partes.length} cosas a la vez: ${partes.map(esc).join(" y ")}.` : "Pide varias cosas a la vez.", hacer:"Dividilo en un requerimiento por cada cosa que pide, así se pueden probar por separado."}; }
+  if(t === "completitud"){ const w = comillas(d); return {tipo:"Completitud", cls:"problema", que: w.length ? `Deja una lista o un valor abierto: ${w.map(x=>`«${esc(x)}»`).join(", ")}.` : "Le falta información indispensable.", hacer:"Completá la lista o el valor que quedó sin definir."}; }
+  if(t === "verificabilidad") return {tipo:"Verificabilidad", cls:"problema", que:"No hay una forma clara de comprobar si se cumple.", hacer:"Agregá una condición observable para darlo por cumplido."};
+  if(t === "contradiccion") return {tipo:"Contradicción", cls:"problema", que:"Pide lo contrario que otro requerimiento en la misma situación.", hacer:"Definí con el cliente cuál de los dos vale y corregí el otro."};
+  return {tipo: TIPO_OBS[t] || o.clase || "Observación", cls:"problema", que: esc(d), hacer:"Revisalo con el cliente."};
+}
 function resumenLote(res){
-  const obs = res.observaciones||[], reqs = res.requerimientos||[];
+  const obs = res.observaciones||[], reqs = res.requerimientos||[], cmps = res.comparaciones || (res.comparacion ? [res.comparacion] : []);
   const peso = {b:0, m:1, n:2};
-  const orden = [...obs].sort((a,b) => peso[categoria(a)]-peso[categoria(b)] || ((b.decision?.grado_urgencia ?? -1)-(a.decision?.grado_urgencia ?? -1)));
-  const n = {b:0, m:0, n:0}; obs.forEach(o => n[categoria(o)]++);
-  const total = obs.length;
-  const titulo = n.b ? `Encontramos <em>${n.b}</em> ${n.b===1?"problema que bloquea":"problemas que bloquean"} el avance.`
-    : total ? `Hay <em>${total}</em> ${total===1?"observación":"observaciones"} para revisar.`
-    : `No encontramos <em>nada</em> que corregir.`;
-  // anillo (circunferencia normalizada a 100)
-  const seg = [["b","#F87171"],["m","#FBBF24"],["n","#4ADE80"]]; let acum = 0;
-  const arcos = total ? seg.map(([k,c]) => { const p = n[k]/total*100; const s = p ? `<circle cx="21" cy="21" r="15.9155" fill="none" stroke="${c}" stroke-width="5" stroke-dasharray="${p} ${100-p}" stroke-dashoffset="${25-acum}"/>` : ""; acum += p; return s; }).join("")
-    : `<circle cx="21" cy="21" r="15.9155" fill="none" stroke="#4ADE80" stroke-width="5"/>`;
-  const desc = o => esc(o.tipo_defecto || o.motivo_pendiente || o.clase || "");
-  const top = orden[0];
+  const porEv = {}; reqs.forEach(r => { if(r.evaluacion?.id) porEv[r.evaluacion.id] = r; });
+  const porId = {}; reqs.forEach(r => porId[r.id] = r);
+  const nombreRq = r => r ? (r.id_documento || r.ubicacion || r.id) : "";
+  // agrupar observaciones por requerimiento (las contradicciones van aparte)
+  const grupos = {}, contra = [];
+  for(const o of obs){
+    if(o.tipo_defecto === "contradiccion"){ contra.push(o); continue; }
+    const r = porEv[o.origen]; const k = r ? r.id : o.origen;
+    (grupos[k] ||= {rq:r, obs:[]}).obs.push(o);
+  }
+  const tareas = Object.values(grupos).map(g => {
+    g.cat = g.obs.map(categoria).sort((a,b)=>peso[a]-peso[b])[0];
+    g.urg = Math.max(...g.obs.map(o => o.decision?.grado_urgencia ?? -1));
+    g.obs.sort((a,b) => (a.clase==="Pendiente") - (b.clase==="Pendiente"));
+    return g;
+  }).sort((a,b) => peso[a.cat]-peso[b.cat] || b.urg-a.urg);
+  const conProblemas = new Set(Object.keys(grupos)); contra.forEach(o => { const c = cmps.find(x=>x.id===o.origen); (c?.requerimientos||[]).forEach(id => conProblemas.add(id)); });
+  const bien = reqs.filter(r => !conProblemas.has(r.id));
+  const nProblemas = obs.filter(o => o.clase!=="Pendiente" && o.tipo_defecto!=="contradiccion").length;
+  const nFaltan = obs.filter(o => o.clase==="Pendiente").length;
+  const preventivo = obs.some(o => o.decision?.motivo === "preventivo");
+
+  const titulo = obs.length ? `Encontramos <em>${obs.length}</em> ${obs.length===1?"cosa":"cosas"} para corregir en ${reqs.length - bien.length} de ${reqs.length} requerimientos.`
+    : `Tus requerimientos están <em>bien escritos</em>.`;
   let h = `<div class="titular">
-      <div class="ojo">Paso 3 de 4 · Lote ${esc(res.lote)}${res.documento?` · ${esc(res.documento)}`:""}</div>
+      <div class="ojo">Paso 3 de 4 · Resultados${res.documento?` · ${esc(res.documento)}`:""}</div>
       <h2>${titulo}</h2>
-      <p>Revisamos ${reqs.length} ${reqs.length===1?"requerimiento":"requerimientos"} con las reglas de SM1, SM2 y SM3. Resultados provisionales, sin validación experta.</p>
+      <p>${obs.length ? "Empezá por los de arriba: son los más urgentes. Cada problema trae una sugerencia de cómo resolverlo." : "No encontramos nada que corregir en lo que revisamos."}</p>
     </div>
-    <div class="res-grid">
-      <section class="hoja tarjeta"><h3 class="rotulo">Resumen</h3>
-        <div class="anillo">
-          <svg width="112" height="112" viewBox="0 0 42 42" role="img" aria-label="${total} observaciones"><circle cx="21" cy="21" r="15.9155" fill="none" stroke="#1E2133" stroke-width="5"/>${arcos}
-            <text x="21" y="22.5" text-anchor="middle" font-size="9" font-family="Poppins" font-weight="600" fill="#F5F5FA">${total}</text>
-            <text x="21" y="28" text-anchor="middle" font-size="3" font-family="Poppins" fill="#6E7191">observ.</text></svg>
-          <div class="leyenda">
-            <div><i style="background:#F87171"></i>Bloqueantes<b>${n.b}</b></div>
-            <div><i style="background:#FBBF24"></i>Mayores<b>${n.m}</b></div>
-            <div><i style="background:#4ADE80"></i>Menores<b>${n.n}</b></div>
-          </div>
-        </div>
-      </section>
-      <section class="hoja tarjeta urgente"><h3 class="rotulo">${top ? "Lo más urgente" : "Todo en orden"}</h3>
-        ${top ? `<p>${esc(top.id)} · ${desc(top)}</p><small>${esc(NOMBRE_CAT[categoria(top)])}${top.decision?.motivo?` · ${esc(top.decision.motivo)}`:""}${top.dato_faltante?` · falta: ${esc(top.dato_faltante)}`:""}${top.decision?.grado_urgencia!=null?` · urgencia ${num(top.decision.grado_urgencia,1)}/10`:""}</small>`
-              : `<p>Ningún hallazgo ni pendiente.</p><small>En el alcance revisado, no hay nada que priorizar.</small>`}
-      </section>
-      ${orden.length ? `<section class="hoja tarjeta ancho orden"><h3 class="rotulo">En este orden</h3>
-        ${orden.slice(0,6).map((o,i) => `<div class="fila"><span class="n">${i+1}</span><p>${esc(o.id)} · ${desc(o)}<small>${esc(o.clase||"")}${o.dato_faltante?` · falta: ${esc(o.dato_faltante)}`:""}${o.severidad?.valor?` · severidad ${esc(o.severidad.valor)}`:""}</small></p><span class="tg ${categoria(o)}">${NOMBRE_CAT[categoria(o)]}</span></div>`).join("")}
-        ${orden.length>6 ? `<p class="ayuda" style="margin:10px 0 0">Y ${orden.length-6} más en el detalle técnico.</p>` : ""}
-      </section>` : ""}
+    <div class="kpis3">
+      <div class="hoja kpi3 ok"><span class="ic">✓</span><div><b>${bien.length}</b><small>bien escritos</small></div></div>
+      <div class="hoja kpi3 mal"><span class="ic">!</span><div><b>${nProblemas}</b><small>problemas de redacción</small></div></div>
+      <div class="hoja kpi3 falta"><span class="ic">?</span><div><b>${nFaltan}</b><small>datos que faltan</small></div></div>
+      <div class="hoja kpi3 cmp"><span class="ic">⇄</span><div><b>${contra.length}</b><small>${contra.length===1?"contradicción":"contradicciones"}</small></div></div>
     </div>`;
+  if(preventivo) h += `<div class="aviso-prev"><span>⚠</span><span><b>Algunos figuran como urgentes porque no se indicó su importancia para el negocio.</b> AuditIA los trata como urgentes por precaución. Si la indicás en el paso 2, el orden se ajusta.</span>${PROP?`<button class="btn-chico" data-ir="revisar">Indicar importancia</button>`:""}</div>`;
+
+  if(tareas.length || contra.length) h += `<div class="seccion3">Qué hacer, en orden <small>de lo más urgente a lo que puede esperar</small></div>`;
+  let nro = 0;
+  const filaObs = o => { const e = explicar(o); return `<li><div class="que"><span class="tipo-h ${e.cls}">${e.cls==="falta"?"?":"✕"} ${esc(e.tipo)}</span><span>${e.que}</span></div><div class="hacer">${e.hacer}</div></li>`; };
+  // intercalar contradicciones según su prioridad
+  const items = [...tareas.map(g => ({k:"rq", g, cat:g.cat, urg:g.urg})), ...contra.map(o => ({k:"cmp", o, cat:categoria(o), urg:o.decision?.grado_urgencia ?? -1}))]
+    .sort((a,b) => peso[a.cat]-peso[b.cat] || b.urg-a.urg);
+  for(const it of items){
+    nro++;
+    if(it.k === "rq"){
+      const r = it.g.rq;
+      h += `<section class="hoja tarea"><span class="orden-n">${nro}</span><div>
+        <div class="tarea-cab"><span class="rq-texto">${esc(r?.texto || it.g.obs[0].origen)}</span><span class="urg ${it.cat}" title="Prioridad: ${NOMBRE_CAT[it.cat]}">${URGENCIA[it.cat]}</span></div>
+        <span class="rq-meta">${r?.id_documento?`<code>${esc(r.id_documento)}</code> · `:""}${esc(r?.ubicacion||"")}</span>
+        <ul class="problemas3">${it.g.obs.map(filaObs).join("")}</ul></div></section>`;
+    } else {
+      const c = cmps.find(x => x.id === it.o.origen) || {}; const [a,b] = (c.requerimientos||[]).map(id => porId[id]);
+      const lado = r => `<div class="par-lado"><small>${esc(nombreRq(r))}</small><div class="par-txt">${esc(r?.texto||"")}</div></div>`;
+      h += `<section class="hoja tarea"><span class="orden-n">${nro}</span><div>
+        <div class="tarea-cab"><span class="rq-texto">Dos requerimientos se contradicen</span><span class="urg ${it.cat}" title="Prioridad: ${NOMBRE_CAT[it.cat]}">${URGENCIA[it.cat]}</span></div>
+        <div class="cmp-par" style="margin-top:12px">${lado(a)}<span class="vs">VS</span>${lado(b)}</div>
+        <ul class="problemas3">${filaObs(it.o)}</ul></div></section>`;
+    }
+  }
+  if(bien.length) h += `<details class="hoja bien3" style="margin-top:14px"><summary><span class="tipo-h ok">✓ ${bien.length}</span> ${bien.length===1?"Requerimiento bien escrito":"Requerimientos bien escritos"}</summary>
+    <ul>${bien.map(r => `<li><span>${esc(r.texto)}${r.id_documento?` <code>${esc(r.id_documento)}</code>`:""}</span></li>`).join("")}</ul></details>`;
   return h;
 }
 function mostrarLote(res){
-  let h = resumenLote(res) + `<details class="hoja detalle"><summary>Ver el detalle técnico <small>· reglas, estados y grados difusos por submódulo</small></summary>
+  let h = resumenLote(res) + `<details class="hoja detalle"><summary>Ver el detalle técnico <small>· para el informe: reglas aplicadas, estados y grados por submódulo</small></summary>
     <div class="detalle-cuerpo res-lote">
     <p class="ayuda" style="margin:0">Estados, reglas, severidades, prioridades y grados calculados por Neo4j con las mismas reglas y modelos difusos de PG2.</p>`;
   for(const rq of res.requerimientos||[]){
@@ -1501,8 +1573,9 @@ function mostrarLote(res){
     ${res.tiempos?`<span>Escritura e inferencia: ${esc(res.tiempos.total_s)} s</span>`:""}${res.informe?`<span>Informe ${esc(res.informe.id)}: ${esc(res.informe.calidad_observada)}</span>`:""}</div>`;
   h += `</div></details>`;
   if(res.consultas_sugeridas?.length){
-    h += `<section class="hoja tarjeta" style="margin-top:14px"><h3 class="rotulo">Seguí con el asistente</h3><p class="ayuda" style="margin:0">El caso ya es parte del grafo: SM1, SM2 y SM3 lo responden como a cualquier otro.</p><div class="sugeridas">`
-      + res.consultas_sugeridas.map(q=>`<button class="ejemplo" data-q="${esc(q)}">${esc(q)}</button>`).join("") + `</div></section>`;
+    const legible = q => (res.requerimientos||[]).reduce((t,r) => r.id_documento ? t.split(r.id).join(r.id_documento) : t, q);
+    h += `<section class="hoja tarjeta" style="margin-top:14px"><h3 class="rotulo">¿Tenés dudas? Preguntale a AuditIA</h3><p class="ayuda" style="margin:0">Por ejemplo:</p><div class="sugeridas">`
+      + res.consultas_sugeridas.map(q=>`<button class="ejemplo" data-q="${esc(q)}">${esc(legible(q))}</button>`).join("") + `</div></section>`;
   }
   h += `<div class="pie-pasos">${PROP ? `<button class="enlace" data-ir="revisar">← Revisar premisas</button>` : `<button class="enlace" data-ir="historial">← Historial</button>`}
     <button class="principal" data-ir="preguntar">Preguntar a AuditIA →</button></div>`;
