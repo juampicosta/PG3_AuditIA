@@ -200,7 +200,6 @@ const DetalleTecnico = (() => {
   const estado = t => `<span class="tec-estado ${["cumple","sin_hallazgo","incumple","observado","pendiente"].includes(t)?t:""}">${ayuda(tit(t),t)}</span>`;
   const extra = (titulo, cuerpo) => `<details class="tec-extra"><summary>${ayuda(titulo)}</summary>${cuerpo}</details>`;
   const tabla = (cab, filas, clase="") => `<div class="tec-tabla"><table class="${clase}"><thead><tr>${cab.map((c,i)=>`<th scope="col">${ayuda(c,c,clase==="tec-matriz"&&i>0?`Nivel ${c.toLowerCase()} de importancia para el negocio. Buscá la gravedad en las filas para ver la categoría que resulta.`:"")}</th>`).join("")}</tr></thead><tbody>${filas.join("")}</tbody></table></div>`;
-  const seccion = (numero, titulo, descripcion, cuerpo, abierta=false) => `<details class="tec-seccion" ${abierta?"open":""}><summary><span class="tec-num">${numero}</span><span><b>${e(titulo)}</b><small>${e(descripcion)}</small></span></summary><div class="tec-cuerpo">${cuerpo}</div></details>`;
   const destino = (tipo,id) => `tec-${tipo}-${id}`;
   const enlace = (tipo,id,texto,atributos="") => `<a class="tec-enlace" href="#${e(destino(tipo,id))}" data-tec-ir="${e(destino(tipo,id))}" ${atributos}>${e(texto)}</a>`;
   const caso = (titulo, subtitulo, cuerpo, badge="",id="") => `<details class="tec-caso" ${id?`id="${e(id)}"`:""}><summary><span><b>${e(titulo)}</b><small>${e(subtitulo)}</small></span>${badge}</summary><div class="tec-caso-cuerpo">${cuerpo}</div></details>`;
@@ -210,7 +209,7 @@ const DetalleTecnico = (() => {
     for(const rq of res.requerimientos||[]) for(const j of rq.evaluacion?.juicios||[]) for(const r of j.reglas||[]) if(typeof r!=="string") reglas[r.id]={...reglas[r.id],...r};
     for(const cp of res.comparaciones||[]) for(const r of cp.reglas||[]) if(typeof r!=="string") reglas[r.id]={...reglas[r.id],...r};
     const node = id => nodos[id] || {};
-    const nombre = id => { const rq=(res.requerimientos||[]).find(r=>r.id===id); return rq?.id_documento || rq?.id || id; };
+    const nombre = id => { const rq=(res.requerimientos||[]).find(r=>r.id===id); return rq?`${rq.id_documento||rq.id} · ${RecorridoTecnico.tituloRequerimiento(rq,node(rq.id))}`:id; };
     const reglasHTML = lista => {
       const rs=[...new Map((lista||[]).map(r=>{ const x=typeof r==="string"?reglas[r]||{id:r}:r; return [x.id,{...reglas[x.id],...x}]; })).values()];
       for(const r of rs) reglas[r.id]={...reglas[r.id],...r};
@@ -439,22 +438,17 @@ grado = Σ(z × μ_salida(z)) / Σμ_salida(z)</pre><p class="tec-nota">xb/xm/xa
   }
 
   function render(res){
-    const c=contexto(res), reqs=res.requerimientos||[], cmps=res.comparaciones||[], obs=res.observaciones||[];
-    return `<details class="hoja detalle tecnico"><summary>Ver el detalle técnico <small>· datos, reglas, matriz y cálculos</small></summary><div class="detalle-cuerpo">
-      <div class="tec-intro"><span class="tec-ceja">EL RECORRIDO DE ESTA AUDITORÍA</span><h3>De lo que escribiste a lo que hay que resolver</h3><p>Abrí cada etapa para seguir las decisiones. Dentro de cada caso encontrás los hechos, las reglas y la evidencia que las sustentan.</p><p class="tec-nota">Pasá el mouse por los términos con <span aria-hidden="true">?</span> para ver una explicación. También podés tocar el signo o enfocarlo con el teclado.</p></div>
-      <div class="tec-recorrido" aria-label="Etapas del análisis"><span>Datos</span><i>→</i><span>Calidad</span><i>→</i><span>Comparación</span><i>→</i><span>Prioridad</span><i>→</i><span>Cálculos y controles</span></div>
-      ${seccion("01","Qué información entró",`${reqs.length} requerimientos · lectura y premisas confirmadas`,entrada(res,c),true)}
-      ${seccion("02","Cómo se evaluó la calidad",`SM1 · atomicidad, ambigüedad, verificabilidad y completitud`,calidad(res,c))}
-      ${seccion("03","Cómo se compararon los requerimientos",`SM2 · ${cmps.length} pares registrados`,comparaciones(res,c))}
-      ${seccion("04","Cómo se decidió la prioridad",`SM3 · ${obs.length} observaciones · matriz y condiciones de tratamiento`,prioridades(res,c))}
-      ${seccion("05","Cómo se calcularon los grados y se verificó el resultado","Lógica difusa · activaciones, fórmulas y controles de integridad",calculosYControles(res,c))}
-    </div></details>`;
+    return RecorridoTecnico.render(res);
   }
-  function referenciaObservacion(o){
-    const evaluacion=o.juicio_id?enlace("juicio",o.juicio_id,"Ver evaluación"):enlace("comparacion",o.origen,"Ver comparación");
-    return `<div class="tec-accesos">${evaluacion}${enlace("prioridad",o.id,"Ver prioridad")}</div>`;
+  function crearFichas(res,c){
+    // Las fichas son contenido del panel del grafo, fuera del documento visible.
+    const plantilla=document.createElement("template");
+    plantilla.innerHTML=`<div class="tecnico">${entrada(res,c)}${calidad(res,c)}${comparaciones(res,c)}${prioridades(res,c)}${calculosYControles(res,c)}</div>`;
+    completarAyudas(plantilla.content);
+    return new Map([...plantilla.content.querySelectorAll("[id]")].map(el=>[el.id,el]));
   }
-  const registros=new WeakMap();
+  const registros=new WeakMap(), fichas=new WeakMap();
+  const tieneFicha=(raiz,id)=>fichas.get(raiz)?.has(id)||false;
   let tooltip=null, terminoActivo=null, fijado=false, cierrePendiente=null;
   function cerrarAyuda(){
     clearTimeout(cierrePendiente);
@@ -482,18 +476,28 @@ grado = Σ(z × μ_salida(z)) / Σμ_salida(z)</pre><p class="tec-nota">xb/xm/xa
     termino.querySelector("button").setAttribute("aria-describedby",tooltip.id);
     ubicarAyuda();
   }
-  function activarAyudas(raiz,registro){
-    registros.set(raiz,registro);
-    cerrarAyuda();
-    // Añade ayuda a títulos y estados que no pasan por los constructores de etiquetas.
+  function completarAyudas(raiz){
     raiz.querySelectorAll(".tecnico h4, .tec-criterio > summary > b, .tec-seccion > summary b, .tec-conclusion > b, .tec-estado, .tec-metodo b").forEach(el=>{
       if(!el.querySelector(".tec-termino")) el.innerHTML=ayuda(el.textContent);
     });
+  }
+  function activarAyudas(raiz,registro){
+    registros.set(raiz,registro);
+    cerrarAyuda();
+    const c=contexto(registro), catalogo=crearFichas(registro,c);
+    fichas.set(raiz,catalogo);
+    RecorridoTecnico.activar(raiz,registro,{ayuda,datos,enlace,reglasHTML:c.reglasHTML,fundamento,interpretacion,critKeys,cmpKeys,condiciones,obtenerFicha:id=>catalogo.get(id)});
+    if(tooltip&&!tooltip.isConnected)document.body.append(tooltip);
     if(raiz.dataset.tecAyudas) return;
     raiz.dataset.tecAyudas="activas";
     tooltip=document.createElement("div");
     tooltip.id="auditia-ayuda-tecnica"; tooltip.className="tec-tooltip"; tooltip.setAttribute("role","tooltip"); tooltip.hidden=true;
     document.body.append(tooltip);
+    raiz.addEventListener("rec-visibilidad",ev=>{
+      cerrarAyuda();
+      (ev.detail.abierto?ev.detail.dialogo:document.body).append(tooltip);
+    });
+    raiz.addEventListener("rec-cambio",cerrarAyuda);
     const aplazarCierre=()=>{if(!fijado) cierrePendiente=setTimeout(cerrarAyuda,180);};
     raiz.addEventListener("pointerover",ev=>{
       if(ev.pointerType==="touch"||fijado) return;
@@ -513,24 +517,6 @@ grado = Σ(z × μ_salida(z)) / Σμ_salida(z)</pre><p class="tec-nota">xb/xm/xa
       if(terminoActivo&&!terminoActivo.contains(ev.relatedTarget)&&!tooltip.contains(ev.relatedTarget)) cierrePendiente=setTimeout(cerrarAyuda,180);
     });
     raiz.addEventListener("click",ev=>{
-      const ir=ev.target.closest("[data-tec-ir]");
-      if(ir){
-        const target=document.getElementById(ir.dataset.tecIr);
-        if(!target) return;
-        ev.preventDefault();cerrarAyuda();
-        for(let padre=target;padre&&padre!==raiz;padre=padre.parentElement) if(padre.tagName==="DETAILS") padre.open=true;
-        if(ir.dataset.tecCelda){
-          const celda=JSON.parse(ir.dataset.tecCelda);
-          target.querySelectorAll("[data-tec-severidad]").forEach(td=>{
-            const activa=td.dataset.tecSeveridad===celda.severidad&&td.dataset.tecCriticidad===celda.criticidad;
-            td.classList.toggle("tec-celda-activa",activa);
-            if(activa) td.setAttribute("aria-label","Celda aplicada");else td.removeAttribute("aria-label");
-          });
-          target.querySelector("[data-tec-seleccion]").textContent=`${celda.observacion}: severidad ${celda.severidad} e importancia ${celda.criticidad}.`;
-        }
-        requestAnimationFrame(()=>{target.tabIndex=-1;target.focus({preventScroll:true});target.scrollIntoView({block:"start"});});
-        return;
-      }
       if(ev.target.closest("[data-tec-exportar]")){
         const registro=registros.get(raiz);
         if(!registro) return;
@@ -555,5 +541,5 @@ grado = Σ(z × μ_salida(z)) / Σμ_salida(z)</pre><p class="tec-nota">xb/xm/xa
     document.addEventListener("scroll",()=>{if(terminoActivo) ubicarAyuda();},true);
     window.addEventListener("resize",()=>{if(terminoActivo) ubicarAyuda();});
   }
-  return {render,activarAyudas,enlace,referenciaObservacion};
+  return {render,activarAyudas,tieneFicha};
 })();

@@ -1,0 +1,478 @@
+{
+  "version": "PG3-AuditIA-1.2",
+  "fecha": "2026-11-19T10:59:52",
+  "modelo": "gemini-flash-lite-latest",
+  "huella_prompts": "732cd87a253a",
+  "caso": "web",
+  "consulta_usuario": "¿Qué diagnóstico de calidad tiene el requerimiento RQ-CAT-v1?",
+  "pasos": [
+    {
+      "paso": 1,
+      "submodulo": "SM1",
+      "subconsulta": "¿Qué diagnóstico de calidad tiene el requerimiento RQ-CAT-v1?",
+      "enlace": null,
+      "traza": {
+        "prototipo": "PI4-SM1-1.0",
+        "fecha": "2026-11-19T10:59:59",
+        "modelo": "gemini-flash-lite-latest",
+        "huella_prompts": "88da390d63e7",
+        "caso": "web_p1_SM1",
+        "consulta_usuario": "¿Qué diagnóstico de calidad tiene el requerimiento RQ-CAT-v1?",
+        "extraccion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "salida_cruda": "{\"intencion\": \"diagnostico_requerimiento\", \"entidades\": {\"requerimiento_id\": \"RQ-CAT-v1\", \"requerimiento_texto\": null, \"observacion_id\": null, \"evaluacion_id\": null}, \"conceptos\": {\"criterio\": null}, \"filtros\": {\"estado_juicio\": null, \"banda_ambiguedad\": null}, \"condiciones\": {\"version\": null, \"alcance\": \"vigente\"}, \"faltantes\": []}",
+              "modelo": "gemini-3.5-flash-lite",
+              "proveedor": "gemini",
+              "segundos": 2.58,
+              "tokens_entrada": 1845,
+              "tokens_salida": 115,
+              "errores_esquema": []
+            }
+          ],
+          "notas": [],
+          "json_validado": {
+            "intencion": "diagnostico_requerimiento",
+            "entidades": {
+              "requerimiento_id": "RQ-CAT-v1",
+              "requerimiento_texto": null,
+              "observacion_id": null,
+              "evaluacion_id": null
+            },
+            "conceptos": {
+              "criterio": null
+            },
+            "filtros": {
+              "estado_juicio": null,
+              "banda_ambiguedad": null
+            },
+            "condiciones": {
+              "version": null,
+              "alcance": "vigente"
+            },
+            "faltantes": []
+          }
+        },
+        "intencion": "diagnostico_requerimiento",
+        "consultas_cypher": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 78,
+            "milisegundos": 616.6
+          },
+          {
+            "consulta": "Q1_diagnostico",
+            "parametros": {
+              "requerimiento_id": "RQ-CAT-v1",
+              "criterio": null
+            },
+            "filas": 1,
+            "milisegundos": 1374.9
+          },
+          {
+            "consulta": "Q6_reglas",
+            "parametros": {
+              "ids": [
+                "EVI-HC02",
+                "EVI-HC08",
+                "EVI-RD03",
+                "EVI-RD04",
+                "GL02"
+              ]
+            },
+            "filas": 5,
+            "milisegundos": 112.0
+          }
+        ],
+        "resolucion_entidad": {
+          "estado": "ok",
+          "puntaje": null,
+          "requerimiento": {
+            "requerimiento_id": "RQ-CAT-v1",
+            "id_logico": "RQ-CAT",
+            "texto": "El sistema debe cargar rápidamente el catálogo.",
+            "documento_id": "DOC-CAT-v1",
+            "version": 1
+          }
+        },
+        "paquete_evidencia": {
+          "intencion": "diagnostico_requerimiento",
+          "consulta_usuario": "¿Qué diagnóstico de calidad tiene el requerimiento RQ-CAT-v1?",
+          "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+          "requerimiento_consultado": {
+            "requerimiento_id": "RQ-CAT-v1",
+            "id_logico": "RQ-CAT",
+            "texto": "El sistema debe cargar rápidamente el catálogo.",
+            "documento_id": "DOC-CAT-v1",
+            "version": 1
+          },
+          "evaluaciones": [
+            {
+              "estado": "observado",
+              "texto_requerimiento": "El sistema debe cargar rápidamente el catálogo.",
+              "reevalua_a": [],
+              "incidencias": [],
+              "vigente": false,
+              "version": 1,
+              "requerimiento_id": "RQ-CAT-v1",
+              "fecha": "2026-10-31T21:00:00-03:00",
+              "entrada_valida": true,
+              "evaluacion_id": "EV-CAT-01",
+              "juicios": [
+                {
+                  "estado": "cumple",
+                  "reglas": [
+                    "EVI-HC08"
+                  ],
+                  "justificacion": "Una obligación evaluable con unidad de aceptación confirmada.",
+                  "revision_senior_requerida": false,
+                  "banda_difusa": null,
+                  "resultados": [],
+                  "criterio": "atomicidad",
+                  "juicio_id": "J-EV-CAT-01-atomicidad",
+                  "evidencias": [
+                    {
+                      "tipo": "fragmento",
+                      "contenido": "El sistema debe cargar rápidamente el catálogo.",
+                      "id": "E-RQ-CAT-v1",
+                      "localizador": "RQ-CAT-v1"
+                    }
+                  ],
+                  "grado_ambiguedad": null
+                },
+                {
+                  "estado": "incumple",
+                  "reglas": [
+                    "EVI-HC02"
+                  ],
+                  "justificacion": "Persisten dos lecturas: aprobación por percepción de rapidez o por un límite medido; falta delimitación del caso.",
+                  "revision_senior_requerida": false,
+                  "banda_difusa": "alta",
+                  "resultados": [
+                    {
+                      "motivo_pendiente": null,
+                      "dato_faltante": null,
+                      "severidad": "media",
+                      "id": "H-CAT-B",
+                      "clase": "Hallazgo"
+                    }
+                  ],
+                  "criterio": "ambiguedad",
+                  "juicio_id": "J-EV-CAT-01-ambiguedad",
+                  "evidencias": [
+                    {
+                      "tipo": "fragmento",
+                      "contenido": "El sistema debe cargar rápidamente el catálogo.",
+                      "id": "E-RQ-CAT-v1",
+                      "localizador": "RQ-CAT-v1"
+                    }
+                  ],
+                  "grado_ambiguedad": 0.7810157758841172
+                },
+                {
+                  "estado": "pendiente",
+                  "reglas": [
+                    "EVI-RD03"
+                  ],
+                  "justificacion": "La aceptación necesaria no fue recibida; no se puede fijar una condición de aprobación.",
+                  "revision_senior_requerida": false,
+                  "banda_difusa": null,
+                  "resultados": [
+                    {
+                      "motivo_pendiente": "aceptacion_no_recibida",
+                      "dato_faltante": "Criterio de aceptación y alcance",
+                      "severidad": null,
+                      "id": "P-CAT-V",
+                      "clase": "Pendiente"
+                    }
+                  ],
+                  "criterio": "verificabilidad",
+                  "juicio_id": "J-EV-CAT-01-verificabilidad",
+                  "evidencias": [
+                    {
+                      "tipo": "fragmento",
+                      "contenido": "El sistema debe cargar rápidamente el catálogo.",
+                      "id": "E-RQ-CAT-v1",
+                      "localizador": "RQ-CAT-v1"
+                    }
+                  ],
+                  "grado_ambiguedad": null
+                },
+                {
+                  "estado": "pendiente",
+                  "reglas": [
+                    "GL02"
+                  ],
+                  "justificacion": "No se recibió la información necesaria para determinar las partes aplicables.",
+                  "revision_senior_requerida": false,
+                  "banda_difusa": null,
+                  "resultados": [
+                    {
+                      "motivo_pendiente": "aceptacion_no_recibida",
+                      "dato_faltante": "Criterio de aceptación y alcance",
+                      "severidad": null,
+                      "id": "P-CAT-C",
+                      "clase": "Pendiente"
+                    }
+                  ],
+                  "criterio": "completitud",
+                  "juicio_id": "J-EV-CAT-01-completitud",
+                  "evidencias": [
+                    {
+                      "tipo": "fragmento",
+                      "contenido": "El sistema debe cargar rápidamente el catálogo.",
+                      "id": "E-RQ-CAT-v1",
+                      "localizador": "RQ-CAT-v1"
+                    }
+                  ],
+                  "grado_ambiguedad": null
+                }
+              ],
+              "documento_id": "DOC-CAT-v1",
+              "reevaluada_por": [
+                "EV-CAT-02"
+              ],
+              "reglas_evaluacion": [
+                "EVI-RD04"
+              ]
+            }
+          ],
+          "reglas": [
+            {
+              "id": "EVI-HC02",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+              "fuente": "PG1 §6.4"
+            },
+            {
+              "id": "EVI-HC08",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI hay una sola obligación con unidad de aceptación confirmada ENTONCES atomicidad cumple.",
+              "fuente": "PG1 §6.4"
+            },
+            {
+              "id": "EVI-RD03",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI criterio = verificabilidad, la aceptación es necesaria y no está disponible ENTONCES el juicio queda pendiente.",
+              "fuente": "PG1 §6.4"
+            },
+            {
+              "id": "EVI-RD04",
+              "modulo": "evaluacion_individual",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI hay cuatro juicios informados y al menos uno incumple ENTONCES estado = observado.",
+              "fuente": "PG1 §6.4"
+            },
+            {
+              "id": "GL02",
+              "modulo": "global",
+              "estado_validacion": "candidata",
+              "ejecucion": "implementada",
+              "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+              "fuente": "PG1 §6.3"
+            }
+          ]
+        },
+        "explicacion": {
+          "intentos": [
+            {
+              "intento": 1,
+              "respuesta": "El requerimiento RQ-CAT-v1 tiene un diagnóstico observado en su evaluación EV-CAT-01, un resultado provisional de un prototipo académico sin validación experta. Este estado se determinó mediante la regla EVI-RD04 porque hay cuatro juicios informados y al menos uno incumple. \n\nEn detalle, para el criterio de atomicidad el juicio es cumple [J-EV-CAT-01-atomicidad] por la regla EVI-HC08, ya que se trata de una obligación evaluable con unidad de aceptación confirmada. Para el criterio de ambigüedad el juicio incumple [J-EV-CAT-01-ambiguedad] por la regla EVI-HC02, con un grado de ambigüedad de 0.781 y banda alta, porque persisten dos lecturas sin delimitación, lo que genera el hallazgo H-CAT-B. Para la verificabilidad el juicio está pendiente [J-EV-CAT-01-verificabilidad] por la regla EVI-RD03, ya que la aceptación necesaria no fue recibida. Finalmente, para la completitud el juicio también está pendiente [J-EV-CAT-01-completitud] por la regla GL02, debido a que falta el dato correspondiente al criterio de aceptación y alcance, generando el pendiente P-CAT-C.",
+              "violaciones": [],
+              "modelo": "gemini-3.5-flash-lite",
+              "proveedor": "gemini",
+              "segundos": 3.23,
+              "tokens_entrada": 3449,
+              "tokens_salida": 292
+            }
+          ],
+          "hechos_verificables": [
+            "Requerimiento RQ-CAT-v1 («El sistema debe cargar rápidamente el catálogo.»), documento DOC-CAT-v1: la evaluación EV-CAT-01 quedó observado por la regla EVI-RD04.",
+            "La evaluación EV-CAT-01 fue reevaluada por EV-CAT-02: su resultado se conserva como historia de la versión 1 y no es el estado vigente.",
+            "Criterio atomicidad: cumple [J-EV-CAT-01-atomicidad] por la regla EVI-HC08. Justificación registrada: «Una obligación evaluable con unidad de aceptación confirmada.».",
+            "Criterio ambiguedad: incumple [J-EV-CAT-01-ambiguedad] por la regla EVI-HC02. Justificación registrada: «Persisten dos lecturas: aprobación por percepción de rapidez o por un límite medido; falta delimitación del caso.». Grado de ambigüedad 0.781, banda alta. Genera Hallazgo H-CAT-B con severidad propuesta media.",
+            "Criterio verificabilidad: pendiente [J-EV-CAT-01-verificabilidad] por la regla EVI-RD03. Justificación registrada: «La aceptación necesaria no fue recibida; no se puede fijar una condición de aprobación.». Genera Pendiente P-CAT-V (dato faltante: Criterio de aceptación y alcance).",
+            "Criterio completitud: pendiente [J-EV-CAT-01-completitud] por la regla GL02. Justificación registrada: «No se recibió la información necesaria para determinar las partes aplicables.». Genera Pendiente P-CAT-C (dato faltante: Criterio de aceptación y alcance).",
+            "Regla EVI-HC02 (estado candidata, PG1 §6.4): SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+            "Regla EVI-HC08 (estado candidata, PG1 §6.4): SI hay una sola obligación con unidad de aceptación confirmada ENTONCES atomicidad cumple.",
+            "Regla EVI-RD03 (estado candidata, PG1 §6.4): SI criterio = verificabilidad, la aceptación es necesaria y no está disponible ENTONCES el juicio queda pendiente.",
+            "Regla EVI-RD04 (estado candidata, PG1 §6.4): SI hay cuatro juicios informados y al menos uno incumple ENTONCES estado = observado.",
+            "Regla GL02 (estado candidata, PG1 §6.3): SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+            "Las reglas y modelos citados tienen estado candidata: el resultado es provisional, del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+            "La respuesta debe mencionar estos IDs: EV-CAT-01.",
+            "Estados que figuran en el paquete: cumple, incumple, observado, pendiente. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas las palabras «sin hallazgo», «no evaluable», «resuelto», «por consultar» en la respuesta."
+          ],
+          "cobertura_requerida": {
+            "ids": [
+              "EV-CAT-01"
+            ],
+            "estados": [
+              "cumple",
+              "incumple",
+              "observado",
+              "pendiente"
+            ]
+          },
+          "resultado_verificacion": "aprobada"
+        },
+        "respuesta_final": "El requerimiento RQ-CAT-v1 tiene un diagnóstico observado en su evaluación EV-CAT-01, un resultado provisional de un prototipo académico sin validación experta. Este estado se determinó mediante la regla EVI-RD04 porque hay cuatro juicios informados y al menos uno incumple. \n\nEn detalle, para el criterio de atomicidad el juicio es cumple [J-EV-CAT-01-atomicidad] por la regla EVI-HC08, ya que se trata de una obligación evaluable con unidad de aceptación confirmada. Para el criterio de ambigüedad el juicio incumple [J-EV-CAT-01-ambiguedad] por la regla EVI-HC02, con un grado de ambigüedad de 0.781 y banda alta, porque persisten dos lecturas sin delimitación, lo que genera el hallazgo H-CAT-B. Para la verificabilidad el juicio está pendiente [J-EV-CAT-01-verificabilidad] por la regla EVI-RD03, ya que la aceptación necesaria no fue recibida. Finalmente, para la completitud el juicio también está pendiente [J-EV-CAT-01-completitud] por la regla GL02, debido a que falta el dato correspondiente al criterio de aceptación y alcance, generando el pendiente P-CAT-C.",
+        "tipo_salida": "explicacion",
+        "segundos_totales": 7.92,
+        "archivo_traza": "submodulos/20261119_110007_471_web_p1_SM1.json"
+      },
+      "trazabilidad": {
+        "submodulo": "SM1",
+        "intencion": "diagnostico_requerimiento",
+        "fuentes": [
+          "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)"
+        ],
+        "consultas": [
+          {
+            "consulta": "Q0_candidatos",
+            "parametros": {},
+            "filas": 78,
+            "milisegundos": 616.6,
+            "cypher": "// Q0. Requerimientos evaluados por SM1. Alimenta la resolución determinística de entidades.\n// Solo lectura. Sin parámetros.\nMATCH (ev:AuditIA_PG2:EvaluacionIndividual)-[:EVALUA]->(rq:AuditIA_PG2:Requerimiento),\n      (ev)-[:REVISA_DOCUMENTO]->(doc:AuditIA_PG2:DocumentoVersion)\nWITH rq, doc, collect(DISTINCT ev.id) AS evaluaciones\nRETURN rq.id AS requerimiento_id, rq.id_logico AS id_logico, rq.texto_original AS texto,\n       doc.id AS documento_id, toInteger(doc.version) AS version, evaluaciones\nORDER BY id_logico, version"
+          },
+          {
+            "consulta": "Q1_diagnostico",
+            "parametros": {
+              "requerimiento_id": "RQ-CAT-v1",
+              "criterio": null
+            },
+            "filas": 1,
+            "milisegundos": 1374.9,
+            "cypher": "// Q1. Diagnóstico local de un requerimiento: evaluaciones de SM1, juicios por criterio,\n// reglas aplicadas, evidencia, resultados derivados e incidencias de entrada.\n// Parámetros: $requerimiento_id (String), $criterio (String o null).\nMATCH (ev:AuditIA_PG2:EvaluacionIndividual)-[:EVALUA]->(rq:AuditIA_PG2:Requerimiento {id: $requerimiento_id}),\n      (ev)-[:REVISA_DOCUMENTO]->(doc:AuditIA_PG2:DocumentoVersion)\nOPTIONAL MATCH (ev)-[:CONTIENE_JUICIO]->(j:JuicioCriterio)-[:APLICA_CRITERIO]->(c:CriterioCalidad)\nWITH ev, rq, doc, j, c\nWHERE j IS NULL OR $criterio IS NULL OR c.nombre = $criterio\nWITH ev, rq, doc,\n     collect(CASE WHEN j IS NULL THEN null ELSE {\n       criterio: c.nombre,\n       juicio_id: j.id,\n       estado: j.estado,\n       justificacion: j.justificacion,\n       reglas: [(j)-[:APLICA_REGLA]->(r:Regla) | r.id],\n       evidencias: [(j)-[:SE_SUSTENTA_EN]->(e:Evidencia) |\n                    {id: e.id, tipo: e.tipo, contenido: e.contenido, localizador: e.localizador}],\n       resultados: [(o:ResultadoAnalisis)-[:DERIVA_DE_JUICIO]->(j) |\n                    {id: o.id,\n                     clase: CASE WHEN o:Hallazgo THEN 'Hallazgo' WHEN o:Pendiente THEN 'Pendiente' ELSE 'ResultadoAnalisis' END,\n                     motivo_pendiente: o.motivo_pendiente,\n                     dato_faltante: o.dato_faltante,\n                     severidad: head([(o)-[:TIENE_SEVERIDAD]->(sv:Severidad) | sv.valor])}],\n       grado_ambiguedad: j.grado_ambiguedad,\n       banda_difusa: j.banda_difusa,\n       revision_senior_requerida: coalesce(j.revision_senior_requerida, false)\n     } END) AS juicios\nRETURN {\n  evaluacion_id: ev.id,\n  estado: ev.estado,\n  fecha: toString(ev.fecha),\n  entrada_valida: ev.entrada_valida,\n  documento_id: doc.id,\n  version: toInteger(doc.version),\n  requerimiento_id: rq.id,\n  texto_requerimiento: rq.texto_original,\n  reglas_evaluacion: [(ev)-[:APLICA_REGLA]->(r:Regla) | r.id],\n  incidencias: [(ev)-[:GENERA]->(i:IncidenciaEntrada) |\n                {id: i.id, causa: i.causa, descripcion: i.descripcion,\n                 accion_correccion: i.accion_correccion,\n                 reglas: [(i)-[:APLICA_REGLA]->(ri:Regla) | ri.id]}],\n  reevaluada_por: [(nueva:Evaluacion)-[:REEVALUA]->(ev) | nueva.id],\n  reevalua_a: [(ev)-[:REEVALUA]->(anterior:Evaluacion) | anterior.id],\n  vigente: NOT EXISTS { MATCH (:Evaluacion)-[:REEVALUA]->(ev) },\n  juicios: juicios\n} AS evaluacion\nORDER BY ev.fecha, ev.id"
+          },
+          {
+            "consulta": "Q6_reglas",
+            "parametros": {
+              "ids": [
+                "EVI-HC02",
+                "EVI-HC08",
+                "EVI-RD03",
+                "EVI-RD04",
+                "GL02"
+              ]
+            },
+            "filas": 5,
+            "milisegundos": 112.0,
+            "cypher": "// Q6. Consulta complementaria: texto, estado y fuente de las reglas citadas en un paquete.\n// Parámetros: $ids (List<String>).\nMATCH (r:AuditIA_PG2:Regla)\nWHERE r.id IN $ids\nRETURN r.id AS id, r.modulo AS modulo, r.estado_validacion AS estado_validacion,\n       r.ejecucion AS ejecucion, r.descripcion AS descripcion, r.descripcion_fuente AS fuente\nORDER BY id"
+          }
+        ],
+        "reglas": [
+          {
+            "id": "EVI-HC02",
+            "descripcion": "SI quedan dos o más lecturas relevantes y el contexto no las delimita ENTONCES ambigüedad incumple.",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "EVI-HC08",
+            "descripcion": "SI hay una sola obligación con unidad de aceptación confirmada ENTONCES atomicidad cumple.",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "EVI-RD03",
+            "descripcion": "SI criterio = verificabilidad, la aceptación es necesaria y no está disponible ENTONCES el juicio queda pendiente.",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "EVI-RD04",
+            "descripcion": "SI hay cuatro juicios informados y al menos uno incumple ENTONCES estado = observado.",
+            "fuente": "PG1 §6.4",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          },
+          {
+            "id": "GL02",
+            "descripcion": "SI la entrada es válida y falta un dato o referencia identificado como necesario para concluir ENTONCES el análisis afectado queda pendiente con dato_faltante; los análisis independientes continúan.",
+            "fuente": "PG1 §6.3",
+            "estado_validacion": "candidata",
+            "ejecucion": "implementada"
+          }
+        ],
+        "evidencias": [
+          {
+            "id": "E-RQ-CAT-v1",
+            "contenido": "El sistema debe cargar rápidamente el catálogo.",
+            "tipo": "fragmento",
+            "localizador": "RQ-CAT-v1",
+            "fuente": null
+          }
+        ],
+        "observaciones": [
+          {
+            "id": "H-CAT-B",
+            "clase": "Hallazgo"
+          },
+          {
+            "id": "P-CAT-V",
+            "clase": "Pendiente"
+          },
+          {
+            "id": "P-CAT-C",
+            "clase": "Pendiente"
+          }
+        ],
+        "verificacion": "aprobada",
+        "intentos_explicacion": 1,
+        "tipo_salida": "explicacion"
+      }
+    }
+  ],
+  "enrutamiento": {
+    "intentos": [
+      {
+        "salida": "{\"tipo\": \"consulta\", \"pasos\": [{\"submodulo\": \"SM1\", \"subconsulta\": \"¿Qué diagnóstico de calidad tiene el requerimiento RQ-CAT-v1?\", \"depende_de\": null}], \"motivo\": \"Consulta sobre el diagnóstico de calidad de un requerimiento específico con ID conocido, lo cual corresponde exclusivamente a SM1.\"}",
+        "errores": [],
+        "normalizacion": [],
+        "modelo": "gemini-3.5-flash-lite",
+        "proveedor": "gemini",
+        "segundos": 7.35,
+        "tokens_entrada": 1862,
+        "tokens_salida": 75
+      }
+    ],
+    "huella_prompt": "732cd87a253a",
+    "fuente": "llm",
+    "plan": {
+      "tipo": "consulta",
+      "pasos": [
+        {
+          "submodulo": "SM1",
+          "subconsulta": "¿Qué diagnóstico de calidad tiene el requerimiento RQ-CAT-v1?",
+          "depende_de": null
+        }
+      ],
+      "motivo": "Consulta sobre el diagnóstico de calidad de un requerimiento específico con ID conocido, lo cual corresponde exclusivamente a SM1."
+    }
+  },
+  "sintesis": {
+    "intentos": [],
+    "modo": "respuesta_del_submodulo"
+  },
+  "respuesta_final": "El requerimiento RQ-CAT-v1 tiene un diagnóstico observado en su evaluación EV-CAT-01, un resultado provisional de un prototipo académico sin validación experta. Este estado se determinó mediante la regla EVI-RD04 porque hay cuatro juicios informados y al menos uno incumple. \n\nEn detalle, para el criterio de atomicidad el juicio es cumple [J-EV-CAT-01-atomicidad] por la regla EVI-HC08, ya que se trata de una obligación evaluable con unidad de aceptación confirmada. Para el criterio de ambigüedad el juicio incumple [J-EV-CAT-01-ambiguedad] por la regla EVI-HC02, con un grado de ambigüedad de 0.781 y banda alta, porque persisten dos lecturas sin delimitación, lo que genera el hallazgo H-CAT-B. Para la verificabilidad el juicio está pendiente [J-EV-CAT-01-verificabilidad] por la regla EVI-RD03, ya que la aceptación necesaria no fue recibida. Finalmente, para la completitud el juicio también está pendiente [J-EV-CAT-01-completitud] por la regla GL02, debido a que falta el dato correspondiente al criterio de aceptación y alcance, generando el pendiente P-CAT-C.",
+  "tipo_salida": "explicacion",
+  "submodulos_consultados": [
+    "SM1"
+  ],
+  "tipos_salida_pasos": [
+    "explicacion"
+  ],
+  "segundos_totales": 15.49
+}

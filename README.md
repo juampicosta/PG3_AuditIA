@@ -39,13 +39,22 @@ Si ya tenés el modelo en otro volumen de Docker, poné su nombre en `OLLAMA_VOL
 
 ## Pruebas
 
-En los resultados, **Ver el detalle técnico** recorre los datos confirmados, SM1, SM2,
-la matriz y decisión de SM3, los cálculos difusos y los controles de integridad.
-Cada caso permite desplegar hechos, reglas y evidencia. El historial recupera esa
-información de Neo4j; las nuevas auditorías conservan además la lectura propuesta
-y los tiempos originales. Los controles muestran el estado actual de toda la base.
+En los resultados, **Explorar el grafo** es el acceso a la explicación técnica.
+El historial recupera los datos, reglas y evidencia de Neo4j; las nuevas auditorías
+conservan además la lectura propuesta y los tiempos originales.
+
+**Explorar el grafo** abre una pantalla completa con el mapa a la izquierda y la
+explicación a la derecha. El buscador identifica los casos por código, título y
+texto; si no hay un título guardado, el nombre se toma del texto original. Se
+puede recorrer con Anterior/Siguiente, reproducir el recorrido guardado, acercar
+y mover el mapa, o sumar sus fundamentos. El panel muestra premisas, reglas,
+matriz y cálculos sin salir del explorador. En celular se apilan mapa y panel.
+La navegación consulta el resultado guardado: no ejecuta reglas ni modifica la
+auditoría. Respeta la preferencia de reducir movimiento y permite usar teclado.
 
 ```powershell
+node --test pruebas/probar_recorrido_tecnico.cjs                    # rutas del grafo, Node 18+, sin servicios
+node pruebas/probar_explorador_web.cjs                              # app + historial + Playwright instalado; solo lectura
 docker compose exec app python pruebas/probar_detalle_tecnico.py    # trazabilidad e historial, sin LLM
 docker compose exec app python pruebas/probar_ingesta.py            # análisis de requerimientos nuevos (sin LLM, ~1 min)
 docker compose exec app python pruebas/ejecutar_pruebas.py --funcionales

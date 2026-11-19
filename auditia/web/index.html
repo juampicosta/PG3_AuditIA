@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/static/detalle-tecnico.css">
+<link rel="stylesheet" href="/static/recorrido-tecnico.css">
 <style>
   :root{
     color-scheme:dark;
@@ -896,6 +897,7 @@
     <p class="carga-nota" id="carga-nota"></p>
   </div>
 </div>
+<script src="/static/recorrido-tecnico.js"></script>
 <script src="/static/detalle-tecnico.js"></script>
 <script>
 const $ = s => document.querySelector(s);
@@ -1132,9 +1134,6 @@ function verRazonamiento({hechos=[], reglas=[], conclusion, estado="", fuentes=[
       ${medidas.length?`<details class="raz-extra raz-grados"><summary>Ver grados difusos</summary>${medidas.map(g=>`<div class="raz-medida"><label>${esc(g.nombre)}<span>${num(g.valor,2)} / ${g.max}</span></label><meter min="0" max="${g.max}" value="${g.valor}" aria-label="${esc(g.nombre)}"></meter><small>${g.banda?`Banda ${esc(g.banda)}. `:""}${g.revision?"Requiere revisión senior. ":""}${esc(g.nota || "")}</small></div>`).join("")}</details>`:""}
       ${prioridad?.prioridad?`<details class="raz-extra raz-tratamiento"><summary>Ver fundamento de la prioridad</summary><p>${esc(prioridad.motivo_detallado || (prioridad.motivo?`Motivo: ${prioridad.motivo.replaceAll("_"," ")}.`:"El resultado no incluye un motivo detallado."))}${prioridad.criticidad?.valor?` Criticidad: ${esc(prioridad.criticidad.valor)}.`:""}${prioridad.categoria_matriz?` Celda de la matriz: ${esc(prioridad.categoria_matriz)}.`:""}</p><p class="raz-origen">Reglas de priorización: ${esc((prioridad.reglas||[]).join(" · ") || "no informadas")}. La urgencia difusa ordena dentro de una misma prioridad.</p></details>`:""}
     </div></div></details>`;
-}
-function razonamientoObservacion(o){
-  return DetalleTecnico.referenciaObservacion(o);
 }
 function razonamientoConsulta(p){
   const t = p.trazabilidad || {}, evidencias = t.evidencias || [];
@@ -1838,7 +1837,7 @@ function resumenLote(res){
 
   if(tareas.length || contra.length) h += `<div class="seccion3">Qué hacer, en orden <small>de lo más urgente a lo que puede esperar</small><span class="res-prog" id="res-prog"></span></div>`;
   let nro = 0;
-  const filaObs = o => { const e = explicar(o); return `<li><span class="ico ${e.cls}">${e.cls==="falta"?"?":"✕"}</span><div><div class="que"><b>${esc(e.tipo)}</b>${e.que}</div><div class="hacer" title="Sugerencia"><div>${e.hacer}</div></div>${razonamientoObservacion(o, porEv[o.origen], cmps.find(c=>c.id===o.origen), res)}</div></li>`; };
+  const filaObs = o => { const e = explicar(o); return `<li><span class="ico ${e.cls}">${e.cls==="falta"?"?":"✕"}</span><div><div class="que"><b>${esc(e.tipo)}</b>${e.que}</div><div class="hacer" title="Sugerencia"><div>${e.hacer}</div></div></div></li>`; };
   const cabTarea = (cat, texto, meta) => `<div class="tarea-cab"><button type="button" class="check-t" data-resolver title="Marcar como resuelto" aria-label="Marcar como resuelto">✓</button>
       <div><div class="tarea-txt">${texto}</div><div class="tarea-meta">${meta}<span class="urg" title="Prioridad: ${NOMBRE_CAT[cat]}">${URGENCIA[cat]}</span></div></div></div>`;
   // intercalar contradicciones según su prioridad
@@ -1862,7 +1861,7 @@ function resumenLote(res){
     }
   }
   if(bien.length) h += `<details class="hoja bien3" style="margin-top:14px"><summary><span class="tipo-h ok">✓ ${bien.length}</span> ${bien.length===1?"Requerimiento bien escrito":"Requerimientos bien escritos"}</summary>
-    <ul>${bien.map(r => `<li><div class="raz-bien">${esc(r.texto)}${r.id_documento?` <code>${esc(r.id_documento)}</code>`:""}<div class="tec-accesos">${DetalleTecnico.enlace("calidad",r.id,"Ver evaluación")}</div></div></li>`).join("")}</ul></details>`;
+    <ul>${bien.map(r => `<li><div class="raz-bien">${esc(r.texto)}${r.id_documento?` <code>${esc(r.id_documento)}</code>`:""}</div></li>`).join("")}</ul></details>`;
   return h;
 }
 function prepararPreguntas(res){
