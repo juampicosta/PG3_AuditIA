@@ -375,6 +375,39 @@
     details.rq > summary{grid-template-columns:36px 1fr 14px;gap:12px;padding:16px}
     .cmp-par{grid-template-columns:1fr}.vs{justify-self:center}
   }
+  /* ---------- paso 2 simple ---------- */
+  .rq2{margin-top:10px;padding:18px 20px;border-radius:18px;border:1px solid transparent;transition:border-color .2s,opacity .2s}
+  .rq2.revisada{opacity:.72}
+  .rq2.revisada:hover{opacity:1}
+  .rq2-cab{display:grid;grid-template-columns:40px 1fr;gap:16px;align-items:start}
+  .hallazgos{list-style:none;margin:12px 0 0;padding:0;display:flex;flex-direction:column;gap:6px}
+  .hallazgos li{display:flex;gap:10px;align-items:baseline;font-size:14px;color:var(--tinta2);line-height:1.5}
+  .hallazgos li::before{content:"";flex:none;width:7px;height:7px;border-radius:50%;margin-top:7px;background:var(--gris2)}
+  .hallazgos li.problema::before{background:var(--err);box-shadow:0 0 8px rgba(248,113,113,.6)}
+  .hallazgos li.falta::before{background:var(--warn)}
+  .hallazgos li.ok{color:var(--ok)}
+  .hallazgos li.ok::before{background:var(--ok)}
+  .rq2-pie{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:16px 0 0 56px;padding-top:14px;border-top:1px solid var(--linea2)}
+  .rq2-pie .imp{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;color:var(--gris2);margin-right:auto}
+  .rq2-pie .imp .seg span{padding:4px 10px;font-size:12px}
+  .btn-chico{font:inherit;font-size:13px;font-weight:500;padding:8px 14px;border-radius:999px;border:1px solid var(--linea);background:var(--campo);color:var(--tinta2);cursor:pointer;transition:all .15s}
+  .btn-chico:hover{border-color:var(--acento);color:var(--tinta)}
+  .btn-chico[aria-expanded="true"]{border-color:var(--acento);color:var(--acento2);background:var(--acentof)}
+  .btn-chico.ok-btn{background:var(--okf);border-color:rgba(74,222,128,.3);color:var(--ok)}
+  .btn-chico.ok-btn:hover{border-color:var(--ok)}
+  .rq2.revisada .ok-btn{background:var(--ok);color:#06240F;border-color:var(--ok)}
+  .hallazgos li{align-items:center;flex-wrap:wrap}
+  .hallazgos li::before{display:none}
+  .tipo-h{flex:none;display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:600;letter-spacing:.02em;padding:3px 10px;border-radius:999px;min-width:118px;justify-content:center}
+  .tipo-h.problema{background:var(--errf);color:var(--err)}
+  .tipo-h.falta{background:var(--warnf);color:var(--warn)}
+  .tipo-h.ok{background:var(--okf);color:var(--ok);min-width:0}
+  .hallazgos li.bien{flex-direction:column;align-items:flex-start;gap:8px}
+  .tipos-ok{display:flex;gap:6px;flex-wrap:wrap}
+  .editor{margin:16px 0 0 56px;padding:16px;border-radius:14px;background:rgba(255,255,255,.02);border:1px dashed rgba(167,139,250,.25);animation:entra .25s ease}
+  .editor > p{margin:0 0 12px;font-size:13px;color:var(--gris)}
+  .cmp-frase{margin:0 0 14px;font-size:14px;color:var(--tinta2)}
+  @media (max-width:900px){.rq2-pie,.editor{margin-left:0}}
   /* ---------- resultados ---------- */
   .res-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:14px}
   .res-grid .ancho{grid-column:1/-1}
@@ -569,7 +602,7 @@
     <div class="titular">
       <div class="ojo">Paso 2 de 4</div>
       <h2>Revisá lo que <em>entendió</em> AuditIA.</h2>
-      <p>Abrí cada requerimiento para ver qué encontramos. Si algo no es correcto, corregilo: el resultado se actualiza al instante. Cuando esté todo bien, confirmá.</p>
+      <p>Esto es lo que encontramos en cada requerimiento. Si estás de acuerdo, seguí adelante; si algo no es así, tocá «Corregir».</p>
     </div>
     <div id="revision"><div class="hoja vacio"><b>Todavía no hay nada para revisar</b>Primero subí un documento o escribí un requerimiento.<br><button class="secundario" data-ir="subir">← Ir a Subir</button></div></div>
     <div class="aviso" id="aviso-revisar"></div>
@@ -1127,6 +1160,7 @@ function renderRevision(){
   const fuente = p.fuente==="llm" ? `Leído por <b>${esc(p.llm?.modelo||"la IA")}</b> en ${esc(p.segundos)} s`
     : p.fuente==="mixta" ? `Leído en parte por <b>${esc(p.llm?.modelo||"la IA")}</b> y en parte con el análisis rápido`
     : `Leído con el <b>análisis rápido</b>`;
+  const OPC_IMP = [["","No sé"],["baja","Baja"],["media","Media"],["alta","Alta"]];
   let h = `<section class="revision">
     <div class="hoja rev-barra"><div class="rev-cuenta" id="rev-cuenta"></div>
       <div class="rev-filtro" role="group" aria-label="Filtrar">${[["todos","Todos"],["problemas","Con problemas"],["ok","Sin problemas"]].map(([v,t])=>`<button type="button" data-filtro="${v}" aria-pressed="${v===FILTRO_REV}">${t}</button>`).join("")}</div></div>
@@ -1134,33 +1168,34 @@ function renderRevision(){
   if(p.avisos?.length) h += `<details class="avisos-rev"><summary>${p.avisos.length} ${p.avisos.length===1?"aviso":"avisos"} de la lectura</summary>${p.avisos.map(a=>`<p>${esc(a)}</p>`).join("")}</details>`;
   p.requerimientos.forEach((rq,i) => {
     const pr = rq.premisas; const ruta = `requerimientos.${i}.premisas`; const ext = rq.extraccion || {};
-    h += `<details class="hoja rq" data-rq="${i}"${n<=2?" open":""}><summary>
-        <span class="rq-estado" data-icono="${i}"></span>
-        <span><span class="rq-texto">${resaltar(rq.texto, ext.terminos_vagos)}</span>
+    const pz = pr.prioridad; const rp = `${ruta}.prioridad`;
+    h += `<div class="hoja rq2" data-rq="${i}">
+      <div class="rq2-cab"><span class="rq-estado" data-icono="${i}"></span>
+        <div><span class="rq-texto">${resaltar(rq.texto, ext.terminos_vagos)}</span>
           <span class="rq-meta">${rq.id_documento?`<code>${esc(rq.id_documento)}</code> · `:""}${esc(rq.ubicacion || `Requerimiento ${rq.clave}`)}</span>
-          <span class="rq-chips" data-resumen="${i}"></span></span>
-      </summary>
-      <div class="rq-detalle">
-        <h4 class="rq-sub">Lo que entendió AuditIA</h4>
+          <ul class="hallazgos" data-hallazgos="${i}"></ul></div></div>
+      <div class="rq2-pie">
+        <span class="imp" title="Sirve para ordenar qué resolver primero. Si no la sabés, AuditIA trata el problema como urgente.">Importancia para el negocio ${segHTML(`${rp}.criticidad_valor`, OPC_IMP, pz.criticidad_valor, "Importancia")}</span>
+        <button type="button" class="btn-chico" data-corregir="${i}" aria-expanded="false">✎ Corregir</button>
+        <button type="button" class="btn-chico ok-btn" data-ok="${i}">✓ Está bien</button>
+      </div>
+      <div class="editor" data-editor="${i}" hidden>
+        <p>Cambiá lo que no sea correcto. Lo que encontramos se actualiza al instante.</p>
         ${lecturaHTML(ext)}
-        <h4 class="rq-sub">Revisá las respuestas <small>Si algo no es correcto, cambialo.</small></h4>
         <div class="criterios">`;
     for(const c of Object.keys(CAMPOS)){
       const j = pr.criterios[c]; const rc = `${ruta}.criterios.${c}`;
       h += `<details class="criterio"><summary><span class="crit-ic">${ICONO_CRIT[c]}</span><span class="crit-tit"><b>${PREGUNTA_CRIT[c]}</b><small>${esc(QUE_MIRA[c])}</small></span><span data-previa="${i}.${c}"></span></summary>
         <div class="crit-cuerpo">${camposHTML(rc,CAMPOS[c],j)}
-          <details class="mas"><summary>Justificación y gravedad</summary>${justHTML(rc, j.justificacion, NOMBRE_CRIT[c])}${sevHTML(rc,j)}</details></div></details>`;
+          <details class="mas"><summary>Opciones avanzadas</summary>${justHTML(rc, j.justificacion, NOMBRE_CRIT[c])}${sevHTML(rc,j)}</details></div></details>`;
     }
-    const pz = pr.prioridad; const rp = `${ruta}.prioridad`;
-    h += `</div><div class="criterio prio"><div class="crit-cab"><span class="crit-ic">★</span><span class="crit-tit"><b>¿Qué tan importante es para el negocio?</b>
-        <small>Esto no sale del texto: lo sabe el cliente o quien revisa. Si no se indica, AuditIA lo trata como urgente hasta saberlo.</small></span></div>
-      <div class="crit-cuerpo">
-      ${campoHTML(rp, ["criticidad_valor","sel","Importancia",[["","no la sé"],["baja","baja"],["media","media"],["alta","alta"]]], pz.criticidad_valor)}
-      <details class="mas"><summary>Más detalles de prioridad</summary>
-      ${campoHTML(rp, ["grado_criticidad","num","Grado de importancia (0 a 10)",0,10,0.5], pz.grado_criticidad)}
-      ${[["obligacion_esencial_indefinida","Deja sin definir algo esencial"],["bloqueo_sustantivo_confirmado","Bloquea el avance (confirmado)"],["hito_acordado","Hay una fecha acordada para resolverlo"],["diferimiento_aceptado","El cliente aceptó dejarlo para después"],["impacto_acotado","El impacto es acotado"]].map(([k,t])=>campoHTML(rp,[k,"bool",t],pz[k])).join("")}
-      </details>
-      <div class="prevision-prio" data-previa-prio="${i}"></div></div></div></div></details>`;
+    h += `</div>
+        <details class="mas"><summary>Más detalles de prioridad</summary>
+        ${campoHTML(rp, ["grado_criticidad","num","Grado de importancia (0 a 10)",0,10,0.5], pz.grado_criticidad)}
+        ${[["obligacion_esencial_indefinida","Deja sin definir algo esencial"],["bloqueo_sustantivo_confirmado","Bloquea el avance (confirmado)"],["hito_acordado","Hay una fecha acordada para resolverlo"],["diferimiento_aceptado","El cliente aceptó dejarlo para después"],["impacto_acotado","El impacto es acotado"]].map(([k,t])=>campoHTML(rp,[k,"bool",t],pz[k])).join("")}
+        </details>
+        <div class="prevision-prio" data-previa-prio="${i}"></div>
+      </div></div>`;
   });
   if((p.comparaciones||[]).length){
     h += `<div class="rev-seccion">Posibles contradicciones <small>Requerimientos que hablan de lo mismo</small></div>`;
@@ -1170,17 +1205,19 @@ function renderRevision(){
       const ta = p.requerimientos.find(r=>r.clave===cp.a), tb = p.requerimientos.find(r=>r.clave===cp.b);
       const lado = (r, clave) => `<div class="par-lado"><small>${esc(r?.id_documento || `Requerimiento ${clave}`)}</small><div class="par-txt">${resaltar(r?.texto||"", r?.extraccion?.terminos_vagos)}</div></div>`;
       h += `<div class="hoja cmp-card" data-cmp="${k}">
-        <div class="cmp-cab"><span class="rq-estado" data-icono-cmp="${k}"></span><b>¿Se contradicen?</b><span data-previa="cmp-${k}"></span>
-          <label class="cmp-incluir">Analizar este par <input type="checkbox" role="switch" data-ruta="comparaciones.${k}.incluir" ${cp.incluir?"checked":""}></label></div>
+        <div class="cmp-cab"><span class="rq-estado" data-icono-cmp="${k}"></span><b data-cmp-frase="${k}"></b>
+          <label class="cmp-incluir">Incluir en el análisis <input type="checkbox" role="switch" data-ruta="comparaciones.${k}.incluir" ${cp.incluir?"checked":""}></label></div>
         <div class="cmp-par">${lado(ta, cp.a)}<span class="vs">VS</span>${lado(tb, cp.b)}</div>
-        <details class="criterio"><summary><span class="crit-tit"><b>Revisá las respuestas</b><small>Abrí para ver cómo se compararon y corregir lo que haga falta.</small></span></summary>
-          <div class="crit-cuerpo">${camposHTML(rc,CAMPOS_CMP,c)}
+        <div class="rq2-pie" style="margin-left:0"><span class="imp"></span><button type="button" class="btn-chico" data-corregir="cmp-${k}" aria-expanded="false">✎ Corregir</button></div>
+        <div class="editor" data-editor="cmp-${k}" hidden style="margin-left:0">
+          <p>Cambiá lo que no sea correcto. El resultado se actualiza al instante.</p>
+          ${camposHTML(rc,CAMPOS_CMP,c)}
           <label class="fila"><span>¿En qué se superponen?</span><input type="text" class="texto-fila" data-ruta="${rc}.ambito_comun" value="${esc(c.ambito_comun||"")}"></label>
-          <details class="mas"><summary>Justificación y gravedad</summary>${justHTML(rc, c.justificacion, "la comparación")}${sevHTML(rc,c)}</details>
-          <div class="prevision-prio" data-previa-prio="cmp-${k}"></div></div></details></div>`;
+          <details class="mas"><summary>Opciones avanzadas</summary>${justHTML(rc, c.justificacion, "la comparación")}${sevHTML(rc,c)}</details>
+          <div class="prevision-prio" data-previa-prio="cmp-${k}"></div></div></div>`;
     });
   }
-  h += `<div class="rev-confirmar"><div><b>¿Está todo bien?</b><small>Al confirmar, AuditIA aplica sus reglas y te muestra qué resolver primero.</small></div>
+  h += `<div class="rev-confirmar"><div><b id="rev-progreso">¿Está todo bien?</b><small>Al confirmar, AuditIA aplica sus reglas y te muestra qué resolver primero.</small></div>
     <button class="enlace" data-ir="subir">← Volver</button>
     <button class="principal" id="confirmar">Confirmar y ver resultados →</button></div></section>`;
   $("#revision").innerHTML = h;
@@ -1189,19 +1226,49 @@ function renderRevision(){
   $("#revision").onclick = e => {
     const f = e.target.closest("[data-filtro]");
     if(f){ FILTRO_REV = f.dataset.filtro; document.querySelectorAll("[data-filtro]").forEach(b => b.setAttribute("aria-pressed", String(b===f))); aplicarFiltro(); return; }
+    const cg = e.target.closest("[data-corregir]");
+    if(cg){ const ed = document.querySelector(`[data-editor="${cg.dataset.corregir}"]`); ed.hidden = !ed.hidden; cg.setAttribute("aria-expanded", String(!ed.hidden));
+      if(!ed.hidden) ed.querySelectorAll("details.criterio").forEach(d => { if(d.querySelector("summary .estado-pill.incumple, summary .estado-pill.pendiente")) d.open = true; });
+      return; }
+    const ok = e.target.closest("[data-ok]");
+    if(ok){ const card = ok.closest(".rq2"); const v = !card.classList.contains("revisada"); card.classList.toggle("revisada", v);
+      ok.textContent = v ? "✓ Revisado" : "✓ Está bien";
+      const ed = card.querySelector(".editor"); ed.hidden = true; card.querySelector("[data-corregir]").setAttribute("aria-expanded","false");
+      actualizarProgreso(); return; }
     const b = e.target.closest(".paso-num button"); if(!b) return;
     e.preventDefault();
     const inp = b.parentElement.querySelector("input");
     if(inp.value === "") inp.value = inp.min || 0; else if(b.dataset.paso === "1") inp.stepUp(); else inp.stepDown();
     inp.dispatchEvent(new Event("input"));
   };
-  actualizarPrevias();
-  // con muchos requerimientos se abre solo el primero con problemas; adentro, los criterios con problemas
-  if(n > 2){ const primero = document.querySelector('#revision details.rq[data-estado="problema"], #revision details.rq[data-estado="falta"]'); if(primero) primero.open = true; }
-  document.querySelectorAll("#revision details.rq details.criterio").forEach(d => { if(d.querySelector("summary .estado-pill.incumple, summary .estado-pill.pendiente")) d.open = true; });
+  actualizarPrevias(); actualizarProgreso();
+}
+function actualizarProgreso(){
+  const t = document.querySelectorAll("#revision .rq2").length, r = document.querySelectorAll("#revision .rq2.revisada").length;
+  const el = $("#rev-progreso"); if(!el) return;
+  el.textContent = r===0 ? "¿Está todo bien?" : r===t ? "¡Revisaste todos los requerimientos!" : `Revisaste ${r} de ${t} requerimientos`;
+}
+// Hallazgos en una frase, a partir del estado de cada criterio y de lo que se leyó del texto.
+function frasesRq(rq, estados){
+  const ext = rq.extraccion || {}, out = [];
+  const vagos = (ext.terminos_vagos||[]).map(v=>`«${esc(v)}»`).join(", ");
+  const e = estados;
+  if(e.ambiguedad==="incumple") out.push(["problema", "ambiguedad", vagos ? `Usa palabras que no se pueden medir: ${vagos}.` : "Se puede entender de más de una forma."]);
+  if(e.atomicidad==="incumple") out.push(["problema", "atomicidad", `Pide ${+rq.premisas.criterios.atomicidad.obligaciones_independientes || "varias"} cosas a la vez; conviene separarlas.`]);
+  if(e.verificabilidad==="incumple") out.push(["problema", "verificabilidad", "No hay una forma clara de comprobar si se cumple."]);
+  if(e.verificabilidad==="pendiente") out.push(["falta", "verificabilidad", "Falta decir cómo se va a comprobar que se cumple."]);
+  if(e.completitud==="incumple") out.push(["problema", "completitud", (ext.omisiones||[]).length ? `Le falta: ${ext.omisiones.map(esc).join(", ")}.` : "Le faltan datos importantes."]);
+  for(const c of ["atomicidad","ambiguedad","completitud"]) if(e[c]==="pendiente") out.push(["falta", c, "Falta información para poder evaluarlo."]);
+  return out;
+}
+// Lista de hallazgos con el tipo (criterio) de cada uno; si no hay, los 4 criterios en verde.
+function hallazgosHTML(rq, estados){
+  const f = frasesRq(rq, estados);
+  if(!f.length) return `<li class="ok bien"><span class="tipos-ok">${Object.keys(CAMPOS).map(c=>`<span class="tipo-h ok">✓ ${NOMBRE_CRIT[c]}</span>`).join("")}</span></li>`;
+  return f.map(([k,c,t]) => `<li class="${k}"><span class="tipo-h ${k}">${k==="problema"?"✕":"?"} ${NOMBRE_CRIT[c]}${k==="falta"?" · pendiente":""}</span><span>${t}</span></li>`).join("");
 }
 function aplicarFiltro(){
-  document.querySelectorAll("#revision details.rq").forEach(d => {
+  document.querySelectorAll("#revision .rq2").forEach(d => {
     const e = d.dataset.estado;
     d.hidden = FILTRO_REV==="problemas" ? e==="ok" : FILTRO_REV==="ok" ? e!=="ok" : false;
   });
@@ -1217,17 +1284,17 @@ function asignar(el){
 function actualizarPrevias(){
   const cuenta = {ok:0, problema:0, falta:0};
   PROP.requerimientos.forEach((rq,i) => {
-    const sev = [], chips = []; let estado = "ok";
+    const sev = [], chips = [], estados = {}; let estado = "ok";
     for(const c of Object.keys(CAMPOS)){
-      const r = reglaSM1(c, rq.premisas.criterios[c]);
+      const r = reglaSM1(c, rq.premisas.criterios[c]); estados[c] = r[1];
       const el = document.querySelector(`[data-previa="${i}.${c}"]`); if(el) el.innerHTML = etiquetaCrit(c, r);
       if(r[1]==="incumple"){ estado = "problema"; chips.push(`<span class="chip-e problema">✕ ${esc(HUMANO[c].incumple)}</span>`); sev.push([NOMBRE_CRIT[c], true, rq.premisas.criterios[c].severidad_propuesta]); }
       if(r[1]==="pendiente"){ if(estado==="ok") estado = "falta"; chips.push(`<span class="chip-e falta">? ${esc(HUMANO[c].pendiente)}</span>`); sev.push([NOMBRE_CRIT[c], false, null]); }
     }
     cuenta[estado]++;
-    const card = document.querySelector(`details.rq[data-rq="${i}"]`); if(card) card.dataset.estado = estado;
+    const card = document.querySelector(`.rq2[data-rq="${i}"]`); if(card) card.dataset.estado = estado;
+    const hl = document.querySelector(`[data-hallazgos="${i}"]`); if(hl) hl.innerHTML = hallazgosHTML(rq, estados);
     const ic = document.querySelector(`[data-icono="${i}"]`); if(ic){ ic.className = `rq-estado ${estado}`; ic.textContent = {ok:"✓", problema:"!", falta:"?"}[estado]; }
-    const rs = document.querySelector(`[data-resumen="${i}"]`); if(rs) rs.innerHTML = chips.length ? chips.join("") : `<span class="chip-e ok">✓ Bien escrito</span>`;
     const nota = document.querySelector(`[data-previa-prio="${i}"]`);
     if(nota) nota.innerHTML = sev.length ? `Si confirmás así, quedaría: ${sev.map(([n,h,s]) => `${esc(n)} ${prioHumana(prioridadPrevia(h,s,rq.premisas.prioridad))}`).join(" ")}` : "Sin observaciones: no hay nada que priorizar.";
   });
@@ -1237,6 +1304,8 @@ function actualizarPrevias(){
     if(cp.incluir!==false && r[1]==="observado") contra++;
     const el = document.querySelector(`[data-previa="cmp-${k}"]`); if(el) el.innerHTML = cp.incluir===false ? `<span class="estado-pill nada">No se analiza</span>` : etiquetaSM2(r);
     const ic = document.querySelector(`[data-icono-cmp="${k}"]`);
+    const fr = document.querySelector(`[data-cmp-frase="${k}"]`);
+    if(fr) fr.textContent = cp.incluir===false ? "Este par no se va a analizar." : r[1]==="observado" ? "Estos dos requerimientos se contradicen." : r[1]==="pendiente" ? "Puede que se contradigan: falta información para saberlo." : r[0] ? "Hablan de lo mismo, pero no se contradicen." : "Hablan de lo mismo.";
     if(ic){ const e = cp.incluir===false ? "" : r[1]==="observado" ? "problema" : r[1]==="pendiente" ? "falta" : r[0] ? "ok" : ""; ic.className = `rq-estado ${e}`; ic.textContent = {ok:"✓", problema:"!", falta:"?"}[e] || "–"; }
     const prs = PROP.requerimientos.filter(x=>x.clave===cp.a||x.clave===cp.b).map(x=>x.premisas.prioridad).sort((a,b)=>(b.grado_criticidad??-1)-(a.grado_criticidad??-1));
     const pr = {...prs[0], obligacion_esencial_indefinida: prs.some(x=>x.obligacion_esencial_indefinida), bloqueo_sustantivo_confirmado: prs.some(x=>x.bloqueo_sustantivo_confirmado),
