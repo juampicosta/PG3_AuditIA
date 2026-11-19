@@ -29,6 +29,7 @@ from pathlib import Path
 
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
 import base64
@@ -44,6 +45,7 @@ _ejecutor = ThreadPoolExecutor(max_workers=1)   # Ollama local: una consulta por
 _trabajos: dict[str, dict] = {}
 _lock = threading.Lock()
 WEB = Path(__file__).resolve().parent / "web"
+app.mount("/static", StaticFiles(directory=WEB), name="static")
 
 
 def orquestador() -> Orquestador:

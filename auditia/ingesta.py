@@ -776,6 +776,41 @@ RETURN {
 """
 
 
+# Solo lectura: recupera la evidencia persistida, también para los lotes del historial.
+# La fecha se convierte aquí para que no salgan tipos temporales propios del driver.
+_DETALLE_TECNICO = """
+MATCH (doc:AuditIA_PG2:DocumentoVersion {lote:$lote})
+RETURN {
+ propuesta_confirmada: doc.propuesta_confirmada_json, tiempos: doc.tiempos_json,
+ nodos: COLLECT {
+   MATCH (n:AuditIA_PG2 {lote:$lote}) WITH n ORDER BY n.id
+   RETURN {id:n.id, tipos:labels(n), datos:n{.*, fecha:toString(n.fecha),
+     propuesta_confirmada_json:null, tiempos_json:null}}
+ },
+ relaciones: COLLECT {
+   MATCH (a:AuditIA_PG2 {lote:$lote})-[r]->(b:AuditIA_PG2)
+   WHERE b.lote=$lote OR b:Regla OR b:ModeloDifuso OR b:CriterioCalidad
+   RETURN {desde:a.id, relacion:type(r), hasta:b.id}
+ },
+ matriz: COLLECT {
+   MATCH (c:AuditIA_PG2:CeldaMatriz) WITH c ORDER BY c.id RETURN properties(c)
+ },
+ reglas: COLLECT {
+   MATCH (:AuditIA_PG2 {lote:$lote})-[:APLICA_REGLA]->(r:Regla)
+   WITH DISTINCT r ORDER BY r.id
+   RETURN r{.id, .descripcion, .descripcion_fuente, .fuente, .estado_validacion, .ejecucion}
+ },
+ modelos: COLLECT {
+   MATCH (m:AuditIA_PG2:ModeloDifuso) WITH m ORDER BY m.id
+   RETURN {datos:properties(m),
+     variables:[(m)-[:DEFINE_VARIABLE]->(v) | {datos:properties(v),
+       etiquetas:[(v)-[:TIENE_ETIQUETA]->(e) | properties(e)]}],
+     reglas:[(m)-[:DEFINE_REGLA]->(r) | r{.*, consecuente:head([(r)-[:CONSECUENTE]->(e) | e.id])}]}
+ }
+} AS detalle
+"""
+
+
 class Ingesta:
     def __init__(self, cfg: ConfigGeneral | None = None):
         from neo4j import GraphDatabase
@@ -852,6 +887,8 @@ class Ingesta:
             def tx_escritura(tx):
                 tx.run(_ESCRIBIR_DOC, doc_id=doc_id, doc_logico=f"DOC-{lote}", lote=lote, contexto=p.get("contexto") or "",
                        analista=p["analista"], fuente=p.get("fuente") or "manual", documento=p.get("documento") or "").consume()
+                tx.run("MATCH (d:AuditIA_PG2:DocumentoVersion {id:$id}) SET d.propuesta_confirmada_json=$propuesta",
+                       id=doc_id, propuesta=json.dumps(p, ensure_ascii=False)).consume()
                 for rq in p["requerimientos"]:
                     clave = rq["clave"]
                     rq_logico = f"RQ-{lote}-{clave}"
@@ -908,7 +945,8 @@ class Ingesta:
         resumen = self.resumen(lote)
         resumen["tiempos"] = {"escritura_s": round(t_escritura, 2), "etapas": etapas,
                               "total_s": round(time.perf_counter() - t0, 2)}
-        resumen["controles"] = self.controles()
+        self._q("MATCH (d:AuditIA_PG2:DocumentoVersion {id:$id}) SET d.tiempos_json=$tiempos",
+                id=doc_id, tiempos=json.dumps(resumen["tiempos"]))
         resumen["consultas_sugeridas"] = consultas_sugeridas(resumen)
         return resumen
 
@@ -918,6 +956,13 @@ class Ingesta:
             raise ErrorIngesta(f"No existe el lote {lote}.")
         res = filas[0]["resumen"]
         res["comparacion"] = (res.get("comparaciones") or [None])[0]   # compatibilidad: primer par
+        detalle = self._q(_DETALLE_TECNICO, lote=lote)[0]["detalle"]
+        for campo in ("propuesta_confirmada", "tiempos"):
+            detalle[campo] = json.loads(detalle[campo]) if detalle.get(campo) else None
+        res["tecnico"] = detalle
+        if detalle["tiempos"]:
+            res["tiempos"] = detalle["tiempos"]
+        res["controles"] = self.controles()
         return res
 
     def controles(self) -> dict:

@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/detalle-tecnico.css">
 <style>
   :root{
     color-scheme:dark;
@@ -558,6 +559,19 @@
   .aviso-prev{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;margin-bottom:14px;border-radius:14px;background:var(--warnf);border:1px solid rgba(251,191,36,.25);font-size:13.5px;color:var(--tinta2)}
   .aviso-prev b{color:var(--warn)}
   .aviso-prev button{margin-left:auto;flex:none}
+  .aviso-prev p{margin:4px 0 0}
+
+  /* confirmación de la revisión */
+  body:has(.confirmacion-revision[open]){overflow:hidden}
+  .confirmacion-revision{width:min(480px,calc(100% - 32px));max-height:calc(100dvh - 32px);padding:28px;border:1px solid rgba(167,139,250,.22);border-radius:var(--radio);background:var(--papel);color:var(--tinta);font:inherit;box-shadow:0 24px 80px rgba(0,0,0,.5)}
+  .confirmacion-revision::backdrop{background:rgba(5,6,15,.75);backdrop-filter:blur(6px)}
+  .confirmacion-revision[open]{animation:entra .2s ease}
+  .confirmacion-revision .confirmacion-icono{display:grid;place-items:center;width:40px;height:40px;margin-bottom:18px;border-radius:12px;background:var(--acentof);color:var(--acento2)}
+  .confirmacion-revision h2{font-size:22px;line-height:1.3;font-weight:500;letter-spacing:-.025em;margin:0 0 10px}
+  .confirmacion-revision p{font-size:14px;line-height:1.7;color:var(--gris);margin:0}
+  .confirmacion-revision form{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap;margin-top:24px}
+  .confirmacion-revision button{font-size:13px;padding:11px 16px}
+  @media(max-width:480px){.confirmacion-revision{padding:24px}.confirmacion-revision form{flex-direction:column-reverse}.confirmacion-revision button{width:100%}}
   .seccion3{display:flex;align-items:baseline;gap:10px;margin:26px 0 10px;font-size:18px;font-weight:600}
   .seccion3 small{font-size:13px;font-weight:400;color:var(--gris)}
   .tarea{position:relative;margin-top:10px;padding:18px 20px;overflow:hidden;transition:opacity .25s}
@@ -855,6 +869,16 @@
   </div>
 </main>
 
+<dialog class="confirmacion-revision" id="confirmacion-revision" aria-labelledby="confirmacion-revision-titulo" aria-describedby="confirmacion-revision-texto">
+  <div class="confirmacion-icono" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 4 4L19 6"/></svg></div>
+  <h2 id="confirmacion-revision-titulo">¿Confirmás la revisión?</h2>
+  <p id="confirmacion-revision-texto"></p>
+  <form method="dialog">
+    <button class="secundario" value="revisar" autofocus>Seguir revisando</button>
+    <button class="principal" value="confirmar">Confirmar y continuar</button>
+  </form>
+</dialog>
+
 <div class="carga-capa" id="carga" role="alertdialog" aria-modal="true" aria-labelledby="carga-tit" aria-live="polite" hidden>
   <div class="carga-centro">
     <div class="ilu" aria-hidden="true">
@@ -872,6 +896,7 @@
     <p class="carga-nota" id="carga-nota"></p>
   </div>
 </div>
+<script src="/static/detalle-tecnico.js"></script>
 <script>
 const $ = s => document.querySelector(s);
 const esc = t => String(t ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -1105,31 +1130,11 @@ function verRazonamiento({hechos=[], reglas=[], conclusion, estado="", fuentes=[
     </ol><div class="raz-pie"><span class="raz-concepto">Inferencia basada en hechos y reglas</span>
       ${fuentes.length?`<details class="raz-extra raz-fuentes"><summary>Ver fuente</summary>${fuentes.map(f=>`<blockquote>${esc(f.texto || "Contenido no disponible.")}</blockquote><p class="raz-origen">${esc(f.origen || "Fuente registrada en la base de conocimiento")}</p>`).join("")}</details>`:""}
       ${medidas.length?`<details class="raz-extra raz-grados"><summary>Ver grados difusos</summary>${medidas.map(g=>`<div class="raz-medida"><label>${esc(g.nombre)}<span>${num(g.valor,2)} / ${g.max}</span></label><meter min="0" max="${g.max}" value="${g.valor}" aria-label="${esc(g.nombre)}"></meter><small>${g.banda?`Banda ${esc(g.banda)}. `:""}${g.revision?"Requiere revisión senior. ":""}${esc(g.nota || "")}</small></div>`).join("")}</details>`:""}
-      ${prioridad?.prioridad?`<details class="raz-extra raz-tratamiento"><summary>Ver fundamento de la prioridad</summary><p>${esc(prioridad.motivo?`Motivo: ${prioridad.motivo.replaceAll("_"," ")}.`:"El resultado no incluye un motivo detallado.")}${prioridad.criticidad?.valor?` Criticidad: ${esc(prioridad.criticidad.valor)}.`:""}${prioridad.categoria_matriz?` Celda de la matriz: ${esc(prioridad.categoria_matriz)}.`:""}</p><p class="raz-origen">Reglas de priorización: ${esc((prioridad.reglas||[]).join(" · ") || "no informadas")}. La urgencia difusa ordena dentro de una misma prioridad.</p></details>`:""}
+      ${prioridad?.prioridad?`<details class="raz-extra raz-tratamiento"><summary>Ver fundamento de la prioridad</summary><p>${esc(prioridad.motivo_detallado || (prioridad.motivo?`Motivo: ${prioridad.motivo.replaceAll("_"," ")}.`:"El resultado no incluye un motivo detallado."))}${prioridad.criticidad?.valor?` Criticidad: ${esc(prioridad.criticidad.valor)}.`:""}${prioridad.categoria_matriz?` Celda de la matriz: ${esc(prioridad.categoria_matriz)}.`:""}</p><p class="raz-origen">Reglas de priorización: ${esc((prioridad.reglas||[]).join(" · ") || "no informadas")}. La urgencia difusa ordena dentro de una misma prioridad.</p></details>`:""}
     </div></div></details>`;
 }
-function razonamientoObservacion(o, rq, comparacion, res){
-  const criterio = o.tipo_defecto || (o.motivo_pendiente === "aceptacion_no_recibida" ? "verificabilidad" : "");
-  const juicios = rq?.evaluacion?.juicios || [];
-  const candidatas = juicios.filter(j => (j.reglas||[]).some(r => (o.reglas||[]).includes(r.id)));
-  // Se conserva el vínculo exacto: una misma regla puede generar varios pendientes.
-  const j = juicios.find(j => j.id === o.juicio_id) || juicios.find(j => j.criterio === criterio) || (candidatas.length === 1 ? candidatas[0] : null);
-  const d = o.decision || {}, cruzada = !!comparacion;
-  const nombre = NOMBRE_CRIT[j?.criterio] || TIPO_OBS[criterio] || (cruzada ? "Contradicción" : "Análisis");
-  const estado = j?.estado || (o.clase === "Pendiente" ? "pendiente" : "incumple");
-  const hechos = cruzada
-    ? [comparacion.justificacion, comparacion.escenarios ? `Escenarios: ${comparacion.escenarios}.` : ""]
-    : [j?.justificacion || o.descripcion];
-  if(o.dato_faltante) hechos.push(`Dato faltante: ${o.dato_faltante}`);
-  const reqs = cruzada ? (res.requerimientos||[]).filter(r => (comparacion.requerimientos||[]).includes(r.id)) : (rq ? [rq] : []);
-  const fuentes = reqs.map(r => ({texto:r.texto, origen:[res.documento, r.id_documento || r.id, r.ubicacion].filter(Boolean).join(" · ")}));
-  if(j?.justificacion || comparacion?.justificacion) fuentes.push({texto:j?.justificacion || comparacion.justificacion, origen:`Premisas confirmadas por ${res.analista || "el analista"}`});
-  const reglas = j?.reglas?.length ? j.reglas : comparacion?.reglas?.length ? comparacion.reglas : o.reglas;
-  return verRazonamiento({hechos, reglas, estado, fuentes, prioridad:d,
-    conclusion: `${nombre}: ${estado === "pendiente" ? "pendiente de información" : estado === "cumple" ? "cumple" : "se detectó un defecto"}.`,
-    grados:[{nombre:"Ambigüedad", valor:j?.grado_ambiguedad, max:1, banda:j?.banda, revision:j?.revision_senior},
-      {nombre:"Contradicción", valor:comparacion?.grado_contradiccion, max:1, banda:comparacion?.banda, revision:comparacion?.revision_senior},
-      {nombre:"Urgencia de atención", valor:d.grado_urgencia, max:10, banda:d.banda, nota:"Complementa la prioridad asignada."}]});
+function razonamientoObservacion(o){
+  return DetalleTecnico.referenciaObservacion(o);
 }
 function razonamientoConsulta(p){
   const t = p.trazabilidad || {}, evidencias = t.evidencias || [];
@@ -1225,7 +1230,12 @@ function irA(v){
   if(v==="historial"){ h.setAttribute("aria-current","page"); cargarLotes(); } else h.removeAttribute("aria-current");
   window.scrollTo({top:0, behavior:"smooth"});
 }
-document.addEventListener("click", e => { const b = e.target.closest("[data-ir]"); if(b){ e.preventDefault(); irA(b.dataset.ir); } });
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-ir]"); if(!b) return;
+  e.preventDefault();
+  if(VISTA==="revisar" && PROP && ["resultados","preguntar"].includes(b.dataset.ir)) solicitarConfirmacion(b.dataset.ir);
+  else irA(b.dataset.ir);
+});
 $("#logo").onclick = () => irA("subir");
 
 // arrastrar y soltar el documento
@@ -1330,6 +1340,28 @@ const CAMPOS_CMP = [["escenarios","sel","¿Ocurren en la misma situación?",[["c
   ["incompatibilidad_resultados","num","Cuán incompatibles son los resultados (0 a 10)",0,10,0.5,true]];
 const MPR = {"baja-baja":"menor","baja-media":"mayor","baja-alta":"bloqueante","media-baja":"mayor","media-media":"mayor","media-alta":"bloqueante","alta-baja":"mayor","alta-media":"bloqueante","alta-alta":"bloqueante"};
 let PROP = null;
+let MOTIVOS_REVISION = [];
+let DESTINO_REVISION = "resultados";
+
+function solicitarConfirmacion(destino="resultados"){
+  if(!PROP || $("#confirmar").disabled) return;
+  const modal = $("#confirmacion-revision");
+  if(modal.open) return;
+  DESTINO_REVISION = destino;
+  $("#confirmacion-revision-texto").textContent = MOTIVOS_REVISION.length
+    ? "Algunas observaciones quedarán como urgentes por precaución porque faltan datos o condiciones de prioridad. Podés seguir revisando o continuar así."
+    : "AuditIA aplicará las reglas con los datos que revisaste y te mostrará qué resolver primero.";
+  modal.returnValue = "";
+  modal.showModal();
+}
+$("#confirmacion-revision").addEventListener("close", e => {
+  if(e.target.returnValue==="confirmar") confirmar(DESTINO_REVISION);
+});
+$("#confirmacion-revision").addEventListener("click", e => {
+  if(e.target!==e.currentTarget) return;
+  const r = e.currentTarget.getBoundingClientRect();
+  if(e.clientX<r.left || e.clientX>r.right || e.clientY<r.top || e.clientY>r.bottom) e.currentTarget.close();
+});
 
 function flujo(etapa){
   // texto/llm → Subir · analista/reglas → Revisar · consulta → Resultados
@@ -1455,7 +1487,8 @@ function renderRevision(){
   let h = `<section class="revision">
     <div class="hoja rev-barra"><div class="rev-cuenta" id="rev-cuenta"></div>
       <div class="rev-filtro" role="group" aria-label="Filtrar">${[["todos","Todos"],["problemas","Con problemas"],["ok","Sin problemas"]].map(([v,t])=>`<button type="button" data-filtro="${v}" aria-pressed="${v===FILTRO_REV}">${t}</button>`).join("")}</div></div>
-    <p class="rev-fuente">${fuente}${chipArchivo(p.documento)}</p>`;
+    <p class="rev-fuente">${fuente}${chipArchivo(p.documento)}</p>
+    <div class="aviso-prev" id="revision-prioridad" role="status" hidden></div>`;
   if(p.avisos?.length) h += `<details class="avisos-rev"><summary>${p.avisos.length} ${p.avisos.length===1?"aviso":"avisos"} de la lectura</summary>${p.avisos.map(a=>`<p>${esc(a)}</p>`).join("")}</details>`;
   p.requerimientos.forEach((rq,i) => {
     const pr = rq.premisas; const ruta = `requerimientos.${i}.premisas`; const ext = rq.extraccion || {};
@@ -1517,7 +1550,7 @@ function renderRevision(){
     <div class="bp-acc"><button class="principal sig" id="confirmar">Confirmar y ver resultados</button></div></div></section>`;
   $("#revision").innerHTML = h;
   document.querySelectorAll("#revision [data-ruta]").forEach(el => el.addEventListener(el.type==="checkbox"||el.tagName==="SELECT"?"change":"input", () => { asignar(el); actualizarPrevias(); }));
-  $("#confirmar").onclick = confirmar;
+  $("#confirmar").onclick = () => solicitarConfirmacion();
   $("#revision").onclick = e => {
     const f = e.target.closest("[data-filtro]");
     if(f){ FILTRO_REV = f.dataset.filtro; document.querySelectorAll("[data-filtro]").forEach(b => b.setAttribute("aria-pressed", String(b===f))); aplicarFiltro(); return; }
@@ -1584,6 +1617,7 @@ function asignar(el){
 }
 function actualizarPrevias(){
   const cuenta = {ok:0, problema:0, falta:0};
+  const motivos = [];
   PROP.requerimientos.forEach((rq,i) => {
     const sev = [], chips = [], estados = {}; let estado = "ok";
     for(const c of Object.keys(CAMPOS)){
@@ -1598,6 +1632,7 @@ function actualizarPrevias(){
     const ic = document.querySelector(`[data-icono="${i}"]`); if(ic){ ic.className = `rq-estado ${estado}`; ic.textContent = {ok:"✓", problema:"!", falta:"?"}[estado]; }
     const nota = document.querySelector(`[data-previa-prio="${i}"]`);
     if(nota) nota.innerHTML = sev.length ? `Si confirmás así, quedaría: ${sev.map(([n,h,s]) => `${esc(n)} ${prioHumana(prioridadPrevia(h,s,rq.premisas.prioridad))}`).join(" ")}` : "Sin observaciones: no hay nada que priorizar.";
+    sev.forEach(([n,h,s]) => motivos.push(motivoPrioridadPrevia(h,s,rq.premisas.prioridad)));
   });
   let contra = 0;
   (PROP.comparaciones||[]).forEach((cp,k) => {
@@ -1618,6 +1653,7 @@ function actualizarPrevias(){
     const nota = document.querySelector(`[data-previa-prio="cmp-${k}"]`);
     if(nota) nota.innerHTML = r[1]==="observado" ? `Si confirmás así, la contradicción quedaría ${prioHumana(prioridadPrevia(true, cp.premisas.severidad_propuesta, pr))}`
       : r[1]==="pendiente" ? `Si confirmás así, quedaría pendiente ${prioHumana(prioridadPrevia(false, null, pr))}` : "Sin observación para este par.";
+    if(r[1]==="observado" || r[1]==="pendiente") motivos.push(motivoPrioridadPrevia(r[1]==="observado", r[1]==="observado" ? cp.premisas.severidad_propuesta : null, pr));
   });
   const n = PROP.requerimientos.length;
   const rc = $("#rev-cuenta");
@@ -1626,6 +1662,12 @@ function actualizarPrevias(){
     + (cuenta.problema ? `<span class="stat mal"><i></i><b>${cuenta.problema}</b> con problemas</span>` : "")
     + (cuenta.falta ? `<span class="stat falta"><i></i><b>${cuenta.falta}</b> con datos faltantes</span>` : "")
     + (contra ? `<span class="stat cmp"><i></i><b>${contra}</b> ${contra===1?"contradicción":"contradicciones"}</span>` : "");
+  MOTIVOS_REVISION = [...new Set(motivos.filter(Boolean))];
+  const aviso = $("#revision-prioridad");
+  if(aviso){
+    aviso.hidden = !MOTIVOS_REVISION.length;
+    aviso.innerHTML = MOTIVOS_REVISION.length ? `<span aria-hidden="true">ⓘ</span><div><b>Algunas observaciones quedarían como urgentes por precaución.</b><p>${MOTIVOS_REVISION.map(esc).join(" ")} Completá los datos y las condiciones de prioridad en «Corregir» antes de confirmar, o continuá así.</p></div>` : "";
+  }
   aplicarFiltro();
 }
 
@@ -1704,7 +1746,8 @@ async function pedirPropuesta(usarLLM, items=null, documento=""){
 $("#proponer-llm").onclick = () => DOC && pedirPropuesta(true, seleccionados(), DOC.nombre);
 $("#proponer-rapido").onclick = () => DOC && pedirPropuesta(false, seleccionados(), DOC.nombre);
 
-async function confirmar(){
+async function confirmar(destino="resultados"){
+  if(!PROP || $("#confirmar").disabled) return;
   $("#confirmar").disabled = true; flujo("reglas");
   Carga.mostrar({titulo:"Aplicando las <em>reglas</em>", fases:["Guardar lo que confirmaste", "Evaluar cada requerimiento", "Buscar contradicciones", "Calcular qué resolver primero"],
     mensajes:["Guardando tus respuestas…", "Evaluando la calidad de cada requerimiento…", "Buscando contradicciones…", "Calculando prioridades…"], estimado:6});
@@ -1714,6 +1757,7 @@ async function confirmar(){
     const res = await r.json();
     if(!r.ok) throw new Error(res.detail || `La API respondió ${r.status}`);
     await Carga.completar(); flujo("consulta"); mostrarLote(res); cargarLotes();
+    if(destino!=="resultados") irA(destino);
   }catch(e){ $("#aviso-revisar").innerHTML = `<div class="error">No se pudieron aplicar las reglas: ${esc(e.message)}</div>`; flujo("analista"); }
   Carga.ocultar(); $("#confirmar").disabled = false;
 }
@@ -1738,6 +1782,22 @@ function explicar(o){
   if(t === "contradiccion") return {tipo:"Contradicción", cls:"problema", que:"Pide lo contrario que otro requerimiento en la misma situación.", hacer:"Definí con el cliente cuál de los dos vale y corregí el otro."};
   return {tipo: TIPO_OBS[t] || o.clase || "Observación", cls:"problema", que: esc(d), hacer:"Revisalo con el cliente."};
 }
+// PRC-RD02 puede activarse aun cuando la importancia esté declarada.
+function motivoPreventivo(o){
+  const d = o.decision;
+  if(d?.motivo !== "preventivo") return "";
+  if(!d.criticidad?.valor) return "Falta indicar la importancia para el negocio.";
+  if(o.clase === "Pendiente") return "Hay información pendiente para completar la evaluación; todavía no se puede determinar la gravedad de un defecto.";
+  if(!o.severidad?.valor) return "Falta confirmar la gravedad del defecto.";
+  if(d.categoria_matriz === "mayor") return "Falta confirmar las condiciones para resolverlo en una fecha acordada, sin bloqueo sustantivo.";
+  if(d.categoria_matriz === "menor") return "Falta confirmar que el cliente acepte dejarlo para después y que el impacto sea acotado.";
+  return "Falta confirmar información o condiciones necesarias para asignar otra prioridad.";
+}
+function motivoPrioridadPrevia(esHallazgo, sev, pr){
+  if(!prioridadPrevia(esHallazgo,sev,pr).includes("PRC-RD02")) return "";
+  return motivoPreventivo({clase:esHallazgo ? "Hallazgo" : "Pendiente", severidad:{valor:sev},
+    decision:{motivo:"preventivo", criticidad:{valor:pr.criticidad_valor}, categoria_matriz:MPR[`${sev}-${pr.criticidad_valor}`]}});
+}
 function resumenLote(res){
   const obs = res.observaciones||[], reqs = res.requerimientos||[], cmps = res.comparaciones || (res.comparacion ? [res.comparacion] : []);
   const peso = {b:0, m:1, n:2};
@@ -1761,7 +1821,6 @@ function resumenLote(res){
   const bien = reqs.filter(r => !conProblemas.has(r.id));
   const nProblemas = obs.filter(o => o.clase!=="Pendiente" && o.tipo_defecto!=="contradiccion").length;
   const nFaltan = obs.filter(o => o.clase==="Pendiente").length;
-  const preventivo = obs.some(o => o.decision?.motivo === "preventivo");
 
   const titulo = obs.length ? `Encontramos <em>${obs.length}</em> ${obs.length===1?"cosa":"cosas"} para corregir en ${reqs.length - bien.length} de ${reqs.length} requerimientos.`
     : `Tus requerimientos están <em>bien escritos</em>.`;
@@ -1776,7 +1835,6 @@ function resumenLote(res){
       <div class="hoja kpi3 falta"><span class="ic">?</span><div><b>${nFaltan}</b><small>datos que faltan</small></div></div>
       <div class="hoja kpi3 cmp"><span class="ic">⇄</span><div><b>${contra.length}</b><small>${contra.length===1?"contradicción":"contradicciones"}</small></div></div>
     </div>`;
-  if(preventivo) h += `<div class="aviso-prev"><span>⚠</span><span><b>Algunos figuran como urgentes porque no se indicó su importancia para el negocio.</b> AuditIA los trata como urgentes por precaución. Si la indicás en el paso 2, el orden se ajusta.</span>${PROP?`<button class="btn-chico ant" data-ir="revisar">Indicar importancia</button>`:""}</div>`;
 
   if(tareas.length || contra.length) h += `<div class="seccion3">Qué hacer, en orden <small>de lo más urgente a lo que puede esperar</small><span class="res-prog" id="res-prog"></span></div>`;
   let nro = 0;
@@ -1804,11 +1862,7 @@ function resumenLote(res){
     }
   }
   if(bien.length) h += `<details class="hoja bien3" style="margin-top:14px"><summary><span class="tipo-h ok">✓ ${bien.length}</span> ${bien.length===1?"Requerimiento bien escrito":"Requerimientos bien escritos"}</summary>
-    <ul>${bien.map(r => `<li><div class="raz-bien">${esc(r.texto)}${r.id_documento?` <code>${esc(r.id_documento)}</code>`:""}${verRazonamiento({
-      hechos:(r.evaluacion?.juicios||[]).map(j=>j.justificacion), reglas:(r.evaluacion?.juicios||[]).flatMap(j=>j.reglas||[]),
-      conclusion:r.evaluacion?.estado === "sin_hallazgo" ? "Sin hallazgos en los criterios revisados." : "No hay observaciones registradas en este resultado.",
-      estado:r.evaluacion?.estado, fuentes:[{texto:r.texto, origen:[res.documento,r.id_documento||r.id,r.ubicacion].filter(Boolean).join(" · ")}]
-    })}</div></li>`).join("")}</ul></details>`;
+    <ul>${bien.map(r => `<li><div class="raz-bien">${esc(r.texto)}${r.id_documento?` <code>${esc(r.id_documento)}</code>`:""}<div class="tec-accesos">${DetalleTecnico.enlace("calidad",r.id,"Ver evaluación")}</div></div></li>`).join("")}</ul></details>`;
   return h;
 }
 function prepararPreguntas(res){
@@ -1838,61 +1892,17 @@ function prepararPreguntas(res){
 }
 function mostrarLote(res){
   prepararPreguntas(res);
-  let h = resumenLote(res) + `<details class="hoja detalle"><summary>Ver el detalle técnico <small>· para el informe: reglas aplicadas, estados y grados por submódulo</small></summary>
-    <div class="detalle-cuerpo res-lote">
-    <p class="ayuda" style="margin:0">Estados, reglas, severidades, prioridades y grados calculados por Neo4j con las mismas reglas y modelos difusos de PG2.</p>`;
-  for(const rq of res.requerimientos||[]){
-    const ev = rq.evaluacion||{};
-    h += `<div class="res-rq"><h3><span class="sm SM1">SM1</span> ${esc(rq.id)}${rq.id_documento?` <small style="font-weight:400;color:var(--gris)">(${esc(rq.id_documento)} en el documento)</small>`:""} <span class="previa ${esc(ev.estado)}">${esc((ev.estado||"").replace("_"," "))}</span> <small style="color:var(--gris);font-weight:400">${esc((ev.reglas||[]).join(", "))}</small></h3>
-      <blockquote style="margin:4px 0 8px;font-size:14px;color:var(--gris)">${esc(rq.texto)}</blockquote>
-      <table><thead><tr><th>Criterio</th><th>Estado</th><th>Regla</th><th>Justificación</th><th>Grado difuso</th></tr></thead><tbody>`;
-    for(const j of (ev.juicios||[]).sort((a,b)=>Object.keys(CAMPOS).indexOf(a.criterio)-Object.keys(CAMPOS).indexOf(b.criterio))){
-      h += `<tr><td>${esc(NOMBRE_CRIT[j.criterio]||j.criterio)}</td><td><span class="previa ${esc(j.estado||"nada")}">${esc(j.estado||"sin regla")}</span></td>
-        <td>${(j.reglas||[]).map(r=>`<code title="${esc(r.descripcion||"")}">${esc(r.id)}</code>`).join(" ")}</td><td>${esc(j.justificacion)}</td>
-        <td>${j.grado_ambiguedad!=null ? `${num(j.grado_ambiguedad)} · banda ${esc(j.banda)}${j.revision_senior?" · revisión senior":""}` : "—"}</td></tr>`;
-    }
-    h += `</tbody></table></div>`;
-  }
-  for(const c of (res.comparaciones || (res.comparacion ? [res.comparacion] : []))){
-    h += `<div class="res-rq"><h3><span class="sm SM2">SM2</span> ${esc(c.id)} · ${esc((c.requerimientos||[]).join(" frente a "))} <span class="previa ${esc(c.estado)}">${esc((c.estado||"").replace("_"," "))}</span></h3>
-      <p style="margin:0;font-size:14px">Escenarios ${esc(c.escenarios)} · ${(c.reglas||[]).map(r=>`<code title="${esc(r.descripcion||"")}">${esc(r.id)}</code> ${esc(r.descripcion||"")}`).join(" ")}
-      ${c.grado_contradiccion!=null ? `<br>Grado de contradicción ${num(c.grado_contradiccion)} · banda ${esc(c.banda)}${c.revision_senior?" · requiere revisión senior":""}` : ""}</p></div>`;
-  }
-  const obs = res.observaciones||[];
-  h += `<div class="res-rq"><h3><span class="sm SM3">SM3</span> Qué hay que resolver y en qué orden</h3>
-    <p style="margin:0 0 8px;font-size:13px;color:var(--gris)"><b>Hallazgo</b>: defecto demostrado. <b>Pendiente</b>: falta un dato para decidir. <b>Severidad</b>: gravedad del defecto. <b>Criticidad</b>: importancia para el negocio. <b>Prioridad</b>: qué atender primero (bloqueante, mayor o menor). <b>Urgencia difusa</b>: de 0 a 10, calculada con lógica difusa.</p>`;
-  if(!obs.length) h += `<p style="margin:0;font-size:14px">No se generaron hallazgos ni pendientes: en el alcance revisado, no hay nada que priorizar.</p>`;
-  else{
-    h += `<table class="tabla-obs"><thead><tr><th>ID</th><th>Tipo</th><th>Severidad</th><th>Criticidad</th><th>Prioridad</th><th>Urgencia difusa</th><th>Reglas</th></tr></thead><tbody>`;
-    for(const o of obs){ const d = o.decision||{};
-      h += `<tr><td><b>${esc(o.id)}</b><div style="color:var(--gris);font-size:12px">${esc(o.tipo_defecto||o.motivo_pendiente||"")}${o.dato_faltante?` · falta: ${esc(o.dato_faltante)}`:""}</div></td>
-        <td>${esc(o.clase)}</td><td>${o.severidad?.valor ? `${esc(o.severidad.valor)} (${num(o.severidad.grado,1)})` : "null"}</td>
-        <td>${d.criticidad?.valor ? `${esc(d.criticidad.valor)} (${num(d.criticidad.grado,1)})` : "no declarada"}</td>
-        <td><b>${esc(d.prioridad||"—")}</b> ${esc(d.motivo||"")}${d.categoria_matriz?`<div style="color:var(--gris);font-size:12px">celda MPR-01: ${esc(d.categoria_matriz)}</div>`:""}</td>
-        <td>${d.grado_urgencia!=null ? `${num(d.grado_urgencia,2)} · ${esc(d.banda)}` : "—"}</td>
-        <td>${[...(o.reglas||[]), ...(d.reglas||[])].map(r=>`<code>${esc(r)}</code>`).join(" ")}</td></tr>`;
-    }
-    h += `</tbody></table>`;
-  }
-  h += `</div>`;
-  if(res.controles) h += `<div class="pie"><span class="sello ${res.controles.todos_en_cero?"":"warn"}">${res.controles.todos_en_cero?"✓":"!"} Controles de integridad de PG2: ${Object.values(res.controles.conteos||{}).filter(v=>v===0).length}/${Object.keys(res.controles.conteos||{}).length} en cero</span>
-    ${res.tiempos?`<span>Escritura e inferencia: ${esc(res.tiempos.total_s)} s</span>`:""}${res.informe?`<span>Informe ${esc(res.informe.id)}: ${esc(res.informe.calidad_observada)}</span>`:""}</div>`;
-  h += `</div></details>`;
-  if(res.consultas_sugeridas?.length){
-    const legible = q => (res.requerimientos||[]).reduce((t,r) => r.id_documento ? t.split(r.id).join(r.id_documento) : t, q);
-    h += `<section class="hoja tarjeta" style="margin-top:14px"><h3 class="rotulo">¿Tenés dudas? Preguntale a AuditIA</h3><p class="ayuda" style="margin:0">Por ejemplo:</p><div class="sugeridas">`
-      + res.consultas_sugeridas.map(q=>`<button class="ejemplo" data-q="${esc(q)}">${esc(legible(q))}</button>`).join("") + `</div></section>`;
-  }
+  let h = resumenLote(res) + DetalleTecnico.render(res);
   h += `<div class="barra-pasos"><button class="enlace bp-volver ant" data-ir="${PROP ? "revisar" : "historial"}">Volver</button>
     <div class="bp-info"><b>¿Querés entender mejor algún resultado?</b><small>Preguntale a AuditIA por qué salió cada uno y qué hacer.</small></div>
     <div class="bp-acc"><button class="principal sig" data-ir="preguntar">Preguntar a AuditIA</button></div></div>`;
   $("#res-lote").innerHTML = h;
+  DetalleTecnico.activarAyudas($("#res-lote"),res);
   const progRes = () => { const t = document.querySelectorAll("#res-lote .tarea").length, r = document.querySelectorAll("#res-lote .tarea.resuelta").length, el = $("#res-prog");
     if(el) el.innerHTML = t ? `<b>${r}</b> de ${t} resueltos` : ""; };
   $("#res-lote").onclick = e => { const c = e.target.closest("[data-resolver]"); if(!c) return;
     const t = c.closest(".tarea"); t.classList.toggle("resuelta"); c.title = t.classList.contains("resuelta") ? "Marcar como pendiente" : "Marcar como resuelto"; progRes(); };
   progRes();
-  document.querySelectorAll("#res-lote [data-q]").forEach(b => b.onclick = () => { cambiarModo("consultar"); $("#consulta").value = b.dataset.q; contar(); $("#consulta").focus(); window.scrollTo({top:0}); });
 }
 const IC_OJO = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>`;
 const IC_OK = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;

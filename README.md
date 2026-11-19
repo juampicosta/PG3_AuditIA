@@ -39,7 +39,14 @@ Si ya tenés el modelo en otro volumen de Docker, poné su nombre en `OLLAMA_VOL
 
 ## Pruebas
 
+En los resultados, **Ver el detalle técnico** recorre los datos confirmados, SM1, SM2,
+la matriz y decisión de SM3, los cálculos difusos y los controles de integridad.
+Cada caso permite desplegar hechos, reglas y evidencia. El historial recupera esa
+información de Neo4j; las nuevas auditorías conservan además la lectura propuesta
+y los tiempos originales. Los controles muestran el estado actual de toda la base.
+
 ```powershell
+docker compose exec app python pruebas/probar_detalle_tecnico.py    # trazabilidad e historial, sin LLM
 docker compose exec app python pruebas/probar_ingesta.py            # análisis de requerimientos nuevos (sin LLM, ~1 min)
 docker compose exec app python pruebas/ejecutar_pruebas.py --funcionales
 docker compose exec app python pruebas/ejecutar_pruebas.py --e2e
