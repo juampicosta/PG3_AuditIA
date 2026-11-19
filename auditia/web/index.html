@@ -482,6 +482,63 @@
   .sello{display:inline-flex;align-items:center;gap:6px;font-weight:500;color:var(--ok)}
   .sello.warn{color:var(--warn)}
 
+  /* ---------- explicación visual: hechos → reglas → conclusión ---------- */
+  .razonamiento{margin-top:14px;border-top:1px solid var(--linea);font-weight:400;min-width:0}
+  .razonamiento > summary{display:flex;align-items:center;gap:9px;width:fit-content;max-width:100%;padding:12px 0 2px;list-style:none;cursor:pointer;font-size:12.5px;color:var(--acento2)}
+  .razonamiento > summary::-webkit-details-marker{display:none}
+  .razonamiento > summary svg{width:16px;height:16px;flex:none;opacity:.8}
+  .razonamiento > summary small{color:var(--gris);font-size:11.5px}
+  .razonamiento > summary::after{content:"›";margin-left:4px;font-size:19px;line-height:1;transition:transform .2s}
+  .razonamiento[open] > summary::after{transform:rotate(90deg)}
+  .razonamiento > summary:hover{color:var(--tinta)}
+  .raz-cuerpo{padding-top:18px;animation:entra .25s ease}
+  .raz-flujo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;list-style:none;padding:0;margin:0}
+  .raz-flujo > li{position:relative;min-width:0;padding:17px;border:1px solid var(--linea);border-radius:14px;background:var(--campo);overflow-wrap:anywhere}
+  .raz-flujo > li + li::before{content:"→";position:absolute;left:-23px;top:24px;width:22px;text-align:center;color:var(--gris2);font-size:15px}
+  .raz-flujo h4{display:flex;align-items:center;gap:8px;margin:0 0 12px;font-size:12px;font-weight:500;color:var(--tinta2)}
+  .raz-num{display:grid;place-items:center;width:21px;height:21px;flex:none;border-radius:7px;background:rgba(255,255,255,.06);color:var(--gris);font-size:10px}
+  .raz-flujo p{margin:0;font-size:12.5px;line-height:1.75;color:var(--tinta2);white-space:pre-line}
+  .raz-flujo p + p{margin-top:8px}
+  .raz-flujo .raz-regla{border-color:rgba(167,139,250,.22);background:linear-gradient(145deg,rgba(167,139,250,.06),var(--campo))}
+  .raz-regla .raz-num{background:var(--acentof);color:var(--acento2)}
+  .raz-cond{color:var(--acento2);font-weight:500}
+  .raz-regla-id{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:12px;color:var(--gris);font-size:10.5px}
+  .raz-regla-id code{font-size:10.5px;color:var(--gris)}
+  .raz-flujo .raz-fin{--raz-color:var(--acento2)}
+  .raz-fin.pendiente,.raz-fin.observado{--raz-color:var(--warn)}
+  .raz-fin.incumple{--raz-color:var(--err)}
+  .raz-fin.cumple,.raz-fin.sin_hallazgo{--raz-color:var(--ok)}
+  .raz-fin .raz-num{background:color-mix(in srgb,var(--raz-color) 12%,transparent);color:var(--raz-color)}
+  .raz-flujo .raz-conclusion{font-size:14px;font-weight:500;color:var(--raz-color);line-height:1.6}
+  .raz-flujo .raz-prioridad{margin-top:10px;font-size:11.5px;color:var(--gris)}
+  .raz-pie{display:flex;align-items:center;gap:8px 18px;flex-wrap:wrap;margin-top:14px;padding-bottom:3px}
+  .raz-concepto{font-size:10.5px;color:var(--gris);margin-right:auto}
+  .raz-extra{min-width:0;font-size:12px}
+  .raz-extra > summary{width:fit-content;list-style:none;cursor:pointer;color:var(--gris);font-size:11.5px;padding:4px 0}
+  .raz-extra > summary::-webkit-details-marker{display:none}
+  .raz-extra > summary::before{content:"+ ";color:var(--acento)}
+  .raz-extra[open] > summary::before{content:"− "}
+  .raz-extra > summary:hover{color:var(--tinta)}
+  .raz-extra p{font-size:12px;line-height:1.7;margin:8px 0;color:var(--tinta2);overflow-wrap:anywhere}
+  .raz-extra blockquote{margin:10px 0;padding:8px 12px;border-left:2px solid var(--acento);font-size:12px;color:var(--tinta2);overflow-wrap:anywhere;white-space:pre-line}
+  .raz-extra .raz-origen{font-size:10.5px;color:var(--gris)}
+  .raz-fuentes,.raz-grados,.raz-tratamiento{flex-basis:100%;padding:0 14px;border-radius:10px;background:rgba(255,255,255,.02)}
+  .raz-fuentes > summary,.raz-grados > summary,.raz-tratamiento > summary{padding:9px 0}
+  .raz-medida{margin:8px 0 14px;max-width:400px}
+  .raz-medida label{display:flex;gap:10px;justify-content:space-between;font-size:12px;color:var(--tinta2)}
+  .raz-medida meter{display:block;width:100%;height:12px;margin:6px 0;accent-color:var(--acento)}
+  .raz-medida meter::-webkit-meter-bar{background:var(--fondo2);border:0;border-radius:999px}
+  .raz-medida meter::-webkit-meter-optimum-value{background:linear-gradient(90deg,var(--boton),var(--acento2));border-radius:999px}
+  .raz-medida small{color:var(--gris);font-size:11px}
+  .problemas3 > li > div{min-width:0;width:100%}
+  .bien3 .raz-bien{display:block;flex:1;min-width:0}
+  @media (max-width:700px){
+    .raz-flujo{grid-template-columns:minmax(0,1fr);gap:20px}
+    .raz-flujo > li + li::before{content:"↓";left:25px;top:-22px;height:20px;line-height:20px}
+    .razonamiento > summary{flex-wrap:wrap}
+    .raz-flujo > li{padding:15px}
+  }
+
   /* ---------- paso 3: resultados en lenguaje común ---------- */
   .kpis3{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-bottom:14px}
   .kpis3 .hoja + .hoja{margin-top:0}
@@ -507,8 +564,8 @@
   .urg{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:12.5px;color:var(--c-urg)}
   .urg::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c-urg);box-shadow:0 0 8px var(--c-urg)}
   .problemas3{list-style:none;margin:14px 0 0 42px;padding:0}
-  .problemas3 li{display:grid;grid-template-columns:22px 1fr;gap:12px;padding:12px 0}
-  .problemas3 li + li{border-top:1px solid var(--linea2)}
+  .problemas3 > li{display:grid;grid-template-columns:22px 1fr;gap:12px;padding:12px 0}
+  .problemas3 > li + li{border-top:1px solid var(--linea2)}
   .problemas3 .ico{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;margin-top:1px}
   .problemas3 .ico.problema{background:var(--errf);color:var(--err)}.problemas3 .ico.falta{background:var(--warnf);color:var(--warn)}
   .problemas3 .que{font-size:14px;color:var(--tinta);line-height:1.5}
@@ -523,13 +580,13 @@
   .tarea.resuelta .problemas3,.tarea.resuelta .cmp-par{display:none}
   .seccion3 .res-prog{margin-left:auto;font-size:13px;font-weight:500;color:var(--gris)}
   .seccion3 .res-prog b{color:var(--ok)}
-  .bien3 summary{cursor:pointer;list-style:none;padding:16px 20px;font-weight:500;display:flex;gap:10px;align-items:center}
-  .bien3 summary::-webkit-details-marker{display:none}
-  .bien3 summary::after{content:"›";margin-left:auto;color:var(--gris2);font-size:20px;transition:transform .2s}
-  .bien3[open] summary::after{transform:rotate(90deg)}
-  .bien3 ul{list-style:none;margin:0;padding:0 20px 16px;display:flex;flex-direction:column;gap:8px}
-  .bien3 li{display:flex;gap:10px;font-size:14px;color:var(--tinta2)}
-  .bien3 li::before{content:"✓";color:var(--ok);font-weight:700}
+  .bien3 > summary{cursor:pointer;list-style:none;padding:16px 20px;font-weight:500;display:flex;gap:10px;align-items:center}
+  .bien3 > summary::-webkit-details-marker{display:none}
+  .bien3 > summary::after{content:"›";margin-left:auto;color:var(--gris2);font-size:20px;transition:transform .2s}
+  .bien3[open] > summary::after{transform:rotate(90deg)}
+  .bien3 > ul{list-style:none;margin:0;padding:0 20px 16px;display:flex;flex-direction:column;gap:16px}
+  .bien3 > ul > li{display:flex;gap:10px;font-size:14px;color:var(--tinta2)}
+  .bien3 > ul > li::before{content:"✓";color:var(--ok);font-weight:700}
   @media (max-width:700px){.problemas3,.tarea .cmp-par{margin-left:0}}
   /* ---------- preguntar ---------- */
   .escritorio{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:16px;align-items:start}
@@ -993,6 +1050,72 @@ function fichaId(id){
   const el = $("#ficha-id"); el.innerHTML = desc; el.classList.add("visible");
 }
 
+// La explicación presenta datos recuperados; no vuelve a evaluar reglas en el navegador.
+function reglasUnicas(reglas=[]){
+  const unicas = new Map();
+  for(const regla of reglas){
+    const r = typeof regla === "string" ? {id:regla} : regla;
+    if(r?.id) unicas.set(r.id, {...unicas.get(r.id), ...r});
+  }
+  return [...unicas.values()];
+}
+function tarjetaRegla(r){
+  const texto = r.descripcion ? esc(r.descripcion).replace(/\b(SI|ENTONCES)\b/g, '<span class="raz-cond">$1</span>') : "El motor registró esta regla sin una descripción disponible.";
+  return `<p>${texto}</p><div class="raz-regla-id"><code>${esc(r.id)}</code>${r.estado_validacion?`<span>${esc(r.estado_validacion)}</span>`:""}</div>`;
+}
+function verRazonamiento({hechos=[], reglas=[], conclusion, estado="", fuentes=[], grados=[], prioridad=null, etiqueta="", reglasRecuperadas=false}){
+  const rs = reglasUnicas(reglas), datos = hechos.filter(Boolean);
+  const textoConclusion = conclusion || "No hay una conclusión registrada.";
+  const extensa = textoConclusion.length > 220;
+  const previa = extensa ? textoConclusion.slice(0,200).replace(/\s+\S*$/,"") + "…" : textoConclusion;
+  const tono = ["pendiente","observado","incumple","cumple","sin_hallazgo"].includes(estado) ? estado : "";
+  const medidas = grados.filter(g => typeof g.valor === "number" && Number.isFinite(g.valor) && g.valor>=0 && g.valor<=g.max);
+  return `<details class="razonamiento">
+    <summary><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="6" height="5" rx="1.5"/><path d="M6 8v9h9M6 11h9"/><rect x="15" y="8" width="6" height="5" rx="1.5"/><rect x="15" y="15" width="6" height="5" rx="1.5"/></svg>Ver razonamiento${etiqueta?`<small>· ${esc(etiqueta)}</small>`:""}</summary>
+    <div class="raz-cuerpo"><ol class="raz-flujo" aria-label="Hechos, reglas y conclusión">
+      <li><h4><span class="raz-num" aria-hidden="true">01</span>Qué se encontró</h4>${datos.length ? datos.map(h=>`<p>${esc(h)}</p>`).join("") : `<p>No hay premisas detalladas en este resultado.</p>`}</li>
+      <li class="raz-regla"><h4><span class="raz-num" aria-hidden="true">02</span>${reglasRecuperadas?"Qué reglas se recuperaron":"Qué regla se aplicó"}</h4>
+        ${rs.length ? tarjetaRegla(rs[0]) : `<p>Este resultado no incluye una regla de dominio registrada.</p>`}
+        ${rs.length>1?`<details class="raz-extra"><summary>Ver ${rs.length-1} ${rs.length===2?"regla más":"reglas más"}</summary>${rs.slice(1).map(tarjetaRegla).join("")}</details>`:""}</li>
+      <li class="raz-fin ${tono}"><h4><span class="raz-num" aria-hidden="true">03</span>Qué se concluyó</h4><p class="raz-conclusion">${esc(previa)}</p>
+        ${extensa?`<details class="raz-extra"><summary>Leer conclusión completa</summary><p>${esc(textoConclusion)}</p></details>`:""}
+        ${prioridad?.prioridad?`<p class="raz-prioridad">Prioridad ${esc(prioridad.prioridad)} · provisional</p>`:""}</li>
+    </ol><div class="raz-pie"><span class="raz-concepto">Inferencia basada en hechos y reglas</span>
+      ${fuentes.length?`<details class="raz-extra raz-fuentes"><summary>Ver fuente</summary>${fuentes.map(f=>`<blockquote>${esc(f.texto || "Contenido no disponible.")}</blockquote><p class="raz-origen">${esc(f.origen || "Fuente registrada en la base de conocimiento")}</p>`).join("")}</details>`:""}
+      ${medidas.length?`<details class="raz-extra raz-grados"><summary>Ver grados difusos</summary>${medidas.map(g=>`<div class="raz-medida"><label>${esc(g.nombre)}<span>${num(g.valor,2)} / ${g.max}</span></label><meter min="0" max="${g.max}" value="${g.valor}" aria-label="${esc(g.nombre)}"></meter><small>${g.banda?`Banda ${esc(g.banda)}. `:""}${g.revision?"Requiere revisión senior. ":""}${esc(g.nota || "")}</small></div>`).join("")}</details>`:""}
+      ${prioridad?.prioridad?`<details class="raz-extra raz-tratamiento"><summary>Ver fundamento de la prioridad</summary><p>${esc(prioridad.motivo?`Motivo: ${prioridad.motivo.replaceAll("_"," ")}.`:"El resultado no incluye un motivo detallado.")}${prioridad.criticidad?.valor?` Criticidad: ${esc(prioridad.criticidad.valor)}.`:""}${prioridad.categoria_matriz?` Celda de la matriz: ${esc(prioridad.categoria_matriz)}.`:""}</p><p class="raz-origen">Reglas de priorización: ${esc((prioridad.reglas||[]).join(" · ") || "no informadas")}. La urgencia difusa ordena dentro de una misma prioridad.</p></details>`:""}
+    </div></div></details>`;
+}
+function razonamientoObservacion(o, rq, comparacion, res){
+  const criterio = o.tipo_defecto || (o.motivo_pendiente === "aceptacion_no_recibida" ? "verificabilidad" : "");
+  const juicios = rq?.evaluacion?.juicios || [];
+  const candidatas = juicios.filter(j => (j.reglas||[]).some(r => (o.reglas||[]).includes(r.id)));
+  // Se conserva el vínculo exacto: una misma regla puede generar varios pendientes.
+  const j = juicios.find(j => j.id === o.juicio_id) || juicios.find(j => j.criterio === criterio) || (candidatas.length === 1 ? candidatas[0] : null);
+  const d = o.decision || {}, cruzada = !!comparacion;
+  const nombre = NOMBRE_CRIT[j?.criterio] || TIPO_OBS[criterio] || (cruzada ? "Contradicción" : "Análisis");
+  const estado = j?.estado || (o.clase === "Pendiente" ? "pendiente" : "incumple");
+  const hechos = cruzada
+    ? [comparacion.justificacion, comparacion.escenarios ? `Escenarios: ${comparacion.escenarios}.` : ""]
+    : [j?.justificacion || o.descripcion];
+  if(o.dato_faltante) hechos.push(`Dato faltante: ${o.dato_faltante}`);
+  const reqs = cruzada ? (res.requerimientos||[]).filter(r => (comparacion.requerimientos||[]).includes(r.id)) : (rq ? [rq] : []);
+  const fuentes = reqs.map(r => ({texto:r.texto, origen:[res.documento, r.id_documento || r.id, r.ubicacion].filter(Boolean).join(" · ")}));
+  if(j?.justificacion || comparacion?.justificacion) fuentes.push({texto:j?.justificacion || comparacion.justificacion, origen:`Premisas confirmadas por ${res.analista || "el analista"}`});
+  const reglas = j?.reglas?.length ? j.reglas : comparacion?.reglas?.length ? comparacion.reglas : o.reglas;
+  return verRazonamiento({hechos, reglas, estado, fuentes, prioridad:d,
+    conclusion: `${nombre}: ${estado === "pendiente" ? "pendiente de información" : estado === "cumple" ? "cumple" : "se detectó un defecto"}.`,
+    grados:[{nombre:"Ambigüedad", valor:j?.grado_ambiguedad, max:1, banda:j?.banda, revision:j?.revision_senior},
+      {nombre:"Contradicción", valor:comparacion?.grado_contradiccion, max:1, banda:comparacion?.banda, revision:comparacion?.revision_senior},
+      {nombre:"Urgencia de atención", valor:d.grado_urgencia, max:10, banda:d.banda, nota:"Complementa la prioridad asignada."}]});
+}
+function razonamientoConsulta(p){
+  const t = p.trazabilidad || {}, evidencias = t.evidencias || [];
+  return verRazonamiento({etiqueta:SM[p.submodulo]?.nombre || p.submodulo, reglasRecuperadas:true,
+    hechos:evidencias.slice(0,1).map(e=>e.contenido), reglas:t.reglas || [], conclusion:p.respuesta,
+    fuentes:evidencias.map(e=>({texto:e.contenido, origen:[e.fuente, e.localizador || e.id].filter(Boolean).join(" · ")}))});
+}
+
 function mostrar(r){
   construirIndice(r);
   const plan = r.enrutamiento?.plan || {};
@@ -1005,6 +1128,7 @@ function mostrar(r){
     <h2 id="t-resp">${esc(titulo)}</h2>
     <div class="texto">${marcarTexto(r.respuesta)}</div>
     <div class="ficha-id" id="ficha-id" aria-live="polite"></div>
+    ${pasos.map(razonamientoConsulta).join("")}
     <div class="pie">
       ${pasos.length ? `<span class="sello ${aprobadas===pasos.length?"":"warn"}">✓ ${aprobadas} de ${pasos.length} explicaciones aprobadas por el verificador</span>` : ""}
       ${pasos.length>1 ? `<span>Integración: ${r.sintesis?.modo==="sintesis_llm_verificada" ? "síntesis verificada" : "composición de las respuestas verificadas"}</span>` : ""}
@@ -1631,7 +1755,7 @@ function resumenLote(res){
 
   if(tareas.length || contra.length) h += `<div class="seccion3">Qué hacer, en orden <small>de lo más urgente a lo que puede esperar</small><span class="res-prog" id="res-prog"></span></div>`;
   let nro = 0;
-  const filaObs = o => { const e = explicar(o); return `<li><span class="ico ${e.cls}">${e.cls==="falta"?"?":"✕"}</span><div><div class="que"><b>${esc(e.tipo)}</b>${e.que}</div><div class="hacer" title="Sugerencia"><div>${e.hacer}</div></div></div></li>`; };
+  const filaObs = o => { const e = explicar(o); return `<li><span class="ico ${e.cls}">${e.cls==="falta"?"?":"✕"}</span><div><div class="que"><b>${esc(e.tipo)}</b>${e.que}</div><div class="hacer" title="Sugerencia"><div>${e.hacer}</div></div>${razonamientoObservacion(o, porEv[o.origen], cmps.find(c=>c.id===o.origen), res)}</div></li>`; };
   const cabTarea = (cat, texto, meta) => `<div class="tarea-cab"><button type="button" class="check-t" data-resolver title="Marcar como resuelto" aria-label="Marcar como resuelto">✓</button>
       <div><div class="tarea-txt">${texto}</div><div class="tarea-meta">${meta}<span class="urg" title="Prioridad: ${NOMBRE_CAT[cat]}">${URGENCIA[cat]}</span></div></div></div>`;
   // intercalar contradicciones según su prioridad
@@ -1655,7 +1779,11 @@ function resumenLote(res){
     }
   }
   if(bien.length) h += `<details class="hoja bien3" style="margin-top:14px"><summary><span class="tipo-h ok">✓ ${bien.length}</span> ${bien.length===1?"Requerimiento bien escrito":"Requerimientos bien escritos"}</summary>
-    <ul>${bien.map(r => `<li><span>${esc(r.texto)}${r.id_documento?` <code>${esc(r.id_documento)}</code>`:""}</span></li>`).join("")}</ul></details>`;
+    <ul>${bien.map(r => `<li><div class="raz-bien">${esc(r.texto)}${r.id_documento?` <code>${esc(r.id_documento)}</code>`:""}${verRazonamiento({
+      hechos:(r.evaluacion?.juicios||[]).map(j=>j.justificacion), reglas:(r.evaluacion?.juicios||[]).flatMap(j=>j.reglas||[]),
+      conclusion:r.evaluacion?.estado === "sin_hallazgo" ? "Sin hallazgos en los criterios revisados." : "No hay observaciones registradas en este resultado.",
+      estado:r.evaluacion?.estado, fuentes:[{texto:r.texto, origen:[res.documento,r.id_documento||r.id,r.ubicacion].filter(Boolean).join(" · ")}]
+    })}</div></li>`).join("")}</ul></details>`;
   return h;
 }
 function prepararPreguntas(res){

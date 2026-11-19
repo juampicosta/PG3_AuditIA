@@ -753,12 +753,14 @@ RETURN {
        reglas: [(j)-[:APLICA_REGLA]->(r:Regla) | {id: r.id, descripcion: r.descripcion}],
        grado_ambiguedad: j.grado_ambiguedad, banda: j.banda_difusa, revision_senior: j.revision_senior_requerida}]}])}],
  comparaciones: COLLECT { MATCH (ev:AuditIA_PG2:EvaluacionCruzada {lote:$lote}) WITH ev ORDER BY ev.id RETURN {
-   id: ev.id, estado: ev.estado, escenarios: ev.escenarios, reglas: [(ev)-[:APLICA_REGLA]->(r:Regla) | {id: r.id, descripcion: r.descripcion}],
+   id: ev.id, estado: ev.estado, escenarios: ev.escenarios, justificacion: ev.justificacion,
+   reglas: [(ev)-[:APLICA_REGLA]->(r:Regla) | {id: r.id, descripcion: r.descripcion}],
    grado_contradiccion: ev.grado_contradiccion, banda: ev.banda_difusa, revision_senior: ev.revision_senior_requerida,
    requerimientos: [(ev)-[:COMPARA]->(r:Requerimiento) | r.id]} },
  observaciones: [(ev:Evaluacion {lote:$lote})-[:GENERA]->(o:ResultadoAnalisis) | {
    id: o.id, clase: CASE WHEN o:Hallazgo THEN 'Hallazgo' WHEN o:Pendiente THEN 'Pendiente' ELSE 'Resultado' END,
-   origen: ev.id, modulo: o.modulo_origen, tipo_defecto: o.tipo_defecto, motivo_pendiente: o.motivo_pendiente,
+   origen: ev.id, juicio_id: head([(o)-[:DERIVA_DE_JUICIO]->(j:JuicioCriterio) | j.id]),
+   modulo: o.modulo_origen, tipo_defecto: o.tipo_defecto, motivo_pendiente: o.motivo_pendiente,
    dato_faltante: o.dato_faltante, descripcion: o.descripcion,
    reglas: [(o)-[:APLICA_REGLA]->(r:Regla) | r.id],
    severidad: head([(o)-[:TIENE_SEVERIDAD]->(sv) | {valor: sv.valor, grado: sv.grado_severidad}]),
