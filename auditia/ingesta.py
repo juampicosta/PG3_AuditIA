@@ -15,6 +15,7 @@ El LLM nunca decide estados, prioridades ni grados: solo propone premisas que el
 from __future__ import annotations
 
 import json
+import os
 import re
 import time
 import unicodedata
@@ -208,42 +209,42 @@ def comparar_heuristico(ext_a: dict, ext_b: dict, texto_a: str, texto_b: str) ->
 # ============================================================================================
 # 2. Extracción con el LLM (Ollama, temperatura 0, semilla 42, salida JSON con esquema)
 # ============================================================================================
+LOTE_LLM = 4                     # requerimientos por llamada: respuestas cortas, sin pasar el tope de tiempo
 _ESQ_RQ = {
     "type": "object",
     "properties": {
-        "sujeto": {"type": "string"}, "accion": {"type": "string"}, "objeto": {"type": "string"},
-        "resultado": {"type": "string"}, "condicion": {"type": "string"},
+        "n": {"type": "integer"}, "accion": {"type": "string"}, "objeto": {"type": "string"},
+        "condicion": {"type": "string"},
         "obligaciones": {"type": "array", "items": {"type": "string"}},
-        "unidad_aceptacion_unica": {"type": "boolean"},
-        "terminos_vagos": {"type": "array", "items": {"type": "string"}},
-        "lecturas": {"type": "array", "items": {"type": "string"}},
-        "criterio_medible": {"type": "string"},
-        "omisiones": {"type": "array", "items": {"type": "string"}},
-        "justificacion": {"type": "string"},
+        "una_sola_prueba": {"type": "boolean"},
+        "vagos": {"type": "array", "items": {"type": "string"}},
+        "medible": {"type": "string"},
+        "faltantes": {"type": "array", "items": {"type": "string"}},
     },
-    "required": ["sujeto", "accion", "objeto", "resultado", "condicion", "obligaciones", "unidad_aceptacion_unica",
-                 "terminos_vagos", "lecturas", "criterio_medible", "omisiones", "justificacion"],
+    "required": ["n", "accion", "objeto", "condicion", "obligaciones", "una_sola_prueba", "vagos", "medible", "faltantes"],
 }
-ESQUEMA_LLM = {
+ESQUEMA_LLM = {"type": "object", "properties": {"requerimientos": {"type": "array", "items": _ESQ_RQ}},
+               "required": ["requerimientos"]}
+ESQUEMA_PARES = {
     "type": "object",
-    "properties": {
-        "requerimientos": {"type": "array", "items": _ESQ_RQ},
-        "comparacion": {"anyOf": [{"type": "null"}, {
-            "type": "object",
-            "properties": {"escenarios": {"type": "string", "enum": list(ESCENARIOS)},
-                           "region_comun": {"type": "string"},
-                           "resultados_incompatibles": {"type": "boolean"},
-                           "excepcion_explicita": {"type": "boolean"},
-                           "justificacion": {"type": "string"}},
-            "required": ["escenarios", "region_comun", "resultados_incompatibles", "excepcion_explicita", "justificacion"]}]},
-    },
-    "required": ["requerimientos", "comparacion"],
+    "properties": {"pares": {"type": "array", "items": {
+        "type": "object",
+        "properties": {"par": {"type": "integer"}, "escenarios": {"type": "string", "enum": list(ESCENARIOS)},
+                       "incompatibles": {"type": "boolean"}, "excepcion": {"type": "boolean"}, "region": {"type": "string"}},
+        "required": ["par", "escenarios", "incompatibles", "excepcion", "region"]}}},
+    "required": ["pares"],
 }
 
 
-def _llm_chat(cfg: ConfigGeneral, sistema: str, usuario: str, max_tokens: int = 900, timeout: int = 900) -> tuple[str, dict]:
+def modelo_ingesta(cfg: ConfigGeneral) -> str:
+    """OLLAMA_MODEL_INGESTA permite leer documentos con un modelo más chico (p. ej. qwen2.5:3b) sin cambiar el del asistente."""
+    return os.environ.get("OLLAMA_MODEL_INGESTA") or cfg.modelo
+
+
+def _llm_chat(cfg: ConfigGeneral, sistema: str, usuario: str, esquema: dict, max_tokens: int = 700,
+              timeout: int = 900) -> tuple[str, dict]:
     cuerpo: dict[str, Any] = {
-        "model": cfg.modelo, "stream": False, "keep_alive": "15m", "format": ESQUEMA_LLM,
+        "model": modelo_ingesta(cfg), "stream": False, "keep_alive": "15m", "format": esquema,
         "messages": [{"role": "system", "content": sistema}, {"role": "user", "content": usuario}],
         "options": {"temperature": 0.0, "seed": 42, "num_ctx": 4096, "num_predict": max_tokens},
     }
@@ -262,22 +263,65 @@ def _llm_chat(cfg: ConfigGeneral, sistema: str, usuario: str, max_tokens: int = 
     return datos.get("message", {}).get("content", ""), meta
 
 
-def extraer_llm(cfg: ConfigGeneral, textos: list[str], contexto: str) -> tuple[dict, dict]:
-    sistema = (DIR_PROMPTS / "system_prompt_ingesta.txt").read_text(encoding="utf-8")
-    partes = [f"Requerimiento {chr(65 + i)}: {t}" for i, t in enumerate(textos)]
+def _sistema() -> str:
+    return (DIR_PROMPTS / "system_prompt_ingesta.txt").read_text(encoding="utf-8")
+
+
+def _desde_compacto(c: dict, texto: str, contexto: str) -> dict:
+    """Formato compacto del LLM → mismo esquema que el analizador léxico (las lecturas se derivan sin LLM)."""
+    base = extraer_heuristico(texto, contexto)
+    vagos = [v for v in (c.get("vagos") or []) if isinstance(v, str) and v.strip()]
+    medible = (c.get("medible") or "").strip()
+    obligaciones = [o for o in (c.get("obligaciones") or []) if isinstance(o, str) and o.strip()] or [texto]
+    if vagos:
+        lecturas = [f"Se aprueba si el resultado se percibe como «{vagos[0]}» por quien lo usa.",
+                    f"Se aprueba solo si «{vagos[0]}» se mide contra un umbral acordado"
+                    + (f" ({medible})." if medible else " que el texto no fija.")]
+    else:
+        lecturas = ["Lectura única: la obligación se aprueba comprobando el resultado descrito."]
+    return {
+        "sujeto": base["sujeto"], "accion": (c.get("accion") or base["accion"]).strip(),
+        "objeto": (c.get("objeto") or base["objeto"]).strip(), "resultado": (c.get("objeto") or base["resultado"]).strip(),
+        "condicion": (c.get("condicion") or "").strip(), "obligaciones": obligaciones,
+        "unidad_aceptacion_unica": bool(c.get("una_sola_prueba", len(obligaciones) <= 1)),
+        "terminos_vagos": vagos, "lecturas": lecturas, "criterio_medible": medible,
+        "omisiones": [o for o in (c.get("faltantes") or []) if isinstance(o, str) and o.strip()],
+        "justificacion": "Lectura del LLM.",
+    }
+
+
+def extraer_llm(cfg: ConfigGeneral, textos: list[str], contexto: str) -> tuple[list[dict], dict]:
+    """Un lote de hasta LOTE_LLM requerimientos en una llamada con salida compacta."""
+    partes = [f"{i + 1}. {t}" for i, t in enumerate(textos)]
     if contexto.strip():
         partes.append(f"Contexto del analista: {contexto.strip()}")
-    partes.append(f"Devolvé {len(textos)} elemento(s) en 'requerimientos', en el mismo orden."
-                  + (" Completá 'comparacion' para el par A-B." if len(textos) == 2 else " 'comparacion' debe ser null."))
-    crudo, meta = _llm_chat(cfg, sistema, "\n".join(partes))
+    partes.append(f"Devolvé {len(textos)} elemento(s) en 'requerimientos', con n = 1..{len(textos)} en el mismo orden.")
+    crudo, meta = _llm_chat(cfg, _sistema(), "\n".join(partes), ESQUEMA_LLM, max_tokens=160 * len(textos) + 80)
     try:
-        datos = json.loads(crudo)
-    except json.JSONDecodeError as e:
-        raise ErrorIngesta(f"El LLM no devolvió JSON válido: {crudo[:200]}") from e
-    if not isinstance(datos.get("requerimientos"), list) or len(datos["requerimientos"]) != len(textos):
-        raise ErrorIngesta("El LLM no devolvió un elemento por requerimiento.")
+        lista = json.loads(crudo)["requerimientos"]
+    except (json.JSONDecodeError, KeyError, TypeError) as e:
+        raise ErrorIngesta(f"El LLM no devolvió JSON válido: {crudo[:160]}") from e
+    if len(lista) != len(textos):
+        raise ErrorIngesta(f"El LLM devolvió {len(lista)} elementos para {len(textos)} requerimientos.")
     meta["respuesta_cruda"] = crudo
-    return datos, meta
+    return [_desde_compacto(c, textos[i], contexto) for i, c in enumerate(lista)], meta
+
+
+def comparar_llm(cfg: ConfigGeneral, pares: list[tuple[str, str]]) -> tuple[list[dict], dict]:
+    partes = [f"Par {k + 1}:\n  A: {a}\n  B: {b}" for k, (a, b) in enumerate(pares)]
+    partes.append(f"Compará cada par y devolvé {len(pares)} elemento(s) en 'pares', con par = 1..{len(pares)}.")
+    crudo, meta = _llm_chat(cfg, _sistema(), "\n".join(partes), ESQUEMA_PARES, max_tokens=60 * len(pares) + 60)
+    try:
+        lista = json.loads(crudo)["pares"]
+    except (json.JSONDecodeError, KeyError, TypeError) as e:
+        raise ErrorIngesta(f"El LLM no devolvió JSON válido al comparar: {crudo[:160]}") from e
+    if len(lista) != len(pares):
+        raise ErrorIngesta("El LLM no devolvió un resultado por par.")
+    salida = [{"escenarios": c.get("escenarios") if c.get("escenarios") in ESCENARIOS else "excluyentes",
+               "region_comun": (c.get("region") or "").strip(), "resultados_incompatibles": bool(c.get("incompatibles")),
+               "excepcion_explicita": bool(c.get("excepcion")), "justificacion": "Comparación leída por el LLM."}
+              for c in lista]
+    return salida, meta
 
 
 def _fiel(fragmento: str, texto: str) -> bool:
@@ -377,7 +421,6 @@ def premisas_comparacion(cmp: dict) -> dict:
 
 MAX_REQUERIMIENTOS = 26          # claves A..Z
 MAX_COMPARACIONES = 8
-MAX_LLM = 2                      # el LLM local tarda minutos por lote: se usa para uno o dos requerimientos
 
 
 def pares_candidatos(extracciones: list[dict], textos: list[str]) -> list[tuple[int, int, dict]]:
@@ -414,22 +457,38 @@ def proponer(textos: list[str] | list[dict], contexto: str = "", usar_llm: bool 
         pares = [(0, 1, comparar_heuristico(extracciones[0], extracciones[1], textos[0], textos[1]))]
     else:
         pares = pares_candidatos(extracciones, textos)
-    if usar_llm and len(textos) > MAX_LLM:
-        avisos.append(f"El LLM se usa con hasta {MAX_LLM} requerimientos por vez (corre sin GPU); "
-                      f"para los {len(textos)} seleccionados se usó el borrador léxico.")
-        usar_llm = False
+    llamadas: list[dict] = []
     if usar_llm:
-        avisar("llm", f"El LLM ({cfg.modelo}) está leyendo {len(textos)} requerimiento(s)…")
-        try:
-            datos, meta = extraer_llm(cfg, textos, contexto)
-            for i, ext in enumerate(datos["requerimientos"]):
-                avisos += [f"{chr(65 + i)}: {a}" for a in controlar_extraccion(ext, textos[i], contexto)]
-            extracciones = datos["requerimientos"]
-            if len(textos) == 2 and isinstance(datos.get("comparacion"), dict):
-                pares = [(0, 1, datos["comparacion"])]
-            fuente = "llm"
-        except ErrorIngesta as e:
-            avisos.append(f"Se usó el borrador léxico porque el LLM falló: {e}")
+        leidos = 0
+        nuevos = list(extracciones)
+        for inicio in range(0, len(textos), LOTE_LLM):
+            tramo = textos[inicio:inicio + LOTE_LLM]
+            avisar("llm", f"El LLM ({modelo_ingesta(cfg)}) está leyendo los requerimientos {inicio + 1} a {inicio + len(tramo)} "
+                          f"de {len(textos)}…")
+            try:
+                exts, m = extraer_llm(cfg, tramo, contexto)
+                for k, ext in enumerate(exts):
+                    avisos += [f"{chr(65 + inicio + k)}: {a}" for a in controlar_extraccion(ext, tramo[k], contexto)]
+                    nuevos[inicio + k] = ext
+                leidos += len(tramo)
+                llamadas.append({k2: v for k2, v in m.items() if k2 != "respuesta_cruda"})
+            except ErrorIngesta as e:
+                avisos.append(f"Requerimientos {inicio + 1} a {inicio + len(tramo)}: se usó el borrador léxico porque el LLM falló ({e}).")
+        extracciones = nuevos
+        if leidos:
+            fuente = "llm" if leidos == len(textos) else "mixta"
+            pares = ([(0, 1, comparar_heuristico(extracciones[0], extracciones[1], textos[0], textos[1]))]
+                     if len(textos) == 2 else pares_candidatos(extracciones, textos))
+            if pares:
+                avisar("llm", f"El LLM está comparando {len(pares)} par(es) de requerimientos…")
+                try:
+                    cmps, m = comparar_llm(cfg, [(textos[i], textos[k]) for i, k, _ in pares])
+                    pares = [(i, k, dict(c, solapamiento=h.get("solapamiento"))) for (i, k, h), c in zip(pares, cmps)]
+                    llamadas.append({k2: v for k2, v in m.items() if k2 != "respuesta_cruda"})
+                except ErrorIngesta as e:
+                    avisos.append(f"Comparaciones: se usó el borrador léxico porque el LLM falló ({e}).")
+            meta = {"modelo": modelo_ingesta(cfg), "segundos": round(sum(c["segundos"] for c in llamadas), 1),
+                    "llamadas": len(llamadas), "tokens_salida": sum(c.get("tokens_salida") or 0 for c in llamadas)}
     avisar("premisas", "Traduciendo la extracción a premisas de las reglas…")
     propuesta = {
         "version": VERSION_INGESTA, "fuente": fuente, "contexto": contexto, "avisos": avisos, "documento": documento,
