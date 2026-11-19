@@ -201,7 +201,6 @@
   .ant::before{transform:scaleX(-1)}
   .sig:hover:not(:disabled)::after{transform:translateX(3px)}
   .ant:hover::before{transform:scaleX(-1) translateX(3px)}
-  .problemas3 .hacer::before{content:"";width:15px;height:15px;margin-top:3px;background:currentColor;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m13 6 6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12h14'/%3E%3Cpath d='m13 6 6 6-6 6'/%3E%3C/svg%3E") center/contain no-repeat}
   /* ---------- estado vacío / avisos ---------- */
   .vacio{text-align:center;padding:56px 24px;color:var(--gris)}
   .vacio b{display:block;color:var(--tinta);font-size:18px;font-weight:500;margin-bottom:6px}
@@ -475,16 +474,34 @@
   .aviso-prev button{margin-left:auto;flex:none}
   .seccion3{display:flex;align-items:baseline;gap:10px;margin:26px 0 10px;font-size:18px;font-weight:600}
   .seccion3 small{font-size:13px;font-weight:400;color:var(--gris)}
-  .tarea{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:20px 22px;margin-top:10px}
-  .tarea .orden-n{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;font-size:18px;font-weight:600;background:var(--grad);color:#fff;box-shadow:0 6px 18px -8px rgba(192,132,252,.8)}
-  .tarea-cab{display:flex;align-items:flex-start;gap:12px;flex-wrap:wrap}
-  .tarea-cab .rq-texto{flex:1;min-width:240px}
-  .urg{flex:none;font-size:12px;font-weight:600;padding:5px 12px;border-radius:999px}
-  .urg.b{background:var(--errf);color:var(--err)}.urg.m{background:var(--warnf);color:var(--warn)}.urg.n{background:var(--okf);color:var(--ok)}
-  .problemas3{list-style:none;margin:14px 0 0;padding:0;display:flex;flex-direction:column;gap:10px}
-  .problemas3 li{padding:12px 14px;border-radius:12px;background:var(--campo);border:1px solid var(--linea2)}
-  .problemas3 .que{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14px;color:var(--tinta)}
-  .problemas3 .hacer{display:flex;gap:8px;margin-top:8px;font-size:13.5px;color:var(--acento2)}
+  .tarea{position:relative;margin-top:10px;padding:18px 20px;overflow:hidden;transition:opacity .25s}
+  .tarea.b{--c-urg:var(--err)}.tarea.m{--c-urg:var(--warn)}.tarea.n{--c-urg:var(--ok)}
+  .tarea-cab{display:grid;grid-template-columns:28px 1fr;gap:14px;align-items:start}
+  .check-t{width:26px;height:26px;margin-top:1px;border-radius:50%;border:1.5px solid rgba(255,255,255,.22);background:none;display:grid;place-items:center;cursor:pointer;color:transparent;font-size:13px;font-weight:700;transition:all .2s}
+  .check-t:hover{border-color:var(--ok);color:rgba(74,222,128,.6)}
+  .tarea-txt{font-size:15.5px;line-height:1.5;color:var(--tinta)}
+  .tarea-txt mark{background:rgba(251,191,36,.16);color:#FCD34D;border-radius:4px;padding:0 3px}
+  .tarea-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:6px;font-size:12.5px;color:var(--gris2)}
+  .tarea-meta code{font-size:11.5px}
+  .urg{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:12.5px;color:var(--c-urg)}
+  .urg::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--c-urg);box-shadow:0 0 8px var(--c-urg)}
+  .problemas3{list-style:none;margin:14px 0 0 42px;padding:0}
+  .problemas3 li{display:grid;grid-template-columns:22px 1fr;gap:12px;padding:12px 0}
+  .problemas3 li + li{border-top:1px solid var(--linea2)}
+  .problemas3 .ico{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;margin-top:1px}
+  .problemas3 .ico.problema{background:var(--errf);color:var(--err)}.problemas3 .ico.falta{background:var(--warnf);color:var(--warn)}
+  .problemas3 .que{font-size:14px;color:var(--tinta);line-height:1.5}
+  .problemas3 .que b{font-weight:600;margin-right:6px}
+  .problemas3 .hacer{display:flex;gap:9px;align-items:flex-start;margin-top:8px;padding:9px 12px;border-radius:10px;background:rgba(251,191,36,.06);font-size:13.5px;color:var(--tinta2);line-height:1.5}
+  .problemas3 .hacer::before{content:"";flex:none;width:16px;height:16px;margin-top:2px;background:#FCD34D;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5'/%3E%3Cpath d='M9 18h6'/%3E%3Cpath d='M10 22h4'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5'/%3E%3Cpath d='M9 18h6'/%3E%3Cpath d='M10 22h4'/%3E%3C/svg%3E") center/contain no-repeat;filter:drop-shadow(0 0 4px rgba(252,211,77,.5))}
+  .problemas3 .hacer span{color:#FCD34D;font-weight:500;margin-right:4px}
+  .tarea .cmp-par{margin:14px 0 0 42px}
+  .tarea.resuelta{opacity:.55}
+  .tarea.resuelta .check-t{background:var(--ok);border-color:var(--ok);color:#06240F}
+  .tarea.resuelta .tarea-txt{text-decoration:line-through;text-decoration-color:rgba(255,255,255,.35)}
+  .tarea.resuelta .problemas3,.tarea.resuelta .cmp-par{display:none}
+  .seccion3 .res-prog{margin-left:auto;font-size:13px;font-weight:500;color:var(--gris)}
+  .seccion3 .res-prog b{color:var(--ok)}
   .bien3 summary{cursor:pointer;list-style:none;padding:16px 20px;font-weight:500;display:flex;gap:10px;align-items:center}
   .bien3 summary::-webkit-details-marker{display:none}
   .bien3 summary::after{content:"›";margin-left:auto;color:var(--gris2);font-size:20px;transition:transform .2s}
@@ -492,7 +509,7 @@
   .bien3 ul{list-style:none;margin:0;padding:0 20px 16px;display:flex;flex-direction:column;gap:8px}
   .bien3 li{display:flex;gap:10px;font-size:14px;color:var(--tinta2)}
   .bien3 li::before{content:"✓";color:var(--ok);font-weight:700}
-  @media (max-width:900px){.tarea{grid-template-columns:1fr}.tarea .orden-n{width:36px;height:36px;font-size:15px}}
+  @media (max-width:700px){.problemas3,.tarea .cmp-par{margin-left:0}}
   /* ---------- preguntar ---------- */
   .escritorio{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:16px;align-items:start}
   .escritorio .hoja + .hoja{margin-top:0}
@@ -556,8 +573,25 @@
   .chequeo i.no{background:var(--warn)}
 
   /* ---------- historial ---------- */
-  .lotes table button{font:inherit;font-size:12.5px;border:1px solid var(--linea);background:var(--campo);color:var(--tinta);border-radius:999px;padding:4px 12px;cursor:pointer}
-  .lotes table button:hover{border-color:var(--tinta2)}
+  .lotes{padding:6px 0}
+  .lote-fila{display:flex;align-items:center;gap:14px;padding:14px 22px;border-top:1px solid var(--linea);cursor:pointer}
+  .lote-fila:first-child{border-top:0}
+  .lote-fila:hover{background:var(--campo)}
+  .lote-fila .txt{flex:1;min-width:0}
+  .lote-fila b{display:block;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .lote-fila small{color:var(--gris);font-size:12.5px}
+  .lote-fila .ico{flex:none;width:38px;height:38px;border-radius:10px;display:grid;place-items:center}
+  .lote-fila .ico.ok{background:var(--okf);color:var(--ok)}
+  .lote-fila .ico.warn{background:var(--warnf);color:var(--warn)}
+  .lote-fila .chip{font-size:12px;font-weight:500;padding:3px 10px;border-radius:999px;white-space:nowrap}
+  .lote-fila .chip.ok{background:var(--okf);color:var(--ok)}
+  .lote-fila .chip.warn{background:var(--warnf);color:var(--warn)}
+  .lote-fila .ojo-ico{color:var(--gris);display:grid;transition:color .15s,transform .15s}
+  .lote-fila:hover .ojo-ico{color:var(--tinta);transform:scale(1.12)}
+  .lote-fila .quitar{font:inherit;font-size:16px;line-height:1;border:0;background:none;color:var(--gris);cursor:pointer;padding:4px 6px;border-radius:6px;opacity:0}
+  .lote-fila:hover .quitar,.lote-fila .quitar:focus{opacity:1}
+  .lote-fila .quitar:hover{color:var(--warn)}
+  @media (hover:none){.lote-fila .quitar{opacity:1}}
 
 
   @media (max-width:900px){
@@ -704,7 +738,7 @@
     <div class="titular">
       <div class="ojo">Historial</div>
       <h2>Auditorías <em>anteriores</em>.</h2>
-      <p>Cada lote queda guardado en el grafo y se puede volver a abrir o consultar.</p>
+      <p>Tocá una para volver a ver sus resultados.</p>
     </div>
     <section class="hoja tarjeta lotes" aria-label="Requerimientos ya analizados">
       <div id="lista-lotes"><p class="ayuda">Cargando…</p></div>
@@ -1536,9 +1570,11 @@ function resumenLote(res){
     </div>`;
   if(preventivo) h += `<div class="aviso-prev"><span>⚠</span><span><b>Algunos figuran como urgentes porque no se indicó su importancia para el negocio.</b> AuditIA los trata como urgentes por precaución. Si la indicás en el paso 2, el orden se ajusta.</span>${PROP?`<button class="btn-chico ant" data-ir="revisar">Indicar importancia</button>`:""}</div>`;
 
-  if(tareas.length || contra.length) h += `<div class="seccion3">Qué hacer, en orden <small>de lo más urgente a lo que puede esperar</small></div>`;
+  if(tareas.length || contra.length) h += `<div class="seccion3">Qué hacer, en orden <small>de lo más urgente a lo que puede esperar</small><span class="res-prog" id="res-prog"></span></div>`;
   let nro = 0;
-  const filaObs = o => { const e = explicar(o); return `<li><div class="que"><span class="tipo-h ${e.cls}">${e.cls==="falta"?"?":"✕"} ${esc(e.tipo)}</span><span>${e.que}</span></div><div class="hacer">${e.hacer}</div></li>`; };
+  const filaObs = o => { const e = explicar(o); return `<li><span class="ico ${e.cls}">${e.cls==="falta"?"?":"✕"}</span><div><div class="que"><b>${esc(e.tipo)}</b>${e.que}</div><div class="hacer" title="Sugerencia"><div>${e.hacer}</div></div></div></li>`; };
+  const cabTarea = (cat, texto, meta) => `<div class="tarea-cab"><button type="button" class="check-t" data-resolver title="Marcar como resuelto" aria-label="Marcar como resuelto">✓</button>
+      <div><div class="tarea-txt">${texto}</div><div class="tarea-meta">${meta}<span class="urg" title="Prioridad: ${NOMBRE_CAT[cat]}">${URGENCIA[cat]}</span></div></div></div>`;
   // intercalar contradicciones según su prioridad
   const items = [...tareas.map(g => ({k:"rq", g, cat:g.cat, urg:g.urg})), ...contra.map(o => ({k:"cmp", o, cat:categoria(o), urg:o.decision?.grado_urgencia ?? -1}))]
     .sort((a,b) => peso[a.cat]-peso[b.cat] || b.urg-a.urg);
@@ -1546,17 +1582,17 @@ function resumenLote(res){
     nro++;
     if(it.k === "rq"){
       const r = it.g.rq;
-      h += `<section class="hoja tarea"><span class="orden-n">${nro}</span><div>
-        <div class="tarea-cab"><span class="rq-texto">${esc(r?.texto || it.g.obs[0].origen)}</span><span class="urg ${it.cat}" title="Prioridad: ${NOMBRE_CAT[it.cat]}">${URGENCIA[it.cat]}</span></div>
-        <span class="rq-meta">${r?.id_documento?`<code>${esc(r.id_documento)}</code> · `:""}${esc(r?.ubicacion||"")}</span>
-        <ul class="problemas3">${it.g.obs.map(filaObs).join("")}</ul></div></section>`;
+      const vagos = it.g.obs.filter(o => o.tipo_defecto==="ambiguedad").flatMap(o => comillas(o.descripcion));
+      h += `<section class="hoja tarea ${it.cat}">
+        ${cabTarea(it.cat, resaltar(r?.texto || it.g.obs[0].origen, vagos), `${r?.id_documento?`<code>${esc(r.id_documento)}</code>`:""}${r?.ubicacion?`<span>${esc(r.ubicacion)}</span>`:""}<span>·</span>`)}
+        <ul class="problemas3">${it.g.obs.map(filaObs).join("")}</ul></section>`;
     } else {
       const c = cmps.find(x => x.id === it.o.origen) || {}; const [a,b] = (c.requerimientos||[]).map(id => porId[id]);
       const lado = r => `<div class="par-lado"><small>${esc(nombreRq(r))}</small><div class="par-txt">${esc(r?.texto||"")}</div></div>`;
-      h += `<section class="hoja tarea"><span class="orden-n">${nro}</span><div>
-        <div class="tarea-cab"><span class="rq-texto">Dos requerimientos se contradicen</span><span class="urg ${it.cat}" title="Prioridad: ${NOMBRE_CAT[it.cat]}">${URGENCIA[it.cat]}</span></div>
-        <div class="cmp-par" style="margin-top:12px">${lado(a)}<span class="vs">VS</span>${lado(b)}</div>
-        <ul class="problemas3">${filaObs(it.o)}</ul></div></section>`;
+      h += `<section class="hoja tarea ${it.cat}">
+        ${cabTarea(it.cat, "Dos requerimientos se contradicen", `<span>${esc(nombreRq(a))} y ${esc(nombreRq(b))}</span><span>·</span>`)}
+        <div class="cmp-par">${lado(a)}<span class="vs">VS</span>${lado(b)}</div>
+        <ul class="problemas3">${filaObs(it.o)}</ul></section>`;
     }
   }
   if(bien.length) h += `<details class="hoja bien3" style="margin-top:14px"><summary><span class="tipo-h ok">✓ ${bien.length}</span> ${bien.length===1?"Requerimiento bien escrito":"Requerimientos bien escritos"}</summary>
@@ -1613,20 +1649,39 @@ function mostrarLote(res){
     <div class="bp-info"><b>¿Querés entender mejor algún resultado?</b><small>Preguntale a AuditIA por qué salió cada uno y qué hacer.</small></div>
     <div class="bp-acc"><button class="principal sig" data-ir="preguntar">Preguntar a AuditIA</button></div></div>`;
   $("#res-lote").innerHTML = h;
+  const progRes = () => { const t = document.querySelectorAll("#res-lote .tarea").length, r = document.querySelectorAll("#res-lote .tarea.resuelta").length, el = $("#res-prog");
+    if(el) el.innerHTML = t ? `<b>${r}</b> de ${t} resueltos` : ""; };
+  $("#res-lote").onclick = e => { const c = e.target.closest("[data-resolver]"); if(!c) return;
+    const t = c.closest(".tarea"); t.classList.toggle("resuelta"); c.title = t.classList.contains("resuelta") ? "Marcar como pendiente" : "Marcar como resuelto"; progRes(); };
+  progRes();
   document.querySelectorAll("#res-lote [data-q]").forEach(b => b.onclick = () => { cambiarModo("consultar"); $("#consulta").value = b.dataset.q; contar(); $("#consulta").focus(); window.scrollTo({top:0}); });
 }
+const IC_OJO = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>`;
+const IC_OK = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>`;
+const IC_ALERTA = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>`;
 async function cargarLotes(){
+  const lista = $("#lista-lotes");
   try{
     const lotes = (await (await fetch("/api/analisis/lotes")).json()).filter(l => (l.lote||"").startsWith("L"));
-    if(!lotes.length){ $("#lista-lotes").innerHTML = `<p class="ayuda" style="color:var(--gris);font-size:13.5px;margin:0">Todavía no se analizó ningún requerimiento nuevo.</p>`; return; }
-    $("#lista-lotes").innerHTML = `<table><thead><tr><th>Lote</th><th>Requerimientos</th><th>Observaciones</th><th></th></tr></thead><tbody>` +
-      lotes.map(l => `<tr><td><b>${esc(l.lote)}</b><div style="color:var(--gris);font-size:12px">${esc((l.fecha||"").slice(0,16).replace("T"," "))} · ${esc(l.analista||"")}</div></td>
-        <td>${(l.requerimientos||[]).filter(r=>r.id).map(r=>`<code>${esc(r.id)}</code> ${esc(r.texto)}`).join("<br>")}</td>
-        <td>${(l.observaciones||[]).map(o=>`<code>${esc(o)}</code>`).join(" ") || "ninguna"}</td>
-        <td style="white-space:nowrap"><button data-ver="${esc(l.lote)}">Ver</button> <button data-borrar="${esc(l.lote)}">Borrar</button></td></tr>`).join("") + `</tbody></table>`;
-    document.querySelectorAll("[data-ver]").forEach(b => b.onclick = async () => { const r = await (await fetch(`/api/analisis/lotes/${b.dataset.ver}`)).json(); mostrarLote(r); ALCANZADO.resultados = true; irA("resultados"); });
-    document.querySelectorAll("[data-borrar]").forEach(b => b.onclick = async () => { b.disabled = true; await fetch(`/api/analisis/lotes/${b.dataset.borrar}`, {method:"DELETE"}); cargarLotes(); });
-  }catch(e){ $("#lista-lotes").innerHTML = `<p class="error" style="padding:0">No se pudo leer la lista de lotes.</p>`; }
+    if(!lotes.length){ lista.innerHTML = `<p class="ayuda" style="color:var(--gris);margin:0;padding:14px 22px">Todavía no hiciste ninguna auditoría.</p>`; return; }
+    const fecha = f => { const d = new Date(f); return isNaN(d) ? "" : d.toLocaleDateString("es-AR",{day:"numeric",month:"short"}) + ", " + d.toLocaleTimeString("es-AR",{hour:"2-digit",minute:"2-digit"}); };
+    const plural = (n, a, b) => `${n} ${n===1 ? a : b}`;
+    lista.innerHTML = lotes.map(l => {
+      const reqs = (l.requerimientos||[]).filter(r => r.id);
+      const obs = (l.observaciones||[]).length;
+      const titulo = reqs[0]?.texto || l.lote;
+      const detalle = [fecha(l.fecha), plural(reqs.length,"requerimiento","requerimientos")].filter(Boolean).join(" · ");
+      return `<div class="lote-fila" role="button" tabindex="0" data-ver="${esc(l.lote)}">
+        <span class="ico ${obs ? "warn" : "ok"}" aria-hidden="true">${obs ? IC_ALERTA : IC_OK}</span>
+        <div class="txt"><b>${esc(titulo)}</b><small>${esc(detalle)}</small></div>
+        <span class="chip ${obs ? "warn" : "ok"}">${obs ? plural(obs,"problema","problemas") : "Todo bien"}</span>
+        <span class="ojo-ico" title="Ver resultados" aria-hidden="true">${IC_OJO}</span>
+        <button class="quitar" data-borrar="${esc(l.lote)}" title="Borrar" aria-label="Borrar auditoría">✕</button></div>`;
+    }).join("");
+    const abrir = async id => { const r = await (await fetch(`/api/analisis/lotes/${id}`)).json(); mostrarLote(r); ALCANZADO.resultados = true; irA("resultados"); };
+    lista.querySelectorAll("[data-ver]").forEach(f => { f.onclick = () => abrir(f.dataset.ver); f.onkeydown = e => { if(e.key==="Enter"||e.key===" "){ e.preventDefault(); abrir(f.dataset.ver); } }; });
+    lista.querySelectorAll("[data-borrar]").forEach(b => b.onclick = async e => { e.stopPropagation(); if(!confirm("¿Borrar esta auditoría?")) return; b.disabled = true; await fetch(`/api/analisis/lotes/${b.dataset.borrar}`, {method:"DELETE"}); cargarLotes(); });
+  }catch(e){ lista.innerHTML = `<p class="error" style="padding:14px 22px">No se pudo cargar el historial.</p>`; }
 }
 
 dibujarMapa(); verificarEstado(); cargarEjemplos(); contar(); irA("subir");
