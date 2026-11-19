@@ -572,6 +572,28 @@
   .chequeo i{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:12px;color:#fff;background:var(--ok)}
   .chequeo i.no{background:var(--warn)}
 
+  /* ---------- paso 4: chat ---------- */
+  .chat{padding:20px 22px}
+  .chat-caja{display:flex;gap:12px;align-items:flex-end;padding:8px 8px 8px 16px;border:1px solid var(--linea);border-radius:18px;background:var(--campo);transition:border-color .2s,box-shadow .2s}
+  .chat-caja:focus-within{border-color:var(--acento);box-shadow:0 0 0 4px rgba(167,139,250,.14)}
+  .chat-caja textarea{flex:1;min-height:48px;max-height:200px;border:0;background:none;padding:10px 0;resize:none;font-size:15.5px;box-shadow:none!important}
+  .chat-caja textarea:focus{background:none}
+  .chat-pie{display:flex;justify-content:space-between;gap:12px;margin:8px 4px 0;font-size:12px;color:var(--gris2)}
+  .chat-pie .contador{margin:0}
+  .atajos{display:inline-flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .atajos > span{display:inline-flex;align-items:center;gap:6px}
+  .atajos i{font-style:normal;color:var(--gris2)}
+  kbd{font-family:var(--mono);font-size:11px;line-height:1;color:var(--tinta2);padding:4px 7px;border-radius:6px;background:rgba(255,255,255,.05);border:1px solid var(--linea);border-bottom-width:2px;white-space:nowrap}
+  .sug-doc{margin-top:20px}
+  .chips-q{display:flex;flex-wrap:wrap;gap:8px}
+  .chips-q button{font:inherit;font-size:13.5px;text-align:left;padding:9px 14px;border-radius:12px;border:1px solid var(--linea);background:var(--campo);color:var(--tinta2);cursor:pointer;transition:all .15s}
+  .chips-q button:hover{border-color:var(--acento);color:var(--tinta);background:var(--acentof)}
+  details.mas-ej{margin-top:18px}
+  details.mas-ej > summary{cursor:pointer;list-style:none;font-size:13px;color:var(--gris)}
+  details.mas-ej > summary::-webkit-details-marker{display:none}
+  details.mas-ej > summary::before{content:"+ "}
+  details.mas-ej[open] > summary::before{content:"− "}
+  details.mas-ej #ejemplos{margin-top:10px}
   /* ---------- historial ---------- */
   .lotes{padding:6px 0}
   .lote-fila{display:flex;align-items:center;gap:14px;padding:14px 22px;border-top:1px solid var(--linea);cursor:pointer}
@@ -697,29 +719,26 @@
   <div class="vista" data-vista="preguntar" id="vista-consultar" hidden>
     <div class="titular">
       <div class="ojo">Paso 4 de 4</div>
-      <h2>Preguntale a AuditIA <em>por qué</em>.</h2>
-      <p>En lenguaje natural: la calidad de un requerimiento, una contradicción o la prioridad de una observación. Podés combinar varias cosas en la misma pregunta.</p>
+      <h2>Preguntale a <em>AuditIA</em>.</h2>
+      <p>Preguntá lo que quieras sobre tu auditoría: por qué salió algo, qué conviene resolver primero o qué significa un resultado.</p>
     </div>
-    <div class="escritorio">
-      <section class="hoja tarjeta consulta" aria-labelledby="t-consulta">
-        <h3 class="rotulo" id="t-consulta">Tu pregunta</h3>
-        <textarea id="consulta" maxlength="600" aria-label="Consulta" placeholder="Por ejemplo: ¿Se contradicen los requerimientos de los descuentos de la venta de categoría A y por qué esa contradicción quedó como bloqueante?"></textarea>
-        <div class="acciones">
-          <button class="principal" id="enviar">Preguntar</button>
-          <span class="contador" id="contador">0 / 600</span>
-        </div>
-        <div class="ejemplos">
-          <h3 class="rotulo">Casos para probar</h3>
-          <div id="ejemplos"></div>
-        </div>
-      </section>
-
-      <section class="hoja tarjeta recorrido" aria-labelledby="t-recorrido">
-        <h3 class="rotulo" id="t-recorrido">El recorrido de tu pregunta</h3>
+    <section class="hoja tarjeta chat" aria-label="Tu pregunta">
+      <div class="chat-caja">
+        <textarea id="consulta" maxlength="600" rows="2" aria-label="Tu pregunta" placeholder="Escribí tu pregunta… por ejemplo: ¿por qué RF-02 es urgente?"></textarea>
+        <button class="principal sig" id="enviar">Preguntar</button>
+      </div>
+      <div class="chat-pie"><span class="atajos"><span><kbd>↵ Enter</kbd> enviar</span><span><kbd>⇧ Shift</kbd><i>+</i><kbd>↵ Enter</kbd> nueva línea</span></span><span class="contador" id="contador">0 / 600</span></div>
+      <div class="sug-doc" id="sug-doc" hidden>
+        <h3 class="rotulo">Preguntas sobre tu documento</h3>
+        <div class="chips-q" id="preguntas-doc"></div>
+      </div>
+    </section>
+    <details class="hoja detalle"><summary>Ver cómo funciona por dentro <small>· el recorrido de cada pregunta</small></summary>
+      <div class="detalle-cuerpo">
         <svg id="mapa" viewBox="0 0 700 440" role="img" aria-label="Mapa del recorrido: consulta, prompt maestro, submódulos SM1, SM2 y SM3, Neo4j, verificador y respuesta"></svg>
         <div class="explica" id="explica" aria-live="polite"></div>
-      </section>
-    </div>
+      </div>
+    </details>
 
     <section class="hoja progreso" id="progreso" aria-live="polite">
       <h2>Procesando <small id="cronometro">0 s</small></h2>
@@ -843,6 +862,7 @@ async function verificarEstado(){
 
 /* ------------------------------ ejemplos ------------------------------ */
 async function cargarEjemplos(){
+  if(!$("#ejemplos")) return;
   try{
     const casos = await (await fetch("/api/ejemplos")).json();
     $("#ejemplos").innerHTML = casos.filter(c=>c.id.startsWith("E2E")||c.id==="CTL-01").map(c => {
@@ -854,7 +874,17 @@ async function cargarEjemplos(){
     document.querySelectorAll(".ejemplo").forEach(b => b.onclick = () => { $("#consulta").value = b.dataset.consulta; contar(); $("#consulta").focus(); });
   }catch(e){}
 }
-function contar(){ $("#contador").textContent = `${$("#consulta").value.length} / 600`; }
+function contar(){ $("#contador").textContent = `${$("#consulta").value.length} / 600`; const t = $("#consulta"); t.style.height = "auto"; t.style.height = Math.min(t.scrollHeight, 200) + "px"; }
+$("#consulta").addEventListener("keydown", e => { if(e.key === "Enter" && !e.shiftKey){ e.preventDefault(); if(!$("#enviar").disabled) $("#enviar").click(); } });
+// IDs internos → ID del documento, para mostrar (las consultas siguen usando el interno)
+let ID_LEGIBLE = {};
+let PREG_REAL = {};
+// lo que ve el usuario → lo que entiende el backend (preguntas sugeridas exactas y RF-xx → RQ-…)
+function aInterno(t){
+  if(PREG_REAL[t]) return PREG_REAL[t];
+  return Object.entries(ID_LEGIBLE).sort((a,b)=>b[1].length-a[1].length).reduce((x,[interno,doc]) => x.replace(new RegExp("(^|[^\\w-])" + doc.replace(/[.*+?^${}()|[\]\\-]/g, "\\$&") + "(?![\\w-])", "gi"), (m, antes) => antes + interno), t);
+}
+const legibleTxt = t => Object.entries(ID_LEGIBLE).reduce((x,[a,b]) => x.split(a).join(b), t);
 $("#consulta").addEventListener("input", contar);
 
 /* ------------------------------ ejecución ------------------------------ */
@@ -889,7 +919,7 @@ function pintarProgreso(etapas, terminado){
 }
 
 $("#enviar").onclick = async () => {
-  const consulta = $("#consulta").value.trim();
+  const consulta = aInterno($("#consulta").value.trim());
   if(!consulta){ $("#consulta").focus(); return; }
   $("#enviar").disabled = true; $("#enviar").textContent = "Auditando…"; $("#resultado").innerHTML = "";
   $("#progreso").classList.add("visible"); pintarProgreso([], false);
@@ -926,7 +956,7 @@ function construirIndice(r){
   }
 }
 function marcarTexto(txt){
-  return esc(txt).replace(/\[(SM\d)\]/g, '<span class="sm $1">$1</span>').replace(PATRON_ID, id => `<button class="id" data-id="${id}">${id}</button>`);
+  return esc(txt).replace(/\[(SM\d)\]/g, '<span class="sm $1">$1</span>').replace(PATRON_ID, id => `<button class="id" data-id="${id}">${ID_LEGIBLE[id] || id}</button>`);
 }
 function fichaId(id){
   const f = INDICE[id];
@@ -957,7 +987,7 @@ function mostrar(r){
   </section>`;
 
   if(pasos.length){
-    html += `<section class="pasos"><h2>Cómo se llegó a esta respuesta</h2>
+    html += `<details class="hoja detalle"><summary>Ver cómo se respondió <small>· submódulos, consultas, reglas y verificación</small></summary><div class="detalle-cuerpo"><section class="pasos"><h2>Cómo se llegó a esta respuesta</h2>
       <p>${esc(plan.motivo || "")} Cada paso muestra lo que respondió el submódulo y, en las pestañas, las consultas a Neo4j, las reglas aplicadas, la evidencia y el control del verificador.</p>`;
     pasos.forEach((p, i) => {
       const t = p.trazabilidad || {}; const S = SM[p.submodulo];
@@ -983,7 +1013,7 @@ function mostrar(r){
         <div class="panel" role="tabpanel" id="${id}-4" hidden>${verif}</div>
       </article>`;
     });
-    html += `</section>`;
+    html += `</section></div></details>`;
   }
   $("#resultado").innerHTML = html;
   document.querySelectorAll(".pestanas button").forEach(b => b.onclick = () => {
@@ -1000,7 +1030,7 @@ function cambiarModo(m){ irA(m==="consultar" ? "preguntar" : "subir"); }
 
 /* ------------------------------ navegación por pasos ------------------------------ */
 const PASOS = ["subir","revisar","resultados","preguntar"];
-const ALCANZADO = {subir:true, revisar:false, resultados:false, preguntar:true, historial:true};
+const ALCANZADO = {subir:true, revisar:false, resultados:false, preguntar:false, historial:true};  // Preguntar se habilita cuando hay resultados
 let VISTA = "subir";
 function irA(v){
   if(!ALCANZADO[v]) return;
@@ -1010,6 +1040,7 @@ function irA(v){
   document.querySelectorAll(".pasos-nav button").forEach((b,i) => {
     const s = b.dataset.ir;
     b.disabled = !ALCANZADO[s];
+    b.title = !ALCANZADO[s] && s==="preguntar" ? "Primero analizá un documento o abrí una auditoría del Historial" : "";
     // un paso está hecho si se llegó al siguiente (no alcanza con saltar directo a Preguntar)
     b.classList.toggle("hecho", k>=0 && i<k && ALCANZADO[s] && (i>=2 || ALCANZADO[PASOS[i+1]]));
     if(s===v) b.setAttribute("aria-current","step"); else b.removeAttribute("aria-current");
@@ -1128,7 +1159,7 @@ function flujo(etapa){
   // texto/llm → Subir · analista/reglas → Revisar · consulta → Resultados
   const v = {texto:"subir", llm:"subir", analista:"revisar", reglas:"revisar", consulta:"resultados"}[etapa];
   if(v==="revisar") ALCANZADO.revisar = true;
-  if(v==="resultados") ALCANZADO.resultados = true;
+  if(v==="resultados") ALCANZADO.resultados = ALCANZADO.preguntar = true;
   if(etapa!=="llm" && etapa!=="reglas" && v!==VISTA) irA(v); else irA(VISTA);
 }
 flujo("texto");
@@ -1466,7 +1497,7 @@ async function pedirPropuesta(usarLLM, items=null, documento=""){
   const reqs = items || [];
   if(!reqs.length){ $("#aviso-subir").innerHTML = `<div class="avisos">Elegí al menos un requerimiento del documento.</div>`; return; }
   const botones = [$("#proponer-llm"), $("#proponer-rapido")]; botones.forEach(b=>b.disabled=true);
-  $("#aviso-subir").innerHTML = ""; $("#aviso-revisar").innerHTML = ""; ALCANZADO.revisar = false; ALCANZADO.resultados = false; flujo("llm");
+  $("#aviso-subir").innerHTML = ""; $("#aviso-revisar").innerHTML = ""; ALCANZADO.revisar = false; ALCANZADO.resultados = false; ALCANZADO.preguntar = false; flujo("llm");
   Carga.mostrar({
     titulo: usarLLM ? "La IA está leyendo tus <em>requerimientos</em>" : "Analizando tus <em>requerimientos</em>",
     fases: FASES_LECTURA, mensajes: PASOS_LECTURA, estimado: usarLLM ? Math.round(reqs.length*0.9*60 + 20) : 3,
@@ -1599,7 +1630,32 @@ function resumenLote(res){
     <ul>${bien.map(r => `<li><span>${esc(r.texto)}${r.id_documento?` <code>${esc(r.id_documento)}</code>`:""}</span></li>`).join("")}</ul></details>`;
   return h;
 }
+function prepararPreguntas(res){
+  const reqs = res.requerimientos || [], obs = res.observaciones || [], cmps = res.comparaciones || (res.comparacion ? [res.comparacion] : []);
+  ID_LEGIBLE = {}; reqs.forEach(r => { if(r.id_documento) ID_LEGIBLE[r.id] = r.id_documento; });
+  const porEv = {}; reqs.forEach(r => { if(r.evaluacion?.id) porEv[r.evaluacion.id] = r; });
+  const q = [];
+  const orden = [...obs].sort((a,b) => ({b:0,m:1,n:2}[categoria(a)]) - ({b:0,m:1,n:2}[categoria(b)]));
+  for(const o of orden){
+    if(o.tipo_defecto === "contradiccion"){
+      const c = cmps.find(x => x.id === o.origen); const [a,b] = c?.requerimientos || [];
+      if(a && b) q.push([`¿Por qué se contradicen ${ID_LEGIBLE[a]||a} y ${ID_LEGIBLE[b]||b}?`, `¿Por qué se contradicen ${a} y ${b} y qué prioridad tiene esa contradicción?`]);
+      continue;
+    }
+    const r = porEv[o.origen]; if(!r) continue;
+    const n = ID_LEGIBLE[r.id] || r.id;
+    q.push([`¿Por qué ${n} es ${URGENCIA[categoria(o)].toLowerCase()}?`, `¿Por qué la observación ${o.id} tiene prioridad ${o.decision?.prioridad || ""}?`]);
+    q.push([`¿Qué problemas tiene ${n}?`, `¿Qué problemas de calidad tiene ${r.id}?`]);
+  }
+  for(const s of res.consultas_sugeridas || []) q.push([legibleTxt(s), s]);
+  const vistos = new Set(), lista = q.filter(([t]) => !vistos.has(t) && vistos.add(t)).slice(0, 6);
+  PREG_REAL = Object.fromEntries(lista);
+  $("#preguntas-doc").innerHTML = lista.map(([t]) => `<button type="button" data-preg="${esc(t)}">${esc(t)}</button>`).join("");
+  $("#sug-doc").hidden = !lista.length;
+  document.querySelectorAll("#preguntas-doc [data-preg]").forEach(b => b.onclick = () => { $("#consulta").value = b.dataset.preg; contar(); $("#consulta").focus(); });
+}
 function mostrarLote(res){
+  prepararPreguntas(res);
   let h = resumenLote(res) + `<details class="hoja detalle"><summary>Ver el detalle técnico <small>· para el informe: reglas aplicadas, estados y grados por submódulo</small></summary>
     <div class="detalle-cuerpo res-lote">
     <p class="ayuda" style="margin:0">Estados, reglas, severidades, prioridades y grados calculados por Neo4j con las mismas reglas y modelos difusos de PG2.</p>`;
@@ -1678,7 +1734,7 @@ async function cargarLotes(){
         <span class="ojo-ico" title="Ver resultados" aria-hidden="true">${IC_OJO}</span>
         <button class="quitar" data-borrar="${esc(l.lote)}" title="Borrar" aria-label="Borrar auditoría">✕</button></div>`;
     }).join("");
-    const abrir = async id => { const r = await (await fetch(`/api/analisis/lotes/${id}`)).json(); mostrarLote(r); ALCANZADO.resultados = true; irA("resultados"); };
+    const abrir = async id => { const r = await (await fetch(`/api/analisis/lotes/${id}`)).json(); mostrarLote(r); ALCANZADO.resultados = ALCANZADO.preguntar = true; irA("resultados"); };
     lista.querySelectorAll("[data-ver]").forEach(f => { f.onclick = () => abrir(f.dataset.ver); f.onkeydown = e => { if(e.key==="Enter"||e.key===" "){ e.preventDefault(); abrir(f.dataset.ver); } }; });
     lista.querySelectorAll("[data-borrar]").forEach(b => b.onclick = async e => { e.stopPropagation(); if(!confirm("¿Borrar esta auditoría?")) return; b.disabled = true; await fetch(`/api/analisis/lotes/${b.dataset.borrar}`, {method:"DELETE"}); cargarLotes(); });
   }catch(e){ lista.innerHTML = `<p class="error" style="padding:14px 22px">No se pudo cargar el historial.</p>`; }
