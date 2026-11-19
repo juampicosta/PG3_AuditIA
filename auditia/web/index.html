@@ -406,7 +406,14 @@
   .tipos-ok{display:flex;gap:6px;flex-wrap:wrap}
   .editor{margin:16px 0 0 56px;padding:16px;border-radius:14px;background:rgba(255,255,255,.02);border:1px dashed rgba(167,139,250,.25);animation:entra .25s ease}
   .editor > p{margin:0 0 12px;font-size:13px;color:var(--gris)}
-  .cmp-frase{margin:0 0 14px;font-size:14px;color:var(--tinta2)}
+  .cmp-tit{flex:1;min-width:240px}
+  .cmp-tit .que{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:14.5px;color:var(--tinta)}
+  .cmp-tit small{display:block;margin-top:6px;font-size:12.5px;color:var(--gris)}
+  .cmp-tit small b{color:var(--tinta2);font-weight:500}
+  .tipo-h.nada{background:rgba(255,255,255,.06);color:var(--gris)}
+  .cmp-card.descartada .cmp-par{opacity:.4}
+  .cmp-card.revisada{opacity:.72}
+  .cmp-card.revisada .ok-btn{background:var(--ok);color:#06240F;border-color:var(--ok)}
   @media (max-width:900px){.rq2-pie,.editor{margin-left:0}}
   /* ---------- resultados ---------- */
   .res-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:14px}
@@ -1236,11 +1243,15 @@ function renderRevision(){
       if(cp.incluir === undefined) cp.incluir = true;
       const ta = p.requerimientos.find(r=>r.clave===cp.a), tb = p.requerimientos.find(r=>r.clave===cp.b);
       const lado = (r, clave) => `<div class="par-lado"><small>${esc(r?.id_documento || `Requerimiento ${clave}`)}</small><div class="par-txt">${resaltar(r?.texto||"", r?.extraccion?.terminos_vagos)}</div></div>`;
-      h += `<div class="hoja cmp-card" data-cmp="${k}">
-        <div class="cmp-cab"><span class="rq-estado" data-icono-cmp="${k}"></span><b data-cmp-frase="${k}"></b>
-          <label class="cmp-incluir">Incluir en el análisis <input type="checkbox" role="switch" data-ruta="comparaciones.${k}.incluir" ${cp.incluir?"checked":""}></label></div>
+      h += `<div class="hoja cmp-card${cp.incluir===false?" descartada":""}" data-cmp="${k}">
+        <div class="cmp-cab"><span class="rq-estado" data-icono-cmp="${k}"></span>
+          <div class="cmp-tit"><div class="que" data-cmp-frase="${k}"></div>
+            <small>AuditIA los comparó porque hablan de lo mismo. Si en realidad no tienen relación, descartá el par.</small></div></div>
         <div class="cmp-par">${lado(ta, cp.a)}<span class="vs">VS</span>${lado(tb, cp.b)}</div>
-        <div class="rq2-pie" style="margin-left:0"><span class="imp"></span><button type="button" class="btn-chico" data-corregir="cmp-${k}" aria-expanded="false">✎ Corregir</button></div>
+        <div class="rq2-pie" style="margin-left:0"><span class="imp"></span>
+          <button type="button" class="btn-chico" data-corregir="cmp-${k}" aria-expanded="false">✎ Corregir</button>
+          <button type="button" class="btn-chico" data-descartar="${k}" title="Descartá el par si estos requerimientos en realidad no tienen que ver entre sí">${cp.incluir===false?"↺ Volver a incluir":"No tienen relación"}</button>
+          <button type="button" class="btn-chico ok-btn" data-ok="cmp-${k}">✓ Está bien</button></div>
         <div class="editor" data-editor="cmp-${k}" hidden style="margin-left:0">
           <p>Cambiá lo que no sea correcto. El resultado se actualiza al instante.</p>
           ${camposHTML(rc,CAMPOS_CMP,c)}
@@ -1262,8 +1273,14 @@ function renderRevision(){
     if(cg){ const ed = document.querySelector(`[data-editor="${cg.dataset.corregir}"]`); ed.hidden = !ed.hidden; cg.setAttribute("aria-expanded", String(!ed.hidden));
       if(!ed.hidden) ed.querySelectorAll("details.criterio").forEach(d => { if(d.querySelector("summary .estado-pill.incumple, summary .estado-pill.pendiente")) d.open = true; });
       return; }
+    const ds = e.target.closest("[data-descartar]");
+    if(ds){ const k = +ds.dataset.descartar, cp = PROP.comparaciones[k]; cp.incluir = cp.incluir===false;
+      const card = ds.closest(".cmp-card"); card.classList.toggle("descartada", !cp.incluir); card.classList.remove("revisada");
+      ds.textContent = cp.incluir ? "No tienen relación" : "↺ Volver a incluir";
+      const okb = card.querySelector("[data-ok]"); okb.textContent = "✓ Está bien"; okb.hidden = !cp.incluir;
+      actualizarPrevias(); actualizarProgreso(); return; }
     const ok = e.target.closest("[data-ok]");
-    if(ok){ const card = ok.closest(".rq2"); const v = !card.classList.contains("revisada"); card.classList.toggle("revisada", v);
+    if(ok){ const card = ok.closest(".rq2, .cmp-card"); const v = !card.classList.contains("revisada"); card.classList.toggle("revisada", v);
       ok.textContent = v ? "✓ Revisado" : "✓ Está bien";
       const ed = card.querySelector(".editor"); ed.hidden = true; card.querySelector("[data-corregir]").setAttribute("aria-expanded","false");
       actualizarProgreso(); return; }
@@ -1276,9 +1293,9 @@ function renderRevision(){
   actualizarPrevias(); actualizarProgreso();
 }
 function actualizarProgreso(){
-  const t = document.querySelectorAll("#revision .rq2").length, r = document.querySelectorAll("#revision .rq2.revisada").length;
+  const t = document.querySelectorAll("#revision .rq2, #revision .cmp-card:not(.descartada)").length, r = document.querySelectorAll("#revision .rq2.revisada, #revision .cmp-card.revisada").length;
   const el = $("#rev-progreso"); if(!el) return;
-  el.textContent = r===0 ? "¿Está todo bien?" : r===t ? "¡Revisaste todos los requerimientos!" : `Revisaste ${r} de ${t} requerimientos`;
+  el.textContent = r===0 ? "¿Está todo bien?" : r===t ? "¡Revisaste todo!" : `Revisaste ${r} de ${t}`;
 }
 // Hallazgos en una frase, a partir del estado de cada criterio y de lo que se leyó del texto.
 function frasesRq(rq, estados){
@@ -1337,7 +1354,11 @@ function actualizarPrevias(){
     const el = document.querySelector(`[data-previa="cmp-${k}"]`); if(el) el.innerHTML = cp.incluir===false ? `<span class="estado-pill nada">No se analiza</span>` : etiquetaSM2(r);
     const ic = document.querySelector(`[data-icono-cmp="${k}"]`);
     const fr = document.querySelector(`[data-cmp-frase="${k}"]`);
-    if(fr) fr.textContent = cp.incluir===false ? "Este par no se va a analizar." : r[1]==="observado" ? "Estos dos requerimientos se contradicen." : r[1]==="pendiente" ? "Puede que se contradigan: falta información para saberlo." : r[0] ? "Hablan de lo mismo, pero no se contradicen." : "Hablan de lo mismo.";
+    if(fr) fr.innerHTML = cp.incluir===false ? `<span class="tipo-h nada">Descartado</span><span>No se va a analizar: marcaste que no tienen relación.</span>`
+      : r[1]==="observado" ? `<span class="tipo-h problema">✕ Contradicción</span><span>Piden cosas opuestas en la misma situación: no se pueden cumplir los dos.</span>`
+      : r[1]==="pendiente" ? `<span class="tipo-h falta">? Contradicción · pendiente</span><span>Puede que choquen, pero falta información para saberlo.</span>`
+      : r[0] ? `<span class="tipo-h ok">✓ Sin contradicción</span><span>Hablan de lo mismo, pero se pueden cumplir los dos.</span>`
+      : `<span class="tipo-h nada">Sin datos suficientes</span><span>Hablan de lo mismo; abrí «Corregir» para completar la comparación.</span>`;
     if(ic){ const e = cp.incluir===false ? "" : r[1]==="observado" ? "problema" : r[1]==="pendiente" ? "falta" : r[0] ? "ok" : ""; ic.className = `rq-estado ${e}`; ic.textContent = {ok:"✓", problema:"!", falta:"?"}[e] || "–"; }
     const prs = PROP.requerimientos.filter(x=>x.clave===cp.a||x.clave===cp.b).map(x=>x.premisas.prioridad).sort((a,b)=>(b.grado_criticidad??-1)-(a.grado_criticidad??-1));
     const pr = {...prs[0], obligacion_esencial_indefinida: prs.some(x=>x.obligacion_esencial_indefinida), bloqueo_sustantivo_confirmado: prs.some(x=>x.bloqueo_sustantivo_confirmado),
