@@ -114,25 +114,7 @@
   .reglas-oro b{display:block;margin-bottom:6px;font-weight:600;font-size:14.5px}
   .reglas-oro p{margin:0;font-size:13.5px;color:var(--gris)}
 
-  /* ---------- carga manual ---------- */
-  .manual-cab{display:flex;flex-direction:column;gap:12px;margin-bottom:14px}
-  .manual-cab b{display:block;font-size:16px;font-weight:600}
-  .manual-cab small{color:var(--gris);font-size:13px}
-  .probar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-  .probar > span{font-size:12px;color:var(--gris2)}
-  .probar .chips{margin:0}
-  .rq-lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-  .rq-item{display:flex;gap:12px;align-items:flex-start;padding:12px 12px 12px 14px;border:1px solid var(--linea);border-radius:14px;background:var(--campo);transition:border-color .2s,box-shadow .2s;animation:entra .25s ease}
-  .rq-item:focus-within{border-color:rgba(167,139,250,.45);box-shadow:0 0 0 4px rgba(167,139,250,.1)}
-  .rq-letra{flex:none;width:30px;height:30px;border-radius:9px;display:grid;place-items:center;font-size:13px;font-weight:600;background:var(--acentof);color:var(--acento2);border:1px solid rgba(167,139,250,.22);margin-top:2px}
-  .rq-item textarea{flex:1;min-height:0;height:auto;border:0;background:none;padding:6px 0;font-size:15px;resize:none;overflow:hidden;box-shadow:none!important}
-  .rq-item textarea:focus{background:none}
-  .rq-quitar{flex:none;width:30px;height:30px;border-radius:9px;border:0;background:none;color:var(--gris2);font-size:18px;cursor:pointer;margin-top:2px;transition:background .15s,color .15s}
-  .rq-quitar:hover{background:var(--errf);color:var(--err)}
-  .rq-agregar{margin-top:10px;width:100%;font:inherit;font-size:14px;font-weight:500;color:var(--acento2);background:none;border:1.5px dashed rgba(167,139,250,.28);border-radius:14px;padding:12px;cursor:pointer;display:flex;gap:8px;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
-  .rq-agregar span{font-size:18px;line-height:1}
-  .rq-agregar:hover{background:rgba(167,139,250,.07);border-color:var(--acento)}
-  .rq-agregar:disabled{opacity:.4;cursor:not-allowed}
+  /* ---------- contexto y revisor ---------- */
   .extras{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;margin-top:16px}
   details.extra{flex:1;min-width:260px}
   details.extra > summary{list-style:none;cursor:pointer;display:inline-flex;gap:8px;align-items:center;font-size:14px;color:var(--tinta2);padding:6px 0}
@@ -142,10 +124,16 @@
   .extra-ic{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:600;font-style:italic;background:rgba(255,255,255,.07);color:var(--gris)}
   details.extra[open] .extra-ic{background:var(--boton);color:#fff}
   details.extra textarea{margin-top:8px;min-height:80px}
-  .analista{display:inline-flex;align-items:center;border:1px solid var(--linea);border-radius:999px;background:var(--campo);overflow:hidden;font-size:13px}
-  .analista span{padding:8px 4px 8px 14px;color:var(--gris2)}
-  .analista input{border:0;background:none;color:var(--tinta);font:inherit;font-size:13.5px;font-weight:500;padding:8px 14px 8px 4px;width:130px}
-  .analista input:focus{outline:none;box-shadow:none}
+  .revisor{display:inline-flex;align-items:center;gap:12px;padding:6px 16px 6px 6px;border:1px solid var(--linea);border-radius:999px;background:linear-gradient(135deg,rgba(139,92,246,.10),rgba(244,114,182,.05));cursor:text;transition:border-color .2s,box-shadow .2s}
+  .revisor:hover{border-color:rgba(167,139,250,.4)}
+  .revisor:focus-within{border-color:var(--acento);box-shadow:0 0 0 4px rgba(167,139,250,.14)}
+  .revisor .avatar{flex:none;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:var(--grad);color:#fff;font-size:15px;font-weight:600;box-shadow:0 4px 14px -4px rgba(192,132,252,.7),inset 0 0 0 2px rgba(255,255,255,.15);text-transform:uppercase}
+  .rev-txt{display:flex;flex-direction:column;line-height:1.2}
+  .rev-txt small{font-size:10.5px;color:var(--gris2);text-transform:uppercase;letter-spacing:.08em;font-weight:500}
+  .rev-txt input{border:0;background:none;color:var(--tinta);font:inherit;font-size:14.5px;font-weight:600;padding:2px 0 0;min-width:60px;width:120px;field-sizing:content;max-width:220px}
+  .rev-txt input:focus{outline:none;box-shadow:none;background:none}
+  .revisor .lapiz{color:var(--gris2);transition:color .2s}
+  .revisor:hover .lapiz,.revisor:focus-within .lapiz{color:var(--acento2)}
   /* ---------- pantalla de carga ---------- */
   .carga-capa{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:24px 16px;overflow-y:auto;
     background:radial-gradient(700px 480px at 50% 32%,rgba(139,92,246,.22),transparent 70%),radial-gradient(500px 360px at 70% 80%,rgba(244,114,182,.10),transparent 70%),rgba(5,6,15,.88);
@@ -308,6 +296,85 @@
   .nota-previa{font-size:12.5px;color:var(--gris);margin:8px 0 0}
   .confirmar{display:flex;gap:14px;align-items:center;margin-top:22px;flex-wrap:wrap}
 
+  /* ---------- paso 2: revisión ---------- */
+  .rev-barra{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:14px 16px;margin-bottom:10px}
+  .rev-cuenta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .stat{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;font-size:13.5px;background:rgba(255,255,255,.04);border:1px solid var(--linea2);color:var(--tinta2)}
+  .stat b{font-size:15px;color:var(--tinta)}
+  .stat i{width:8px;height:8px;border-radius:50%}
+  .stat.ok i{background:var(--ok);box-shadow:0 0 8px rgba(74,222,128,.6)}.stat.mal i{background:var(--err);box-shadow:0 0 8px rgba(248,113,113,.6)}.stat.falta i{background:var(--warn);box-shadow:0 0 8px rgba(251,191,36,.5)}.stat.cmp i{background:var(--sm2)}
+  .rev-filtro{display:inline-flex;gap:3px;background:var(--campo);border:1px solid var(--linea);border-radius:11px;padding:3px}
+  .rev-filtro button{font:inherit;font-size:13px;border:0;background:none;color:var(--gris);padding:7px 13px;border-radius:8px;cursor:pointer;transition:all .15s}
+  .rev-filtro button:hover{color:var(--tinta)}
+  .rev-filtro button[aria-pressed="true"]{background:var(--boton);color:#fff;box-shadow:0 4px 12px -6px rgba(139,92,246,.8)}
+  .rev-fuente{font-size:12.5px;color:var(--gris2);margin:0 0 16px 4px}
+  .rev-fuente b{color:var(--tinta2);font-weight:500}
+  details.avisos-rev{margin:0 0 14px;padding:10px 14px;border-radius:12px;background:var(--warnf);color:var(--warn);font-size:13px}
+  details.avisos-rev summary{cursor:pointer;font-weight:500}
+  details.avisos-rev p{margin:8px 0 0;color:var(--tinta2)}
+  /* tarjeta de requerimiento */
+  details.rq{margin-top:10px;border-radius:18px;overflow:hidden;border:1px solid transparent;transition:border-color .2s,box-shadow .2s}
+  details.rq[open]{border-color:rgba(167,139,250,.28)}
+  details.rq > summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:40px 1fr 18px;gap:16px;align-items:start;padding:18px 20px;transition:background .2s}
+  details.rq > summary::-webkit-details-marker{display:none}
+  details.rq > summary:hover{background:rgba(255,255,255,.02)}
+  details.rq > summary::after{content:"›";color:var(--gris2);font-size:22px;line-height:1;align-self:center;transition:transform .2s}
+  details.rq[open] > summary::after{transform:rotate(90deg)}
+  .rq-estado{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;font-size:17px;font-weight:700;background:rgba(255,255,255,.05);color:var(--gris)}
+  .rq-estado.ok{background:var(--okf);color:var(--ok)}.rq-estado.problema{background:var(--errf);color:var(--err)}.rq-estado.falta{background:var(--warnf);color:var(--warn)}
+  .rq-texto{display:block;font-size:15.5px;line-height:1.5;color:var(--tinta)}
+  .rq-texto mark,.par-txt mark{background:rgba(251,191,36,.16);color:#FCD34D;border-radius:4px;padding:0 3px}
+  .rq-meta{display:block;margin-top:4px;font-size:12px;color:var(--gris2)}
+  .rq-meta code{font-size:11.5px}
+  .rq-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .chip-e{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:500;padding:4px 11px;border-radius:999px}
+  .chip-e.ok{background:var(--okf);color:var(--ok)}.chip-e.problema{background:var(--errf);color:var(--err)}.chip-e.falta{background:var(--warnf);color:var(--warn)}.chip-e.nada{background:rgba(255,255,255,.05);color:var(--gris)}
+  .rq-detalle{padding:0 20px 20px 76px}
+  .entendio{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-bottom:18px}
+  .ent{padding:12px 14px;border-radius:12px;background:var(--campo);border:1px solid var(--linea2)}
+  .ent small{display:block;font-size:11px;color:var(--gris2);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+  .ent div{font-size:13.5px;color:var(--tinta2);line-height:1.5}
+  .ent .pal{display:inline-block;background:rgba(251,191,36,.14);color:#FCD34D;border-radius:6px;padding:1px 8px;margin:2px 4px 2px 0;font-size:12.5px}
+  .ent .vacio-ent{color:var(--gris2)}
+  .rq-sub{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:4px 0 10px;font-size:14px;font-weight:600}
+  .rq-sub small{font-weight:400;color:var(--gris2);font-size:12.5px}
+  .estado-pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;padding:3px 10px;border-radius:999px;white-space:nowrap}
+  .estado-pill.cumple,.estado-pill.sin_hallazgo{background:var(--okf);color:var(--ok)}
+  .estado-pill.incumple,.estado-pill.observado{background:var(--errf);color:var(--err)}
+  .estado-pill.pendiente{background:var(--warnf);color:var(--warn)}
+  .estado-pill.nada{background:rgba(255,255,255,.05);color:var(--gris)}
+  details.mas{margin-top:12px;border-top:1px solid var(--linea2);padding-top:8px}
+  details.mas > summary{cursor:pointer;font-size:12.5px;color:var(--gris);padding:4px 0;list-style:none}
+  details.mas > summary::-webkit-details-marker{display:none}
+  details.mas > summary::before{content:"+ "}
+  details.mas[open] > summary::before{content:"− "}
+  details.mas > summary:hover{color:var(--tinta)}
+  .prevision-prio{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:12px;padding:12px 14px;border-radius:12px;background:var(--acentof);font-size:13px;color:var(--acento2)}
+  .prevision-prio .tg{font-size:12px}
+  /* comparaciones */
+  .rev-seccion{display:flex;align-items:baseline;gap:10px;margin:28px 0 4px;font-size:17px;font-weight:600}
+  .rev-seccion small{font-size:13px;font-weight:400;color:var(--gris)}
+  .cmp-card{margin-top:10px;padding:18px 20px;border-radius:18px}
+  .cmp-cab{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+  .cmp-cab b{font-size:15px}
+  .cmp-incluir{margin-left:auto;display:inline-flex;align-items:center;gap:10px;font-size:13px;color:var(--gris);cursor:pointer}
+  .cmp-par{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:stretch}
+  .par-lado{padding:14px 16px;border-radius:14px;background:var(--campo);border:1px solid var(--linea2)}
+  .par-lado small{display:block;font-size:11.5px;color:var(--gris2);margin-bottom:4px}
+  .par-txt{font-size:14px;line-height:1.5}
+  .vs{align-self:center;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-size:11px;font-weight:700;color:#fff;background:var(--grad);box-shadow:0 4px 14px -4px rgba(192,132,252,.7)}
+  .cmp-card .criterio{margin-top:12px}
+  .cmp-card details.criterio > summary{grid-template-columns:1fr 14px}
+  /* barra de confirmación */
+  .rev-confirmar{position:sticky;bottom:16px;z-index:10;display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:24px;padding:14px 16px 14px 22px;border-radius:18px;background:color-mix(in srgb,var(--papel) 88%,transparent);backdrop-filter:blur(14px);box-shadow:0 0 0 1px rgba(167,139,250,.25),0 20px 40px -20px rgba(0,0,0,.8)}
+  .rev-confirmar > div{flex:1;min-width:220px}
+  .rev-confirmar b{display:block;font-size:15px}
+  .rev-confirmar small{color:var(--gris);font-size:13px}
+  @media (max-width:900px){
+    .rq-detalle{padding:0 16px 18px}
+    details.rq > summary{grid-template-columns:36px 1fr 14px;gap:12px;padding:16px}
+    .cmp-par{grid-template-columns:1fr}.vs{justify-self:center}
+  }
   /* ---------- resultados ---------- */
   .res-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:14px}
   .res-grid .ancho{grid-column:1/-1}
@@ -452,7 +519,7 @@
     <div class="titular">
       <div class="ojo">Paso 1 de 4</div>
       <h2>¿Qué requerimientos querés <em>auditar</em>?</h2>
-      <p>Subí tu documento o escribilos a mano. AuditIA los lee, te muestra lo que entendió para que lo confirmes y te dice qué conviene corregir antes de firmar.</p>
+      <p>Subí tu documento de requerimientos. AuditIA los lee, te muestra lo que entendió para que lo confirmes y te dice qué conviene corregir antes de firmar.</p>
     </div>
 
     <section class="hoja tarjeta" aria-label="Cargar requerimientos">
@@ -464,28 +531,23 @@
       </label>
       <div class="doc-lista" id="doc-lista"></div>
 
-      <div id="zona-manual">
-      <div class="separador">o escribilos a mano</div>
-      <div class="manual">
-        <div class="manual-cab">
-          <div><b>Tus requerimientos</b><small>Con dos o más, AuditIA también busca contradicciones entre ellos.</small></div>
-          <div class="probar"><span>Probá con un ejemplo:</span><div class="chips" id="ejemplos-rq" aria-label="Ejemplos para probar"></div></div>
-        </div>
-        <ol class="rq-lista" id="rq-lista"></ol>
-        <button type="button" class="rq-agregar" id="rq-agregar"><span>+</span> Agregar requerimiento</button>
+      <div id="zona-doc" hidden>
         <div class="extras">
           <details class="extra" id="extra-ctx">
             <summary><span class="extra-ic">i</span>Agregar contexto <small>· opcional: criterios de aceptación, glosario, anexos</small></summary>
             <textarea id="rq-ctx" maxlength="1500" placeholder="Por ejemplo: el catálogo tiene que cargar en 2 segundos como máximo."></textarea>
           </details>
-          <label class="analista" for="rq-analista"><span>Revisado por</span><input type="text" id="rq-analista" maxlength="80" value="Grupo 10"></label>
+          <label class="revisor" for="rq-analista" title="Cambiar quién revisa">
+            <span class="avatar" id="rev-avatar" aria-hidden="true">S</span>
+            <span class="rev-txt"><small>Revisado por</small><input type="text" id="rq-analista" maxlength="80" value="Systeam" spellcheck="false" autocomplete="off"></span>
+            <svg class="lapiz" viewBox="0 0 24 24" width="15" height="15" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4zM14 6l4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </label>
         </div>
-      </div>
-      </div>
-      <div class="acciones">
-        <button class="principal" id="proponer-llm">Analizar con IA →</button>
-        <button class="secundario" id="proponer-rapido">Análisis rápido</button>
-        <span class="contador" id="estado-propuesta"></span>
+        <div class="acciones">
+          <button class="principal" id="proponer-llm">Analizar con IA →</button>
+          <button class="secundario" id="proponer-rapido">Análisis rápido</button>
+          <span class="contador" id="estado-propuesta"></span>
+        </div>
       </div>
       <div class="aviso" id="aviso-subir"></div>
     </section>
@@ -506,8 +568,8 @@
   <div class="vista" data-vista="revisar" hidden>
     <div class="titular">
       <div class="ojo">Paso 2 de 4</div>
-      <h2>Revisá lo que <em>leyó</em> AuditIA.</h2>
-      <p>Normalmente solo tenés que mirar que las premisas tengan sentido. Si alguna está mal, la corregís; las etiquetas adelantan lo que van a concluir las reglas.</p>
+      <h2>Revisá lo que <em>entendió</em> AuditIA.</h2>
+      <p>Abrí cada requerimiento para ver qué encontramos. Si algo no es correcto, corregilo: el resultado se actualiza al instante. Cuando esté todo bien, confirmá.</p>
     </div>
     <div id="revision"><div class="hoja vacio"><b>Todavía no hay nada para revisar</b>Primero subí un documento o escribí un requerimiento.<br><button class="secundario" data-ir="subir">← Ir a Subir</button></div></div>
     <div class="aviso" id="aviso-revisar"></div>
@@ -722,7 +784,8 @@ $("#enviar").onclick = async () => {
     const {id} = await r.json();
     while(true){
       await new Promise(res => setTimeout(res, 2500));
-      const t = await (await fetch(`/api/consultas/${id}`)).json();
+      const rr = await fetch(`/api/consultas/${id}`); const t = await rr.json();
+      if(!rr.ok){ $("#resultado").innerHTML = `<div class="hoja error">La consulta se canceló o el servidor se reinició. Volvé a intentarlo.</div>`; break; }
       const fin = t.estado==="terminado" || t.estado==="error";
       pintarProgreso(t.etapas, fin);
       if(t.estado==="terminado"){ pintarNodo("verif","hecho"); pintarNodo("respuesta","hecho"); pintarCable("verif","respuesta","hecho"); mostrar(t.resultado); break; }
@@ -856,14 +919,6 @@ $("#logo").onclick = () => irA("subir");
 })();
 
 /* ------------------------------ análisis de requerimientos nuevos ------------------------------ */
-const EJEMPLOS_RQ = [
-  {t:"Término vago", a:"El sistema debe cargar rápidamente el catálogo de productos.", b:"", c:""},
-  {t:"Vago + criterio recibido", a:"El sistema debe cargar rápidamente el catálogo de productos.", b:"", c:"Criterio de aceptación: el catálogo carga en 2 segundos como máximo."},
-  {t:"Dos obligaciones", a:"El sistema debe registrar el pedido y notificar al cliente por correo electrónico.", b:"", c:""},
-  {t:"Enumeración abierta", a:"El sistema debe admitir los medios de pago tarjeta, transferencia, etc.", b:"", c:""},
-  {t:"Contradicción (SM2)", a:"Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.", b:"Cuando el pedido está confirmado, el cliente no puede cancelarlo.", c:""},
-  {t:"Bien escrito", a:"El sistema debe exportar el reporte mensual de ventas en formato PDF.", b:"", c:""},
-];
 /* ------------------------------ pantalla de carga ------------------------------ */
 // Progreso: estimado por tiempo (curva asintótica) y, cuando el backend informa una etapa, por esa etapa.
 const Carga = (() => {
@@ -912,41 +967,13 @@ const Carga = (() => {
 const PASOS_LECTURA = ["Leyendo el texto de cada requerimiento…", "Buscando palabras vagas o ambiguas…", "Revisando si cada uno se puede probar…", "Buscando datos que falten…", "Comparando requerimientos entre sí…", "Preparando las preguntas para que confirmes…"];
 const FASES_LECTURA = ["Leer los requerimientos", "Detectar problemas de redacción", "Comparar los requerimientos entre sí", "Preparar tu revisión"];
 
-/* ---- carga manual: lista dinámica de requerimientos ---- */
-const MAX_MANUAL = 26;
-// estimación del amigo: ~0,6 a 1,2 min por requerimiento con el modelo local
-const estimarLLM = n => `unos ${Math.max(1,Math.round(n*0.6))} a ${Math.max(2,Math.round(n*1.2))} min`;
-const PISTAS = ["Por ejemplo: El sistema debe cargar rápidamente el catálogo de productos.", "Por ejemplo: Una vez confirmado, el pedido no puede cancelarse.", "Escribí otro requerimiento…"];
-function autoAlto(t){ t.style.height = "auto"; t.style.height = t.scrollHeight + "px"; }
-function agregarRq(texto="", enfocar=false){
-  if(document.querySelectorAll("#rq-lista .rq-item").length >= MAX_MANUAL) return;
-  const li = document.createElement("li"); li.className = "rq-item";
-  li.innerHTML = `<span class="rq-letra"></span><textarea rows="1" maxlength="1000" aria-label="Requerimiento"></textarea><button type="button" class="rq-quitar" aria-label="Quitar requerimiento" title="Quitar">×</button>`;
-  const t = li.querySelector("textarea"); t.value = texto;
-  t.addEventListener("input", () => { autoAlto(t); actualizarManual(); });
-  t.addEventListener("keydown", e => { if(e.key==="Enter" && !e.shiftKey && t.value.trim()){ e.preventDefault(); agregarRq("", true); } });
-  li.querySelector(".rq-quitar").onclick = () => { li.remove(); actualizarManual(); };
-  $("#rq-lista").appendChild(li); actualizarManual(); requestAnimationFrame(() => autoAlto(t));
-  if(enfocar) t.focus();
-}
-function textosManual(){ return [...document.querySelectorAll("#rq-lista textarea")].map(t => t.value.trim()).filter(Boolean); }
-function actualizarManual(){
-  const items = [...document.querySelectorAll("#rq-lista .rq-item")];
-  items.forEach((li,i) => { li.querySelector(".rq-letra").textContent = String.fromCharCode(65+i);
-    li.querySelector("textarea").placeholder = PISTAS[Math.min(i, PISTAS.length-1)];
-    li.querySelector(".rq-quitar").hidden = items.length <= 1; });
-  $("#rq-agregar").disabled = items.length >= MAX_MANUAL;
-  const n = textosManual().length; if(DOC) return;
-  $("#estado-propuesta").textContent = n > 1 ? `${n} requerimientos · con IA, ${estimarLLM(n)}` : "";
-}
-$("#rq-agregar").onclick = () => agregarRq("", true);
-agregarRq(); agregarRq();
-$("#ejemplos-rq").innerHTML = EJEMPLOS_RQ.map((e,i)=>`<button data-i="${i}">${esc(e.t)}</button>`).join("");
-document.querySelectorAll("#ejemplos-rq button").forEach(b => b.onclick = () => {
-  const e = EJEMPLOS_RQ[+b.dataset.i];
-  $("#rq-lista").innerHTML = ""; agregarRq(e.a); agregarRq(e.b);
-  $("#rq-ctx").value = e.c; $("#extra-ctx").open = !!e.c;
+/* ---- estimación de tiempo con la IA (~0,6 a 1,2 min por requerimiento con el modelo local) ---- */
+// avatar del revisor: iniciales del nombre
+$("#rq-analista").addEventListener("input", e => {
+  const ini = e.target.value.trim().split(/\s+/).filter(Boolean).slice(0,2).map(w => w[0]).join("") || "?";
+  $("#rev-avatar").textContent = ini;
 });
+const estimarLLM = n => `unos ${Math.max(1,Math.round(n*0.6))} a ${Math.max(2,Math.round(n*1.2))} min`;
 const NOMBRE_CRIT = {atomicidad:"Atomicidad", ambiguedad:"Ambigüedad", verificabilidad:"Verificabilidad", completitud:"Completitud"};
 const CAMPOS = {
   atomicidad:[["obligaciones_independientes","num","¿Cuántas cosas distintas pide?",0,20,1],
@@ -1025,6 +1052,37 @@ function prioridadPrevia(esHallazgo, sev, pr){
   if(cel==="menor" && pr.diferimiento_aceptado && pr.impacto_acotado) return "menor por diferimiento (PRC-HC05)";
   return `bloqueante preventiva (PRC-RD02: celda ${cel} sin condición de tratamiento)`;
 }
+const PREGUNTA_CRIT = {atomicidad:"¿Pide una sola cosa?", ambiguedad:"¿Se entiende de una sola forma?", verificabilidad:"¿Se puede probar?", completitud:"¿Está completo?"};
+const HUMANO = {
+  atomicidad:{cumple:"Pide una sola cosa", incumple:"Pide varias cosas juntas", pendiente:"Falta información"},
+  ambiguedad:{cumple:"Se entiende bien", incumple:"Es ambiguo", pendiente:"Falta información"},
+  verificabilidad:{cumple:"Se puede probar", incumple:"No se puede probar", pendiente:"Falta cómo probarlo"},
+  completitud:{cumple:"Está completo", incumple:"Le faltan datos", pendiente:"Falta información"},
+};
+const HUMANO_SM2 = {observado:"Se contradicen", sin_hallazgo:"No se contradicen", pendiente:"Falta información"};
+const ICONO_ESTADO = {cumple:"✓", sin_hallazgo:"✓", incumple:"✕", observado:"✕", pendiente:"?"};
+// etiqueta de un criterio en lenguaje común; la regla queda en el tooltip
+function etiquetaCrit(c, [r,e]){
+  if(!r) return `<span class="estado-pill nada" title="Ninguna regla aplica todavía">Sin datos suficientes</span>`;
+  return `<span class="estado-pill ${e}" title="Regla ${esc(r)}">${ICONO_ESTADO[e]||""} ${esc(HUMANO[c]?.[e] || e)}</span>`;
+}
+function etiquetaSM2([r,e]){
+  if(!r) return `<span class="estado-pill nada">Sin datos suficientes</span>`;
+  return `<span class="estado-pill ${e}" title="Regla ${esc(r)}">${ICONO_ESTADO[e]||""} ${esc(HUMANO_SM2[e]||e)}</span>`;
+}
+function prioHumana(txt){
+  const cat = /bloque/.test(txt) ? "b" : /menor/.test(txt) ? "n" : "m";
+  return `<span class="tg ${cat}" title="${esc(txt)}">${{b:"Bloqueante",m:"Mayor",n:"Menor"}[cat]}</span>`;
+}
+function resaltar(texto, palabras){
+  let h = esc(texto);
+  for(const w of (palabras||[]).filter(Boolean).sort((a,b)=>b.length-a.length)){
+    const ew = esc(w).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    h = h.replace(new RegExp(`(${ew})`, "gi"), "<mark>$1</mark>");
+  }
+  return h;
+}
+let FILTRO_REV = "todos";
 const etiqueta = ([r,e]) => `<span class="previa ${r?e:"nada"}">${r?`${esc(r)} → ${esc(e.replace("_"," "))}`:"ninguna regla aplica"}</span>`;
 
 // Controles de las premisas: interruptor (sí/no), selector segmentado (opciones) y paso a paso (números).
@@ -1055,62 +1113,82 @@ function justHTML(ruta, texto, nombre){
 }
 const ICONO_CRIT = {atomicidad:"◎", ambiguedad:"≈", verificabilidad:"✓", completitud:"▦"};
 function lecturaHTML(ext){
-  const li = [];
-  if(ext.obligaciones?.length) li.push(`<b>Obligaciones:</b> ${ext.obligaciones.map(o=>`<mark>${esc(o)}</mark>`).join(" · ")}`);
-  li.push(`<b>Términos vagos:</b> ${ext.terminos_vagos?.length ? ext.terminos_vagos.map(o=>`<mark>${esc(o)}</mark>`).join(" ") : "ninguno"}`);
-  li.push(`<b>Criterio medible:</b> ${ext.criterio_medible ? `<mark>${esc(ext.criterio_medible)}</mark>` : "no hay"}`);
-  if(ext.omisiones?.length) li.push(`<b>Omisiones:</b> ${ext.omisiones.map(esc).join(" · ")}`);
-  if(ext.lecturas?.length) li.push(`<b>Lecturas:</b> ${ext.lecturas.map(esc).join(" / ")}`);
-  return `<p class="lectura">${li.join("<br>")}</p>`;
+  const obl = ext.obligaciones || [], vagos = ext.terminos_vagos || [], om = ext.omisiones || [];
+  const ent = (tit, cuerpo) => `<div class="ent"><small>${tit}</small><div>${cuerpo}</div></div>`;
+  return `<div class="entendio">
+    ${ent("Qué pide", obl.length ? (obl.length===1 ? esc(obl[0]) : `${obl.length} cosas: ${obl.map(esc).join(" · ")}`) : `<span class="vacio-ent">No se detectó</span>`)}
+    ${ent("Palabras vagas", vagos.length ? vagos.map(v=>`<span class="pal">${esc(v)}</span>`).join("") : `<span class="vacio-ent">Ninguna</span>`)}
+    ${ent("Cómo se mide", ext.criterio_medible ? esc(ext.criterio_medible) : `<span class="vacio-ent">No dice cómo medirlo</span>`)}
+    ${om.length ? ent("Le falta", om.map(esc).join(" · ")) : ""}
+  </div>`;
 }
 function renderRevision(){
-  const p = PROP; let h = `<section class="revision"><h2>Revisá lo que leyó AuditIA</h2>
-    <p class="ayuda">${p.fuente==="llm" ? `<b>${esc(p.llm?.modelo||"El LLM")}</b> leyó los requerimientos en ${esc(p.segundos)} s` : p.fuente==="mixta" ? `<b>${esc(p.llm?.modelo||"El LLM")}</b> leyó parte de los requerimientos y el borrador rápido el resto (ver avisos)` : "<b>El borrador rápido</b> leyó los requerimientos"} y respondió unas preguntas sobre cada uno (las <i>premisas</i>). Con esas respuestas deciden las reglas del grafo.</p>
-    <p class="ayuda">Los chips adelantan lo que van a concluir las reglas: <span class="previa cumple">cumple</span> está bien escrito, <span class="previa incumple">incumple</span> es un defecto (hallazgo) y <span class="previa pendiente">pendiente</span> significa que falta un dato para decidir. Tocá un requerimiento para ver sus preguntas.</p>`;
-  if(p.avisos?.length) h += `<div class="avisos">${p.avisos.map(esc).join("<br>")}</div>`;
-  const abierto = p.requerimientos.length <= 2 ? "open" : "";
-  if(p.documento) h += `<p class="ayuda">Documento: <b>${esc(p.documento)}</b> · ${p.requerimientos.length} requerimientos${p.requerimientos.length>2?" (tocá cada uno para abrir sus premisas)":""}.</p>`;
+  const p = PROP, n = p.requerimientos.length;
+  const fuente = p.fuente==="llm" ? `Leído por <b>${esc(p.llm?.modelo||"la IA")}</b> en ${esc(p.segundos)} s`
+    : p.fuente==="mixta" ? `Leído en parte por <b>${esc(p.llm?.modelo||"la IA")}</b> y en parte con el análisis rápido`
+    : `Leído con el <b>análisis rápido</b>`;
+  let h = `<section class="revision">
+    <div class="hoja rev-barra"><div class="rev-cuenta" id="rev-cuenta"></div>
+      <div class="rev-filtro" role="group" aria-label="Filtrar">${[["todos","Todos"],["problemas","Con problemas"],["ok","Sin problemas"]].map(([v,t])=>`<button type="button" data-filtro="${v}" aria-pressed="${v===FILTRO_REV}">${t}</button>`).join("")}</div></div>
+    <p class="rev-fuente">${fuente}${p.documento?` · ${esc(p.documento)}`:""}</p>`;
+  if(p.avisos?.length) h += `<details class="avisos-rev"><summary>${p.avisos.length} ${p.avisos.length===1?"aviso":"avisos"} de la lectura</summary>${p.avisos.map(a=>`<p>${esc(a)}</p>`).join("")}</details>`;
   p.requerimientos.forEach((rq,i) => {
-    const pr = rq.premisas; const ruta = `requerimientos.${i}.premisas`;
-    h += `<details class="hoja tarjeta-rq" ${abierto}><summary><h3><span class="sm SM1">SM1</span> Requerimiento ${esc(rq.clave)}${rq.id_documento?` · ${esc(rq.id_documento)}`:""}</h3>
-      <span class="resumen-previa" data-resumen="${i}"></span>${p.requerimientos.length>2?`<span style="color:var(--gris);font-size:13px;flex-basis:100%">${esc(rq.texto)}</span>`:""}</summary>
-      <blockquote>${esc(rq.texto)}${rq.ubicacion?` <small style="color:var(--gris)">(${esc(rq.ubicacion)})</small>`:""}</blockquote>${lecturaHTML(rq.extraccion||{})}<div class="criterios">`;
+    const pr = rq.premisas; const ruta = `requerimientos.${i}.premisas`; const ext = rq.extraccion || {};
+    h += `<details class="hoja rq" data-rq="${i}"${n<=2?" open":""}><summary>
+        <span class="rq-estado" data-icono="${i}"></span>
+        <span><span class="rq-texto">${resaltar(rq.texto, ext.terminos_vagos)}</span>
+          <span class="rq-meta">${rq.id_documento?`<code>${esc(rq.id_documento)}</code> · `:""}${esc(rq.ubicacion || `Requerimiento ${rq.clave}`)}</span>
+          <span class="rq-chips" data-resumen="${i}"></span></span>
+      </summary>
+      <div class="rq-detalle">
+        <h4 class="rq-sub">Lo que entendió AuditIA</h4>
+        ${lecturaHTML(ext)}
+        <h4 class="rq-sub">Revisá las respuestas <small>Si algo no es correcto, cambialo.</small></h4>
+        <div class="criterios">`;
     for(const c of Object.keys(CAMPOS)){
       const j = pr.criterios[c]; const rc = `${ruta}.criterios.${c}`;
-      h += `<details class="criterio"><summary><span class="crit-ic">${ICONO_CRIT[c]}</span><span class="crit-tit"><b>${NOMBRE_CRIT[c]}</b><small>${esc(QUE_MIRA[c])}</small></span><span data-previa="${i}.${c}"></span></summary>
-        <div class="crit-cuerpo">${camposHTML(rc,CAMPOS[c],j)}${justHTML(rc, j.justificacion, NOMBRE_CRIT[c])}${sevHTML(rc,j)}</div></details>`;
+      h += `<details class="criterio"><summary><span class="crit-ic">${ICONO_CRIT[c]}</span><span class="crit-tit"><b>${PREGUNTA_CRIT[c]}</b><small>${esc(QUE_MIRA[c])}</small></span><span data-previa="${i}.${c}"></span></summary>
+        <div class="crit-cuerpo">${camposHTML(rc,CAMPOS[c],j)}
+          <details class="mas"><summary>Justificación y gravedad</summary>${justHTML(rc, j.justificacion, NOMBRE_CRIT[c])}${sevHTML(rc,j)}</details></div></details>`;
     }
     const pz = pr.prioridad; const rp = `${ruta}.prioridad`;
-    h += `</div><div class="criterio prio"><div class="crit-cab"><span class="crit-ic">★</span><span class="crit-tit"><b>Qué tan importante es para el negocio <span class="sm SM3">SM3</span></b>
-        <small>No sale del texto: lo sabe el cliente o el analista. Con la gravedad y esta criticidad, SM3 decide la prioridad (matriz MPR-01). Si no se declara, queda «bloqueante preventiva».</small></span></div>
+    h += `</div><div class="criterio prio"><div class="crit-cab"><span class="crit-ic">★</span><span class="crit-tit"><b>¿Qué tan importante es para el negocio?</b>
+        <small>Esto no sale del texto: lo sabe el cliente o quien revisa. Si no se indica, AuditIA lo trata como urgente hasta saberlo.</small></span></div>
       <div class="crit-cuerpo">
-      ${campoHTML(rp, ["criticidad_valor","sel","Criticidad del requerimiento",[["","no declarada"],["baja","baja"],["media","media"],["alta","alta"]]], pz.criticidad_valor)}
-      ${campoHTML(rp, ["grado_criticidad","num","Grado de criticidad (0 a 10)",0,10,0.5], pz.grado_criticidad)}
-      ${[["obligacion_esencial_indefinida","Deja indefinida una obligación esencial"],["bloqueo_sustantivo_confirmado","Bloquea el avance (confirmado)"],["hito_acordado","Hay un hito acordado para resolverlo"],["diferimiento_aceptado","El cliente aceptó diferirlo"],["impacto_acotado","El impacto está acotado"]].map(([k,t])=>campoHTML(rp,[k,"bool",t],pz[k])).join("")}
-      <p class="nota-previa prevision" data-previa-prio="${i}"></p></div></div></details>`;
+      ${campoHTML(rp, ["criticidad_valor","sel","Importancia",[["","no la sé"],["baja","baja"],["media","media"],["alta","alta"]]], pz.criticidad_valor)}
+      <details class="mas"><summary>Más detalles de prioridad</summary>
+      ${campoHTML(rp, ["grado_criticidad","num","Grado de importancia (0 a 10)",0,10,0.5], pz.grado_criticidad)}
+      ${[["obligacion_esencial_indefinida","Deja sin definir algo esencial"],["bloqueo_sustantivo_confirmado","Bloquea el avance (confirmado)"],["hito_acordado","Hay una fecha acordada para resolverlo"],["diferimiento_aceptado","El cliente aceptó dejarlo para después"],["impacto_acotado","El impacto es acotado"]].map(([k,t])=>campoHTML(rp,[k,"bool",t],pz[k])).join("")}
+      </details>
+      <div class="prevision-prio" data-previa-prio="${i}"></div></div></div></div></details>`;
   });
-  (p.comparaciones||[]).forEach((cp,k) => {
-    const c = cp.premisas; const rc = `comparaciones.${k}.premisas`;
-    if(cp.incluir === undefined) cp.incluir = true;
-    const ta = p.requerimientos.find(r=>r.clave===cp.a), tb = p.requerimientos.find(r=>r.clave===cp.b);
-    h += `<div class="hoja tarjeta-rq cmp"><h3><span class="sm SM2">SM2</span> Comparación ${esc(cp.a)} frente a ${esc(cp.b)} <span data-previa="cmp-${k}"></span>
-        <label style="font-size:13px;font-weight:400;margin-left:auto"><input type="checkbox" data-ruta="comparaciones.${k}.incluir" ${cp.incluir?"checked":""}> analizar este par</label></h3>
-      ${p.requerimientos.length>2?`<p class="lectura">${esc(cp.a)}: ${esc(ta?.texto)}<br>${esc(cp.b)}: ${esc(tb?.texto)}<br><i>Par propuesto porque comparten objeto y acción (criterio de ACC-HC01).</i></p>`:""}
-      ${cp.extraccion?.justificacion ? `<p class="lectura"><b>Lectura:</b> ${esc(cp.extraccion.justificacion)}${cp.extraccion.region_comun?` · <b>Región común:</b> <mark>${esc(cp.extraccion.region_comun)}</mark>`:""}</p>`:""}
-      <p class="nota-previa" style="margin:0 0 8px">AuditIA encontró dos requerimientos que hablan de lo mismo. Estas preguntas describen la comparación; con ellas las reglas de SM2 deciden si hay una contradicción.</p>
-      <div class="criterio"><div class="crit-cuerpo">${camposHTML(rc,CAMPOS_CMP,c)}
-      <label class="fila"><span>Ámbito común</span><input type="text" class="texto-fila" data-ruta="${rc}.ambito_comun" value="${esc(c.ambito_comun||"")}"></label>
-      ${justHTML(rc, c.justificacion, "la comparación")}${sevHTML(rc,c)}
-      <p class="nota-previa prevision" data-previa-prio="cmp-${k}"></p></div></div></div>`;
-  });
-  if(p.requerimientos.length > 2 && !(p.comparaciones||[]).length) h += `<p class="ayuda">No se encontraron pares que compartan objeto y acción: SM2 no compara ningún par en este lote.</p>`;
-  h += `<div class="confirmar"><button class="principal" id="confirmar">Confirmar premisas y aplicar las reglas</button>
-    <span class="contador" style="margin-left:0">Se escriben en Neo4j con un lote nuevo; los casos de PG2 no se tocan.</span></div></section>`;
+  if((p.comparaciones||[]).length){
+    h += `<div class="rev-seccion">Posibles contradicciones <small>Requerimientos que hablan de lo mismo</small></div>`;
+    p.comparaciones.forEach((cp,k) => {
+      const c = cp.premisas; const rc = `comparaciones.${k}.premisas`;
+      if(cp.incluir === undefined) cp.incluir = true;
+      const ta = p.requerimientos.find(r=>r.clave===cp.a), tb = p.requerimientos.find(r=>r.clave===cp.b);
+      const lado = (r, clave) => `<div class="par-lado"><small>${esc(r?.id_documento || `Requerimiento ${clave}`)}</small><div class="par-txt">${resaltar(r?.texto||"", r?.extraccion?.terminos_vagos)}</div></div>`;
+      h += `<div class="hoja cmp-card" data-cmp="${k}">
+        <div class="cmp-cab"><span class="rq-estado" data-icono-cmp="${k}"></span><b>¿Se contradicen?</b><span data-previa="cmp-${k}"></span>
+          <label class="cmp-incluir">Analizar este par <input type="checkbox" role="switch" data-ruta="comparaciones.${k}.incluir" ${cp.incluir?"checked":""}></label></div>
+        <div class="cmp-par">${lado(ta, cp.a)}<span class="vs">VS</span>${lado(tb, cp.b)}</div>
+        <details class="criterio"><summary><span class="crit-tit"><b>Revisá las respuestas</b><small>Abrí para ver cómo se compararon y corregir lo que haga falta.</small></span></summary>
+          <div class="crit-cuerpo">${camposHTML(rc,CAMPOS_CMP,c)}
+          <label class="fila"><span>¿En qué se superponen?</span><input type="text" class="texto-fila" data-ruta="${rc}.ambito_comun" value="${esc(c.ambito_comun||"")}"></label>
+          <details class="mas"><summary>Justificación y gravedad</summary>${justHTML(rc, c.justificacion, "la comparación")}${sevHTML(rc,c)}</details>
+          <div class="prevision-prio" data-previa-prio="cmp-${k}"></div></div></details></div>`;
+    });
+  }
+  h += `<div class="rev-confirmar"><div><b>¿Está todo bien?</b><small>Al confirmar, AuditIA aplica sus reglas y te muestra qué resolver primero.</small></div>
+    <button class="enlace" data-ir="subir">← Volver</button>
+    <button class="principal" id="confirmar">Confirmar y ver resultados →</button></div></section>`;
   $("#revision").innerHTML = h;
   document.querySelectorAll("#revision [data-ruta]").forEach(el => el.addEventListener(el.type==="checkbox"||el.tagName==="SELECT"?"change":"input", () => { asignar(el); actualizarPrevias(); }));
   $("#confirmar").onclick = confirmar;
-  // botones − / + de los campos numéricos
   $("#revision").onclick = e => {
+    const f = e.target.closest("[data-filtro]");
+    if(f){ FILTRO_REV = f.dataset.filtro; document.querySelectorAll("[data-filtro]").forEach(b => b.setAttribute("aria-pressed", String(b===f))); aplicarFiltro(); return; }
     const b = e.target.closest(".paso-num button"); if(!b) return;
     e.preventDefault();
     const inp = b.parentElement.querySelector("input");
@@ -1118,8 +1196,15 @@ function renderRevision(){
     inp.dispatchEvent(new Event("input"));
   };
   actualizarPrevias();
-  // se abren solos los criterios que van a dar un hallazgo o un pendiente
-  document.querySelectorAll("#revision details.criterio").forEach(d => { if(d.querySelector("summary .previa.incumple, summary .previa.pendiente")) d.open = true; });
+  // con muchos requerimientos se abre solo el primero con problemas; adentro, los criterios con problemas
+  if(n > 2){ const primero = document.querySelector('#revision details.rq[data-estado="problema"], #revision details.rq[data-estado="falta"]'); if(primero) primero.open = true; }
+  document.querySelectorAll("#revision details.rq details.criterio").forEach(d => { if(d.querySelector("summary .estado-pill.incumple, summary .estado-pill.pendiente")) d.open = true; });
+}
+function aplicarFiltro(){
+  document.querySelectorAll("#revision details.rq").forEach(d => {
+    const e = d.dataset.estado;
+    d.hidden = FILTRO_REV==="problemas" ? e==="ok" : FILTRO_REV==="ok" ? e!=="ok" : false;
+  });
 }
 function asignar(el){
   const partes = el.dataset.ruta.split("."); let o = PROP;
@@ -1130,33 +1215,47 @@ function asignar(el){
   else o[k] = el.value || (k.includes("severidad")||k==="criticidad_valor" ? null : "");
 }
 function actualizarPrevias(){
+  const cuenta = {ok:0, problema:0, falta:0};
   PROP.requerimientos.forEach((rq,i) => {
-    const sev = [], resumen = [];
+    const sev = [], chips = []; let estado = "ok";
     for(const c of Object.keys(CAMPOS)){
       const r = reglaSM1(c, rq.premisas.criterios[c]);
-      const el = document.querySelector(`[data-previa="${i}.${c}"]`); if(el) el.innerHTML = etiqueta(r);
-      resumen.push(`<span class="previa ${r[0]?r[1]:"nada"}" title="${esc(NOMBRE_CRIT[c])}">${esc(NOMBRE_CRIT[c])}: ${esc(r[1])}</span>`);
-      if(r[1]==="incumple") sev.push([`${NOMBRE_CRIT[c]}`, true, rq.premisas.criterios[c].severidad_propuesta]);
-      if(r[1]==="pendiente") sev.push([`${NOMBRE_CRIT[c]}`, false, null]);
+      const el = document.querySelector(`[data-previa="${i}.${c}"]`); if(el) el.innerHTML = etiquetaCrit(c, r);
+      if(r[1]==="incumple"){ estado = "problema"; chips.push(`<span class="chip-e problema">✕ ${esc(HUMANO[c].incumple)}</span>`); sev.push([NOMBRE_CRIT[c], true, rq.premisas.criterios[c].severidad_propuesta]); }
+      if(r[1]==="pendiente"){ if(estado==="ok") estado = "falta"; chips.push(`<span class="chip-e falta">? ${esc(HUMANO[c].pendiente)}</span>`); sev.push([NOMBRE_CRIT[c], false, null]); }
     }
-    const rs = document.querySelector(`[data-resumen="${i}"]`); if(rs) rs.innerHTML = resumen.join("");
+    cuenta[estado]++;
+    const card = document.querySelector(`details.rq[data-rq="${i}"]`); if(card) card.dataset.estado = estado;
+    const ic = document.querySelector(`[data-icono="${i}"]`); if(ic){ ic.className = `rq-estado ${estado}`; ic.textContent = {ok:"✓", problema:"!", falta:"?"}[estado]; }
+    const rs = document.querySelector(`[data-resumen="${i}"]`); if(rs) rs.innerHTML = chips.length ? chips.join("") : `<span class="chip-e ok">✓ Bien escrito</span>`;
     const nota = document.querySelector(`[data-previa-prio="${i}"]`);
-    if(nota) nota.innerHTML = sev.length ? "Prioridad prevista: " + sev.map(([n,h,s]) => `${esc(n)} (${h?"hallazgo":"pendiente"}) → ${esc(prioridadPrevia(h,s,rq.premisas.prioridad))}`).join("; ")
-      : "Sin observaciones previstas: no hay nada que priorizar.";
+    if(nota) nota.innerHTML = sev.length ? `Si confirmás así, quedaría: ${sev.map(([n,h,s]) => `${esc(n)} ${prioHumana(prioridadPrevia(h,s,rq.premisas.prioridad))}`).join(" ")}` : "Sin observaciones: no hay nada que priorizar.";
   });
+  let contra = 0;
   (PROP.comparaciones||[]).forEach((cp,k) => {
     const r = cp.incluir===false ? [null,"no se analiza"] : reglaSM2(cp.premisas);
-    const el = document.querySelector(`[data-previa="cmp-${k}"]`); if(el) el.innerHTML = cp.incluir===false ? `<span class="previa nada">no se analiza</span>` : etiqueta(r);
+    if(cp.incluir!==false && r[1]==="observado") contra++;
+    const el = document.querySelector(`[data-previa="cmp-${k}"]`); if(el) el.innerHTML = cp.incluir===false ? `<span class="estado-pill nada">No se analiza</span>` : etiquetaSM2(r);
+    const ic = document.querySelector(`[data-icono-cmp="${k}"]`);
+    if(ic){ const e = cp.incluir===false ? "" : r[1]==="observado" ? "problema" : r[1]==="pendiente" ? "falta" : r[0] ? "ok" : ""; ic.className = `rq-estado ${e}`; ic.textContent = {ok:"✓", problema:"!", falta:"?"}[e] || "–"; }
     const prs = PROP.requerimientos.filter(x=>x.clave===cp.a||x.clave===cp.b).map(x=>x.premisas.prioridad).sort((a,b)=>(b.grado_criticidad??-1)-(a.grado_criticidad??-1));
     const pr = {...prs[0], obligacion_esencial_indefinida: prs.some(x=>x.obligacion_esencial_indefinida), bloqueo_sustantivo_confirmado: prs.some(x=>x.bloqueo_sustantivo_confirmado),
       hito_acordado: prs.every(x=>x.hito_acordado), diferimiento_aceptado: prs.every(x=>x.diferimiento_aceptado), impacto_acotado: prs.every(x=>x.impacto_acotado)};
     const nota = document.querySelector(`[data-previa-prio="cmp-${k}"]`);
-    if(nota) nota.innerHTML = r[1]==="observado" ? `Prioridad prevista del hallazgo: ${esc(prioridadPrevia(true, cp.premisas.severidad_propuesta, pr))} (usa la criticidad más alta del par).`
-      : r[1]==="pendiente" ? `Prioridad prevista del pendiente: ${esc(prioridadPrevia(false, null, pr))}.` : "Sin observación prevista para el par.";
+    if(nota) nota.innerHTML = r[1]==="observado" ? `Si confirmás así, la contradicción quedaría ${prioHumana(prioridadPrevia(true, cp.premisas.severidad_propuesta, pr))}`
+      : r[1]==="pendiente" ? `Si confirmás así, quedaría pendiente ${prioHumana(prioridadPrevia(false, null, pr))}` : "Sin observación para este par.";
   });
+  const n = PROP.requerimientos.length;
+  const rc = $("#rev-cuenta");
+  if(rc) rc.innerHTML = `<span class="stat"><b>${n}</b> ${n===1?"requerimiento":"requerimientos"}</span>`
+    + (cuenta.ok ? `<span class="stat ok"><i></i><b>${cuenta.ok}</b> bien escritos</span>` : "")
+    + (cuenta.problema ? `<span class="stat mal"><i></i><b>${cuenta.problema}</b> con problemas</span>` : "")
+    + (cuenta.falta ? `<span class="stat falta"><i></i><b>${cuenta.falta}</b> con datos faltantes</span>` : "")
+    + (contra ? `<span class="stat cmp"><i></i><b>${contra}</b> ${contra===1?"contradicción":"contradicciones"}</span>` : "");
+  aplicarFiltro();
 }
 
-var DOC = null;   // var: lo usa actualizarManual() antes de esta línea
+let DOC = null;
 $("#doc-archivo").addEventListener("change", async ev => {
   const f = ev.target.files[0]; if(!f) return;
   $("#doc-lista").innerHTML = "";
@@ -1171,7 +1270,7 @@ $("#doc-archivo").addEventListener("change", async ev => {
 });
 function renderDocumento(){
   const d = DOC;
-  $("#zona-manual").hidden = true;
+  $("#zona-doc").hidden = false;
   const cab = `<div class="doc-cab"><span class="doc-ic">${esc((d.nombre.split(".").pop()||"DOC").toUpperCase().slice(0,4))}</span>
     <div><b>${esc(d.nombre)}</b><small>${d.requerimientos.length} requerimientos encontrados en ${d.parrafos} párrafos${d.truncado?" · se muestran los primeros":""}</small></div>
     <button type="button" id="doc-quitar">Quitar documento</button></div>`;
@@ -1192,19 +1291,13 @@ function cuentaDoc(){
   $("#proponer-llm").disabled = n<1; $("#proponer-rapido").disabled = n<1;
 }
 function quitarDocumento(){
-  DOC = null; $("#doc-lista").innerHTML = ""; $("#doc-archivo").value = ""; $("#zona-manual").hidden = false;
-  $("#proponer-llm").disabled = false; $("#proponer-rapido").disabled = false; actualizarManual();
+  DOC = null; $("#doc-lista").innerHTML = ""; $("#doc-archivo").value = ""; $("#zona-doc").hidden = true;
 }
 function seleccionados(){ return !DOC ? [] : [...document.querySelectorAll(".doc-sel:checked")].map(c => DOC.requerimientos[+c.dataset.i]); }
 
 async function pedirPropuesta(usarLLM, items=null, documento=""){
-  const reqs = items || textosManual();
-  if(!items){
-    const corto = [...document.querySelectorAll("#rq-lista textarea")].find(t => t.value.trim() && t.value.trim().length < 8);
-    if(!reqs.length || corto){ (corto || document.querySelector("#rq-lista textarea")).focus();
-      $("#aviso-subir").innerHTML = `<div class="avisos">${reqs.length ? "Cada requerimiento necesita al menos 8 caracteres." : "Escribí al menos un requerimiento."}</div>`; return; }
-  }
-  if(items && !items.length){ $("#aviso-subir").innerHTML = `<div class="avisos">Elegí al menos un requerimiento del documento.</div>`; return; }
+  const reqs = items || [];
+  if(!reqs.length){ $("#aviso-subir").innerHTML = `<div class="avisos">Elegí al menos un requerimiento del documento.</div>`; return; }
   const botones = [$("#proponer-llm"), $("#proponer-rapido")]; botones.forEach(b=>b.disabled=true);
   $("#aviso-subir").innerHTML = ""; $("#aviso-revisar").innerHTML = ""; ALCANZADO.revisar = false; ALCANZADO.resultados = false; flujo("llm");
   Carga.mostrar({
@@ -1218,7 +1311,8 @@ async function pedirPropuesta(usarLLM, items=null, documento=""){
     const {id, en_cola} = await r.json();
     if(en_cola) Carga.paso(`Esperando turno: hay ${en_cola} ${en_cola===1?"análisis":"análisis"} antes que el tuyo…`);
     while(true){
-      const t = await (await fetch(`/api/analisis/propuestas/${id}`)).json();
+      const rr = await fetch(`/api/analisis/propuestas/${id}`); const t = await rr.json();
+      if(!rr.ok) throw new Error("el análisis se canceló o el servidor se reinició. Volvé a intentarlo");
       const ult = (t.etapas||[]).at(-1);
       if(ult?.detalle){ const m = ult.detalle.match(/requerimientos (\d+) a (\d+)/); if(m) Carga.progreso(Math.min(80, (+m[1]-1)/reqs.length*80));
         if(/compar/i.test(ult.detalle)) Carga.progreso(82); }
@@ -1230,10 +1324,10 @@ async function pedirPropuesta(usarLLM, items=null, documento=""){
     await Carga.completar(); flujo("analista"); renderRevision();
   }catch(e){ $("#aviso-subir").innerHTML = `<div class="error">No se pudo obtener la propuesta: ${esc(e.message)}</div>`; flujo("texto"); }
   Carga.ocultar(); botones.forEach(b=>b.disabled=false);
-  if(DOC) cuentaDoc(); else actualizarManual();
+  cuentaDoc();
 }
-$("#proponer-llm").onclick = () => DOC ? pedirPropuesta(true, seleccionados(), DOC.nombre) : pedirPropuesta(true);
-$("#proponer-rapido").onclick = () => DOC ? pedirPropuesta(false, seleccionados(), DOC.nombre) : pedirPropuesta(false);
+$("#proponer-llm").onclick = () => DOC && pedirPropuesta(true, seleccionados(), DOC.nombre);
+$("#proponer-rapido").onclick = () => DOC && pedirPropuesta(false, seleccionados(), DOC.nombre);
 
 async function confirmar(){
   $("#confirmar").disabled = true; flujo("reglas");
