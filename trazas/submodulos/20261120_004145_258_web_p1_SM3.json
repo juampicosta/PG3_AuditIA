@@ -1,0 +1,283 @@
+{
+  "prototipo": "PI4-SM3-1.0",
+  "fecha": "2026-11-20T00:33:25",
+  "modelo": "qwen2.5:7b",
+  "hilos": null,
+  "huella_prompts": "837a200f0dfe",
+  "caso": "web_p1_SM3",
+  "consulta_usuario": "¿Qué prioridad tiene H-L03-EF? ¿Por qué tiene esa prioridad H-L03-EF?",
+  "extraccion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "salida_cruda": "{\"intencion\": \"fundamento_prioridad\", \"entidades\": {\"observacion_id\": \"H-L03-EF\", \"observacion_texto\": null, \"documento_id\": null}, \"filtros\": {\"prioridad\": null, \"motivo\": null, \"estado_seguimiento\": \"abiertas\"}, \"matriz\": {\"severidad\": null, \"criticidad\": null}, \"faltantes\": []}",
+        "modelo": "qwen2.5:7b",
+        "segundos": 172.8,
+        "tokens_entrada": 2794,
+        "tokens_salida": 94,
+        "errores_esquema": []
+      }
+    ],
+    "notas": [],
+    "json_validado": {
+      "intencion": "fundamento_prioridad",
+      "entidades": {
+        "observacion_id": "H-L03-EF",
+        "observacion_texto": null,
+        "documento_id": null
+      },
+      "filtros": {
+        "prioridad": null,
+        "motivo": null,
+        "estado_seguimiento": "abiertas"
+      },
+      "matriz": {
+        "severidad": null,
+        "criticidad": null
+      },
+      "faltantes": []
+    }
+  },
+  "intencion": "fundamento_prioridad",
+  "consultas_cypher": [
+    {
+      "consulta": "Q0_observaciones",
+      "parametros": {},
+      "filas": 55,
+      "milisegundos": 1860.0
+    },
+    {
+      "consulta": "Q2_fundamento_decision",
+      "parametros": {
+        "observacion_id": "H-L03-EF"
+      },
+      "filas": 1,
+      "milisegundos": 69.3
+    },
+    {
+      "consulta": "Q4_seguimiento_pg2",
+      "parametros": {
+        "observacion_id": "H-L03-EF"
+      },
+      "filas": 1,
+      "milisegundos": 43.3
+    },
+    {
+      "consulta": "Q9_reglas",
+      "parametros": {
+        "ids": [
+          "ACC-RD05",
+          "GL06",
+          "GL07",
+          "PRC-HC01"
+        ]
+      },
+      "filas": 4,
+      "milisegundos": 45.0
+    }
+  ],
+  "resolucion_entidad": {
+    "estado": "ok",
+    "puntaje": 1.0,
+    "observaciones": [
+      "H-L03-EF"
+    ]
+  },
+  "paquete_evidencia": {
+    "intencion": "fundamento_prioridad",
+    "consulta_usuario": "¿Qué prioridad tiene H-L03-EF? ¿Por qué tiene esa prioridad H-L03-EF?",
+    "fuente": "Neo4j · base AuditIA_PG2 (PG2, Grupo 10)",
+    "fundamento": {
+      "provisional": true,
+      "revisada_humanamente": false,
+      "estado": "por_consultar",
+      "tipo": "hallazgo",
+      "motivo": "sustantivo",
+      "reevaluaciones_del_origen": [],
+      "dato_faltante_origen": null,
+      "evaluacion_origen_id": "EV-L03-EF",
+      "severidad": {
+        "grado_severidad": 9.0,
+        "valor": "alta",
+        "propuesta_por": "analisis_cruzado",
+        "id": "SV-H-L03-EF"
+      },
+      "observacion_id": "H-L03-EF",
+      "criticidad": {
+        "grado_criticidad": 9.0,
+        "declarante_rol": "analista",
+        "valor": "alta",
+        "fundamento": "La cancelación de pedidos afecta cobros y reembolsos.",
+        "ambito": "RQ-L03-E-v1",
+        "id": "CR-H-L03-EF"
+      },
+      "prioridad": "bloqueante",
+      "contexto": {
+        "mapeo_alta_bloqueante": "candidato_activo",
+        "diferimiento_aceptado": false,
+        "obligacion_esencial_indefinida": true,
+        "bloqueo_sustantivo_confirmado": true,
+        "id": "X-H-L03-EF",
+        "dato_para_priorizar_disponible": true,
+        "info_para_priorizar_suficiente": true,
+        "impacto_acotado": false,
+        "necesidad_dato_confirmada": false,
+        "hito_acordado": false
+      },
+      "celda_mpr01": {
+        "estado_validacion": "candidata",
+        "categoria": "bloqueante",
+        "id": "MPR-alta-alta",
+        "version": "MPR-01-1.0"
+      },
+      "revision_senior_requerida": false,
+      "decision_id": "D-H-L03-EF",
+      "evidencia_decision": [
+        {
+          "contenido": "Cuando el pedido está confirmado, el cliente no puede cancelarlo.",
+          "fuente": null,
+          "id": "E-RQ-L03-F-v1"
+        },
+        {
+          "contenido": "Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.",
+          "fuente": null,
+          "id": "E-RQ-L03-E-v1"
+        },
+        {
+          "contenido": "RQ-L03-E-v1 frente a RQ-L03-F-v1: escenarios coincidentes (región común: pedido confirmado); resultados incompatibles. En el mismo escenario (pedido confirmado) uno permite cancelar y el otro lo prohíbe.",
+          "fuente": null,
+          "id": "E-EV-L03-EF"
+        }
+      ],
+      "descripcion_origen": "En el mismo escenario (pedido confirmado) uno permite cancelar y el otro lo prohíbe.",
+      "modulo_origen": "analisis_cruzado",
+      "emitible": false,
+      "regla": "PRC-HC01",
+      "decision_anterior": null
+    },
+    "seguimiento_pg2": {
+      "grado_ambiguedad_origen": null,
+      "descripcion": "En el mismo escenario (pedido confirmado) uno permite cancelar y el otro lo prohíbe.",
+      "estado": "por_consultar",
+      "motivo": "sustantivo",
+      "modelo_difuso": "MD-URG-1.0",
+      "grado_urgencia": 8.082999080276148,
+      "observacion_id": "H-L03-EF",
+      "prioridad": "bloqueante",
+      "version_origen": "1",
+      "reglas_decision": [
+        "PRC-HC01"
+      ],
+      "decision_id": "D-H-L03-EF",
+      "modulo_origen": "analisis_cruzado",
+      "provisional": true,
+      "estado_evaluacion_vigente": "observado",
+      "dato_faltante": null,
+      "evaluacion_origen_id": "EV-L03-EF",
+      "reglas_origen": [
+        "GL06",
+        "GL07",
+        "ACC-RD05"
+      ],
+      "modelo_ambiguedad": null,
+      "version": "1",
+      "evidencia_origen": [],
+      "grado_contradiccion": 0.8439745371591536,
+      "tratamiento_activo": true,
+      "descripcion_corresponde_a": "observacion_historica",
+      "modelo_diagnostico": "MD-CONTR-1.0",
+      "documento_origen_id": "DOC-L03-v1",
+      "evidencia_decision": [],
+      "evaluacion_id": "EV-L03-EF",
+      "documento_id": "DOC-L03-v1",
+      "emitible": false,
+      "evidencia_evaluacion_vigente": [],
+      "grado_ambiguedad": null
+    },
+    "reglas": [
+      {
+        "id": "ACC-RD05",
+        "modulo": "analisis_cruzado",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI los escenarios coinciden, los resultados son incompatibles y ninguna excepción los concilia ENTONCES Hallazgo(contradiccion) y se deriva CONTRADICE.",
+        "fuente": "PG1 §6.5"
+      },
+      {
+        "id": "GL06",
+        "modulo": "global",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI una evaluación de SM1 o SM2 se publica con Hallazgo o Pendiente ENTONCES se deriva a SM3 con el contrato mínimo (IDs, versión, evidencia, regla, severidad y dato faltante); una IncidenciaEntrada vuelve al analista y no se prioriza.",
+        "fuente": "PG1 §6.3"
+      },
+      {
+        "id": "GL07",
+        "modulo": "global",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+        "fuente": "PG1 §6.3"
+      },
+      {
+        "id": "PRC-HC01",
+        "modulo": "priorizacion_clarificacion",
+        "estado_validacion": "candidata",
+        "ejecucion": "implementada",
+        "descripcion": "SI un hallazgo deja indefinida una obligación esencial ENTONCES prioridad bloqueante, motivo sustantivo.",
+        "fuente": "PG1 §6.6"
+      }
+    ]
+  },
+  "explicacion": {
+    "intentos": [
+      {
+        "intento": 1,
+        "respuesta": "H-L03-EF tiene prioridad bloqueante, motivo sustantivo.\n\nLa observación H-L03-EF indica que en el mismo escenario (pedido confirmado) uno permite cancelar y el otro lo prohíbe. La severidad es alta y la criticidad alta, con fundamento en que la cancelación de pedidos afecta cobros y reembolsos. La regla PRC-HC01, que es candidata, establece que si un hallazgo deja indefinida una obligación esencial, la prioridad es bloqueante y el motivo sustantivo. La decisión D-H-L03-EF tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible [H-L03-EF, D-H-L03-EF, PRC-HC01].",
+        "violaciones": [],
+        "modelo": "qwen2.5:7b",
+        "segundos": 298.18,
+        "tokens_entrada": 4434,
+        "tokens_salida": 186
+      }
+    ],
+    "hechos_verificables": [
+      "Observación H-L03-EF (hallazgo) emitida por analisis_cruzado en la evaluación EV-L03-EF. Descripción registrada: «En el mismo escenario (pedido confirmado) uno permite cancelar y el otro lo prohíbe.».",
+      "Severidad SV-H-L03-EF: alta (grado_severidad 9.000), propuesta por analisis_cruzado. SM3 no la modifica.",
+      "Criticidad CR-H-L03-EF: alta (grado_criticidad 9.000), ámbito «RQ-L03-E-v1», fundamento «La cancelación de pedidos afecta cobros y reembolsos.», declarada por analista.",
+      "Celda de MPR-01: MPR-alta-alta, categoría bloqueante, versión MPR-01-1.0, estado_validacion candidata.",
+      "Premisas del contexto X-H-L03-EF: mapeo_alta_bloqueante = candidato_activo; diferimiento_aceptado = false; obligacion_esencial_indefinida = true; bloqueo_sustantivo_confirmado = true; dato_para_priorizar_disponible = true; info_para_priorizar_suficiente = true; impacto_acotado = false; necesidad_dato_confirmada = false; hito_acordado = false.",
+      "Decisión vigente D-H-L03-EF, prioridad bloqueante, motivo sustantivo, regla PRC-HC01, seguimiento por_consultar; provisional = true, emitible = false. revisada_humanamente = false.",
+      "Evidencia de la decisión: E-RQ-L03-F-v1, «Cuando el pedido está confirmado, el cliente no puede cancelarlo.» (fuente None).",
+      "Evidencia de la decisión: E-RQ-L03-E-v1, «Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.» (fuente None).",
+      "Evidencia de la decisión: E-EV-L03-EF, «RQ-L03-E-v1 frente a RQ-L03-F-v1: escenarios coincidentes (región común: pedido confirmado); resultados incompatibles. En el mismo escenario (pedido confirmado) uno permite cancelar y el otro lo prohíbe.» (fuente None).",
+      "Seguimiento (Q4 de PG2): evaluación vigente EV-L03-EF sobre DOC-L03-v1 con estado observado; tratamiento_activo = true; reglas del origen GL06, GL07, ACC-RD05. Grado de contradicción de la evaluación de origen: 0.844 (MD-CONTR-1.0). Grado de urgencia de la decisión: 8.083 (MD-URG-1.0).",
+      "Regla ACC-RD05 (estado candidata, ejecución en PG2: implementada, PG1 §6.5): SI los escenarios coinciden, los resultados son incompatibles y ninguna excepción los concilia ENTONCES Hallazgo(contradiccion) y se deriva CONTRADICE.",
+      "Regla GL06 (estado candidata, ejecución en PG2: implementada, PG1 §6.3): SI una evaluación de SM1 o SM2 se publica con Hallazgo o Pendiente ENTONCES se deriva a SM3 con el contrato mínimo (IDs, versión, evidencia, regla, severidad y dato faltante); una IncidenciaEntrada vuelve al analista y no se prioriza.",
+      "Regla GL07 (estado candidata, ejecución en PG2: implementada, PG1 §6.3): SI se deriva un Hallazgo o Pendiente ENTONCES debe incluir una instancia de Severidad (baja, media, alta o null) con su propuesta; bloqueante, mayor y menor no son valores de severidad.",
+      "Regla PRC-HC01 (estado candidata, ejecución en PG2: implementada, PG1 §6.6): SI un hallazgo deja indefinida una obligación esencial ENTONCES prioridad bloqueante, motivo sustantivo.",
+      "Las decisiones, reglas, celdas y modelos citados son provisionales o candidatos: resultado del prototipo académico, sin validación experta. La respuesta debe decirlo con la palabra «provisional».",
+      "emitible = false: la respuesta debe decir que la recomendación todavía no es emitible.",
+      "La respuesta debe mencionar estos IDs: H-L03-EF, D-H-L03-EF, PRC-HC01. Entre corchetes van solo IDs, por ejemplo [H-L03-EF, D-H-L03-EF]; los valores se escriben con palabras, fuera de los corchetes.",
+      "La respuesta debe nombrar con palabras estos valores: bloqueante, por consultar, sustantivo.",
+      "La respuesta debe explicar primero el fundamento de cada decisión (premisas, evidencia y regla con su significado) y cerrar cada una con una oración como: «La decisión D-H-L03-EF tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible.»",
+      "Valores de prioridad, motivo y estado que figuran en el paquete: bloqueante, observado, por_consultar, sustantivo. Las descripciones de las reglas son condiciones generales, no conclusiones sobre este caso: no escribas «preventivo», «en hito», «diferimiento», «resuelto», «pendiente complemento», «sin hallazgo», «no evaluable» como conclusión."
+    ],
+    "cobertura_requerida": {
+      "ids": [
+        "H-L03-EF",
+        "D-H-L03-EF",
+        "PRC-HC01"
+      ],
+      "valores": [
+        "bloqueante",
+        "por_consultar",
+        "sustantivo"
+      ]
+    },
+    "resultado_verificacion": "aprobada"
+  },
+  "respuesta_final": "H-L03-EF tiene prioridad bloqueante, motivo sustantivo.\n\nLa observación H-L03-EF indica que en el mismo escenario (pedido confirmado) uno permite cancelar y el otro lo prohíbe. La severidad es alta y la criticidad alta, con fundamento en que la cancelación de pedidos afecta cobros y reembolsos. La regla PRC-HC01, que es candidata, establece que si un hallazgo deja indefinida una obligación esencial, la prioridad es bloqueante y el motivo sustantivo. La decisión D-H-L03-EF tiene prioridad bloqueante, motivo sustantivo y seguimiento por consultar; es provisional y todavía no es emitible [H-L03-EF, D-H-L03-EF, PRC-HC01].",
+  "tipo_salida": "explicacion",
+  "segundos_totales": 473.03
+}

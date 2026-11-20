@@ -1,0 +1,159 @@
+[
+ {
+  "lote": "L03",
+  "fecha": "2026-11-20T00:30:22.952Z",
+  "analista": "Grupo 10",
+  "requerimientos": [
+   {
+    "texto": "El sistema debe registrar el pedido y notificar al cliente por correo electrónico.",
+    "id": "RQ-L03-C-v1"
+   },
+   {
+    "texto": "La aplicación debe ser fácil de usar para cualquier cliente.",
+    "id": "RQ-L03-I-v1"
+   },
+   {
+    "texto": "Cuando el pedido está confirmado, el cliente no puede cancelarlo.",
+    "id": "RQ-L03-F-v1"
+   },
+   {
+    "texto": "El sistema debe cargar rápidamente el catálogo de productos.",
+    "id": "RQ-L03-B-v1"
+   },
+   {
+    "texto": "El sistema debe permitir que el cliente se registre con su correo electrónico y una contraseña.",
+    "id": "RQ-L03-A-v1"
+   },
+   {
+    "texto": "La búsqueda de productos debe responder en menos de 2 segundos.",
+    "id": "RQ-L03-H-v1"
+   },
+   {
+    "texto": "Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.",
+    "id": "RQ-L03-E-v1"
+   },
+   {
+    "texto": "El sistema debe exportar el reporte mensual de ventas en formato PDF.",
+    "id": "RQ-L03-G-v1"
+   },
+   {
+    "texto": "El sistema debe admitir los medios de pago tarjeta de crédito, transferencia, etc.",
+    "id": "RQ-L03-D-v1"
+   }
+  ],
+  "observaciones": [
+   "H-L03-B-AMB",
+   "P-L03-B-VER",
+   "H-L03-C-ATO",
+   "H-L03-D-COM",
+   "P-L03-D-VER",
+   "P-L03-I-VER",
+   "H-L03-I-AMB",
+   "H-L03-EF"
+  ]
+ },
+ {
+  "lote": "L02",
+  "fecha": "2026-11-19T02:29:39.271Z",
+  "analista": "Grupo 10",
+  "requerimientos": [
+   {
+    "texto": "La búsqueda de productos debe responder en menos de 2 segundos.",
+    "id": "RQ-L02-H-v1"
+   },
+   {
+    "texto": "Cuando el pedido está confirmado, el cliente no puede cancelarlo.",
+    "id": "RQ-L02-F-v1"
+   },
+   {
+    "texto": "La aplicación debe ser fácil de usar para cualquier cliente.",
+    "id": "RQ-L02-I-v1"
+   },
+   {
+    "texto": "El sistema debe exportar el reporte mensual de ventas en formato PDF.",
+    "id": "RQ-L02-G-v1"
+   },
+   {
+    "texto": "El sistema debe cargar rápidamente el catálogo de productos.",
+    "id": "RQ-L02-B-v1"
+   },
+   {
+    "texto": "El sistema debe permitir que el cliente se registre con su correo electrónico y una contraseña.",
+    "id": "RQ-L02-A-v1"
+   },
+   {
+    "texto": "El sistema debe registrar el pedido y notificar al cliente por correo electrónico.",
+    "id": "RQ-L02-C-v1"
+   },
+   {
+    "texto": "El sistema debe admitir los medios de pago tarjeta de crédito, transferencia, etc.",
+    "id": "RQ-L02-D-v1"
+   },
+   {
+    "texto": "Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.",
+    "id": "RQ-L02-E-v1"
+   }
+  ],
+  "observaciones": [
+   "H-L02-B-AMB",
+   "P-L02-B-VER",
+   "H-L02-C-ATO",
+   "H-L02-D-COM",
+   "P-L02-I-VER",
+   "H-L02-I-AMB",
+   "H-L02-EF"
+  ]
+ },
+ {
+  "lote": "L01",
+  "fecha": "2026-11-19T02:20:13.157Z",
+  "analista": "Grupo 10",
+  "requerimientos": [
+   {
+    "texto": "Cuando el pedido está confirmado, el cliente puede cancelarlo desde la aplicación.",
+    "id": "RQ-L01-E-v1"
+   },
+   {
+    "texto": "Cuando el pedido está confirmado, el cliente no puede cancelarlo.",
+    "id": "RQ-L01-F-v1"
+   },
+   {
+    "texto": "El sistema debe exportar el reporte mensual de ventas en formato PDF.",
+    "id": "RQ-L01-G-v1"
+   },
+   {
+    "texto": "El sistema debe permitir que el cliente se registre con su correo electrónico y una contraseña.",
+    "id": "RQ-L01-A-v1"
+   },
+   {
+    "texto": "La búsqueda de productos debe responder en menos de 2 segundos.",
+    "id": "RQ-L01-H-v1"
+   },
+   {
+    "texto": "El sistema debe cargar rápidamente el catálogo de productos.",
+    "id": "RQ-L01-B-v1"
+   },
+   {
+    "texto": "El sistema debe registrar el pedido y notificar al cliente por correo electrónico.",
+    "id": "RQ-L01-C-v1"
+   },
+   {
+    "texto": "El sistema debe admitir los medios de pago tarjeta de crédito, transferencia, etc.",
+    "id": "RQ-L01-D-v1"
+   },
+   {
+    "texto": "La aplicación debe ser fácil de usar para cualquier cliente.",
+    "id": "RQ-L01-I-v1"
+   }
+  ],
+  "observaciones": [
+   "H-L01-B-AMB",
+   "P-L01-B-VER",
+   "H-L01-C-ATO",
+   "H-L01-D-COM",
+   "P-L01-I-VER",
+   "H-L01-I-AMB",
+   "H-L01-EF"
+  ]
+ }
+]

@@ -1,5 +1,5 @@
 {
-  "fecha": "20261119_004605",
+  "fecha": "20261120_002126",
   "total": 15,
   "pasaron": 15,
   "pruebas": [
@@ -20,7 +20,7 @@
         ]
       },
       "estado": "pasó",
-      "segundos": 8.39
+      "segundos": 0.9
     },
     {
       "id": "PF-02",
@@ -39,7 +39,7 @@
         ]
       },
       "estado": "pasó",
-      "segundos": 3.25
+      "segundos": 1.22
     },
     {
       "id": "PF-03",
@@ -53,7 +53,7 @@
         "perfil_insuficiente": true
       },
       "estado": "pasó",
-      "segundos": 1.28
+      "segundos": 0.58
     },
     {
       "id": "PF-04",
@@ -68,7 +68,7 @@
         "celda_MPR_alta_alta": true
       },
       "estado": "pasó",
-      "segundos": 3.32
+      "segundos": 1.8
     },
     {
       "id": "PF-05",
@@ -80,7 +80,7 @@
         "preventivo": true
       },
       "estado": "pasó",
-      "segundos": 0.22
+      "segundos": 0.13
     },
     {
       "id": "PF-06",
@@ -95,7 +95,7 @@
         ]
       },
       "estado": "pasó",
-      "segundos": 1.11
+      "segundos": 0.61
     },
     {
       "id": "PF-07",
@@ -109,7 +109,7 @@
         ]
       },
       "estado": "pasó",
-      "segundos": 1.16
+      "segundos": 0.82
     },
     {
       "id": "PF-08",
@@ -152,7 +152,7 @@
         ]
       },
       "estado": "pasó",
-      "segundos": 0.14
+      "segundos": 0.1
     },
     {
       "id": "PF-11",
@@ -167,7 +167,7 @@
         ]
       },
       "estado": "pasó",
-      "segundos": 0.21
+      "segundos": 0.13
     },
     {
       "id": "PF-12",

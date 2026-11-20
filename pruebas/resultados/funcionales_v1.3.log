@@ -1,0 +1,17 @@
+PF-01 [pasó] SM1 recupera el diagnóstico de RQ-CAT-v1
+PF-02 [pasó] SM2 recupera la comparación EV-DESC
+PF-03 [pasó] SM2 recupera la cobertura de Seguridad en DOC-SEG-DESCONOCIDO-v1
+PF-04 [pasó] SM3 fundamenta la prioridad de H-DESC
+PF-05 [pasó] SM3 fundamenta la prioridad de P-TASA
+PF-06 [pasó] Urgencia difusa de H-PRIO-EXCEPCION
+PF-07 [pasó] Ambigüedad sin dato de entrada (RQ-AMB-SIN-DATO-v1)
+PF-08 [pasó] El validador del plan rechaza un ID inventado por el LLM
+PF-09 [pasó] Enrutador de respaldo por palabras clave
+PF-10 [pasó] Encadenamiento SM1 -> SM3 toma el ID del grafo
+PF-11 [pasó] El verificador GL05 rechaza una explicación infiel
+PF-12 [pasó] El verificador de síntesis rechaza números y cierres inventados
+PF-13 [pasó] Control de solo lectura sobre Cypher
+PF-14 [pasó] Normalización del plan y respaldo (corrección tras CTL-04)
+PF-15 [pasó] Verificador semántico de la síntesis (corrección tras la devolución)
+
+Funcionales: 15/15 pasaron

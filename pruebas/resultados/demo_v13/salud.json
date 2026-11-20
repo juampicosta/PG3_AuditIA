@@ -1,0 +1,19 @@
+{
+ "version": "PG3-AuditIA-1.2",
+ "modelo": "qwen2.5:7b",
+ "neo4j_uri": "bolt://neo4j:7687",
+ "proveedor": "ollama",
+ "ollama_url": "http://ollama:11434",
+ "ollama": "ok",
+ "modelo_disponible": true,
+ "modelos": [
+  "qwen2.5:7b",
+  "llama3.2:latest"
+ ],
+ "neo4j": "ok",
+ "nodos": 1169,
+ "relaciones": 2535,
+ "reglas": 66,
+ "reglas_con_texto": 63,
+ "listo": true
+}

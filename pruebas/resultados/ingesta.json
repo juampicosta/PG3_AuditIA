@@ -1,5 +1,5 @@
 {
-  "fecha": "2026-11-19T02:17:28",
+  "fecha": "2026-11-20T00:20:45",
   "version": "PG3-1.3",
   "preparacion": {
     "reglas_activadas": 9,
@@ -38,10 +38,10 @@
           "ok": true,
           "detalle": {
             "nuevo": {
-              "ambiguedad": "incumple",
-              "verificabilidad": "pendiente",
               "atomicidad": "cumple",
-              "completitud": "pendiente"
+              "completitud": "pendiente",
+              "ambiguedad": "incumple",
+              "verificabilidad": "pendiente"
             },
             "pg2": {
               "completitud": "pendiente",
@@ -107,6 +107,7 @@
               "banda": null
             },
             "dato_faltante": null,
+            "juicio_id": "J-EV-T01-A-ambiguedad",
             "severidad": {
               "grado": 5.0,
               "valor": "media"
@@ -198,6 +199,7 @@
                 "id": "ACC-RD05"
               }
             ],
+            "justificacion": "Los precios finales son incompatibles y no se declaró una excepción conciliadora.",
             "revision_senior": null,
             "requerimientos": [
               "RQ-T02-B-v1",
@@ -244,6 +246,7 @@
               "banda": "alta"
             },
             "dato_faltante": null,
+            "juicio_id": null,
             "severidad": {
               "grado": 9.0,
               "valor": "alta"
@@ -577,6 +580,7 @@
               "banda": null
             },
             "dato_faltante": null,
+            "juicio_id": null,
             "severidad": {
               "grado": 9.0,
               "valor": "alta"
@@ -638,6 +642,7 @@
               "banda": null
             },
             "dato_faltante": "Delimitar la región común entre los escenarios",
+            "juicio_id": null,
             "severidad": {
               "grado": null,
               "valor": null
@@ -740,10 +745,10 @@
           "detalle": {
             "estado": "sin_hallazgo",
             "juicios": {
+              "atomicidad": "cumple",
               "ambiguedad": "cumple",
-              "completitud": "cumple",
               "verificabilidad": "cumple",
-              "atomicidad": "cumple"
+              "completitud": "cumple"
             }
           }
         },
@@ -753,10 +758,10 @@
           "detalle": {
             "estado": "sin_hallazgo",
             "juicios": {
-              "ambiguedad": "cumple",
-              "verificabilidad": "cumple",
+              "atomicidad": "cumple",
               "completitud": "cumple",
-              "atomicidad": "cumple"
+              "ambiguedad": "cumple",
+              "verificabilidad": "cumple"
             }
           }
         },
@@ -766,10 +771,10 @@
           "detalle": {
             "estado": "observado",
             "juicios": {
-              "ambiguedad": "incumple",
               "atomicidad": "cumple",
-              "verificabilidad": "pendiente",
-              "completitud": "cumple"
+              "ambiguedad": "incumple",
+              "completitud": "cumple",
+              "verificabilidad": "pendiente"
             }
           }
         }
@@ -820,15 +825,15 @@
           "control": "estados por requerimiento del documento",
           "ok": true,
           "detalle": {
-            "RNF-02": "observado",
-            "RF-04": "observado",
-            "RF-02": "observado",
-            "RF-07": "sin_hallazgo",
-            "RF-06": "sin_hallazgo",
+            "RF-05": "sin_hallazgo",
             "RNF-01": "sin_hallazgo",
             "RF-03": "observado",
-            "RF-05": "sin_hallazgo",
-            "RF-01": "sin_hallazgo"
+            "RF-02": "observado",
+            "RF-01": "sin_hallazgo",
+            "RF-07": "sin_hallazgo",
+            "RF-06": "sin_hallazgo",
+            "RNF-02": "observado",
+            "RF-04": "observado"
           }
         },
         {
@@ -905,12 +910,12 @@
           "ok": true,
           "detalle": {
             "antes": {
-              "nodos": 617,
-              "relaciones": 1191
+              "nodos": 979,
+              "relaciones": 2066
             },
             "despues": {
-              "nodos": 617,
-              "relaciones": 1191
+              "nodos": 979,
+              "relaciones": 2066
             }
           }
         }
@@ -920,6 +925,6 @@
   "resumen": {
     "pasadas": 12,
     "total": 12,
-    "segundos": 14.3
+    "segundos": 33.5
   }
 }

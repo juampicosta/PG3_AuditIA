@@ -1,0 +1,11 @@
+test_consultar_detalle_no_modifica_el_grafo (__main__.DetalleTecnico.test_consultar_detalle_no_modifica_el_grafo) ... ok
+test_historial_conserva_lectura_premisas_y_tiempos (__main__.DetalleTecnico.test_historial_conserva_lectura_premisas_y_tiempos) ... ok
+test_json_serializable_y_vinculos_completos (__main__.DetalleTecnico.test_json_serializable_y_vinculos_completos) ... ok
+test_matriz_y_prioridad_preventiva_con_importancia_declarada (__main__.DetalleTecnico.test_matriz_y_prioridad_preventiva_con_importancia_declarada) ... ok
+test_modelos_y_activaciones_corresponden_al_registro (__main__.DetalleTecnico.test_modelos_y_activaciones_corresponden_al_registro) ... ok
+test_pendiente_conserva_severidad_desconocida (__main__.DetalleTecnico.test_pendiente_conserva_severidad_desconocida) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 2.276s
+
+OK
